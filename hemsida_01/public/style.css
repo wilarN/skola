@@ -1,12 +1,17 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, serif;
     -webkit-user-select: none;  
     -moz-user-select: none;    
     -ms-user-select: none;      
     user-select: none;
 }
+
+@font-face {
+    font-family: "masterFont";
+    src: url(/fonts/Grape\ Days.otf);
+  }
+
 body {
     background-color: rgb(37, 37, 37);
 }
@@ -16,6 +21,7 @@ body {
 }
 
 .header-div {
+    font-family: masterFont;
     padding-left: 40px;
     padding-top: 40px;
     padding-bottom: 40px;
