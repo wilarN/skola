@@ -1,10 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+
 *{
     margin: 0;
+    font-family: 'Uncial Antiqua', cursive;
     padding: 0;
     -webkit-user-select: none;  
     -moz-user-select: none;    
     -ms-user-select: none;      
     user-select: none;
+    -webkit-animation: glowing 1s ease-in-out infinite alternate;
+    -moz-animation: glowing 1s ease-in-out infinite alternate;
+    animation: glowing 0.000001s ease-in infinite alternate;
+    animation: blink .1  infinite;
+    color: black;
+    border: 10px black;
+    padding: 20px;
 }
 
 @font-face {
@@ -13,7 +23,10 @@
   }
 
 body {
-    background-color: rgb(37, 37, 37);
+    background: #c31432;
+    background: -webkit-linear-gradient(to right, #240b36, #c31432);
+    background: linear-gradient(to right, #240b36, #c31432);
+
 }
 
 #active {
@@ -33,7 +46,9 @@ body {
 }
 
 .main-text-area {
-    background-color: rgb(32, 32, 32);
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 50px;
@@ -85,6 +100,7 @@ body {
     border-radius: 30px;
     height: 400px;
     width: 400px;
+    animation: zoom-in-zoom-out 5s ease;
 }
 
 .main-section-links {
@@ -94,7 +110,10 @@ body {
 
 .main-section-links a{
     color: aliceblue;
-    background-color: rgb(32, 32, 32);
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     text-align: center;
     display: block;
     text-decoration: none;
@@ -106,3 +125,39 @@ body {
     color: yellow;
     background-color: rgb(19, 19, 19);
  }
+
+
+ @-webkit-keyframes glowing {
+    from {
+      box-shadow: 0 0 0px rgb(168, 41, 41), 0 0 20px rgb(7, 65, 255), 0 0 30px rgb(0, 255, 255), 0 0 40px rgb(60, 255, 0), 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    to {
+      box-shadow: 0 0 2000px rgb(0, 0, 0), 0 0 30px #000000, 0 0 40px #000000, 0 0 50px ;
+    }
+  }
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes zoom-in-zoom-out {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1.5, 1.5);
+    }
+    90% {
+      transform: scale(10, 10);
+      opacity: 1;
+    }
+    100% {
+        transform: scale(40, 40);
+        opacity: 0;
+    }
+  }
