@@ -23,7 +23,8 @@ song_about_life_01 = "Yesterday\n" \
                      "All my troubles seemed so far away\n" \
                      "Now it looks as though they're here to stay\n" \
                      "Oh, I believe in yesterday.\n" \
-                     "Yesterday, By The Beatles. \n" \
+                     "Yesterday, By The Beatles. \n"
+
 
 def program_output(message: str, mode: int):
     # Information output
@@ -115,7 +116,9 @@ while not polly_seeds >= polly_max_seeds:
         time.sleep(3)
         grant_seed("Polly", 10, polly_seeds)
         time.sleep(5)
-        print("\nPolly also wants to hear a song about life on the sea, but because Polly is a parrot, Polly don't get to choose what song it will be.\n")
+        print(
+            "\nPolly also wants to hear a song about life on the sea, but because Polly is a parrot, Polly don't get "
+            "to choose what song it will be.\n")
         time.sleep(5)
         program_output_delay_effect(song_about_life_01, 0.05)
 
@@ -134,8 +137,17 @@ while not polly_seeds >= polly_max_seeds:
         time.sleep(2)
         temp_seeds = r.randint(1, 20)
         print(f"Polly ended up getting {temp_seeds}! Wohoooo")
+        time.sleep(2)
+        grant_seed("Polly", temp_seeds, polly_seeds)
 
-### Fixa extra sektionen
+    else:
+        try:
+            if not current_degrees:
+                print(f"Error, Please Try Again: [ERR: current_degrees not defined.]")
+        except:
+            print("You won't ever get here, but if you do. Here's some candy. *candy*")
 
+    os.system("cls")
 
-# program_output("Now polly has got enough seeds for today.", 2)
+os.system("cls")
+program_output("Now polly has got enough seeds for today.", 2)
