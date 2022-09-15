@@ -51,7 +51,13 @@ os.system("cls")
 
 # Run loop until polly has got the max ammount of seeds.
 while not polly_seeds >= polly_max_seeds:
-
+    print(f'------| Parrot Owner: {os.getlogin()} |-----------\n'
+          '- Polly likes sun and high temperatures!!\n'
+          "- Polly isn't a fan of rain as it reminds her of the life at sea.\n"
+          "- Polly isn't a fan either of the wind because it limits her ability to fly.\n"
+          "- If by any chance there's wind, she wants to turn on the radio.\n"
+          '------------------------------------------\n')
+    time.sleep(3)
     # Check if user wants to manually setup the weather parameters or want them randomly generated.
     # MANUAL WEATHER CONTROL
     if input("Do you want to manually set weather values?[y(yes)/n(o)]").lower().__contains__("y"):
@@ -107,7 +113,7 @@ while not polly_seeds >= polly_max_seeds:
         program_output_delay_effect(fun_story_01, .05)
         time.sleep(1)
 
-    elif int(current_degrees) < 20 and not is_raining:
+    elif 20 > int(current_degrees) >= 0 and not is_raining:
         os.system("cls")
         print("Ohh nooo, it's less than 20 degrees outside! plus it isn't raining. A real bummer if you ask Polly.\n")
         time.sleep(3)
@@ -149,4 +155,4 @@ while not polly_seeds >= polly_max_seeds:
     os.system("cls")
 
 os.system("cls")
-program_output("Now polly has got enough seeds for today.", 2)
+program_output(f"Polly is now too heavy to fly and {os.getlogin()} is responsible.", 2)
