@@ -12,6 +12,7 @@ current_degrees = 22
 # Polly(Parrot) variables
 polly_seeds = 0
 
+# Amount of seeds to terminate the program
 polly_max_seeds = 50
 
 # Replies --> Songs, Stories etc.
@@ -35,10 +36,6 @@ def program_output(message: str, mode: int):
         print(f"[ALERT] {message}")
 
 
-def randomise_weather_variables():
-    pass
-
-
 def program_output_delay_effect(message: str, write_speed: float):
     for char in message:
         print(f"{char}", end="")
@@ -49,6 +46,8 @@ def grant_seed(who_to_grant: str, amount: int, grant_var):
     program_output(f"{who_to_grant} was granted {amount} seeds!", 1)
     grant_var += amount
 
+
+os.system("cls")
 
 # Run loop until polly has got the max ammount of seeds.
 while not polly_seeds >= polly_max_seeds:
