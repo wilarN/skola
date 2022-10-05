@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+    background-image: url('/public/background-1854470237.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    color: white;
+}
+
+.top-div {
+    margin-top: 3%;
+}
+
+p {
+    font-size: 120%;
+}
+
+.main-div {
+    margin-top: 5%;
+    padding: 10%;
+    background-image: url('/public/435345-landscape-sunset-nature-1989208359.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.bottom-div {
+    margin-top: 3%;
+}
