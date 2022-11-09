@@ -1,0 +1,14 @@
+#########
+Import character module --> Character, npcs, not world stuff included.
+Import World Module --> Everything else behind the scenes, Map, calculations etc.
+
+Generate and style world.json and usersave.json files --> Containing settings, values and stats for world object and player object with additional npc stats.
+
+Main menu
+
+Asking user about creating character realm(new session, load session etc).
+
+Create character object with relative random stats depending on realm difficulty and previous playthroughs.
+
+Move into game loop, generate map object , npc objects (stats for npcs etc).
+
