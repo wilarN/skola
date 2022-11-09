@@ -1,10 +1,17 @@
+# Python modules
 import json
 import os
 import random
 import time
+import sys
 from datetime import datetime
+# Game related modules
+
+import src.world as world
+import src.misc as misc
 
 game_file_dir = "./files"
+base_log_dir = f"{game_file_dir}/logs"
 global_log = f"{game_file_dir}/logs/globalLogFile.log"
 global_settings_path = f"{game_file_dir}/settings.json"
 now = datetime.now()
@@ -12,7 +19,7 @@ global_character_path = f"{game_file_dir}/characters"
 global_game_path = f"{game_file_dir}/game"
 
 file_keep_count = [global_log, global_settings_path]
-dirs_keep_count = [game_file_dir, global_character_path, global_game_path]
+dirs_keep_count = [base_log_dir, game_file_dir, global_character_path, global_game_path]
 
 for i in dirs_keep_count:
     if not os.path.exists(i):
@@ -20,7 +27,7 @@ for i in dirs_keep_count:
 
 for i in file_keep_count:
     if not os.path.exists(i):
-        os.makedirs(i)
+        file = open(i, "w+")
 
 character_list = []
 realm_list = []
@@ -37,15 +44,15 @@ def logOutput(msg, logType):
     # Log
     if logType == 1:
         # print("\n[ LOG ] " + msg)
-        write_to_file("\n[LOG] " + msg, globalLogPath, "a+")
+        write_to_file("\n[LOG] " + msg, global_log, "a+")
     # Error
     elif logType == 2:
         # print("\n[ ERROR ] " + msg)
-        write_to_file("\n[ERROR] " + msg, globalLogPath, "a+")
+        write_to_file("\n[ERROR] " + msg, global_log, "a+")
     # Warning
     elif logType == 3:
         # print("\n[ WARNING ] " + msg)
-        write_to_file("\n[WARNING] " + msg, globalLogPath, "a+")
+        write_to_file("\n[WARNING] " + msg, global_log, "a+")
 
 
 def read_from_json(json_path: str):
@@ -57,7 +64,7 @@ def read_from_json(json_path: str):
 
 settings = {
     "_comment": "Settings JSON file, Don't Mess with the values if you don't know what you're doing thanks :D",
-    "activeRealm" : ""
+    "activeRealm": ""
 }
 
 
@@ -68,15 +75,15 @@ settings = {
 #    "PORT": "cH4nG3_tH1S",
 # }
 
-    # Json socketchat settings file
-    #    if not os.path.exists(global_settings_socketchat_path):
-    #        json_settings = json.dumps(socket_chat_settings)
+# Json socketchat settings file
+#    if not os.path.exists(global_settings_socketchat_path):
+#        json_settings = json.dumps(socket_chat_settings)
 
-    #        with open("settings_socketchat.json", "w") as jsonfile:
-    #            jsonfile.write(json_settings)
-    #        jsonfile.close()
-    #
-    # Master Global Latest Log File
+#        with open("settings_socketchat.json", "w") as jsonfile:
+#            jsonfile.write(json_settings)
+#        jsonfile.close()
+#
+# Master Global Latest Log File
 
 
 def get_lines(text_obj, output: bool):
@@ -92,9 +99,6 @@ def get_lines(text_obj, output: bool):
         for line in logo_lines:
             time.sleep(0.1)
             print(line)
-
-
-createGlobalLogFile()
 
 
 def write_to_file(text_to_write, path_to_file, typeOfWrite):
@@ -115,7 +119,7 @@ op3x_text = ['''
   ░   ▒    ░░░ ░ ░   ░░   ░ ░ ░ ░ ▒    ░░   ░   ░   ▒   
       ░  ░   ░        ░         ░ ░     ░           ░  ░
 ''',
-    """       
+             """       
   ______   __    __   ______    ______    ______   ______  
  /      \\ /  |  /  | /      \\  /      \\  /      \\ /      \\ 
  $$$$$$  |$$ |  $$ |/$$$$$$  |/$$$$$$  |/$$$$$$  |$$$$$$  |
@@ -124,7 +128,7 @@ op3x_text = ['''
 $$    $$ |$$    $$/ $$ |      $$    $$/ $$ |     $$    $$ |
  $$$$$$$/  $$$$$$/  $$/        $$$$$$/  $$/       $$$$$$$/                                
 """,
-'''
+             '''
           _____                    _____                    _____                   _______                   _____                    _____          
          /\    \\                  /\    \\                  /\    \\                 /::\    \\                 /\    \\                  /\    \\         
         /::\    \\                /::\____\                /::\    \\               /::::\    \\               /::\    \\                /::\    \\        

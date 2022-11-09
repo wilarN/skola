@@ -2,3 +2,4 @@
 Other/spel/.idea/vcs.xml
 Prog/slut_spelprojekt/.idea/inspectionProfiles/profiles_settings.xml
 .idea
+*.pyc
