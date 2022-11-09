@@ -3,14 +3,10 @@ import json
 import os
 import random
 import time
-import sys
-from datetime import datetime
-
 # Game specific modules
 import src.world as world
 import src.misc as misc
 import src.headers as header
-
 
 
 op3x_text = ['''
@@ -72,6 +68,7 @@ op3x_menu = '''
 
 def main():
     header.___init()
+    header.update_json_settings("player_name", "test_player_name")
     while True:
         header.clear()
         header.get_lines(op3x_text, True)

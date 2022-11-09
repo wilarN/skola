@@ -14,7 +14,7 @@ realm_list = []
 game_file_dir = "./files"
 base_log_dir = f"{game_file_dir}/logs"
 global_log = f"{game_file_dir}/logs/globalLogFile.log"
-global_settings_path = f"{game_file_dir}/settings.json"
+global_settings_path = f"{game_file_dir}/../settings.json"
 global_character_path = f"{game_file_dir}/characters"
 global_game_path = f"{game_file_dir}/game"
 
@@ -113,5 +113,5 @@ def update_json_settings(key, new_value):
     settings_file.close()
     json_obj[f"{key}"] = new_value
     settings_file = open(global_settings_path, "w")
-    json.dump(json_obj, settings_file)
+    json.dump(json_obj, settings_file, indent=4)
     settings_file.close()
