@@ -1,111 +1,16 @@
-# Python modules
+# Python general modules
 import json
 import os
 import random
 import time
 import sys
 from datetime import datetime
-# Game related modules
 
+# Game specific modules
 import src.world as world
 import src.misc as misc
+import src.headers as header
 
-game_file_dir = "./files"
-base_log_dir = f"{game_file_dir}/logs"
-global_log = f"{game_file_dir}/logs/globalLogFile.log"
-global_settings_path = f"{game_file_dir}/settings.json"
-now = datetime.now()
-global_character_path = f"{game_file_dir}/characters"
-global_game_path = f"{game_file_dir}/game"
-
-file_keep_count = [global_log, global_settings_path]
-dirs_keep_count = [base_log_dir, game_file_dir, global_character_path, global_game_path]
-
-for i in dirs_keep_count:
-    if not os.path.exists(i):
-        os.makedirs(i)
-
-for i in file_keep_count:
-    if not os.path.exists(i):
-        file = open(i, "w+")
-
-character_list = []
-realm_list = []
-
-
-def clear():
-    if os.name == 'nt':
-        _ = os.system('cls')
-    else:
-        _ = os.system('clear')
-
-
-def logOutput(msg, logType):
-    # Log
-    if logType == 1:
-        # print("\n[ LOG ] " + msg)
-        write_to_file("\n[LOG] " + msg, global_log, "a+")
-    # Error
-    elif logType == 2:
-        # print("\n[ ERROR ] " + msg)
-        write_to_file("\n[ERROR] " + msg, global_log, "a+")
-    # Warning
-    elif logType == 3:
-        # print("\n[ WARNING ] " + msg)
-        write_to_file("\n[WARNING] " + msg, global_log, "a+")
-
-
-def read_from_json(json_path: str):
-    with open(json_path, "r") as json_file:
-        data = json.load(json_file)
-    json_file.close()
-    return data
-
-
-settings = {
-    "_comment": "Settings JSON file, Don't Mess with the values if you don't know what you're doing thanks :D",
-    "activeRealm": ""
-}
-
-
-# socket_chat_settings = {
-#    "_comment": "Settings Used with the socketchat client module:",
-#    "USERNAME": "",
-#    "IP": "cH4nG3_tH1S",
-#    "PORT": "cH4nG3_tH1S",
-# }
-
-# Json socketchat settings file
-#    if not os.path.exists(global_settings_socketchat_path):
-#        json_settings = json.dumps(socket_chat_settings)
-
-#        with open("settings_socketchat.json", "w") as jsonfile:
-#            jsonfile.write(json_settings)
-#        jsonfile.close()
-#
-# Master Global Latest Log File
-
-
-def get_lines(text_obj, output: bool):
-    logo_lines = []
-    if type(text_obj) == list:
-        for line in text_obj[random.randint(0, len(text_obj) - 1)].split("\n"):
-            logo_lines.append(line)
-    else:
-        for line in text_obj.split("\n"):
-            logo_lines.append(line)
-
-    if output:
-        for line in logo_lines:
-            time.sleep(0.1)
-            print(line)
-
-
-def write_to_file(text_to_write, path_to_file, typeOfWrite):
-    if os.path.exists(path_to_file):
-        write_file = open(path_to_file, typeOfWrite)
-        write_file.write(text_to_write)
-        write_file.close()
 
 
 op3x_text = ['''
@@ -166,10 +71,11 @@ op3x_menu = '''
 
 
 def main():
+    header.___init()
     while True:
-        clear()
-        get_lines(op3x_text, True)
-        get_lines(op3x_menu, True)
+        header.clear()
+        header.get_lines(op3x_text, True)
+        header.get_lines(op3x_menu, True)
 
         usr_sel = input("~$: ")
 
