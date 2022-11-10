@@ -4,6 +4,9 @@ import time
 from datetime import datetime
 import json
 
+import src.world as world
+import src.misc as misc
+
 # Get current date and time for logging purposes and debugging.
 now = datetime.now()
 
@@ -115,3 +118,12 @@ def update_json_settings(key, new_value):
     settings_file = open(global_settings_path, "w")
     json.dump(json_obj, settings_file, indent=4)
     settings_file.close()
+
+
+def print_with_index(list_to_print: list):
+    for char in range(len(list_to_print)):
+        print(char, list_to_print[char])
+
+
+def create_realm():
+    cur_realm = world.realm(realm_name=input("Realm name: "), realm_difficulty=input("Difficulty: "))

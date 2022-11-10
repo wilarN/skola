@@ -69,6 +69,9 @@ op3x_menu = '''
 def main():
     header.___init()
     header.update_json_settings("player_name", "test_player_name")
+
+    header.create_realm()
+
     while True:
         header.clear()
         header.get_lines(op3x_text, True)
