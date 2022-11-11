@@ -2,11 +2,15 @@
 class player:
     def __init__(self, name, mana, level, experience, status, alive):
         self.name = name
-        self.age = mana
-        self.race = level
+        self.mana = mana
+        self.level = level
         self.experience = experience
         self.status = status
         self.alive = alive
+
+    def get_all_stats(self):
+        all_stats = [self.name, self.mana, self.level, self.experience, self.status, self.alive]
+        return all_stats
 
 
 class npc:

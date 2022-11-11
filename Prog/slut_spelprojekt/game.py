@@ -8,7 +8,6 @@ import src.world as world
 import src.misc as misc
 import src.headers as header
 
-
 op3x_text = ['''
  ▄▄▄       █    ██  ██▀███   ▒█████   ██▀███   ▄▄▄      
 ▒████▄     ██  ▓██▒▓██ ▒ ██▒▒██▒  ██▒▓██ ▒ ██▒▒████▄    
@@ -69,6 +68,14 @@ op3x_menu = '''
 def main():
     header.___init()
     header.update_json_settings("player_name", "test_player_name")
+
+    if header.check_json_value_settings("Has_Begun") == "False":
+        header.slow_print("It looks like you haven't yet begun your adventure here in the shadow realm.\n"
+                          "Please start by creating your hero.", 0.02)
+        player = header.create_character()
+        header.update_player_save(player)
+    else:
+        header.slow_print(f"Welcome back {os.uname().sysname}.", 0.02)
 
     header.create_realm()
 

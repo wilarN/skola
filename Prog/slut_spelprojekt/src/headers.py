@@ -26,6 +26,8 @@ settings = {
     "currently_selected_realm": "",
     "game_volume": "1",
 
+    "Has_Begun": "False",
+
     "player_name": "",
     "player_mana": "",
     "player_level": "",
@@ -120,6 +122,27 @@ def update_json_settings(key, new_value):
     settings_file.close()
 
 
+def check_json_value_settings(key):
+    settings_file = open(global_settings_path, "r")
+    json_obj = json.load(settings_file)
+    settings_file.close()
+    return json_obj[key]
+
+
+def update_player_save(selected_player):
+    data = read_from_json(global_settings_path)
+    temp_user_data = selected_player.get_all_stats()
+    for stat in data:
+        for player_stat in temp_user_data:
+            update_json_settings(stat, selected_player.)
+
+
+def slow_print(text, delay):
+    for char in text:
+        print(char, end="")
+        time.sleep(delay)
+
+
 def print_with_index(list_to_print: list):
     for char in range(len(list_to_print)):
         print(char, list_to_print[char])
@@ -127,3 +150,9 @@ def print_with_index(list_to_print: list):
 
 def create_realm():
     cur_realm = world.realm(realm_name=input("Realm name: "), realm_difficulty=input("Difficulty: "))
+
+
+def create_character():
+    temp_char_name = input("Please select a name for your hero: ")
+    cur_character = misc.player(name=temp_char_name, level=0, mana=100, status="None", alive=True, experience=0)
+    return cur_character
