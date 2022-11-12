@@ -23,17 +23,16 @@ global_game_path = f"{game_file_dir}/game"
 
 settings = {
     "_comment": "Settings JSON file, Don't Mess with the values if you don't know what you're doing thanks :D",
+    "lang": "",
     "currently_selected_realm": "",
     "game_volume": "1",
-
     "Has_Begun": "False",
-
     "player_name": "",
     "player_mana": "",
     "player_level": "",
     "player_experience": "",
     "player_status": "",
-    "player_alive": "",
+    "player_alive": ""
 }
 
 
@@ -129,12 +128,38 @@ def check_json_value_settings(key):
     return json_obj[key]
 
 
+# Used to save player data.
 def update_player_save(selected_player):
+    # data = read_from_json(global_settings_path)
+    # temp_user_data = selected_player.get_all_stats()
+    # usr_data = vars(selected_player)
+
+    # save_data = vars(selected_player)
+
+    # Honestly have no idea how to do this without hardcoding it, aNywAys--- it'll work for now i'm tired and it's 3am.-
+    # Username
+    update_json_settings("player_name", selected_player.name)
+
+    # Mana
+    update_json_settings("player_mana", selected_player.mana)
+
+    # Level
+    update_json_settings("player_level", selected_player.level)
+
+    # XP
+    update_json_settings("player_experience", selected_player.experience)
+
+    # Status
+    update_json_settings("player_status", selected_player.status)
+
+    # Alive // True _ False
+    update_json_settings("player_alive", selected_player.alive)
+
+
+# Used to load player data.
+def load_player_save():
     data = read_from_json(global_settings_path)
-    temp_user_data = selected_player.get_all_stats()
-    for stat in data:
-        for player_stat in temp_user_data:
-            update_json_settings(stat, selected_player.)
+
 
 
 def slow_print(text, delay):

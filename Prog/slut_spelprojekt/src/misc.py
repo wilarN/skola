@@ -12,6 +12,9 @@ class player:
         all_stats = [self.name, self.mana, self.level, self.experience, self.status, self.alive]
         return all_stats
 
+    def get_stat_by_name(self, spec_stat):
+        pass
+
 
 class npc:
     def __init__(self, name, level, experience, type, status, alive):
