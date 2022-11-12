@@ -3,9 +3,9 @@ menu = ['''
 ##                       - Skapa Karaktär( cc )                     ##
 ##                       - Lista alla karaktärer( lc )              ##
 ##                  ---------------------------------               ##
-##                       - Create Realm( cr )                       ##
-##                       - List Realms( lr )                        ##
+##                       - Skapa Realm( cr )                        ##
+##                       - Lista Realms( lr )                       ##
 ##                  ---------------------------------               ##
-##                       - Exit/Terminate(E/e/Q/q)                  ##
+##                       - Stäng av spel.(E/e/Q/q)                  ##
 ######################################################################
 ''']

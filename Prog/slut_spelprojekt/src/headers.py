@@ -9,7 +9,6 @@ import src.misc as misc
 
 # Get current date and time for logging purposes and debugging.
 now = datetime.now()
-
 character_list = []
 realm_list = []
 
@@ -58,6 +57,15 @@ def ___init():
         with open("settings.json", "w") as jsonfile:
             jsonfile.write(json_settings)
         jsonfile.close()
+
+    """
+    language = check_json_value_settings("lang")
+    if language == "se_SE":
+        import src.language.se_SE as lang
+
+    else:
+        import src.language.en_EN as lang
+    """
 
 
 def clear():
@@ -128,6 +136,20 @@ def check_json_value_settings(key):
     return json_obj[key]
 
 
+def get_lang():
+    if os.path.exists(global_settings_path):
+        language = check_json_value_settings("lang")
+        if language == "se_SE":
+            import src.language.se_SE as lang
+        else:
+            import src.language.en_EN as lang
+    else:
+        pass
+
+
+get_lang()
+
+
 # Used to save player data.
 def update_player_save(selected_player):
     # data = read_from_json(global_settings_path)
@@ -161,7 +183,6 @@ def load_player_save():
     data = read_from_json(global_settings_path)
 
 
-
 def slow_print(text, delay):
     for char in text:
         print(char, end="")
@@ -174,10 +195,12 @@ def print_with_index(list_to_print: list):
 
 
 def create_realm():
-    cur_realm = world.realm(realm_name=input("Realm name: "), realm_difficulty=input("Difficulty: "))
+    cur_realm = world.realm(realm_name=input(lang.realm_name), realm_difficulty=input(lang.difficulty))
 
 
 def create_character():
-    temp_char_name = input("Please select a name for your hero: ")
+    global lang
+    get_lang()
+    temp_char_name = input(lang.hero_name)
     cur_character = misc.player(name=temp_char_name, level=0, mana=100, status="None", alive=True, experience=0)
     return cur_character
