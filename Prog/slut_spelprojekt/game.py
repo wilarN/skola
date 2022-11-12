@@ -7,73 +7,28 @@ import time
 import src.world as world
 import src.misc as misc
 import src.headers as header
+import src.symbols as sym
 
-# Translations
-import src.language.en_EN as lan_en
-import src.language.se_SE as lan_se
+language = header.check_json_value_settings("lang")
+# User selects translation of game.
+while language == "":
+    usr_language = input("Swedish or english? - [s/S - e/E]")
 
-op3x_text = ['''
- ▄▄▄       █    ██  ██▀███   ▒█████   ██▀███   ▄▄▄      
-▒████▄     ██  ▓██▒▓██ ▒ ██▒▒██▒  ██▒▓██ ▒ ██▒▒████▄    
-▒██  ▀█▄  ▓██  ▒██░▓██ ░▄█ ▒▒██░  ██▒▓██ ░▄█ ▒▒██  ▀█▄  
-░██▄▄▄▄██ ▓▓█  ░██░▒██▀▀█▄  ▒██   ██░▒██▀▀█▄  ░██▄▄▄▄██ 
- ▓█   ▓██▒▒▒█████▓ ░██▓ ▒██▒░ ████▓▒░░██▓ ▒██▒ ▓█   ▓██▒
- ▒▒   ▓▒█░░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░ ▒░▒░▒░ ░ ▒▓ ░▒▓░ ▒▒   ▓▒█░
-  ▒   ▒▒ ░░░▒░ ░ ░   ░▒ ░ ▒░  ░ ▒ ▒░   ░▒ ░ ▒░  ▒   ▒▒ ░
-  ░   ▒    ░░░ ░ ░   ░░   ░ ░ ░ ░ ▒    ░░   ░   ░   ▒   
-      ░  ░   ░        ░         ░ ░     ░           ░  ░
-''',
-             """       
-  ______   __    __   ______    ______    ______   ______  
- /      \\ /  |  /  | /      \\  /      \\  /      \\ /      \\ 
- $$$$$$  |$$ |  $$ |/$$$$$$  |/$$$$$$  |/$$$$$$  |$$$$$$  |
- /    $$ |$$ |  $$ |$$ |  $$/ $$ |  $$ |$$ |  $$/ /    $$ |
-/$$$$$$$ |$$ \\__$$ |$$ |      $$ \\__$$ |$$ |     /$$$$$$$ |
-$$    $$ |$$    $$/ $$ |      $$    $$/ $$ |     $$    $$ |
- $$$$$$$/  $$$$$$/  $$/        $$$$$$/  $$/       $$$$$$$/                                
-""",
-             '''
-          _____                    _____                    _____                   _______                   _____                    _____          
-         /\    \\                  /\    \\                  /\    \\                 /::\    \\                 /\    \\                  /\    \\         
-        /::\    \\                /::\____\                /::\    \\               /::::\    \\               /::\    \\                /::\    \\        
-       /::::\    \\              /:::/    /               /::::\    \\             /::::::\    \\             /::::\    \\              /::::\    \\       
-      /::::::\    \\            /:::/    /               /::::::\    \\           /::::::::\    \\           /::::::\    \\            /::::::\    \\      
-     /:::/\:::\    \\          /:::/    /               /:::/\:::\    \\         /:::/~~\:::\    \\         /:::/\:::\    \\          /:::/\:::\    \\     
-    /:::/__\:::\    \\        /:::/    /               /:::/__\:::\    \\       /:::/    \\:::\    \\       /:::/__\:::\    \\        /:::/__\:::\    \\    
-   /::::\   \\:::\    \\      /:::/    /               /::::\   \\:::\    \\     /:::/    / \\:::\    \\     /::::\   \\:::\    \\      /::::\   \\:::\    \\   
-  /::::::\   \\:::\    \\    /:::/    /      _____    /::::::\   \\:::\    \\   /:::/____/   \\:::\____\   /::::::\   \\:::\    \\    /::::::\   \\:::\    \\  
- /:::/\:::\   \\:::\    \\  /:::/____/      /\    \\  /:::/\:::\   \\:::\____\ |:::|    |     |:::|    | /:::/\:::\   \\:::\____\  /:::/\:::\   \\:::\    \\ 
-/:::/  \\:::\   \\:::\____\|:::|    /      /::\____\/:::/  \\:::\   \\:::|    ||:::|____|     |:::|    |/:::/  \\:::\   \\:::|    |/:::/  \\:::\   \\:::\____\\
-\::/    \\:::\  /:::/    /|:::|____\     /:::/    /\::/   |::::\  /:::|____| \\:::\    \\   /:::/    / \\::/   |::::\  /:::|____|\::/    \\:::\  /:::/    /
- \\/____/ \\:::\/:::/    /  \\:::\    \\   /:::/    /  \\/____|:::::\/:::/    /   \\:::\    \\ /:::/    /   \\/____|:::::\/:::/    /  \\/____/ \\:::\/:::/    / 
-          \\::::::/    /    \\:::\    \\ /:::/    /         |:::::::::/    /     \\:::\    /:::/    /          |:::::::::/    /            \\::::::/    /  
-           \\::::/    /      \\:::\    /:::/    /          |::|\::::/    /       \\:::\__/:::/    /           |::|\::::/    /              \\::::/    /   
-           /:::/    /        \\:::\__/:::/    /           |::| \\::/____/         \\::::::::/    /            |::| \\::/____/               /:::/    /    
-          /:::/    /          \\::::::::/    /            |::|   |                \\::::::/    /             |::|   |                    /:::/    /     
-         /:::/    /            \\::::::/    /             |::|   |                 \\::::/    /              |::|   |                   /:::/    /      
-        /:::/    /              \\::::/    /              \\::|   |                  \\::/____/               \\::|   |                  /:::/    /       
-        \\::/    /                \\::/____/                \\:|   |                                           \\:|   |                  \\::/    /        
-         \\/____/                                           \\|___|                                            \\|___|                   \\/____/         
-''']
+    if usr_language.lower() == "e":
+        header.update_json_settings("lang", "en_EN")
+        import src.language.en_EN as lang
 
-global language
+    elif usr_language.lower() == "s":
+        header.update_json_settings("lang", "se_SE")
+        import src.language.se_SE as lang
+    else:
+        print("Please select a valid language.")
+    # Check if language value has been changed else stay in loop and keep asking.
+    language = header.check_json_value_settings("lang")
+    print(language)
 
 
 def main():
-    global language
-    language = header.check_json_value_settings("lang")
-    # User selects translation of game.
-    while language == "":
-        usr_language = input("Swedish or english? - [s/S - e/E]")
-
-        if usr_language.lower() == "e":
-            header.update_json_settings("lang", "en_EN")
-        elif usr_language.lower() == "s":
-            header.update_json_settings("lang", "se_SE")
-
-        else:
-            print("Please select a valid language.")
-        language = header.check_json_value_settings("lang")
 
     header.___init()
     header.update_json_settings("player_name", "test_player_name")
@@ -97,8 +52,10 @@ def main():
 
     while True:
         header.clear()
-        header.get_lines(op3x_text, True)
-        header.get_lines(op3x_menu, True)
+        # Global Logo
+        header.get_lines(sym.op3x_text, True)
+        # Main Menu
+        header.get_lines(lang.menu, True)
 
         usr_sel = input("~$: ")
 
