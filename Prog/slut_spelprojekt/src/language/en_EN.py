@@ -11,7 +11,7 @@ menu = ['''
 ######################################################################
 ''']
 
-player_begin_adventure = "It looks like you haven't yet begun your adventure here in the shadow realm.\nPlease start by creating your hero."
+player_begin_adventure = "It looks like you haven't yet begun your adventure here in the shadow realm."
 
 realm_name = "Realm name: "
 difficulty = "Difficulty: "

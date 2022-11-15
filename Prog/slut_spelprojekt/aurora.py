@@ -30,8 +30,8 @@ while language == "":
     print(language)
 
 
-def main():
 
+def main():
     language = headers.check_json_value_settings("lang")
     if language == "se_SE":
         import src.language.se_SE as lang
@@ -48,13 +48,17 @@ def main():
         player = headers.create_character()
         headers.update_player_save(player)
         headers.clear()
-        headers.slow_print(lang.create_realm_text, 0.02)
-        headers.create_realm()
-    else:
-        headers.slow_print(f"Welcome back {os.uname().sysname}.", 0.02)
-        player = headers.load_player_save()
 
-    headers.create_realm()
+    else:
+        if headers.check_json_value_settings("Has_Begun") == False:
+            headers.slow_print(lang.create_realm_text, 0.02)
+            headers.create_realm()
+        ### Load player data here later.
+        # player = headers.load_player_save()
+        # headers.slow_print(f"Welcome back {player.name}.", 0.02)
+        headers.slow_print(f"Welcome back Player.", 0.02)
+
+    # headers.create_realm()
 
     while True:
         headers.clear()
@@ -67,6 +71,12 @@ def main():
 
         if usr_sel.lower() == "cc":
             continue
+
+        elif usr_sel.lower() == "q" or usr_sel.lower() == "e":
+            # Save and exit
+            print("Exiting...")
+            exit(0)
+
         else:
             print("Please Input A Valid Selection!")
             time.sleep(1)
