@@ -17,3 +17,5 @@ realm_name = "Realm name: "
 difficulty = "Difficulty: "
 
 hero_name = "Please select a name for your hero: "
+
+create_realm_text = "Now, let's move on to creating the realm."

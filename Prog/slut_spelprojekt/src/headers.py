@@ -136,18 +136,12 @@ def check_json_value_settings(key):
     return json_obj[key]
 
 
-def get_lang():
-    if os.path.exists(global_settings_path):
-        language = check_json_value_settings("lang")
-        if language == "se_SE":
-            import src.language.se_SE as lang
-        else:
-            import src.language.en_EN as lang
+if os.path.exists(global_settings_path):
+    language = check_json_value_settings("lang")
+    if language == "se_SE":
+        import src.language.se_SE as lang
     else:
-        pass
-
-
-get_lang()
+        import src.language.en_EN as lang
 
 
 # Used to save player data.
@@ -199,8 +193,6 @@ def create_realm():
 
 
 def create_character():
-    global lang
-    get_lang()
-    temp_char_name = input(lang.hero_name)
+    temp_char_name = input(f"\n{lang.hero_name}")
     cur_character = misc.player(name=temp_char_name, level=0, mana=100, status="None", alive=True, experience=0)
     return cur_character

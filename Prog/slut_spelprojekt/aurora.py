@@ -31,6 +31,14 @@ while language == "":
 
 
 def main():
+
+    language = headers.check_json_value_settings("lang")
+    if language == "se_SE":
+        import src.language.se_SE as lang
+
+    else:
+        import src.language.en_EN as lang
+
     # Check if used has already started a session, character or realm.
     # If not, create a character and realm to play in.
     if headers.check_json_value_settings("player_name") == "":
@@ -40,7 +48,8 @@ def main():
         player = headers.create_character()
         headers.update_player_save(player)
         headers.clear()
-        headers.slow_print("Now, let's move on to creating the realm.", 0.02)
+        headers.slow_print(lang.create_realm_text, 0.02)
+        headers.create_realm()
     else:
         headers.slow_print(f"Welcome back {os.uname().sysname}.", 0.02)
         player = headers.load_player_save()
