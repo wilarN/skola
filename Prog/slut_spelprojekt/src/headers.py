@@ -147,6 +147,13 @@ if os.path.exists(global_settings_path):
         import src.language.se_SE as lang
     else:
         import src.language.en_EN as lang
+else:
+    ___init()
+    language = check_json_value_settings("lang")
+    if language == "se_SE":
+        import src.language.se_SE as lang
+    else:
+        import src.language.en_EN as lang
 
 
 # Used to save player data.
