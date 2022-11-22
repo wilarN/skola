@@ -209,19 +209,6 @@ def print_with_index(list_to_print: list):
         print(char, list_to_print[char])
 
 
-def create_realm():
-    cur_realm = world.realm(realm_name=input(lang.realm_name), realm_difficulty=input(lang.difficulty))
-    custom_realm_file_name = f"{cur_realm}+{cur_realm.realm_name}"
-    print(custom_realm_file_name)
-    if not os.path.exists(f"{custom_realm_file_name}"):
-        file = open(custom_realm_file_name, "w+")
-        file.close()
-
-    # Initialize the settings.json file containing global settings parameters but also some user stats and params.
-    if not os.path.exists(global_settings_path):
-        json_settings = json.dumps(settings, indent=4)
-
-
 def temp_create_realm():
     temp_realm_name = input(f"\n{lang.realm_name}")
     temp_diff = input(f"\n{lang.difficulty}")
