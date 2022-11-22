@@ -30,7 +30,6 @@ while language == "":
     print(language)
 
 
-
 def main():
     language = headers.check_json_value_settings("lang")
     if language == "se_SE":
@@ -48,12 +47,17 @@ def main():
         player = headers.create_character()
         headers.update_player_save(player)
         headers.clear()
+    if headers.check_json_value_settings("currently_selected_realm") == "":
+        headers.slow_print(lang.realm_begin_adventure, 0.02)
+        realm = headers.temp_create_realm()
+        print(realm.realm_name, realm.realm_difficulty)
+        headers.update_realm_save(realm)
 
     else:
-        if headers.check_json_value_settings("Has_Begun") == False:
+        if not headers.check_json_value_settings("Has_Begun"):
             headers.slow_print(lang.create_realm_text, 0.02)
             headers.create_realm()
-        ### Load player data here later.
+        # Load player data here later.
         # player = headers.load_player_save()
         # headers.slow_print(f"Welcome back {player.name}.", 0.02)
         headers.slow_print(f"Welcome back Player.", 0.02)
@@ -71,6 +75,7 @@ def main():
 
         if usr_sel.lower() == "cc":
             continue
+            # headers.create_character()
 
         elif usr_sel.lower() == "q" or usr_sel.lower() == "e":
             # Save and exit

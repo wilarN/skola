@@ -28,6 +28,7 @@ settings = {
     "_comment": "Settings JSON file, Don't Mess with the values if you don't know what you're doing thanks :D",
     "lang": "",
     "currently_selected_realm": "",
+    "realm_difficulty": "",
     "game_volume": "1",
     "Has_Begun": "False",
     "player_name": "",
@@ -113,7 +114,7 @@ def get_lines(text_obj, output: bool):
 
     if output:
         for line in logo_lines:
-            time.sleep(0.1)
+            time.sleep(0.08)
             print(line)
 
 
@@ -184,6 +185,12 @@ def update_player_save(selected_player):
     update_json_settings("player_alive", selected_player.alive)
 
 
+def update_realm_save(selected_realm):
+    update_json_settings("currently_selected_realm", selected_realm.realm_name)
+
+    update_json_settings("realm_difficulty", selected_realm.realm_difficulty)
+
+
 # Used to load player data.
 def load_player_save():
     # print(json.dumps())
@@ -213,6 +220,13 @@ def create_realm():
     # Initialize the settings.json file containing global settings parameters but also some user stats and params.
     if not os.path.exists(global_settings_path):
         json_settings = json.dumps(settings, indent=4)
+
+
+def temp_create_realm():
+    temp_realm_name = input(f"\n{lang.realm_name}")
+    temp_diff = input(f"\n{lang.difficulty}")
+    cur_realm = world.realm(realm_name=temp_realm_name, realm_difficulty=temp_diff)
+    return cur_realm
 
 
 def create_character():
