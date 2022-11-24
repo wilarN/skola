@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 import json
 from types import SimpleNamespace
+import pystyle
 
 import src.world as world
 import src.misc as misc
@@ -32,6 +33,7 @@ settings = {
     "game_volume": "1",
     "Has_Begun": "False",
     "player_name": "",
+    "player_health": "",
     "player_mana": "",
     "player_level": "",
     "player_experience": "",
@@ -172,6 +174,9 @@ def update_player_save(selected_player):
     # Mana
     update_json_settings("player_mana", selected_player.mana)
 
+    # health
+    update_json_settings("player_health", selected_player.health)
+
     # Level
     update_json_settings("player_level", selected_player.level)
 
@@ -190,6 +195,22 @@ def update_realm_save(selected_realm):
 
     update_json_settings("realm_difficulty", selected_realm.realm_difficulty)
 
+def get_user_data(player_data_selection: int):
+    if player_data_selection == 1:
+        # name
+        return check_json_value_settings("player_name")
+    elif player_data_selection == 2:
+        # health
+        return check_json_value_settings("player_health")
+
+
+def get_realm_data(realm_data_selection: int):
+    if realm_data_selection == 1:
+        # name
+        return check_json_value_settings("currently_selected_realm")
+    else:
+        pass
+
 
 # Used to load player data.
 def load_player_save():
@@ -200,7 +221,7 @@ def load_player_save():
 
 def slow_print(text, delay):
     for char in text:
-        print(char, end="")
+        print(pystyle.Colorate.Horizontal(pystyle.Colors.yellow_to_red, char, 1), end="")
         time.sleep(delay)
 
 
@@ -218,5 +239,8 @@ def temp_create_realm():
 
 def create_character():
     temp_char_name = input(f"\n{lang.hero_name}")
-    cur_character = misc.player(name=temp_char_name, level=0, mana=100, status="None", alive=True, experience=0)
+    cur_character = misc.player(name=temp_char_name, health=100, level=1, mana=100, status="None", alive=True, experience=0)
     return cur_character
+
+def begin_adventure():
+    slow_print(f"{lang.begin_welcome} {get_user_data(1)} {get_realm_data(1)}", 0.04)

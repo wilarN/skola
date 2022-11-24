@@ -29,7 +29,6 @@ while language == "":
     language = headers.check_json_value_settings("lang")
     print(language)
 
-
 def main():
     language = headers.check_json_value_settings("lang")
     if language == "se_SE":
@@ -55,8 +54,12 @@ def main():
 
     else:
         if not headers.check_json_value_settings("Has_Begun"):
+            # Has created realm world, but not yet started the adventure.
             headers.slow_print(lang.create_realm_text, 0.02)
-            headers.create_realm()
+
+
+        else:
+            pass
         # Load player data here later.
         # player = headers.load_player_save()
         # headers.slow_print(f"Welcome back {player.name}.", 0.02)
