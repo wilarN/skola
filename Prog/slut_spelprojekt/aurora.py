@@ -9,11 +9,20 @@ import src.misc as misc
 import src.headers as headers
 import src.symbols as sym
 
+"""
+##########
+## TODO ##
+##########
+1 - Start adventure
+2 - Battle-System
+3 - Player Effects
+"""
+
 headers.___init()
 
 language = headers.check_json_value_settings("lang")
 # User selects translation of game.
-while language == "":
+while language == "NULL":
     usr_language = input("Swedish or english? - [s/S - e/E]")
 
     if usr_language.lower() == "e":
@@ -29,6 +38,7 @@ while language == "":
     language = headers.check_json_value_settings("lang")
     print(language)
 
+
 def main():
     language = headers.check_json_value_settings("lang")
     if language == "se_SE":
@@ -39,14 +49,14 @@ def main():
 
     # Check if used has already started a session, character or realm.
     # If not, create a character and realm to play in.
-    if headers.check_json_value_settings("player_name") == "":
+    if headers.check_json_value_settings("player_name") == "NULL":
         headers.slow_print(lang.player_begin_adventure, 0.02)
 
         # Create Character and save playerdata to settings.json.
         player = headers.create_character()
         headers.update_player_save(player)
         headers.clear()
-    if headers.check_json_value_settings("currently_selected_realm") == "":
+    if headers.check_json_value_settings("currently_selected_realm") == "NULL":
         headers.slow_print(lang.realm_begin_adventure, 0.02)
         realm = headers.temp_create_realm()
         print(realm.realm_name, realm.realm_difficulty)
@@ -59,11 +69,11 @@ def main():
 
 
         else:
-            pass
-        # Load player data here later.
-        # player = headers.load_player_save()
-        # headers.slow_print(f"Welcome back {player.name}.", 0.02)
-        headers.slow_print(f"Welcome back Player.", 0.02)
+            # Load player data here later.
+            player = headers.load_player_save()
+            # player = headers.load_player_save()
+            # headers.slow_print(f"Welcome back {player.name}.", 0.02)
+            headers.slow_print(f"{lang.welcome_back} {player.name}.", 0.02)
 
     # headers.create_realm()
 

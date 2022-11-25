@@ -1,7 +1,8 @@
 
 class player:
-    def __init__(self, name, health, mana, level, experience, status, alive):
+    def __init__(self, name, health, mana, level, experience, status, alive, current_room_index):
         self.name = name
+        self.current_room_index = current_room_index
         self.health = health
         self.mana = mana
         self.level = level
@@ -10,7 +11,7 @@ class player:
         self.alive = alive
 
     def get_all_stats(self):
-        all_stats = [self.name, self.health, self.mana, self.level, self.experience, self.status, self.alive]
+        all_stats = [self.name, self.health, self.mana, self.level, self.experience, self.status, self.alive, self.current_room_index]
         return all_stats
 
 

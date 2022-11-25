@@ -1,4 +1,5 @@
 import random
+import headers as headers
 
 global tiles_in_x
 global tiles_in_y
@@ -63,3 +64,9 @@ class realm:
             else:
                 tiles_in_x.clear()
                 tiles_in_y.clear()
+
+    def room_containing_npc(self):
+        pass
+
+    def room_static(self):
+        print("Welcome to the static room.")

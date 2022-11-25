@@ -3,7 +3,7 @@ import random
 import time
 from datetime import datetime
 import json
-from types import SimpleNamespace
+from collections import namedtuple
 import pystyle
 
 import src.world as world
@@ -27,18 +27,19 @@ realm_stats_path = f"{game_file_dir}/game/realm_"
 
 settings = {
     "_comment": "Settings JSON file, Don't Mess with the values if you don't know what you're doing thanks :D",
-    "lang": "",
-    "currently_selected_realm": "",
-    "realm_difficulty": "",
+    "lang": "NULL",
+    "currently_selected_realm": "NULL",
+    "realm_difficulty": "NULL",
     "game_volume": "1",
     "Has_Begun": "False",
-    "player_name": "",
-    "player_health": "",
-    "player_mana": "",
-    "player_level": "",
-    "player_experience": "",
-    "player_status": "",
-    "player_alive": ""
+    "player_name": "NULL",
+    "current_room_index" : "NULL",
+    "player_health": "NULL",
+    "player_mana": "NULL",
+    "player_level": "NULL",
+    "player_experience": "NULL",
+    "player_status": "NULL",
+    "player_alive": "NULL"
 }
 
 
@@ -212,11 +213,15 @@ def get_realm_data(realm_data_selection: int):
         pass
 
 
+def customPlayerDecoder(playerDict):
+    """ Credits --> https://pynative.com/ """
+    return namedtuple('X', playerDict.keys())(*playerDict.values())
+
+
 # Used to load player data.
 def load_player_save():
-    # print(json.dumps())
-    # return json.load(data, object_hook=lambda d: SimpleNamespace(**d))
-    pass
+    playerObj = json.loads(read_from_json(global_settings_path), object_hook=customPlayerDecoder)
+    return playerObj
 
 
 def slow_print(text, delay):
@@ -239,8 +244,9 @@ def temp_create_realm():
 
 def create_character():
     temp_char_name = input(f"\n{lang.hero_name}")
-    cur_character = misc.player(name=temp_char_name, health=100, level=1, mana=100, status="None", alive=True, experience=0)
+    cur_character = misc.player(name=temp_char_name, health=100, level=1, mana=100, status="None", alive=True, experience=0, current_room_index=0)
     return cur_character
+
 
 def begin_adventure():
     slow_print(f"{lang.begin_welcome} {get_user_data(1)} {get_realm_data(1)}", 0.04)
