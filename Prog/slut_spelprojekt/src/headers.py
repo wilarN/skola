@@ -3,9 +3,7 @@ import random
 import time
 from datetime import datetime
 import json
-from collections import namedtuple
-from json import JSONEncoder
-import pystyle
+import pystyle as ps
 
 import src.world as world
 import src.misc as misc
@@ -227,6 +225,11 @@ def get_realm_data(realm_data_selection: int):
         pass
 
 
+def remove_spaces_from_string(string_txt: str):
+    print(string_txt.replace(" ", "_"))
+    return string_txt.replace(" ", "_")
+
+
 # Used to load player data.
 def load_player_save(player_obj):
     data = read_from_json_to_obj(global_settings_path)
@@ -246,10 +249,29 @@ def load_realm_save(realm_obj):
     realm_obj.realm_difficulty = data["realm_difficulty"]
     return realm_obj
 
+
 def slow_print(text, delay):
     for char in text:
-        print(pystyle.Colorate.Horizontal(pystyle.Colors.yellow_to_red, char, 1), end="")
+        print(ps.Colorate.Horizontal(ps.Colors.yellow_to_red, char, 1), end="")
         time.sleep(delay)
+
+
+def styled_coloured_print(text):
+    ps.Write.Print(color=ps.Colors.cyan_to_green, text=text, interval=0.01)
+
+
+def styled_coloured_print_boxed_lines(text):
+    print(ps.Box.Lines(ps.Colorate.Horizontal(ps.Colors.yellow_to_red, text)))
+
+
+def styled_coloured_print_boxed(text):
+    ps.Write.Print(color=ps.Colors.cyan_to_green,
+                   text=ps.Box.Box(text, up_left="+", left_line="-", right_line="-", up_right="+", down_right="+",
+                                   down_line="-", down_left="+", up_line="-"), interval=0.001)
+
+
+def styles_input(text):
+    return ps.Write.Input(color=ps.Colors.yellow_to_red, text=text, interval=0.01)
 
 
 def print_with_index(list_to_print: list):
@@ -259,19 +281,22 @@ def print_with_index(list_to_print: list):
 
 def create_realm(empty: bool):
     if not empty:
-        temp_realm_name = input(f"\n{lang.realm_name}")
-        temp_diff = input(f"\n{lang.difficulty}")
-        cur_realm = world.realm(realm_name=temp_realm_name, realm_difficulty=temp_diff)
-        return cur_realm
+        temp_realm_name = styles_input(f"\n{lang.realm_name}")
+        temp_diff = styles_input(f"\n{lang.difficulty}")
+        cur_realm = world.realm(realm_name=remove_spaces_from_string(temp_realm_name), realm_difficulty=temp_diff)
     else:
         cur_realm = world.realm(realm_name="", realm_difficulty="")
-        return cur_realm
+    return cur_realm
+
 
 def create_character(empty: bool):
     if not empty:
-        temp_char_name = input(f"\n{lang.hero_name}")
-        cur_character = misc.player(name=temp_char_name, health=100, level=1, mana=100, status="None", alive=True,
+        temp_char_name = styles_input(f"\n{lang.hero_name}")
+        cur_character = misc.player(name=remove_spaces_from_string(temp_char_name), health=100, level=1, mana=100, status="None", alive=True,
                                     experience=0, current_room_index=0)
+        time.sleep(0.5)
+        styled_coloured_print(f"{temp_char_name}... {lang.very_magestic}... {lang.shall_be_remembered_quote}")
+        time.sleep(4)
     else:
         cur_character = misc.player(name="", health=100, level=1, mana=100, status="None", alive=True,
                                     experience=0, current_room_index=0)
@@ -280,7 +305,8 @@ def create_character(empty: bool):
 
 def begin_adventure(realm, first_time: bool):
     if first_time:
-        slow_print(f"{lang.begin_welcome_first_time} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
+        styled_coloured_print(
+            lang.begin_welcome_first_time + get_user_data(1) + lang.welcome_back_2 + get_realm_data(1))
         realm.start_room()
     else:
-        slow_print(f"{lang.begin_welcome} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
+        slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)

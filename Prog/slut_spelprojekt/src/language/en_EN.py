@@ -18,13 +18,16 @@ realm_begin_adventure = "To begin your adventure, please create the realm you sh
 realm_begin_diff_selector = "Please select the difficulty of your realm.."
 
 realm_name = "Realm name: "
-difficulty = "Difficulty: "
+difficulty = "Difficulty - (1-4 EASY // 4-7 MEDIUM // 7-10 HARD): "
 
 hero_name = "Please select a name for your hero: "
 
 create_realm_text = "Now, let's move on to creating the realm."
 
 begin_welcome = "Welcome"
+
+welcome_back = "Welcome back"
+welcome_back_2 = "to"
 begin_welcome_first_time = "Welcome to aurora player. Now that you're ready for your adventure. Let's first start off with a few rules to play."
 
 rules_and_introduction = "-- Goals of AURORA --" \
@@ -32,5 +35,7 @@ rules_and_introduction = "-- Goals of AURORA --" \
                          "[2] - Talk to NPCs throughout the game and upgrade your stats!" \
                          "[3] - Explore. (But remember, no room you enter will ever be the same...)"
 
-welcome_back = "Welcome back"
-welcome_back_2 = "to"
+
+very_magestic = "very magestic"
+
+shall_be_remembered_quote = '"And for thy it shall be remembered..."'

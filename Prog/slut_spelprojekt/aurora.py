@@ -1,11 +1,6 @@
 # Python general modules
-import json
-import os
-import random
 import time
 # Game specific modules
-import src.world as world
-import src.misc as misc
 import src.headers as headers
 import src.symbols as sym
 
@@ -54,17 +49,18 @@ def main():
 
     # Check if used has already started a session, character or realm.
     # If not, create a character and realm to play in.
+    headers.clear()
     if headers.check_json_value_settings("player_name") == "NULL":
-        headers.slow_print(lang.player_begin_adventure, 0.02)
+        headers.styled_coloured_print_boxed(lang.player_begin_adventure)
 
         # Create Character and save playerdata to settings.json.
         player = headers.create_character(False)
         headers.update_player_save(player)
         headers.clear()
     if headers.check_json_value_settings("currently_selected_realm") == "NULL":
-        headers.slow_print(lang.realm_begin_adventure, 0.02)
+        headers.styled_coloured_print_boxed(lang.realm_begin_adventure)
         realm = headers.create_realm(False)
-        print(realm.realm_name, realm.realm_difficulty)
+        headers.styled_coloured_print(realm.realm_name + realm.realm_difficulty)
         headers.update_realm_save(realm)
 
     else:
@@ -91,11 +87,11 @@ def main():
 
         usr_sel = input("~$: ")
 
-        if usr_sel.lower() == "cc":
+        if usr_sel.lower().__contains__("cc"):
             continue
             # headers.create_character()
 
-        elif usr_sel.lower() == "q" or usr_sel.lower() == "e":
+        elif usr_sel.lower().__contains__("q") or usr_sel.lower().__contains__("e"):
             # Save and exit
             print("Exiting...")
             exit(0)
