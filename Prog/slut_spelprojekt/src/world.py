@@ -1,4 +1,6 @@
 import random
+
+import aurora
 import src.headers as headers
 
 global tiles_in_x
@@ -21,15 +23,20 @@ def get_tile_information(tile_x, tile_y):
     tiles_in_y(tile_y)
 
 
+def start_room():
+    headers.styled_coloured_print(headers.lang.rules_and_introduction)
+    headers.enter_to_continue()
+    headers.clear()
+    headers.styled_coloured_print_boxed(headers.lang.are_you_ready_to_start)
+    headers.styles_input(headers.lang.Press_enter_to_truly_start_adventure)
+    headers.update_json_settings("Has_begun", True)
+
 class realm:
     def __init__(self, realm_name, realm_difficulty):
         self.realm_name = realm_name
         self.realm_difficulty = realm_difficulty
         self.last_known_player_pos_X = 0
         self.last_known_player_pos_Y = 0
-
-    def start_room(self):
-        headers.slow_print(headers.lang.rules_and_introduction, 0.03)
 
     def map_gen(self, size_x, size_y):
         arr = [[0 for i in range(size_x)] for j in range(size_y)]

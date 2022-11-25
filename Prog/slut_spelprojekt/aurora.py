@@ -1,5 +1,6 @@
 # Python general modules
 import time
+import os
 # Game specific modules
 import src.headers as headers
 import src.symbols as sym
@@ -15,6 +16,14 @@ import src.symbols as sym
 
 global realm
 global player
+
+
+def changeWindowSize():
+    cmd = "mode con: cols=200 lines=50"
+    os.system(cmd)
+
+
+changeWindowSize()
 
 headers.___init()
 
@@ -60,7 +69,6 @@ def main():
     if headers.check_json_value_settings("currently_selected_realm") == "NULL":
         headers.styled_coloured_print_boxed(lang.realm_begin_adventure)
         realm = headers.create_realm(False)
-        headers.styled_coloured_print(realm.realm_name + realm.realm_difficulty)
         headers.update_realm_save(realm)
 
     else:
@@ -70,14 +78,13 @@ def main():
 
         realm = headers.create_realm(True)
         realm = headers.load_realm_save(realm)
+    if headers.check_json_value_settings("Has_Begun") == "False":
+        # Has created realm world, but not yet started the adventure.
+        headers.begin_adventure(realm=realm, first_time=True)
+    else:
+        headers.begin_adventure(realm=realm, first_time=False)
 
-        if not headers.check_json_value_settings("Has_Begun"):
-            # Has created realm world, but not yet started the adventure.
-            headers.slow_print(lang.create_realm_text, 0.02)
-            headers.begin_adventure(realm=realm, first_time=True)
-        else:
-            headers.begin_adventure(realm=realm, first_time=False)
-
+"""
     while True:
         headers.clear()
         # Global Logo
@@ -99,7 +106,7 @@ def main():
         else:
             print("Please Input A Valid Selection!")
             time.sleep(1)
-
+"""
 
 if __name__ == '__main__':
     main()

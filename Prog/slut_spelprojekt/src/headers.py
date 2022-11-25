@@ -30,7 +30,7 @@ settings = {
     "currently_selected_realm": "NULL",
     "realm_difficulty": "NULL",
     "game_volume": "1",
-    "Has_Begun": "False",
+    "Has_Begun": False,
     "player_name": "NULL",
     "current_room_index": "NULL",
     "player_health": "NULL",
@@ -73,6 +73,10 @@ def ___init():
     else:
         import src.language.en_EN as lang
     """
+
+
+def enter_to_continue():
+    styles_input(lang.press_enter_to_continue)
 
 
 def clear():
@@ -226,7 +230,6 @@ def get_realm_data(realm_data_selection: int):
 
 
 def remove_spaces_from_string(string_txt: str):
-    print(string_txt.replace(" ", "_"))
     return string_txt.replace(" ", "_")
 
 
@@ -284,6 +287,7 @@ def create_realm(empty: bool):
         temp_realm_name = styles_input(f"\n{lang.realm_name}")
         temp_diff = styles_input(f"\n{lang.difficulty}")
         cur_realm = world.realm(realm_name=remove_spaces_from_string(temp_realm_name), realm_difficulty=temp_diff)
+
     else:
         cur_realm = world.realm(realm_name="", realm_difficulty="")
     return cur_realm
@@ -305,8 +309,9 @@ def create_character(empty: bool):
 
 def begin_adventure(realm, first_time: bool):
     if first_time:
-        styled_coloured_print(
-            lang.begin_welcome_first_time + get_user_data(1) + lang.welcome_back_2 + get_realm_data(1))
-        realm.start_room()
+        styled_coloured_print_boxed(
+            lang.begin_welcome_first_time)
+        time.sleep(2)
+        world.start_room()
     else:
         slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
