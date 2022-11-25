@@ -217,6 +217,12 @@ def get_realm_data(realm_data_selection: int):
     if realm_data_selection == 1:
         # name
         return check_json_value_settings("currently_selected_realm")
+    elif realm_data_selection == 2:
+        # room index
+        return check_json_value_settings("current_room_index")
+    elif realm_data_selection == 3:
+        # difficulty
+        return check_json_value_settings("realm_difficulty")
     else:
         pass
 
@@ -234,6 +240,12 @@ def load_player_save(player_obj):
     return player_obj
 
 
+def load_realm_save(realm_obj):
+    data = read_from_json_to_obj(global_settings_path)
+    realm_obj.realm_name = data["currently_selected_realm"]
+    realm_obj.realm_difficulty = data["realm_difficulty"]
+    return realm_obj
+
 def slow_print(text, delay):
     for char in text:
         print(pystyle.Colorate.Horizontal(pystyle.Colors.yellow_to_red, char, 1), end="")
@@ -245,12 +257,15 @@ def print_with_index(list_to_print: list):
         print(char, list_to_print[char])
 
 
-def temp_create_realm():
-    temp_realm_name = input(f"\n{lang.realm_name}")
-    temp_diff = input(f"\n{lang.difficulty}")
-    cur_realm = world.realm(realm_name=temp_realm_name, realm_difficulty=temp_diff)
-    return cur_realm
-
+def create_realm(empty: bool):
+    if not empty:
+        temp_realm_name = input(f"\n{lang.realm_name}")
+        temp_diff = input(f"\n{lang.difficulty}")
+        cur_realm = world.realm(realm_name=temp_realm_name, realm_difficulty=temp_diff)
+        return cur_realm
+    else:
+        cur_realm = world.realm(realm_name="", realm_difficulty="")
+        return cur_realm
 
 def create_character(empty: bool):
     if not empty:
@@ -263,6 +278,9 @@ def create_character(empty: bool):
     return cur_character
 
 
-def begin_adventure():
-    slow_print(f"{lang.begin_welcome} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
-    if
+def begin_adventure(realm, first_time: bool):
+    if first_time:
+        slow_print(f"{lang.begin_welcome_first_time} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
+        realm.start_room()
+    else:
+        slow_print(f"{lang.begin_welcome} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)

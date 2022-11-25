@@ -25,6 +25,12 @@ hero_name = "Please select a name for your hero: "
 create_realm_text = "Now, let's move on to creating the realm."
 
 begin_welcome = "Welcome"
+begin_welcome_first_time = "Welcome to aurora player. Now that you're ready for your adventure. Let's first start off with a few rules to play."
+
+rules_and_introduction = "-- Goals of AURORA --" \
+                         "[1] - Fight monsters and talk to npc to gather items." \
+                         "[2] - Talk to NPCs throughout the game and upgrade your stats!" \
+                         "[3] - Explore. (But remember, no room you enter will ever be the same...)"
 
 welcome_back = "Welcome back"
 welcome_back_2 = "to"

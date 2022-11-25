@@ -4,3 +4,4 @@ Other/spel/.idea/vcs.xml
 *.pyc
 logs
 Prog/slut_spelprojekt/settings.json
+Prog/slut_spelprojekt/help.py

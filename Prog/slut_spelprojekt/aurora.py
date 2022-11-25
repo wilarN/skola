@@ -18,6 +18,9 @@ import src.symbols as sym
 3 - Player Effects
 """
 
+global realm
+global player
+
 headers.___init()
 
 language = headers.check_json_value_settings("lang")
@@ -40,6 +43,8 @@ while language == "NULL":
 
 
 def main():
+    global realm
+    global player
     language = headers.check_json_value_settings("lang")
     if language == "se_SE":
         import src.language.se_SE as lang
@@ -58,22 +63,24 @@ def main():
         headers.clear()
     if headers.check_json_value_settings("currently_selected_realm") == "NULL":
         headers.slow_print(lang.realm_begin_adventure, 0.02)
-        realm = headers.temp_create_realm()
+        realm = headers.create_realm(False)
         print(realm.realm_name, realm.realm_difficulty)
         headers.update_realm_save(realm)
 
     else:
+        # Load player and realm data from save
+        player = headers.create_character(True)
+        player = headers.load_player_save(player)
+
+        realm = headers.create_realm(True)
+        realm = headers.load_realm_save(realm)
+
         if not headers.check_json_value_settings("Has_Begun"):
             # Has created realm world, but not yet started the adventure.
             headers.slow_print(lang.create_realm_text, 0.02)
-
+            headers.begin_adventure(realm=realm, first_time=True)
         else:
-            player = headers.create_character(True)
-            # Load player data here later.
-            player = headers.load_player_save(player)
-            # player = headers.load_player_save()
-            # headers.slow_print(f"Welcome back {player.name}.", 0.02)
-            headers.begin_adventure()
+            headers.begin_adventure(realm=realm, first_time=False)
 
     while True:
         headers.clear()

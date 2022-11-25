@@ -1,4 +1,5 @@
 import random
+import src.headers as headers
 
 global tiles_in_x
 global tiles_in_y
@@ -26,6 +27,9 @@ class realm:
         self.realm_difficulty = realm_difficulty
         self.last_known_player_pos_X = 0
         self.last_known_player_pos_Y = 0
+
+    def start_room(self):
+        headers.slow_print(headers.lang.rules_and_introduction, 0.03)
 
     def map_gen(self, size_x, size_y):
         arr = [[0 for i in range(size_x)] for j in range(size_y)]
@@ -58,7 +62,7 @@ class realm:
                     tiles_in_y.append(
                         tile(allow_entrance=True, event=False, texture="[x]", x_location=tilex, y_location=tiley))
                     if len(tiles_in_y) > 0:
-                        print(tiles_in_y[tiley-1].texture, end="")
+                        print(tiles_in_y[tiley - 1].texture, end="")
 
             else:
                 tiles_in_x.clear()
