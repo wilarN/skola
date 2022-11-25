@@ -12,6 +12,8 @@ import src.symbols as sym
 1 - Start adventure
 2 - Battle-System
 3 - Player Effects
+4. Work on monster and room object in world. list to keep track of room index etc.
+5. add gold
 """
 
 global realm
@@ -78,7 +80,7 @@ def main():
 
         realm = headers.create_realm(True)
         realm = headers.load_realm_save(realm)
-    if headers.check_json_value_settings("Has_Begun") == "False":
+    if not headers.check_json_value_settings("Has_Begun"):
         # Has created realm world, but not yet started the adventure.
         headers.begin_adventure(realm=realm, first_time=True)
     else:

@@ -12,6 +12,7 @@ import src.misc as misc
 now = datetime.now()
 character_list = []
 realm_list = []
+rooms = []
 
 # To more easily get file directories of certain files and their contents later on.
 game_file_dir = "./files"
@@ -207,15 +208,28 @@ def update_realm_save(selected_realm):
 
 
 def get_user_data(player_data_selection: int):
+    """"
+    1: name
+    2: health
+    3: level
+    """
     if player_data_selection == 1:
         # name
         return check_json_value_settings("player_name")
     elif player_data_selection == 2:
         # health
         return check_json_value_settings("player_health")
+    elif player_data_selection == 3:
+        # level
+        return check_json_value_settings("player_level")
 
 
 def get_realm_data(realm_data_selection: int):
+    """"
+    1: name
+    2: index
+    3: difficulty
+    """
     if realm_data_selection == 1:
         # name
         return check_json_value_settings("currently_selected_realm")
@@ -312,6 +326,6 @@ def begin_adventure(realm, first_time: bool):
         styled_coloured_print_boxed(
             lang.begin_welcome_first_time)
         time.sleep(2)
-        world.start_room()
+        world.introduction()
     else:
         slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)

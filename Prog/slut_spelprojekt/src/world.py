@@ -1,8 +1,7 @@
 import random
 
-import aurora
 import src.headers as headers
-
+from src.misc import monster
 global tiles_in_x
 global tiles_in_y
 
@@ -23,13 +22,31 @@ def get_tile_information(tile_x, tile_y):
     tiles_in_y(tile_y)
 
 
-def start_room():
+def introduction():
     headers.styled_coloured_print(headers.lang.rules_and_introduction)
     headers.enter_to_continue()
     headers.clear()
     headers.styled_coloured_print_boxed(headers.lang.are_you_ready_to_start)
     headers.styles_input(headers.lang.Press_enter_to_truly_start_adventure)
-    headers.update_json_settings("Has_begun", True)
+    headers.update_json_settings("Has_Begun", True)
+    rm = room(room_index=1)
+    rm.get_monsters()
+
+class room:
+    def __init__(self, room_index):
+        self.room_index = room_index
+        if room_index not in headers.rooms:
+            headers.rooms.append(self.room_index)
+        else:
+            pass
+
+    def get_monsters(self):
+        diff = headers.get_realm_data(3)
+        player_lvl = headers.get_user_data(3)
+        monst = monster(health=1*diff, alive=True, level=player_lvl)
+        print(monst)
+
+
 
 class realm:
     def __init__(self, realm_name, realm_difficulty):
