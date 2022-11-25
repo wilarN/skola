@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 import json
 from collections import namedtuple
+from json import JSONEncoder
 import pystyle
 
 import src.world as world
@@ -33,7 +34,7 @@ settings = {
     "game_volume": "1",
     "Has_Begun": "False",
     "player_name": "NULL",
-    "current_room_index" : "NULL",
+    "current_room_index": "NULL",
     "player_health": "NULL",
     "player_mana": "NULL",
     "player_level": "NULL",
@@ -100,10 +101,16 @@ def logOutput(msg, logType):
 
 def read_from_json(json_path: str):
     with open(json_path, "r") as json_file:
-        #data = json.load(json_file)
         data = json.dumps(json_file)
     json_file.close()
     return data
+
+
+def read_from_json_to_obj(json_path: str):
+    with open(json_path, "r") as json_file:
+        obj = json.load(json_file)
+        json_file.close()
+    return obj
 
 
 def get_lines(text_obj, output: bool):
@@ -196,6 +203,7 @@ def update_realm_save(selected_realm):
 
     update_json_settings("realm_difficulty", selected_realm.realm_difficulty)
 
+
 def get_user_data(player_data_selection: int):
     if player_data_selection == 1:
         # name
@@ -213,15 +221,17 @@ def get_realm_data(realm_data_selection: int):
         pass
 
 
-def customPlayerDecoder(playerDict):
-    """ Credits --> https://pynative.com/ """
-    return namedtuple('X', playerDict.keys())(*playerDict.values())
-
-
 # Used to load player data.
-def load_player_save():
-    playerObj = json.loads(read_from_json(global_settings_path), object_hook=customPlayerDecoder)
-    return playerObj
+def load_player_save(player_obj):
+    data = read_from_json_to_obj(global_settings_path)
+    player_obj.name = data["player_name"]
+    player_obj.health = data["player_health"]
+    player_obj.mana = data["player_mana"]
+    player_obj.level = data["player_level"]
+    player_obj.status = data["player_status"]
+    player_obj.alive = data["player_alive"]
+    player_obj.current_room_index = data["current_room_index"]
+    return player_obj
 
 
 def slow_print(text, delay):
@@ -242,11 +252,17 @@ def temp_create_realm():
     return cur_realm
 
 
-def create_character():
-    temp_char_name = input(f"\n{lang.hero_name}")
-    cur_character = misc.player(name=temp_char_name, health=100, level=1, mana=100, status="None", alive=True, experience=0, current_room_index=0)
+def create_character(empty: bool):
+    if not empty:
+        temp_char_name = input(f"\n{lang.hero_name}")
+        cur_character = misc.player(name=temp_char_name, health=100, level=1, mana=100, status="None", alive=True,
+                                    experience=0, current_room_index=0)
+    else:
+        cur_character = misc.player(name="", health=100, level=1, mana=100, status="None", alive=True,
+                                    experience=0, current_room_index=0)
     return cur_character
 
 
 def begin_adventure():
-    slow_print(f"{lang.begin_welcome} {get_user_data(1)} {get_realm_data(1)}", 0.04)
+    slow_print(f"{lang.begin_welcome} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
+    if

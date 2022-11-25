@@ -27,3 +27,4 @@ create_realm_text = "Now, let's move on to creating the realm."
 begin_welcome = "Welcome"
 
 welcome_back = "Welcome back"
+welcome_back_2 = "to"

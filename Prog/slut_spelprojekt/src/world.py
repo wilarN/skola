@@ -1,5 +1,4 @@
 import random
-import headers as headers
 
 global tiles_in_x
 global tiles_in_y

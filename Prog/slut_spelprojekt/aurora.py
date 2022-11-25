@@ -53,7 +53,7 @@ def main():
         headers.slow_print(lang.player_begin_adventure, 0.02)
 
         # Create Character and save playerdata to settings.json.
-        player = headers.create_character()
+        player = headers.create_character(False)
         headers.update_player_save(player)
         headers.clear()
     if headers.check_json_value_settings("currently_selected_realm") == "NULL":
@@ -67,15 +67,13 @@ def main():
             # Has created realm world, but not yet started the adventure.
             headers.slow_print(lang.create_realm_text, 0.02)
 
-
         else:
+            player = headers.create_character(True)
             # Load player data here later.
-            player = headers.load_player_save()
+            player = headers.load_player_save(player)
             # player = headers.load_player_save()
             # headers.slow_print(f"Welcome back {player.name}.", 0.02)
-            headers.slow_print(f"{lang.welcome_back} {player.name}.", 0.02)
-
-    # headers.create_realm()
+            headers.begin_adventure()
 
     while True:
         headers.clear()
