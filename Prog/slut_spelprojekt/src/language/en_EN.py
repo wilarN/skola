@@ -45,3 +45,10 @@ press_enter_to_continue = "Press `enter` to continue..."
 
 are_you_ready_to_start = "Now that you've gotten the introduction, Are you ready to start your adventure?"
 Press_enter_to_truly_start_adventure = "Press enter to truly start your adventure once and for all..."
+
+
+you_encountered_a = "You encountered a "
+
+you_find_yourself_staring_at_a_big_door = "You find yourself staring at a big door"
+
+what_do_you_do = "What do you do?"

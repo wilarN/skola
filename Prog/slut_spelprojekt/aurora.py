@@ -20,12 +20,12 @@ global realm
 global player
 
 
-def changeWindowSize():
+def change_windowSize():
     cmd = "mode con: cols=200 lines=50"
     os.system(cmd)
 
 
-changeWindowSize()
+change_windowSize()
 
 headers.___init()
 

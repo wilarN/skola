@@ -1,4 +1,5 @@
 import random
+import time
 
 import src.headers as headers
 from src.misc import monster
@@ -29,23 +30,50 @@ def introduction():
     headers.styled_coloured_print_boxed(headers.lang.are_you_ready_to_start)
     headers.styles_input(headers.lang.Press_enter_to_truly_start_adventure)
     headers.update_json_settings("Has_Begun", True)
-    rm = room(room_index=1)
+    headers.clear()
+    time.sleep(1)
+    dummy_room()
+
+
+def dummy_room():
+    rm = room(type=1)
     rm.get_monsters()
+    rm.start()
+
+
+class door:
+    def __init__(self, opened):
+        self.opened = opened
+
+    def move_through(self):
+        if self.opened:
+            return True
+        else:
+            return False
+
 
 class room:
-    def __init__(self, room_index):
-        self.room_index = room_index
-        if room_index not in headers.rooms:
+    loot = []
+    mobs = []
+    def __init__(self, type):
+        self.type = type
+        self.room_index = headers.get_free_room_index()
+        if self.room_index not in headers.rooms:
             headers.rooms.append(self.room_index)
         else:
             pass
+
+        if self.type == 1:
+            # Standard Room
+            self.get_monsters()
 
     def get_monsters(self):
         diff = headers.get_realm_data(3)
         player_lvl = headers.get_user_data(3)
         monst = monster(health=1*diff, alive=True, level=player_lvl)
-        print(monst)
 
+    def start(self):
+        headers.styled_coloured_print(headers.lang.you_find_yourself_staring_at_a_big_door)
 
 
 class realm:

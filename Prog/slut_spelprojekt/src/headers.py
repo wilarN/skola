@@ -207,6 +207,11 @@ def update_realm_save(selected_realm):
     update_json_settings("realm_difficulty", selected_realm.realm_difficulty)
 
 
+def get_free_room_index():
+    print(rooms)
+    return rooms[-1] + 1
+
+
 def get_user_data(player_data_selection: int):
     """"
     1: name
@@ -310,7 +315,8 @@ def create_realm(empty: bool):
 def create_character(empty: bool):
     if not empty:
         temp_char_name = styles_input(f"\n{lang.hero_name}")
-        cur_character = misc.player(name=remove_spaces_from_string(temp_char_name), health=100, level=1, mana=100, status="None", alive=True,
+        cur_character = misc.player(name=remove_spaces_from_string(temp_char_name), health=100, level=1, mana=100,
+                                    status="None", alive=True,
                                     experience=0, current_room_index=0)
         time.sleep(0.5)
         styled_coloured_print(f"{temp_char_name}... {lang.very_magestic}... {lang.shall_be_remembered_quote}")
