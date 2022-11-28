@@ -26,6 +26,8 @@ class player:
 
 
 class monster:
+    loot = []
+
     def __init__(self, health, level, alive=True):
         self.health = health
         self.level = level

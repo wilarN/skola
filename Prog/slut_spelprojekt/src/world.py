@@ -3,6 +3,7 @@ import time
 
 import src.headers as headers
 from src.misc import monster
+
 global tiles_in_x
 global tiles_in_y
 
@@ -55,6 +56,7 @@ class door:
 class room:
     loot = []
     mobs = []
+
     def __init__(self, type):
         self.type = type
         self.room_index = headers.get_free_room_index()
@@ -66,11 +68,23 @@ class room:
         if self.type == 1:
             # Standard Room
             self.get_monsters()
+        elif self.type == 2:
+            # No monster-filled room
+            pass
+
+        else:
+            # Invalid Selection
+            pass
+
+    def get_loot_table(self):
+        diff = headers.get_realm_data(3)
+        player_lvl = headers.get_user_data(3)
 
     def get_monsters(self):
         diff = headers.get_realm_data(3)
         player_lvl = headers.get_user_data(3)
-        monst = monster(health=1*diff, alive=True, level=player_lvl)
+        for i in range(1, random.randint(1, 4)):
+            self.mobs.append(monster(health=1 * diff, alive=True, level=player_lvl))
 
     def start(self):
         headers.styled_coloured_print(headers.lang.you_find_yourself_staring_at_a_big_door)
