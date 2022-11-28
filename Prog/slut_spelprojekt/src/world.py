@@ -40,6 +40,7 @@ def dummy_room():
     rm = room(type=1)
     rm.get_monsters()
     rm.start()
+    rm.print(headers.lang.you_find_yourself_staring_at_a_big_door)
 
 
 class door:
@@ -59,8 +60,9 @@ class room:
 
     def __init__(self, type):
         self.type = type
-        self.room_index = headers.get_free_room_index()
+        self.room_index = headers.get_free_room_index() + 1
         if self.room_index not in headers.rooms:
+            # Only add room if not exists.
             headers.rooms.append(self.room_index)
         else:
             pass
@@ -87,7 +89,10 @@ class room:
             self.mobs.append(monster(health=1 * diff, alive=True, level=player_lvl))
 
     def start(self):
-        headers.styled_coloured_print(headers.lang.you_find_yourself_staring_at_a_big_door)
+        print(f"Init room: {self.room_index}")
+
+    def print(self, msg):
+        headers.styled_coloured_print(msg)
 
 
 class realm:

@@ -209,7 +209,10 @@ def update_realm_save(selected_realm):
 
 def get_free_room_index():
     print(rooms)
-    return rooms[-1] + 1
+    if len(rooms) > 0:
+        return len(rooms)
+    else:
+        return False
 
 
 def get_user_data(player_data_selection: int):
@@ -335,3 +338,4 @@ def begin_adventure(realm, first_time: bool):
         world.introduction()
     else:
         slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
+        world.dummy_room()
