@@ -26,10 +26,10 @@ def get_tile_information(tile_x, tile_y):
 
 
 def introduction():
-    headers.styled_coloured_print(headers.lang.rules_and_introduction)
+    headers.styled_coloured_print_centered(headers.lang.rules_and_introduction)
     headers.enter_to_continue()
     headers.clear()
-    headers.styled_coloured_print_boxed(headers.lang.are_you_ready_to_start)
+    headers.styled_coloured_print_centered("\n\n\n"+headers.lang.are_you_ready_to_start)
     headers.styles_input(headers.lang.Press_enter_to_truly_start_adventure)
     headers.update_json_settings("Has_Begun", True)
     headers.clear()
@@ -40,9 +40,6 @@ def dummy_room():
     rm = room(type=1)
     rm.get_monsters()
     rm.start()
-
-
-
     headers.styled_coloured_print_centered(headers.lang.you_find_yourself_staring_at_a_big_door)
     print()
     time.sleep(1)
@@ -51,7 +48,7 @@ def dummy_room():
     headers.get_lines(sym.door_closed, True)
     while True:
         headers.styled_coloured_print_centered(headers.lang.door_selections)
-        usr_sel = headers.styles_input("\n>> ")
+        usr_sel = headers.styles_input("\n>> ", centered=False)
         if usr_sel.lower() == "1":
             headers.clear()
             headers.get_lines(sym.door_closed, True)
@@ -65,7 +62,6 @@ def dummy_room():
             headers.get_lines(sym.door_open, True)
             headers.styled_coloured_print_centered(headers.lang.and_out_came)
             headers.get_lines(sym.knight_standing, True)
-            
             print("", flush=True)
 
 

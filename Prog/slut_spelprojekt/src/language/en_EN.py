@@ -13,7 +13,7 @@ menu = ['''
 ######################################################################
 ''']
 
-player_begin_adventure = "It looks like you haven't yet begun your adventure here in the shadow realm."
+player_begin_adventure = "It looks like you haven't yet begun your adventure here in AURORA."
 
 realm_begin_adventure = "To begin your adventure, please create the realm you shall then later explore and concur."
 

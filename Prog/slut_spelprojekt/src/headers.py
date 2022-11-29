@@ -284,7 +284,7 @@ def slow_print(text, delay):
 
 
 def styled_coloured_print_centered(text):
-    ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
+    ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.001)
 
 def styled_centered_print(text):
     print(text.center(shutil.get_terminal_size().columns))
@@ -300,8 +300,16 @@ def styled_coloured_print_boxed(text):
                                    down_line="-", down_left="+", up_line="-"), interval=0.001)
 
 
-def styles_input(text):
-    return ps.Write.Input(color=ps.Colors.yellow_to_red, text=text, interval=0.01)
+def styles_input(text, centered: bool):
+    """
+    center? TRUE || FALSE
+    
+    """
+    if centered:
+        return ps.Write.Input(color=ps.Colors.yellow_to_red, text=ps.Center.XCenter(text), interval=0.001)
+    else:
+        return ps.Write.Input(color=ps.Colors.yellow_to_red, text=text, interval=0.001)
+
 
 
 def print_with_index(list_to_print: list):
@@ -328,7 +336,7 @@ def create_character(empty: bool):
                                     status="None", alive=True,
                                     experience=0, current_room_index=0)
         time.sleep(0.5)
-        styled_coloured_print(f"{temp_char_name}... {lang.very_magestic}... {lang.shall_be_remembered_quote}")
+        styled_coloured_print_centered(f"{temp_char_name}... {lang.very_magestic}... {lang.shall_be_remembered_quote}")
         time.sleep(4)
     else:
         cur_character = misc.player(name="", health=100, level=1, mana=100, status="None", alive=True,
@@ -338,8 +346,7 @@ def create_character(empty: bool):
 
 def begin_adventure(realm, first_time: bool):
     if first_time:
-        styled_coloured_print_boxed(
-            lang.begin_welcome_first_time)
+        styled_coloured_print_centered("\n\n\n"+lang.begin_welcome_first_time)
         time.sleep(2)
         world.introduction()
     else:

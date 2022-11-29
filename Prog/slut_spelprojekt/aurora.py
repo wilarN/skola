@@ -62,14 +62,14 @@ def main():
     # If not, create a character and realm to play in.
     headers.clear()
     if headers.check_json_value_settings("player_name") == "NULL":
-        headers.styled_coloured_print_boxed(lang.player_begin_adventure)
+        headers.styled_coloured_print_centered(lang.player_begin_adventure)
 
         # Create Character and save playerdata to settings.json.
         player = headers.create_character(False)
         headers.update_player_save(player)
         headers.clear()
     if headers.check_json_value_settings("currently_selected_realm") == "NULL":
-        headers.styled_coloured_print_boxed(lang.realm_begin_adventure)
+        headers.styled_coloured_print_centered(lang.realm_begin_adventure)
         realm = headers.create_realm(False)
         headers.update_realm_save(realm)
 
