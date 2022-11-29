@@ -78,7 +78,7 @@ def ___init():
 
 
 def enter_to_continue():
-    styles_input(lang.press_enter_to_continue)
+    styles_input(lang.press_enter_to_continue, centered=True)
 
 
 def clear():
@@ -319,8 +319,8 @@ def print_with_index(list_to_print: list):
 
 def create_realm(empty: bool):
     if not empty:
-        temp_realm_name = styles_input(f"\n{lang.realm_name}")
-        temp_diff = styles_input(f"\n{lang.difficulty}")
+        temp_realm_name = styles_input(f"\n{lang.realm_name}", True)
+        temp_diff = styles_input(f"\n{lang.difficulty}", True)
         cur_realm = world.realm(realm_name=remove_spaces_from_string(temp_realm_name), realm_difficulty=temp_diff)
 
     else:
@@ -331,7 +331,7 @@ def create_realm(empty: bool):
 
 def create_character(empty: bool):
     if not empty:
-        temp_char_name = styles_input(f"\n{lang.hero_name}")
+        temp_char_name = styles_input(f"\n{lang.hero_name}", True)
         cur_character = misc.player(name=remove_spaces_from_string(temp_char_name), health=100, level=1, mana=100,
                                     status="None", alive=True,
                                     experience=0, current_room_index=0)

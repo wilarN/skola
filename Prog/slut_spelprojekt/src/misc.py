@@ -1,3 +1,4 @@
+import pystyle as ps
 class player:
     def __init__(self, name, health, mana, level, experience, status, alive, current_room_index):
         self.name = name
@@ -45,10 +46,25 @@ class monster:
 
 
 class npc:
-    def __init__(self, name, level, experience, type, status, alive):
+    voicelines = []
+    def __init__(self, name, level, type, status, alive):
         self.name = name
         self.race = level
         self.type = type
-        self.experience = experience
         self.status = status
         self.alive = alive
+
+    def set_voicelines(self, lines):
+        if len(lines) > 1:
+            for line in lines:
+                self.voicelines.append(line)
+
+    def say(self, msg):
+        # print(ps.Write.Print(color=ps.Colors.cyan, text=self.name), end="")
+        ps.Write.Print(text=ps.Center.XCenter(f"[{self.name}] - {msg}"), color=ps.Colors.pink, interval=0.001)
+        print("", flush=True)
+
+    def say_lines(self):
+        for line in self.voicelines:
+            ps.Write.Print(text=ps.Center.XCenter(f"{line}"), color=ps.Colors.pink, interval=0.001)
+            print("\n", flush=True)

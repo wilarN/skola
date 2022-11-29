@@ -65,3 +65,7 @@ you_try_opening_door = "You decided to try to open the door..."
 the_door_opened = "Suddenly the door opened!!"
 
 and_out_came = "And before you could react, a knight stood upon you!"
+
+knight_say_01 = "Woahhhhhhhhhh, Who are you? You shouldn't be here!"
+knight_say_02 = "That seems familiar? Have we met before??"
+knight_say_03 = "Doesn't matter, i've been instructed to eliminate all people i encounter!"

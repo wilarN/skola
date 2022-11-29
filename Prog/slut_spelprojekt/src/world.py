@@ -30,7 +30,7 @@ def introduction():
     headers.enter_to_continue()
     headers.clear()
     headers.styled_coloured_print_centered("\n\n\n"+headers.lang.are_you_ready_to_start)
-    headers.styles_input(headers.lang.Press_enter_to_truly_start_adventure)
+    headers.styles_input(headers.lang.Press_enter_to_truly_start_adventure, True)
     headers.update_json_settings("Has_Begun", True)
     headers.clear()
     dummy_room()
@@ -40,6 +40,22 @@ def dummy_room():
     rm = room(type=1)
     rm.get_monsters()
     rm.start()
+
+
+    headers.get_lines(sym.knight_standing, True)
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None)
+    dummy_knight.say("AYO WASSUHHHHHHHHHHHHHH CUHHH")
+    dummy_knight.say(headers.lang.knight_say_01)
+    usr_said_name = headers.styles_input("\n>> ", centered=True)
+    dummy_knight.say(f"{usr_said_name}....")
+    dummy_knight.set_voicelines(["TESTTTTTTT", "TESTTTTTTT222222222222", "HI SOOOOOOOOOOF"])
+    dummy_knight.say_lines()
+    print("", flush=True)
+
+
+
+
+
     headers.styled_coloured_print_centered(headers.lang.you_find_yourself_staring_at_a_big_door)
     print()
     time.sleep(1)
@@ -61,7 +77,15 @@ def dummy_room():
             headers.styled_coloured_print_centered(headers.lang.the_door_opened)
             headers.get_lines(sym.door_open, True)
             headers.styled_coloured_print_centered(headers.lang.and_out_came)
+
+
             headers.get_lines(sym.knight_standing, True)
+            dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None)
+            dummy_knight.say("AYO WASSUHHHHHHHHHHHHHH CUHHH")
+            dummy_knight.say(headers.lang.knight_say_01)
+            usr_said_name = headers.styles_input("\nYour name? ", centered=True)
+            dummy_knight.say(f"{usr_said_name}....")
+            dummy_knight.say(headers.lang.knight_say_02)
             print("", flush=True)
 
 
