@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 import json
 import pystyle as ps
+import shutil
 
 import src.world as world
 import src.misc as misc
@@ -128,7 +129,8 @@ def get_lines(text_obj, output: bool):
     if output:
         for line in logo_lines:
             time.sleep(0.08)
-            print(line)
+            styled_centered_print(line.center(shutil.get_terminal_size().columns))
+            # print(line)
 
 
 def write_to_file(text_to_write, path_to_file, typeOfWrite):
@@ -281,12 +283,15 @@ def slow_print(text, delay):
         time.sleep(delay)
 
 
-def styled_coloured_print(text):
-    ps.Write.Print(color=ps.Colors.cyan_to_green, text=text, interval=0.01)
+def styled_coloured_print_centered(text):
+    ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
+
+def styled_centered_print(text):
+    print(text.center(shutil.get_terminal_size().columns))
 
 
 def styled_coloured_print_boxed_lines(text):
-    print(ps.Box.Lines(ps.Colorate.Horizontal(ps.Colors.yellow_to_red, text)))
+    print(ps.Center.XCenter(ps.Box.Lines(ps.Colorate.Horizontal(ps.Colors.yellow_to_red, text))))
 
 
 def styled_coloured_print_boxed(text):
@@ -312,6 +317,7 @@ def create_realm(empty: bool):
 
     else:
         cur_realm = world.realm(realm_name="", realm_difficulty="")
+    clear()
     return cur_realm
 
 

@@ -3,6 +3,7 @@ import time
 
 import src.headers as headers
 from src.misc import monster
+import src.symbols as sym
 
 global tiles_in_x
 global tiles_in_y
@@ -32,7 +33,6 @@ def introduction():
     headers.styles_input(headers.lang.Press_enter_to_truly_start_adventure)
     headers.update_json_settings("Has_Begun", True)
     headers.clear()
-    time.sleep(1)
     dummy_room()
 
 
@@ -40,8 +40,42 @@ def dummy_room():
     rm = room(type=1)
     rm.get_monsters()
     rm.start()
-    rm.print(headers.lang.you_find_yourself_staring_at_a_big_door)
 
+
+
+    headers.styled_coloured_print_centered(headers.lang.you_find_yourself_staring_at_a_big_door)
+    print()
+    time.sleep(1)
+    # rm.print(headers.lang.what_do_you_do)
+
+    headers.get_lines(sym.door_closed, True)
+    while True:
+        headers.styled_coloured_print_centered(headers.lang.door_selections)
+        usr_sel = headers.styles_input("\n>> ")
+        if usr_sel.lower() == "1":
+            headers.clear()
+            headers.get_lines(sym.door_closed, True)
+            headers.styled_coloured_print_centered(headers.lang.you_knock_on_the_door)
+            print("", flush=True)
+            time.sleep(2)
+            headers.styled_coloured_print_centered(headers.lang.nothing_is_happening)
+            time.sleep(2)
+            headers.clear()
+            headers.styled_coloured_print_centered(headers.lang.the_door_opened)
+            headers.get_lines(sym.door_open, True)
+            headers.styled_coloured_print_centered(headers.lang.and_out_came)
+            headers.get_lines(sym.knight_standing, True)
+            
+            print("", flush=True)
+
+
+
+            break
+        elif usr_sel.lower() == "2":
+            headers.styled_coloured_print(headers.lang.you_knock_on_the_door)
+            break
+        else:
+            pass
 
 class door:
     def __init__(self, opened):

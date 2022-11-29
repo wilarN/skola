@@ -52,3 +52,16 @@ you_encountered_a = "You encountered a "
 you_find_yourself_staring_at_a_big_door = "You find yourself staring at a big door"
 
 what_do_you_do = "What do you do?"
+
+door_selections = "[1] - Knock on the door.\n" \
+    "[2] - Try to open.\n"
+
+you_knock_on_the_door = "You decided to knock on the door..."
+nothing_is_happening = "After waiting for a moment you realise no one is coming..."
+
+
+you_try_opening_door = "You decided to try to open the door..."
+
+the_door_opened = "Suddenly the door opened!!"
+
+and_out_came = "And before you could react, a knight stood upon you!"
