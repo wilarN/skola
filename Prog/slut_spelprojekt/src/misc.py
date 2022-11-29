@@ -1,4 +1,5 @@
 import pystyle as ps
+import time
 class player:
     def __init__(self, name, health, mana, level, experience, status, alive, current_room_index):
         self.name = name
@@ -61,10 +62,12 @@ class npc:
 
     def say(self, msg):
         # print(ps.Write.Print(color=ps.Colors.cyan, text=self.name), end="")
-        ps.Write.Print(text=ps.Center.XCenter(f"[{self.name}] - {msg}"), color=ps.Colors.pink, interval=0.001)
+        ps.Write.Print(text=ps.Center.XCenter(f"[{self.name}] - {msg}"), color=ps.Colors.pink, interval=0.01)
         print("", flush=True)
 
     def say_lines(self):
         for line in self.voicelines:
-            ps.Write.Print(text=ps.Center.XCenter(f"{line}"), color=ps.Colors.pink, interval=0.001)
+            ps.Write.Print(text=ps.Center.XCenter(f"{line}"), color=ps.Colors.pink, interval=0.01)
             print("\n", flush=True)
+            time.sleep(0.5)
+        time.sleep(2)

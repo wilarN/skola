@@ -1,6 +1,15 @@
 # Python general modules
 import time
 import os
+
+
+import pygame
+pygame.init()
+pygame.mixer.init()
+sound = pygame.mixer.Sound("src\sfx/scatman.wav")
+sound.set_volume(0)
+sound.play()
+
 # Game specific modules
 import src.headers as headers
 import src.symbols as sym
@@ -9,11 +18,12 @@ import src.symbols as sym
 ##########
 ## TODO ##
 ##########
-1 - Start adventure
+1 - Start adventure CHECK
 2 - Battle-System
 3 - Player Effects
 4. Work on monster and room object in world. list to keep track of room index etc.
 5. add gold
+6. MUSICCCCCCCCCCCCCCCCCCCCCC
 """
 
 global realm

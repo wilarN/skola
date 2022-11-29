@@ -284,7 +284,7 @@ def slow_print(text, delay):
 
 
 def styled_coloured_print_centered(text):
-    ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.001)
+    ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
 
 def styled_centered_print(text):
     print(text.center(shutil.get_terminal_size().columns))
@@ -297,7 +297,7 @@ def styled_coloured_print_boxed_lines(text):
 def styled_coloured_print_boxed(text):
     ps.Write.Print(color=ps.Colors.cyan_to_green,
                    text=ps.Box.Box(text, up_left="+", left_line="-", right_line="-", up_right="+", down_right="+",
-                                   down_line="-", down_left="+", up_line="-"), interval=0.001)
+                                   down_line="-", down_left="+", up_line="-"), interval=0.01)
 
 
 def styles_input(text, centered: bool):
