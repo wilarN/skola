@@ -6,9 +6,9 @@ import os
 import pygame
 pygame.init()
 pygame.mixer.init()
-sound = pygame.mixer.Sound("src\sfx/scatman.wav")
-sound.set_volume(0)
-sound.play()
+# sound = pygame.mixer.Sound("src\sfx/scatman.wav")
+# sound.set_volume(0)
+# sound.play()
 
 # Game specific modules
 import src.headers as headers

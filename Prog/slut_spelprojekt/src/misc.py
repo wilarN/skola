@@ -56,6 +56,8 @@ class npc:
         self.alive = alive
 
     def set_voicelines(self, lines):
+        self.voicelines.clear()
+        print("", flush=True)
         if len(lines) > 1:
             for line in lines:
                 self.voicelines.append(line)
@@ -67,7 +69,7 @@ class npc:
 
     def say_lines(self):
         for line in self.voicelines:
-            ps.Write.Print(text=ps.Center.XCenter(f"{line}"), color=ps.Colors.pink, interval=0.01)
+            ps.Write.Print(text=ps.Center.XCenter(f"- {line}"), color=ps.Colors.pink, interval=0.01)
             print("\n", flush=True)
             time.sleep(0.5)
         time.sleep(2)

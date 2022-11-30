@@ -285,6 +285,7 @@ def slow_print(text, delay):
 
 def styled_coloured_print_centered(text):
     ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
+    print("", flush=True, end="")
 
 def styled_centered_print(text):
     print(text.center(shutil.get_terminal_size().columns))
