@@ -24,6 +24,9 @@ difficulty = "Difficulty - (1-4 EASY // 4-7 MEDIUM // 7-10 HARD): "
 
 hero_name = "Please select a name for your hero: "
 
+woke_up = "You woke up..."
+not_knowing = "Not knowing what, and where you are..."
+
 create_realm_text = "Now, let's move on to creating the realm."
 
 begin_welcome = "Welcome"
@@ -89,3 +92,11 @@ yes = "yes"
 no = "no"
 
 you_eventually_tried_opening = "You eventually tried opening the door out of boredom..."
+
+battle_menu_selection = "[1] - Check Opponent.\n" \
+                         "[2] - Attack.\n" \
+                         "[3] - Talk to.\n"
+
+name = "Name"
+type = "Type"
+level = "Level"

@@ -54,11 +54,15 @@ class npc:
 
     def __init__(self, name, level, type, status, alive, char_sym=None):
         self.name = name
-        self.race = level
+        self.level = level
         self.type = type
         self.status = status
         self.alive = alive
         self.char_sym = char_sym
+
+    def get_all_stats(self):
+        all_stats = [self.name, self.type, self.level]
+        return all_stats   
 
     def set_voicelines(self, lines):
         self.voicelines.clear()

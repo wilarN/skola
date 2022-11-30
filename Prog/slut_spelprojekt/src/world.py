@@ -35,16 +35,50 @@ def introduction():
     headers.clear()
     dummy_room()
 
+def check_opponent(opponent):
+    headers.styled_centered_print()
 
-def start_battle(who_you_fighting):
+
+def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
+    if portrate is not None:
+        headers.get_lines(portrate, True)
     print("\n\n\n\n")
     headers.ps.Write.Print(
         text=headers.ps.Center.XCenter(f"--- | {headers.get_user_data(1)} vs {who_you_fighting.name} | ---\n\n"),
     color=headers.ps.Colors.blue_to_white, interval=0.001)
-    who_you_fighting.set_voicelines([headers.lang.now_that_were_here, headers.lang.true_ident])
-    who_you_fighting.say_lines()
-
+    # who_you_fighting.set_voicelines(battle_voice_lines)
+    # who_you_fighting.say_lines()
     time.sleep(1)
+    while True:
+        print("", flush=True)
+        headers.styled_coloured_print_centered(text=headers.lang.battle_menu_selection)
+        usr_answ = headers.styles_input("\n>> ", centered=True)
+        if usr_answ == "1":
+            # Check opponent
+            temp_num = 1
+            for line in who_you_fighting.get_all_stats():
+                if temp_num == 1:
+                    print(f"{headers.ps.Center.XCenter(f"{headers.lang.name}: {line}")}", end="")
+                elif temp_num == 2:
+                    print(f"{headers.ps.Center.XCenter(f"{headers.lang.type}: {line}")}", end="")
+                elif temp_num == 3:
+                    print(f"{headers.ps.Center.XCenter(f"{headers.lang.level}")}", end="")
+                if type(line) == int:
+                    line = str(line)
+                print(f"{headers.ps.Center.XCenter(line)} ")
+                print("", flush=True)
+                temp_num += 1
+
+        elif usr_answ == "2":
+            # Attack
+            pass
+            break
+        elif usr_answ == "3":
+            # Talks
+            pass
+            break
+        else:
+            pass
 
 
 def dummy_room():
@@ -52,7 +86,27 @@ def dummy_room():
     rm.get_monsters()
     rm.start()
 
-    headers.styled_coloured_print_centered(headers.lang.you_find_yourself_staring_at_a_big_door)
+
+    headers.get_lines(sym.knight_standing, True)
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
+    dummy_knight.say(headers.lang.knight_say_01)
+    usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
+    dummy_knight.set_voicelines(
+        [f"{usr_said_name}....", headers.lang.knight_say_02, headers.lang.knight_say_03])
+    dummy_knight.say_lines()
+    headers.enter_to_continue()
+    headers.clear()
+
+    start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
+
+
+
+    headers.styled_coloured_print_centered(headers.lang.woke_up)
+    time.sleep(1)
+    headers.styled_coloured_print_centered(headers.lang.not_knowing + "\n\n\n")
+    headers.enter_to_continue()
+    headers.clear()
+    headers.styled_coloured_print_centered("\n\n\n"+headers.lang.you_find_yourself_staring_at_a_big_door)
     print()
     time.sleep(1)
     # rm.print(headers.lang.what_do_you_do)
@@ -60,30 +114,19 @@ def dummy_room():
     headers.get_lines(sym.door_closed, True)
     while True:
         headers.styled_coloured_print_centered(headers.lang.door_selections)
-        usr_sel = headers.styles_input("\n>> ", centered=False)
+        usr_sel = headers.styles_input("\n>> ", centered=True)
         if usr_sel.lower() == "1":
             headers.clear()
             headers.get_lines(sym.door_closed, True)
             headers.styled_coloured_print_centered(headers.lang.you_knock_on_the_door)
             print("", flush=True)
-            time.sleep(2)
+            time.sleep(1)
             headers.styled_coloured_print_centered(headers.lang.nothing_is_happening)
-            time.sleep(2)
+            headers.enter_to_continue()
             headers.clear()
             headers.styled_coloured_print_centered(headers.lang.the_door_opened)
             headers.get_lines(sym.door_open, True)
             headers.styled_coloured_print_centered(headers.lang.and_out_came)
-
-            headers.get_lines(sym.knight_standing, True)
-            dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
-            dummy_knight.say(headers.lang.knight_say_01)
-            usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
-            dummy_knight.set_voicelines(
-                [f"{usr_said_name}....", headers.lang.knight_say_02, headers.lang.knight_say_03])
-            dummy_knight.say_lines()
-            print("", flush=True)
-            headers.get_lines(sym.knight_standing)
-            start_battle(dummy_knight)
 
             break
         elif usr_sel.lower() == "2":
@@ -114,20 +157,24 @@ def dummy_room():
                 headers.styled_coloured_print_centered(headers.lang.then_it_opened)
                 headers.get_lines(sym.door_open, True)
                 headers.styled_coloured_print_centered(headers.lang.and_out_came)
-
-                headers.get_lines(sym.knight_standing, True)
-                dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None)
-                dummy_knight.say(headers.lang.knight_say_01)
-                usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
-                dummy_knight.set_voicelines(
-                    [f"{usr_said_name}....", headers.lang.knight_say_02, headers.lang.knight_say_03])
-                dummy_knight.say_lines()
-                print("", flush=True)
-                start_battle(dummy_knight)
                 break
             break
         else:
             pass
+
+
+    headers.get_lines(sym.knight_standing, True)
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
+    dummy_knight.say(headers.lang.knight_say_01)
+    usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
+    dummy_knight.set_voicelines(
+        [f"{usr_said_name}....", headers.lang.knight_say_02, headers.lang.knight_say_03])
+    dummy_knight.say_lines()
+    headers.enter_to_continue()
+    headers.clear()
+
+    headers.get_lines(sym.knight_standing, True)
+    start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
 
 
 class door:
