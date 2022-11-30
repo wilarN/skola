@@ -37,11 +37,10 @@ def introduction():
 
 
 def start_battle(who_you_fighting):
-    headers.clear()
     print("\n\n\n\n")
     headers.ps.Write.Print(
         text=headers.ps.Center.XCenter(f"--- | {headers.get_user_data(1)} vs {who_you_fighting.name} | ---\n\n"),
-        color=headers.ps.Colors.blue_to_white, interval=0.001)
+    color=headers.ps.Colors.blue_to_white, interval=0.001)
     who_you_fighting.set_voicelines([headers.lang.now_that_were_here, headers.lang.true_ident])
     who_you_fighting.say_lines()
 
@@ -76,13 +75,14 @@ def dummy_room():
             headers.styled_coloured_print_centered(headers.lang.and_out_came)
 
             headers.get_lines(sym.knight_standing, True)
-            dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None)
+            dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
             dummy_knight.say(headers.lang.knight_say_01)
             usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
             dummy_knight.set_voicelines(
                 [f"{usr_said_name}....", headers.lang.knight_say_02, headers.lang.knight_say_03])
             dummy_knight.say_lines()
             print("", flush=True)
+            headers.get_lines(sym.knight_standing)
             start_battle(dummy_knight)
 
             break
@@ -118,7 +118,7 @@ def dummy_room():
                 headers.get_lines(sym.knight_standing, True)
                 dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None)
                 dummy_knight.say(headers.lang.knight_say_01)
-                usr_said_name = headers.styles_input("\n>> ", centered=True)
+                usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
                 dummy_knight.set_voicelines(
                     [f"{usr_said_name}....", headers.lang.knight_say_02, headers.lang.knight_say_03])
                 dummy_knight.say_lines()

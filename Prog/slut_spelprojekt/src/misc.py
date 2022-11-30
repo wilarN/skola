@@ -1,5 +1,8 @@
 import pystyle as ps
 import time
+import src.symbols as sym
+import src.headers as headers
+
 class player:
     def __init__(self, name, health, mana, level, experience, status, alive, current_room_index):
         self.name = name
@@ -48,12 +51,14 @@ class monster:
 
 class npc:
     voicelines = []
-    def __init__(self, name, level, type, status, alive):
+
+    def __init__(self, name, level, type, status, alive, char_sym=None):
         self.name = name
         self.race = level
         self.type = type
         self.status = status
         self.alive = alive
+        self.char_sym = char_sym
 
     def set_voicelines(self, lines):
         self.voicelines.clear()
@@ -61,6 +66,9 @@ class npc:
         if len(lines) > 1:
             for line in lines:
                 self.voicelines.append(line)
+
+    def portrait(self):
+        pass
 
     def say(self, msg):
         # print(ps.Write.Print(color=ps.Colors.cyan, text=self.name), end="")
