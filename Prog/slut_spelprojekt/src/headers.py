@@ -157,10 +157,10 @@ def get_realm():
 # Backpack control
 def backpackAddItem(item, amount):
     prev_items = check_json_value_settings("backpack")
-    if prev_items == "NULL":
-        update_json_settings("backpack", item.name+";")
+    if prev_items.__contains__("NULL"):
+        update_json_settings("backpack", item.name)
     else:
-        update_json_settings("backpack", prev_items+";"+item.name+";")
+        update_json_settings("backpack", prev_items+";"+item.name)
 
 def backpackRemoveItem():
     # Check if item exists.
