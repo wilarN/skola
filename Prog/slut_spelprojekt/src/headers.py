@@ -40,7 +40,8 @@ settings = {
     "player_level": "NULL",
     "player_experience": "NULL",
     "player_status": "NULL",
-    "player_alive": "NULL"
+    "player_alive": "NULL",
+    "backpack": "NULL"
 }
 
 
@@ -117,7 +118,7 @@ def read_from_json_to_obj(json_path: str):
     return obj
 
 
-def get_lines(text_obj, output: bool):
+def get_lines(text_obj, output: bool, instant = False):
     logo_lines = []
     if type(text_obj) == list:
         for line in text_obj[random.randint(0, len(text_obj) - 1)].split("\n"):
@@ -128,7 +129,10 @@ def get_lines(text_obj, output: bool):
 
     if output:
         for line in logo_lines:
-            time.sleep(0.08)
+            if instant:
+                time.sleep(0)
+            else:
+                time.sleep(0.08)
             styled_centered_print(line.center(shutil.get_terminal_size().columns))
             # print(line)
 
@@ -335,13 +339,13 @@ def create_character(empty: bool):
         temp_char_name = styles_input(f"\n{lang.hero_name}", True)
         cur_character = misc.player(name=remove_spaces_from_string(temp_char_name), health=100, level=1, mana=100,
                                     status="None", alive=True,
-                                    experience=0, current_room_index=0)
+                                    experience=0, current_room_index=0, backpack=None)
         time.sleep(0.5)
         styled_coloured_print_centered(f"{temp_char_name}... {lang.very_magestic}... {lang.shall_be_remembered_quote}")
         time.sleep(4)
     else:
         cur_character = misc.player(name="", health=100, level=1, mana=100, status="None", alive=True,
-                                    experience=0, current_room_index=0)
+                                    experience=0, current_room_index=0, backpack=None)
     return cur_character
 
 

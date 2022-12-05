@@ -97,6 +97,14 @@ battle_menu_selection = "[1] - Check Opponent.\n" \
                          "[2] - Attack.\n" \
                          "[3] - Talk to.\n"
 
+
+def empty_list_placeholder(first, second, third):
+    empty_list_placeholder = f"[1] - {first}\n" \
+                            f"[2] - {second}\n" \
+                            f"[3] - {third}\n"
+    return empty_list_placeholder
+
+
 name = "Name"
 type = "Type"
 level = "Level"

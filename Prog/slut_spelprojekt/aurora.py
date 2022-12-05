@@ -6,9 +6,10 @@ import os
 import pygame
 pygame.init()
 pygame.mixer.init()
-# sound = pygame.mixer.Sound("src/sfx/Kirby.wav")
-# sound.set_volume(0.2)
-# sound.play()
+pygame.mixer.music.load("C:\DEV\Github\CMDrpg\skola\Prog\slut_spelprojekt\src\sfx\Kirby.wav")
+pygame.mixer.music.set_volume(0.01)
+pygame.mixer.music.set_volume(0)
+pygame.mixer.music.play()
 
 # Game specific modules
 import src.headers as headers

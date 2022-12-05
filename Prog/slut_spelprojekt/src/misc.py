@@ -4,7 +4,7 @@ import src.symbols as sym
 import src.headers as headers
 
 class player:
-    def __init__(self, name, health, mana, level, experience, status, alive, current_room_index):
+    def __init__(self, name, health, mana, level, experience, status, alive, current_room_index, backpack):
         self.name = name
         self.current_room_index = current_room_index
         self.health = health
@@ -13,10 +13,11 @@ class player:
         self.experience = experience
         self.status = status
         self.alive = alive
+        self.backpack = backpack
 
     def get_all_stats(self):
         all_stats = [self.name, self.health, self.mana, self.level, self.experience, self.status, self.alive,
-                     self.current_room_index]
+                     self.current_room_index, self.backpack]
         return all_stats
 
     def die(self):
@@ -28,6 +29,9 @@ class player:
 
     def damage(self, amount):
         self.health -= amount
+
+
+    
 
 
 class monster:
@@ -62,7 +66,8 @@ class npc:
 
     def get_all_stats(self):
         all_stats = [self.name, self.type, self.level]
-        return all_stats   
+        return all_stats
+    
 
     def set_voicelines(self, lines):
         self.voicelines.clear()

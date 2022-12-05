@@ -39,13 +39,20 @@ def check_opponent(opponent):
     headers.styled_centered_print()
 
 
+def attack_npc(who_to_attack, portrate):
+    headers.clear()
+    headers.get_lines(text_obj=portrate, output=True, instant=True)
+    
+
+
 def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
     if portrate is not None:
-        headers.get_lines(portrate, True)
-    print("\n\n\n\n")
+        headers.clear()
+        headers.get_lines(portrate, True, True)
+    print("\n\n\n")
     headers.ps.Write.Print(
         text=headers.ps.Center.XCenter(f"--- | {headers.get_user_data(1)} vs {who_you_fighting.name} | ---\n\n"),
-    color=headers.ps.Colors.blue_to_white, interval=0.001)
+    color=headers.ps.Colors.blue_to_white, interval=0.0001)
     # who_you_fighting.set_voicelines(battle_voice_lines)
     # who_you_fighting.say_lines()
     time.sleep(1)
@@ -58,21 +65,20 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
             temp_num = 1
             for line in who_you_fighting.get_all_stats():
                 if temp_num == 1:
-                    print(f"{headers.ps.Center.XCenter(f"{headers.lang.name}: {line}")}", end="")
+                    print(headers.ps.Center.XCenter(f"{headers.lang.name}: {line}"), end="")
                 elif temp_num == 2:
-                    print(f"{headers.ps.Center.XCenter(f"{headers.lang.type}: {line}")}", end="")
+                    print(headers.ps.Center.XCenter(f"{headers.lang.type}: {line}"), end="")
                 elif temp_num == 3:
-                    print(f"{headers.ps.Center.XCenter(f"{headers.lang.level}")}", end="")
+                    print(headers.ps.Center.XCenter(f"{headers.lang.level}: {line}"), end="")
                 if type(line) == int:
                     line = str(line)
-                print(f"{headers.ps.Center.XCenter(line)} ")
+                print(f"{headers.ps.Center.XCenter(line)} ", end="")
                 print("", flush=True)
                 temp_num += 1
 
         elif usr_answ == "2":
             # Attack
-            pass
-            break
+            attack_npc(who_to_attack=who_you_fighting, portrate=portrate)
         elif usr_answ == "3":
             # Talks
             pass
@@ -86,17 +92,13 @@ def dummy_room():
     rm.get_monsters()
     rm.start()
 
-
-    headers.get_lines(sym.knight_standing, True)
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
-    dummy_knight.say(headers.lang.knight_say_01)
-    usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
-    dummy_knight.set_voicelines(
-        [f"{usr_said_name}....", headers.lang.knight_say_02, headers.lang.knight_say_03])
-    dummy_knight.say_lines()
+
+    usr_said_name = "test"
     headers.enter_to_continue()
     headers.clear()
 
+    headers.get_lines(sym.knight_standing, True)
     start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
 
 
@@ -161,7 +163,6 @@ def dummy_room():
             break
         else:
             pass
-
 
     headers.get_lines(sym.knight_standing, True)
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
