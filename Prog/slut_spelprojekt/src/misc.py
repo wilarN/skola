@@ -3,6 +3,13 @@ import time
 import src.symbols as sym
 import src.headers as headers
 
+
+class item:
+    def __init__(self, name, description, consumed = False):
+        self.name = name
+        self.description = description
+
+
 class player:
     def __init__(self, name, health, mana, level, experience, status, alive, current_room_index, backpack):
         self.name = name
@@ -29,9 +36,6 @@ class player:
 
     def damage(self, amount):
         self.health -= amount
-
-
-    
 
 
 class monster:

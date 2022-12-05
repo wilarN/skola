@@ -42,7 +42,7 @@ def check_opponent(opponent):
 def attack_npc(who_to_attack, portrate):
     headers.clear()
     headers.get_lines(text_obj=portrate, output=True, instant=True)
-    
+
 
 
 def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
@@ -91,6 +91,9 @@ def dummy_room():
     rm = room(type=1)
     rm.get_monsters()
     rm.start()
+
+    player = headers.get_player()
+    headers.backpackAddItem(headers.summon_item("test_item", "Item thats used for testing purposes"), 1)
 
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
 

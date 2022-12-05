@@ -86,11 +86,8 @@ def main():
 
     else:
         # Load player and realm data from save
-        player = headers.create_character(True)
-        player = headers.load_player_save(player)
-
-        realm = headers.create_realm(True)
-        realm = headers.load_realm_save(realm)
+        player = headers.get_player()
+        realm = headers.get_realm()
     if not headers.check_json_value_settings("Has_Begun"):
         # Has created realm world, but not yet started the adventure.
         headers.begin_adventure(realm=realm, first_time=True)

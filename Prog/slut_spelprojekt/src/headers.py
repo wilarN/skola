@@ -136,6 +136,42 @@ def get_lines(text_obj, output: bool, instant = False):
             styled_centered_print(line.center(shutil.get_terminal_size().columns))
             # print(line)
 
+def summon_item(name, desc, consumed = False):
+    if consumed is not False:
+        item = misc.item(name=name, description=desc, consumed=consumed)
+    item = misc.item(name=name, description=desc)
+    return item
+
+def get_player():
+    # Load player and realm data from save
+    player = create_character(True)
+    player = load_player_save(player)
+    return player
+
+
+def get_realm():
+    realm = create_realm(True)
+    realm = load_realm_save(realm)
+    return realm
+
+# Backpack control
+def backpackAddItem(item, amount):
+    prev_items = check_json_value_settings("backpack")
+    if prev_items == "NULL":
+        update_json_settings("backpack", item.name+";")
+    else:
+        update_json_settings("backpack", prev_items+";"+item.name+";")
+
+def backpackRemoveItem():
+    # Check if item exists.
+    # If exists, remove from save file.
+    pass
+
+def backpackGetAllItems():
+    pass
+
+def backpackGetAllItems():
+    pass
 
 def write_to_file(text_to_write, path_to_file, typeOfWrite):
     if os.path.exists(path_to_file):
