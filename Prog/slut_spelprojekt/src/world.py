@@ -95,6 +95,9 @@ def dummy_room():
     player = headers.get_player()
     headers.backpackAddItem(headers.summon_item("test_item", "Item thats used for testing purposes"), 1)
 
+    print(headers.backpackGetAllItems())
+
+
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
 
     usr_said_name = "test"

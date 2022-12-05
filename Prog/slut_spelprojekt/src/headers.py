@@ -168,7 +168,14 @@ def backpackRemoveItem():
     pass
 
 def backpackGetAllItems():
-    pass
+    '''
+    NEEDS FIXXXX ASAPPPPPPPPPPP
+    '''
+    all_items = check_json_value_settings("backpack")
+    items = []
+    items.append(all_items.split(";"))
+    return items
+
 
 def backpackGetAllItems():
     pass
