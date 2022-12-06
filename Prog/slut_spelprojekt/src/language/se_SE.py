@@ -13,20 +13,23 @@ menu = ['''
 ######################################################################
 ''']
 
-player_begin_adventure = "Det verkar som du inte har påbörjat ditt äventyr här i AURORA."
+player_begin_adventure = "It looks like you haven't yet begun your adventure here in AURORA."
 
-realm_begin_adventure = "För att börja ditt äventry, vänligen skapa en realm som du kommer att utforska och erövra."
+realm_begin_adventure = "To begin your adventure, please create the realm you shall then later explore and concur."
 
-realm_begin_diff_selector = "Vänligen välj en svårighets grad på din realm."
+realm_begin_diff_selector = "Please select the difficulty of your realm.."
 
-realm_name = "Realm namn: "
-difficulty = "Svårighetsgrad - (1-4 LÄTT // 4-7 MEDIUM // 7-10 SVÅRT): "
+realm_name = "Realm name: "
+difficulty = "Difficulty - (1-4 EASY // 4-7 MEDIUM // 7-10 HARD): "
 
-hero_name = "Vänligen välj ett namn för din hjälte: "
+hero_name = "Please select a name for your hero: "
 
-create_realm_text = "låt oss skapa en realm."
+woke_up = "You woke up..."
+not_knowing = "Not knowing what, and where you are..."
 
-begin_welcome = "Välkommen"
+create_realm_text = "Now, let's move on to creating the realm."
+
+begin_welcome = "Welcome"
 
 welcome_back = "Welcome back"
 welcome_back_2 = "to"
@@ -89,3 +92,19 @@ yes = "yes"
 no = "no"
 
 you_eventually_tried_opening = "You eventually tried opening the door out of boredom..."
+
+battle_menu_selection = "[1] - Check Opponent.\n" \
+                         "[2] - Attack.\n" \
+                         "[3] - Talk to.\n"
+
+
+def empty_list_placeholder(first, second, third):
+    empty_list_placeholder = f"[1] - {first}\n" \
+                            f"[2] - {second}\n" \
+                            f"[3] - {third}\n"
+    return empty_list_placeholder
+
+
+name = "Name"
+type = "Type"
+level = "Level"

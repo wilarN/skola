@@ -35,6 +35,7 @@ def introduction():
     headers.clear()
     dummy_room()
 
+
 def check_opponent(opponent):
     headers.styled_centered_print()
 
@@ -42,7 +43,15 @@ def check_opponent(opponent):
 def attack_npc(who_to_attack, portrate):
     headers.clear()
     headers.get_lines(text_obj=portrate, output=True, instant=True)
+    who_to_attack.say(headers.lang.we_will_meet_again)
+    who_to_attack.set_voicelines([headers.lang.i_wont_forget_your_face])
+    who_to_attack.say_lines()
+    magic_wand = headers.summon_item("magic_wand", "Magic wand used for testing purposes")
+    orb_of_fire = headers.summon_item("blue_fire_orb", "Item thats used for testing purposes")
+    headers.backpackAddItem(magic_wand, 1)
+    headers.backpackAddItem(orb_of_fire, 1)
 
+    print(headers.backpackGetAllItems())
 
 
 def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
@@ -93,10 +102,6 @@ def dummy_room():
     rm.start()
 
     player = headers.get_player()
-    headers.backpackAddItem(headers.summon_item("test_item", "Item thats used for testing purposes"), 1)
-
-    print(headers.backpackGetAllItems())
-
 
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
 

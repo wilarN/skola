@@ -108,3 +108,6 @@ def empty_list_placeholder(first, second, third):
 name = "Name"
 type = "Type"
 level = "Level"
+
+we_will_meet_again = "We will meet again..."
+i_wont_forget_your_face = "And I'll never forget your face..."

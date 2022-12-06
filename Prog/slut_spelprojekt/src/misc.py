@@ -76,7 +76,7 @@ class npc:
     def set_voicelines(self, lines):
         self.voicelines.clear()
         print("", flush=True)
-        if len(lines) > 1:
+        if len(lines) > 0:
             for line in lines:
                 self.voicelines.append(line)
 

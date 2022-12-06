@@ -177,9 +177,6 @@ def backpackGetAllItems():
     return items
 
 
-def backpackGetAllItems():
-    pass
-
 def write_to_file(text_to_write, path_to_file, typeOfWrite):
     if os.path.exists(path_to_file):
         write_file = open(path_to_file, typeOfWrite)
