@@ -5,6 +5,7 @@ from datetime import datetime
 import json
 import pystyle as ps
 import shutil
+import keyboard as keyb
 
 import src.world as world
 import src.misc as misc
@@ -161,13 +162,16 @@ def get_realm():
     return realm
 
 def grantXP(amount):
+    world.flush()
     ps.Write.Print(text=ps.Center.XCenter(f"{lang.Experience_earned} {amount} {lang.Experience}!"), color=ps.Colors.yellow, interval=0.01)
     prev_xp = check_json_value_settings("player_experience")
     update_json_settings("player_experience", (int(prev_xp)+amount))
 
 
+
 # Backpack control
 def backpackAddItem(item, amount):
+    world.flush()
     ps.Write.Print(text=ps.Center.XCenter(f"{lang.Item_rewarded} {amount} {item.name}!"), color=ps.Colors.cyan, interval=0.01)
     prev_items = check_json_value_settings("backpack")
     if prev_items.__contains__("NULL"):

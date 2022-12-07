@@ -1,5 +1,6 @@
 import random
 import time
+import datetime
 
 import src.headers as headers
 from src.misc import monster
@@ -41,6 +42,27 @@ def flush():
 def check_opponent(opponent):
     headers.styled_centered_print()
 
+def attack_countdown():
+    while True:
+        time.sleep(headers.random.randint(0, 1))
+        start = time.perf_counter()
+        print("TIME")
+        if headers.keyb.is_pressed("spacebar"):
+            print("Pressed")
+            finish = time.perf_counter()
+
+            elapsed_time = finish - start
+            if elapsed_time > headers.random.randint(0.5, 1):
+                print("FAILED")
+            else:
+                print("SUCCESSFUL DODGE ACTION")
+            headers.enter_to_continue()
+
+
+def defend_instructions():
+    headers.styled_coloured_print_centered(headers.lang.defend_instructions)
+    time.sleep(2)
+    headers.enter_to_continue()
 
 def attack_npc(who_to_attack, portrate):
     headers.clear()
@@ -53,7 +75,7 @@ def attack_npc(who_to_attack, portrate):
     headers.backpackAddItem(magic_wand, 1)
     headers.backpackAddItem(orb_of_fire, 1)
 
-    print(headers.backpackGetAllItems())
+    # print(headers.backpackGetAllItems())
 
 
 def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
@@ -127,6 +149,13 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
                     print("teeeesttt")
                     break
             
+            # ENEMY ATTACK
+            if int(headers.check_json_value_settings("player_experience")) < 1:
+                defend_instructions()
+
+            headers.styled_coloured_print_centered(f"{who_you_fighting.name} {headers.lang.prepared_his_attack}...")
+            
+
         else:
             pass
 
@@ -144,7 +173,8 @@ def dummy_room():
     rm.get_monsters()
     rm.start()
 
-    headers.grantXP((headers.random.randint(1, 5)*int(headers.check_json_value_settings("realm_difficulty"))))
+    # headers.grantXP((headers.random.randint(1, 5)*int(headers.check_json_value_settings("realm_difficulty"))))
+    attack_countdown()
 
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo

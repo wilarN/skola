@@ -9,7 +9,8 @@ pygame.mixer.init()
 # pygame.mixer.music.load("src/sfx/Undertale_Premonition.mp3")
 pygame.mixer.music.load("src/sfx/Undertale_Another_Medium.mp3")
 pygame.mixer.music.queue("src/sfx/Undertale_Another_Medium.mp3")
-pygame.mixer.music.set_volume(0.5)
+# pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.set_volume(0)
 pygame.mixer.music.play()
 
 
@@ -28,6 +29,12 @@ import src.symbols as sym
 ##########
 1 - Start adventure CHECK // COMPLETED
 2 - Battle-System
+> User attack against npc
+> npc fight back mechanic, return fire.
+> Dodge action
+
+FIX ATTACK COUNTDOWN IN WORLD.PY
+
 3 - Player Effects
 4. Work on monster and room object in world. list to keep track of room index etc. // PARTLY COMPLETED
 5. add gold
