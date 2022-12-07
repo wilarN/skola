@@ -60,13 +60,19 @@ class monster:
 class npc:
     voicelines = []
 
-    def __init__(self, name, level, type, status, alive, char_sym=None):
+    # There are two types of ´responses´: Happy reply == Means you said the right thing, // Anger reply == Means you did not pick the right line.
+    # Chosen by index
+    def __init__(self, name, level, type, status, alive, user_talk_selections = None, talk_selections = None, attack_line = None, responses = None, char_sym=None):
         self.name = name
         self.level = level
         self.type = type
         self.status = status
         self.alive = alive
         self.char_sym = char_sym
+        self.responses = responses
+        self.attack_line = attack_line
+        self.talk_selections = talk_selections
+        self.user_talk_selections = user_talk_selections
 
     def get_all_stats(self):
         all_stats = [self.name, self.type, self.level]
@@ -83,11 +89,11 @@ class npc:
     def portrait(self):
         pass
 
-    def attack_vline(self, msg):
+    def attack_vline(self):
         '''
-        name of npc is already stated, only input `msg`
+        name of npc is already stated
         '''
-        ps.Write.Print(text=ps.Center.XCenter(f"*{self.name} {msg}*"), color=ps.Colors.orange, interval=0.01)
+        ps.Write.Print(text=ps.Center.XCenter(f"*{self.name} {self.attack_line}*"), color=ps.Colors.orange, interval=0.01)
         print("", flush=True)
 
     def say(self, msg):

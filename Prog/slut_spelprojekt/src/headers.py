@@ -80,7 +80,8 @@ def ___init():
 
 
 def enter_to_continue():
-    styles_input(lang.press_enter_to_continue, centered=True)
+    world.flush()
+    styles_input((f"\n\n\n{lang.press_enter_to_continue}"), centered=True)
 
 
 def clear():

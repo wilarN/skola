@@ -35,6 +35,8 @@ def introduction():
     headers.clear()
     dummy_room()
 
+def flush():
+    print("", flush=True)
 
 def check_opponent(opponent):
     headers.styled_centered_print()
@@ -58,7 +60,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
     if portrate is not None:
         headers.clear()
         headers.get_lines(portrate, True, True)
-    who_you_fighting.attack_vline(headers.lang.knight_attack_line)
+    who_you_fighting.attack_vline()
     time.sleep(1)
     print("\n")
     headers.ps.Write.Print(
@@ -66,7 +68,6 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
     color=headers.ps.Colors.blue_to_white, interval=0.0001)
     # who_you_fighting.set_voicelines(battle_voice_lines)
     # who_you_fighting.say_lines()
-    time.sleep(1)
     while True:
         print("", flush=True)
         headers.styled_coloured_print_centered(text=headers.lang.battle_menu_selection)
@@ -91,10 +92,31 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
             attack_npc(who_to_attack=who_you_fighting, portrate=portrate)
         elif usr_answ == "3":
             # Talks
-            pass
-            break
+            headers.clear()
+            headers.get_lines(portrate, True, True)
+            print("", flush=True)
+            temp_num = 1
+            exit_num = 0
+            for sel in who_you_fighting.talk_selections:
+                if sel.__contains__("^"):
+                    exit_num = sel
+                headers.styled_coloured_print_centered(text=(f"[{temp_num}] {sel}"))
+                temp_num += 1
+            usr_answ = headers.styles_input("\n>> ", centered=True)
+            if usr_answ == "1":
+                flush()
+                headers.styled_coloured_print_centered(who_you_fighting.user_talk_selections[0])
+                time.sleep(2)
+                headers.ps.Write.Print(text=headers.ps.Center.XCenter(f"*{who_you_fighting.name} {who_you_fighting.responses[0]}*"), color=headers.ps.Colors.orange, interval=0.01)
+                time.sleep(1)
+                headers.enter_to_continue()
+                if exit_num == "1":
+                    break
         else:
             pass
+
+    # POINTS GRANT ITEMS ETC::: AFTER BATTLE IS FINISHED
+
 
 
 def dummy_room():
@@ -104,7 +126,7 @@ def dummy_room():
 
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
-    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", user_talk_selections=[headers.lang.usr_knight_line_sel_01_line, headers.lang.usr_knight_line_sel_02_line], talk_selections=headers.lang.knight_talk_selection, status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy02, headers.lang.knight_reply_fight_end01])
     usr_said_name = "testName"
     headers.clear()
 
@@ -175,7 +197,7 @@ def dummy_room():
             pass
 
     headers.get_lines(sym.knight_standing, True)
-    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy, headers.lang.knight_reply_fight_end])
     dummy_knight.say(headers.lang.knight_say_01)
     usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
     dummy_knight.set_voicelines(

@@ -69,13 +69,31 @@ the_door_opened = "\n\n\nSuddenly the door opened!!"
 
 and_out_came = "And before you could react, a knight stood upon you!"
 
+#########  KNIGHT ##########
 knight_say_01 = "Woahhhhhhhhhh, Who are you? You shouldn't be here!"
 knight_say_02 = "That seems familiar? Have we met before??"
 knight_say_03 = "Doesn't matter, i've been instructed to eliminate all people i encounter!"
 
-
 true_ident = "I think it's time that we discover your true identity and what you're really doing here..."
 now_that_were_here = "Now that we're here..."
+we_will_meet_again = "We will meet again..."
+i_wont_forget_your_face = "And I'll never forget your face..."
+
+knight_attack_line = "stumbled forward in pride expecting anyone around to cheer... (But you were the only one there)"
+knight_talk_selection = ["Compliment.", "Act."]
+
+usr_knight_line_sel_02_line = "Even though you find yourself inside, you somehow are able to scrape out a snowball from the wall and you throw it at the knight."
+usr_knight_line_sel_01_line = "You told the knight you really liked his armour."
+knight_reply_happy02 = "giggled behind the mask and even though you couldn't see him, an imaginary ghost told you he was probably smiling."
+knight_reply_fight_end01 = "got so suprised by your snowball scraping skills that he didn't want to fight you anymore..."
+
+
+#################################
+
+def talk_menu(npc_name):
+    if npc_name == "knight":
+        return knight_talk_selection
+
 
 you_tried_opening_door = "\n\n\nYou decided it would be a good idea to open the door..."
 
@@ -109,9 +127,5 @@ name = "Name"
 type = "Type"
 level = "Level"
 
-we_will_meet_again = "We will meet again..."
-i_wont_forget_your_face = "And I'll never forget your face..."
-
-knight_attack_line = "stumbled forward in pride expecting anyone around to cheer... (But you were the only one there)"
 
 Item_rewarded = "You got rewarded"
