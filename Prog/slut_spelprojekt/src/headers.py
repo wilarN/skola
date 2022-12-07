@@ -41,7 +41,8 @@ settings = {
     "player_experience": "NULL",
     "player_status": "NULL",
     "player_alive": "NULL",
-    "backpack": "NULL"
+    "backpack": "NULL",
+    "played_before": False
 }
 
 
@@ -154,8 +155,10 @@ def get_realm():
     realm = load_realm_save(realm)
     return realm
 
+
 # Backpack control
 def backpackAddItem(item, amount):
+    styled_coloured_print_centered(f"{lang.Item_rewarded} {amount} {item.name}!")
     prev_items = check_json_value_settings("backpack")
     if prev_items.__contains__("NULL"):
         update_json_settings("backpack", item.name)

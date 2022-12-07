@@ -12,6 +12,8 @@ pygame.mixer.music.queue("src/sfx/Undertale_Another_Medium.mp3")
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play()
 
+
+# Might not be able to use this yet, but as a reference for later.
 def play_sound_effect(effect):
     pygame.mixer.Sound(effect)
 

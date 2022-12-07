@@ -87,7 +87,7 @@ class npc:
         '''
         name of npc is already stated, only input `msg`
         '''
-        ps.Write.Print(text=ps.Center.XCenter(f"{self.name} {msg}"), color=ps.Colors.orange, interval=0.01)
+        ps.Write.Print(text=ps.Center.XCenter(f"*{self.name} {msg}*"), color=ps.Colors.orange, interval=0.01)
         print("", flush=True)
 
     def say(self, msg):

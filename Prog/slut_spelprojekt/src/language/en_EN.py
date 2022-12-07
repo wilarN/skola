@@ -113,3 +113,5 @@ we_will_meet_again = "We will meet again..."
 i_wont_forget_your_face = "And I'll never forget your face..."
 
 knight_attack_line = "stumbled forward in pride expecting anyone around to cheer... (But you were the only one there)"
+
+Item_rewarded = "You got rewarded"
