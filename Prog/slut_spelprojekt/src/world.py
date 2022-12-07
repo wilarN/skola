@@ -102,14 +102,14 @@ def dummy_room():
     rm.get_monsters()
     rm.start()
 
+    ''' 
+        dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
+        usr_said_name = "testName"
+        headers.clear()
 
-    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
-    usr_said_name = "testName"
-    headers.clear()
-
-    headers.get_lines(sym.knight_standing, True)
-    start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
-
+        headers.get_lines(sym.knight_standing, True)
+        start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
+    '''
 
 
     headers.styled_coloured_print_centered(headers.lang.woke_up)

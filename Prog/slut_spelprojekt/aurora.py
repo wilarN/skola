@@ -6,10 +6,15 @@ import os
 import pygame
 pygame.init()
 pygame.mixer.init()
-# pygame.mixer.music.load("Prog\slut_spelprojekt\src\sfx\Kirby.wav")
-#pygame.mixer.music.set_volume(0.01)
-#pygame.mixer.music.set_volume(0)
-#pygame.mixer.music.play()
+# pygame.mixer.music.load("src/sfx/Undertale_Premonition.mp3")
+pygame.mixer.music.load("src/sfx/Undertale_Another_Medium.mp3")
+pygame.mixer.music.queue("src/sfx/Undertale_Another_Medium.mp3")
+pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.play()
+
+def play_sound_effect(effect):
+    pygame.mixer.Sound(effect)
+
 
 # Game specific modules
 import src.headers as headers
@@ -19,12 +24,12 @@ import src.symbols as sym
 ##########
 ## TODO ##
 ##########
-1 - Start adventure CHECK
+1 - Start adventure CHECK // COMPLETED
 2 - Battle-System
 3 - Player Effects
-4. Work on monster and room object in world. list to keep track of room index etc.
+4. Work on monster and room object in world. list to keep track of room index etc. // PARTLY COMPLETED
 5. add gold
-6. MUSICCCCCCCCCCCCCCCCCCCCCC
+6. MUSICCCCCCCCCCCCCCCCCCCCCC // PARTLY COMPLETED, MUSIC SELECTION STILL REMAINS
 """
 
 global realm
