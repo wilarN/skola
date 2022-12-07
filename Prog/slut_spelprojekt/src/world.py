@@ -98,25 +98,45 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
             temp_num = 1
             exit_num = 0
             for sel in who_you_fighting.talk_selections:
-                if sel.__contains__("^"):
-                    exit_num = sel
                 headers.styled_coloured_print_centered(text=(f"[{temp_num}] {sel}"))
                 temp_num += 1
             usr_answ = headers.styles_input("\n>> ", centered=True)
             if usr_answ == "1":
                 flush()
-                headers.styled_coloured_print_centered(who_you_fighting.user_talk_selections[0])
+                line = who_you_fighting.user_talk_selections[0]
+                headers.styled_coloured_print_centered(line)
                 time.sleep(2)
                 headers.ps.Write.Print(text=headers.ps.Center.XCenter(f"*{who_you_fighting.name} {who_you_fighting.responses[0]}*"), color=headers.ps.Colors.orange, interval=0.01)
+                if "^" in who_you_fighting.responses[0]:
+                    exit_num = 1
                 time.sleep(1)
                 headers.enter_to_continue()
-                if exit_num == "1":
+                if exit_num == 1:
                     break
+            elif usr_answ == "2":
+                flush()
+                line = who_you_fighting.user_talk_selections[1]
+                headers.styled_coloured_print_centered(line)
+                time.sleep(2)
+                headers.ps.Write.Print(text=headers.ps.Center.XCenter(f"*{who_you_fighting.name} {who_you_fighting.responses[1]}*"), color=headers.ps.Colors.orange, interval=0.01)
+                time.sleep(1)
+                if "^" in who_you_fighting.responses[1]:
+                    exit_num = 2
+                headers.enter_to_continue()
+                if exit_num == 2:
+                    print("teeeesttt")
+                    break
+            
         else:
             pass
 
     # POINTS GRANT ITEMS ETC::: AFTER BATTLE IS FINISHED
-
+    
+    # Grant loot-->
+    for loot in who_you_fighting.loot:
+        headers.backpackAddItem(loot, 1)
+        time.sleep(0.1)
+    headers.grantXP((headers.random.randint(1, 5)*int(headers.check_json_value_settings("realm_difficulty"))))
 
 
 def dummy_room():
@@ -124,9 +144,11 @@ def dummy_room():
     rm.get_monsters()
     rm.start()
 
+    headers.grantXP((headers.random.randint(1, 5)*int(headers.check_json_value_settings("realm_difficulty"))))
+
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
-    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", user_talk_selections=[headers.lang.usr_knight_line_sel_01_line, headers.lang.usr_knight_line_sel_02_line], talk_selections=headers.lang.knight_talk_selection, status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy02, headers.lang.knight_reply_fight_end01])
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", user_talk_selections=[headers.lang.usr_knight_line_sel_01_line, headers.lang.usr_knight_line_sel_02_line], talk_selections=headers.lang.knight_talk_selection, status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy02, headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
     usr_said_name = "testName"
     headers.clear()
 

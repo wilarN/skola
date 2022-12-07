@@ -1,6 +1,12 @@
 import time
 from time import sleep
 
+
+'''
+In user selection cases the "^" symbol represents the correct one to exit battle and win...
+(Just dont tell anyone)
+'''
+
 menu = ['''
 ######################################################################
 ##                       - Create Character( cc )                   ##
@@ -85,7 +91,7 @@ knight_talk_selection = ["Compliment.", "Act."]
 usr_knight_line_sel_02_line = "Even though you find yourself inside, you somehow are able to scrape out a snowball from the wall and you throw it at the knight."
 usr_knight_line_sel_01_line = "You told the knight you really liked his armour."
 knight_reply_happy02 = "giggled behind the mask and even though you couldn't see him, an imaginary ghost told you he was probably smiling."
-knight_reply_fight_end01 = "got so suprised by your snowball scraping skills that he didn't want to fight you anymore..."
+knight_reply_fight_end01 = "got so suprised by your snowball scraping skills that he didn't want to fight you anymore...^"
 
 
 #################################
@@ -129,3 +135,5 @@ level = "Level"
 
 
 Item_rewarded = "You got rewarded"
+Experience_earned = "You earned"
+Experience = "experience"

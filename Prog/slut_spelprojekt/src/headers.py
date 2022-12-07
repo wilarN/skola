@@ -8,6 +8,7 @@ import shutil
 
 import src.world as world
 import src.misc as misc
+import src.items as items
 
 # Get current date and time for logging purposes and debugging.
 now = datetime.now()
@@ -78,6 +79,9 @@ def ___init():
         import src.language.en_EN as lang
     """
 
+
+def remove_spaces_from_string(string_txt: str):
+    return string_txt.replace(" ", "_")
 
 def enter_to_continue():
     world.flush()
@@ -156,15 +160,20 @@ def get_realm():
     realm = load_realm_save(realm)
     return realm
 
+def grantXP(amount):
+    ps.Write.Print(text=ps.Center.XCenter(f"{lang.Experience_earned} {amount} {lang.Experience}!"), color=ps.Colors.yellow, interval=0.01)
+    prev_xp = check_json_value_settings("player_experience")
+    update_json_settings("player_experience", (int(prev_xp)+amount))
+
 
 # Backpack control
 def backpackAddItem(item, amount):
-    styled_coloured_print_centered(f"{lang.Item_rewarded} {amount} {item.name}!")
+    ps.Write.Print(text=ps.Center.XCenter(f"{lang.Item_rewarded} {amount} {item.name}!"), color=ps.Colors.cyan, interval=0.01)
     prev_items = check_json_value_settings("backpack")
     if prev_items.__contains__("NULL"):
-        update_json_settings("backpack", item.name)
+        update_json_settings("backpack", remove_spaces_from_string(item.name))
     else:
-        update_json_settings("backpack", prev_items+";"+item.name)
+        update_json_settings("backpack", prev_items+";"+remove_spaces_from_string(item.name))
 
 def backpackRemoveItem():
     # Check if item exists.
@@ -301,10 +310,6 @@ def get_realm_data(realm_data_selection: int):
         return check_json_value_settings("realm_difficulty")
     else:
         pass
-
-
-def remove_spaces_from_string(string_txt: str):
-    return string_txt.replace(" ", "_")
 
 
 # Used to load player data.

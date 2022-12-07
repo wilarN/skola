@@ -4,11 +4,6 @@ import src.symbols as sym
 import src.headers as headers
 
 
-class item:
-    def __init__(self, name, description, consumed = False):
-        self.name = name
-        self.description = description
-
 
 class player:
     def __init__(self, name, health, mana, level, experience, status, alive, current_room_index, backpack):
@@ -62,7 +57,7 @@ class npc:
 
     # There are two types of ´responses´: Happy reply == Means you said the right thing, // Anger reply == Means you did not pick the right line.
     # Chosen by index
-    def __init__(self, name, level, type, status, alive, user_talk_selections = None, talk_selections = None, attack_line = None, responses = None, char_sym=None):
+    def __init__(self, name, level, type, status, alive, user_talk_selections = None, talk_selections = None, attack_line = None, responses = None, char_sym=None, loot= None):
         self.name = name
         self.level = level
         self.type = type
@@ -73,6 +68,7 @@ class npc:
         self.attack_line = attack_line
         self.talk_selections = talk_selections
         self.user_talk_selections = user_talk_selections
+        self.loot = loot
 
     def get_all_stats(self):
         all_stats = [self.name, self.type, self.level]
