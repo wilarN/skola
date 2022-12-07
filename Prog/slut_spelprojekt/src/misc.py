@@ -83,6 +83,13 @@ class npc:
     def portrait(self):
         pass
 
+    def attack_vline(self, msg):
+        '''
+        name of npc is already stated, only input `msg`
+        '''
+        ps.Write.Print(text=ps.Center.XCenter(f"{self.name} {msg}"), color=ps.Colors.orange, interval=0.01)
+        print("", flush=True)
+
     def say(self, msg):
         # print(ps.Write.Print(color=ps.Colors.cyan, text=self.name), end="")
         ps.Write.Print(text=ps.Center.XCenter(f"[{self.name}] - {msg}"), color=ps.Colors.pink, interval=0.01)

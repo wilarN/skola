@@ -93,9 +93,9 @@ no = "no"
 
 you_eventually_tried_opening = "You eventually tried opening the door out of boredom..."
 
-battle_menu_selection = "[1] - Check Opponent.\n" \
+battle_menu_selection = "[1] - Check.\n" \
                          "[2] - Attack.\n" \
-                         "[3] - Talk to.\n"
+                         "[3] - Talk.\n"
 
 
 def empty_list_placeholder(first, second, third):
@@ -111,3 +111,5 @@ level = "Level"
 
 we_will_meet_again = "We will meet again..."
 i_wont_forget_your_face = "And I'll never forget your face..."
+
+knight_attack_line = "stumbled forward in pride expecting anyone around to cheer... (But you were the only one there)"

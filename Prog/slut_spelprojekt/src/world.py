@@ -58,7 +58,9 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
     if portrate is not None:
         headers.clear()
         headers.get_lines(portrate, True, True)
-    print("\n\n\n")
+    who_you_fighting.attack_vline(headers.lang.knight_attack_line)
+    time.sleep(1)
+    print("\n")
     headers.ps.Write.Print(
         text=headers.ps.Center.XCenter(f"--- | {headers.get_user_data(1)} vs {who_you_fighting.name} | ---\n\n"),
     color=headers.ps.Colors.blue_to_white, interval=0.0001)
@@ -81,7 +83,6 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
                     print(headers.ps.Center.XCenter(f"{headers.lang.level}: {line}"), end="")
                 if type(line) == int:
                     line = str(line)
-                print(f"{headers.ps.Center.XCenter(line)} ", end="")
                 print("", flush=True)
                 temp_num += 1
 
@@ -101,12 +102,9 @@ def dummy_room():
     rm.get_monsters()
     rm.start()
 
-    player = headers.get_player()
 
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing)
-
-    usr_said_name = "test"
-    headers.enter_to_continue()
+    usr_said_name = "testName"
     headers.clear()
 
     headers.get_lines(sym.knight_standing, True)

@@ -176,6 +176,8 @@ def backpackGetAllItems():
     items.append(all_items.split(";"))
     return items
 
+def clear_all_backpack_items():
+    update_json_settings("backpack", "")
 
 def write_to_file(text_to_write, path_to_file, typeOfWrite):
     if os.path.exists(path_to_file):
