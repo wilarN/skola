@@ -1,6 +1,5 @@
 import random
 import time
-import datetime
 
 import src.headers as headers
 from src.misc import monster
@@ -41,10 +40,6 @@ def flush():
     print("", flush=True)
 
 
-def check_opponent(opponent):
-    headers.styled_centered_print()
-
-
 def attack_countdown(opponent):
     opponent.say(headers.lang.npc_groan())
     time.sleep(headers.random.randint(3, 5))
@@ -68,9 +63,15 @@ def defend_instructions():
 
 
 def attack_npc(who_to_attack, portrate):
-    headers.clear()
-    headers.get_lines(text_obj=portrate, output=True, instant=True)
-    headers.lang.empty_list_placeholder("")
+
+    while True:
+        headers.clear()
+        headers.get_lines(text_obj=portrate, output=True, instant=True)
+        headers.styled_coloured_print_centered(headers.lang.empty_list_placeholder("Badoink", "Smonk", "Bonk"), "red")
+        usr_sel = headers.styles_input("\n>> ", centered=True)
+        if usr_sel == "1":
+
+
 
     who_to_attack.say(headers.lang.we_will_meet_again)
     who_to_attack.set_voicelines([headers.lang.i_wont_forget_your_face])

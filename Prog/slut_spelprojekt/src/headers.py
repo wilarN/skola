@@ -360,6 +360,7 @@ def load_player_save(player_obj):
     player_obj.level = data["player_level"]
     player_obj.status = data["player_status"]
     player_obj.alive = data["player_alive"]
+    player_obj.experience = data["player_experience"]
     player_obj.current_room_index = data["current_room_index"]
     return player_obj
 

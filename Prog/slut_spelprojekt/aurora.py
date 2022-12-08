@@ -4,6 +4,7 @@ import os
 
 
 import pygame
+
 pygame.init()
 pygame.mixer.init()
 # pygame.mixer.music.load("src/sfx/Undertale_Premonition.mp3")
@@ -39,6 +40,7 @@ FIX ATTACK COUNTDOWN IN WORLD.PY
 4. Work on monster and room object in world. list to keep track of room index etc. // PARTLY COMPLETED
 5. add gold
 6. MUSICCCCCCCCCCCCCCCCCCCCCC // PARTLY COMPLETED, MUSIC SELECTION STILL REMAINS
+7. Try except for external files to make sure it doesn't crash on first run- Just to be safe.
 """
 
 global realm
@@ -108,29 +110,6 @@ def main():
     else:
         headers.begin_adventure(realm=realm, first_time=False)
 
-"""
-    while True:
-        headers.clear()
-        # Global Logo
-        headers.get_lines(sym.op3x_text, True)
-        # Main Menu
-        headers.get_lines(lang.menu, True)
-
-        usr_sel = input("~$: ")
-
-        if usr_sel.lower().__contains__("cc"):
-            continue
-            # headers.create_character()
-
-        elif usr_sel.lower().__contains__("q") or usr_sel.lower().__contains__("e"):
-            # Save and exit
-            print("Exiting...")
-            exit(0)
-
-        else:
-            print("Please Input A Valid Selection!")
-            time.sleep(1)
-"""
 
 if __name__ == '__main__':
     main()
