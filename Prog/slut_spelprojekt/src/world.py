@@ -43,9 +43,10 @@ def check_opponent(opponent):
     headers.styled_centered_print()
 
 def attack_countdown(opponent):
+    opponent.say(headers.lang.npc_groan())
     time.sleep(headers.random.randint(3, 5))
     start = time.perf_counter()
-    print("TIME")
+    headers.get_lines(sym.attack_indicator, True, True)
     while True:
         if headers.keyb.is_pressed("spacebar"):
             print("*Dodge*")
@@ -150,6 +151,9 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
             # ENEMY ATTACK
             if int(headers.check_json_value_settings("player_experience")) < 1:
                 defend_instructions()
+            headers.clear()
+            headers.get_lines(portrate, True, True)
+            time.sleep(1)
 
             headers.styled_coloured_print_centered(f"{who_you_fighting.name} {headers.lang.prepared_his_attack}...")
             att = attack_countdown(who_you_fighting)
@@ -172,7 +176,6 @@ def dummy_room():
     rm.start()
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
-    '''
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", user_talk_selections=[headers.lang.usr_knight_line_sel_01_line, headers.lang.usr_knight_line_sel_02_line], talk_selections=headers.lang.knight_talk_selection, status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy02, headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
     usr_said_name = "testName"
     headers.clear()
@@ -180,7 +183,6 @@ def dummy_room():
     headers.get_lines(sym.knight_standing, True)
     start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
 
-    '''
 
     headers.styled_coloured_print_centered(headers.lang.woke_up)
     time.sleep(1)

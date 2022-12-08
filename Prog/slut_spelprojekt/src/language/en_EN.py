@@ -143,7 +143,13 @@ defend_instructions = "\n-- How to defend --\n" \
                          "[*] - When the indicator comes up on the screen, Press 'D'(stands for dodge) on your keyboard as fast as you can.\n" \
                          "[*] - If you are fast enough, you may be able to dodge!\n" \
                          "[*] - If not, you take damage and if you take repeated strikes or hits, you die.\n" \
-                         "[*] - If your HP reaches 0, it's GAME OVER...\n"
+                         "[*] - If your HP reaches 0, it's GAME OVER...\n" \
+                         "[*] - The attack indicator is as shown below... When this pops up, dodge."                       
+                          '.\|/.' \
+                        " (\   /) "\
+                        " - -O- -" \
+                        " (/   \)" \
+                        " ,'/||'." \
 
 prepared_his_attack = "prepared his attack"
 prepared_her_attack = "prepared her attack"
@@ -151,6 +157,6 @@ prepared_its_attack = "prepared its attack"
 
 def npc_groan():
     groans = ["Arghhh", "Ahhhh", "Ouuughh"]
-    return groans[random.randint(0, len(groans))]
+    return groans[random.randint(0, len(groans)-1)]
 
 swung_his_sword = "swung his sword.."
