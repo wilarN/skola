@@ -84,6 +84,7 @@ def ___init():
 def remove_spaces_from_string(string_txt: str):
     return string_txt.replace(" ", "_")
 
+
 def enter_to_continue():
     world.flush()
     styles_input((f"\n\n\n{lang.press_enter_to_continue}"), centered=True)
@@ -125,7 +126,7 @@ def read_from_json_to_obj(json_path: str):
     return obj
 
 
-def get_lines(text_obj, output: bool, instant = False):
+def get_lines(text_obj, output: bool, instant=False):
     logo_lines = []
     if type(text_obj) == list:
         for line in text_obj[random.randint(0, len(text_obj) - 1)].split("\n"):
@@ -142,6 +143,7 @@ def get_lines(text_obj, output: bool, instant = False):
                 time.sleep(0.08)
             styled_centered_print(line.center(shutil.get_terminal_size().columns))
             # print(line)
+
 
 def reverse_difficulty_number():
     num = int(check_json_value_settings("realm_difficulty"))
@@ -168,11 +170,13 @@ def reverse_difficulty_number():
     else:
         return False
 
-def summon_item(name, desc, consumed = False):
+
+def summon_item(name, desc, consumed=False):
     if consumed is not False:
         item = misc.item(name=name, description=desc, consumed=consumed)
     item = misc.item(name=name, description=desc)
     return item
+
 
 def get_player():
     # Load player and realm data from save
@@ -186,28 +190,32 @@ def get_realm():
     realm = load_realm_save(realm)
     return realm
 
+
 def grantXP(amount):
     world.flush()
-    ps.Write.Print(text=ps.Center.XCenter(f"{lang.Experience_earned} {amount} {lang.Experience}!"), color=ps.Colors.yellow, interval=0.01)
+    ps.Write.Print(text=ps.Center.XCenter(f"{lang.Experience_earned} {amount} {lang.Experience}!"),
+                   color=ps.Colors.yellow, interval=0.01)
     prev_xp = check_json_value_settings("player_experience")
-    update_json_settings("player_experience", (int(prev_xp)+amount))
-
+    update_json_settings("player_experience", (int(prev_xp) + amount))
 
 
 # Backpack control
 def backpackAddItem(item, amount):
     world.flush()
-    ps.Write.Print(text=ps.Center.XCenter(f"{lang.Item_rewarded} {amount} {item.name}!"), color=ps.Colors.cyan, interval=0.01)
+    ps.Write.Print(text=ps.Center.XCenter(f"{lang.Item_rewarded} {amount} {item.name}!"), color=ps.Colors.cyan,
+                   interval=0.01)
     prev_items = check_json_value_settings("backpack")
     if prev_items.__contains__("NULL"):
         update_json_settings("backpack", remove_spaces_from_string(item.name))
     else:
-        update_json_settings("backpack", prev_items+";"+remove_spaces_from_string(item.name))
+        update_json_settings("backpack", prev_items + ";" + remove_spaces_from_string(item.name))
+
 
 def backpackRemoveItem():
     # Check if item exists.
     # If exists, remove from save file.
     pass
+
 
 def backpackGetAllItems():
     '''
@@ -218,8 +226,10 @@ def backpackGetAllItems():
     items.append(all_items.split(";"))
     return items
 
+
 def clear_all_backpack_items():
     update_json_settings("backpack", "")
+
 
 def write_to_file(text_to_write, path_to_file, typeOfWrite):
     if os.path.exists(path_to_file):
@@ -367,9 +377,26 @@ def slow_print(text, delay):
         time.sleep(delay)
 
 
-def styled_coloured_print_centered(text):
-    ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
+def styled_coloured_print_centered(text, colour=None, instant=False):
+    '''
+    Default colour "None" --> cyan_to_green
+    red --> red
+    Default instant --> False
+    '''
+    if not instant:
+        if colour is None:
+            ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
+        elif colour is "red":
+            col = ps.Colors.red
+            ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=0.01)
+    else:
+        if colour is None:
+            ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
+        elif colour is "red":
+            col = ps.Colors.red
+            ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=0)
     print("", flush=True)
+
 
 def styled_centered_print(text):
     print(text.center(shutil.get_terminal_size().columns))
@@ -394,7 +421,6 @@ def styles_input(text, centered: bool):
         return ps.Write.Input(color=ps.Colors.yellow_to_red, text=ps.Center.XCenter(text), interval=0.001)
     else:
         return ps.Write.Input(color=ps.Colors.yellow_to_red, text=text, interval=0.001)
-
 
 
 def print_with_index(list_to_print: list):
@@ -431,7 +457,7 @@ def create_character(empty: bool):
 
 def begin_adventure(realm, first_time: bool):
     if first_time:
-        styled_coloured_print_centered("\n\n\n"+lang.begin_welcome_first_time)
+        styled_coloured_print_centered("\n\n\n" + lang.begin_welcome_first_time)
         time.sleep(2)
         world.introduction()
     else:

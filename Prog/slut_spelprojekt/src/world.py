@@ -36,27 +36,29 @@ def introduction():
     headers.clear()
     dummy_room()
 
+
 def flush():
     print("", flush=True)
 
+
 def check_opponent(opponent):
     headers.styled_centered_print()
+
 
 def attack_countdown(opponent):
     opponent.say(headers.lang.npc_groan())
     time.sleep(headers.random.randint(3, 5))
     start = time.perf_counter()
-    headers.get_lines(sym.attack_indicator, True, True)
+    headers.styled_coloured_print_centered(text=sym.attack_indicator, colour="red", instant=True)
     while True:
         if headers.keyb.is_pressed("spacebar"):
             print("*Dodge*")
             finish = time.perf_counter()
             elapsed_time = finish - start
-            if elapsed_time > headers.random.uniform(0.3, (headers.reverse_difficulty_number()/10)):
+            if elapsed_time > headers.random.uniform(0.3, (headers.reverse_difficulty_number() / 10)):
                 return False
             else:
                 return True
-            headers.enter_to_continue()
 
 
 def defend_instructions():
@@ -64,21 +66,25 @@ def defend_instructions():
     time.sleep(2)
     headers.enter_to_continue()
 
+
 def attack_npc(who_to_attack, portrate):
     headers.clear()
     headers.get_lines(text_obj=portrate, output=True, instant=True)
+    headers.lang.empty_list_placeholder("")
+
     who_to_attack.say(headers.lang.we_will_meet_again)
     who_to_attack.set_voicelines([headers.lang.i_wont_forget_your_face])
     who_to_attack.say_lines()
+    '''
     magic_wand = headers.summon_item("magic_wand", "Magic wand used for testing purposes")
     orb_of_fire = headers.summon_item("blue_fire_orb", "Item thats used for testing purposes")
     headers.backpackAddItem(magic_wand, 1)
     headers.backpackAddItem(orb_of_fire, 1)
-
+    '''
     # print(headers.backpackGetAllItems())
 
 
-def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
+def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
     if portrate is not None:
         headers.clear()
         headers.get_lines(portrate, True, True)
@@ -87,7 +93,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
     print("\n")
     headers.ps.Write.Print(
         text=headers.ps.Center.XCenter(f"--- | {headers.get_user_data(1)} vs {who_you_fighting.name} | ---\n\n"),
-    color=headers.ps.Colors.blue_to_white, interval=0.0001)
+        color=headers.ps.Colors.blue_to_white, interval=0.0001)
     # who_you_fighting.set_voicelines(battle_voice_lines)
     # who_you_fighting.say_lines()
     while True:
@@ -128,7 +134,9 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
                 line = who_you_fighting.user_talk_selections[0]
                 headers.styled_coloured_print_centered(line)
                 time.sleep(2)
-                headers.ps.Write.Print(text=headers.ps.Center.XCenter(f"*{who_you_fighting.name} {who_you_fighting.responses[0]}*"), color=headers.ps.Colors.orange, interval=0.01)
+                headers.ps.Write.Print(
+                    text=headers.ps.Center.XCenter(f"*{who_you_fighting.name} {who_you_fighting.responses[0]}*"),
+                    color=headers.ps.Colors.orange, interval=0.01)
                 if "^" in who_you_fighting.responses[0]:
                     exit_num = 1
                 time.sleep(1)
@@ -140,14 +148,16 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
                 line = who_you_fighting.user_talk_selections[1]
                 headers.styled_coloured_print_centered(line)
                 time.sleep(2)
-                headers.ps.Write.Print(text=headers.ps.Center.XCenter(f"*{who_you_fighting.name} {who_you_fighting.responses[1]}*"), color=headers.ps.Colors.orange, interval=0.01)
+                headers.ps.Write.Print(
+                    text=headers.ps.Center.XCenter(f"*{who_you_fighting.name} {who_you_fighting.responses[1]}*"),
+                    color=headers.ps.Colors.orange, interval=0.01)
                 time.sleep(1)
                 if "^" in who_you_fighting.responses[1]:
                     exit_num = 2
                 headers.enter_to_continue()
                 if exit_num == 2:
                     break
-            
+
             # ENEMY ATTACK
             if int(headers.check_json_value_settings("player_experience")) < 1:
                 defend_instructions()
@@ -162,12 +172,12 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
             pass
 
     # POINTS GRANT ITEMS ETC::: AFTER BATTLE IS FINISHED
-    
+
     # Grant loot-->
     for loot in who_you_fighting.loot:
         headers.backpackAddItem(loot, 1)
         time.sleep(0.1)
-    headers.grantXP((headers.random.randint(1, 5)*int(headers.check_json_value_settings("realm_difficulty"))))
+    headers.grantXP((headers.random.randint(1, 5) * int(headers.check_json_value_settings("realm_difficulty"))))
 
 
 def dummy_room():
@@ -176,20 +186,26 @@ def dummy_room():
     rm.start()
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
-    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", user_talk_selections=[headers.lang.usr_knight_line_sel_01_line, headers.lang.usr_knight_line_sel_02_line], talk_selections=headers.lang.knight_talk_selection, status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy02, headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight",
+                                    user_talk_selections=[headers.lang.usr_knight_line_sel_01_line,
+                                                          headers.lang.usr_knight_line_sel_02_line],
+                                    talk_selections=headers.lang.knight_talk_selection, status=None,
+                                    char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line,
+                                    responses=[headers.lang.knight_reply_happy02,
+                                               headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
     usr_said_name = "testName"
     headers.clear()
 
     headers.get_lines(sym.knight_standing, True)
-    start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
-
+    start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
+                 battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
 
     headers.styled_coloured_print_centered(headers.lang.woke_up)
     time.sleep(1)
     headers.styled_coloured_print_centered(headers.lang.not_knowing + "\n\n\n")
     headers.enter_to_continue()
     headers.clear()
-    headers.styled_coloured_print_centered("\n\n\n"+headers.lang.you_find_yourself_staring_at_a_big_door)
+    headers.styled_coloured_print_centered("\n\n\n" + headers.lang.you_find_yourself_staring_at_a_big_door)
     print()
     time.sleep(1)
     # rm.print(headers.lang.what_do_you_do)
@@ -246,7 +262,13 @@ def dummy_room():
             pass
 
     headers.get_lines(sym.knight_standing, True)
-    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", user_talk_selections=[headers.lang.usr_knight_line_sel_01_line, headers.lang.usr_knight_line_sel_02_line], talk_selections=headers.lang.knight_talk_selection, status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy02, headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight",
+                                    user_talk_selections=[headers.lang.usr_knight_line_sel_01_line,
+                                                          headers.lang.usr_knight_line_sel_02_line],
+                                    talk_selections=headers.lang.knight_talk_selection, status=None,
+                                    char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line,
+                                    responses=[headers.lang.knight_reply_happy02,
+                                               headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
     dummy_knight.say(headers.lang.knight_say_01)
     usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
     dummy_knight.set_voicelines(
@@ -256,7 +278,8 @@ def dummy_room():
     headers.clear()
 
     headers.get_lines(sym.knight_standing, True)
-    start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
+    start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
+                 battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
 
 
 class door:

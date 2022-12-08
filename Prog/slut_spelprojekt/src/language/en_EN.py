@@ -122,10 +122,17 @@ battle_menu_selection = "[1] - Check.\n" \
                          "[3] - Talk.\n"
 
 
-def empty_list_placeholder(first, second, third):
-    empty_list_placeholder = f"[1] - {first}\n" \
-                            f"[2] - {second}\n" \
-                            f"[3] - {third}\n"
+def empty_list_placeholder(first, second, third, heading = None):
+    if heading is None:
+        empty_list_placeholder = f"[1] - {first}\n" \
+                                f"[2] - {second}\n" \
+                                f"[3] - {third}\n"
+    else:
+        empty_list_placeholder = f" -- {heading} -- " \
+                                f"[1] - {first}\n" \
+                                f"[2] - {second}\n" \
+                                f"[3] - {third}\n"
+
     return empty_list_placeholder
 
 
@@ -144,12 +151,12 @@ defend_instructions = "\n-- How to defend --\n" \
                          "[*] - If you are fast enough, you may be able to dodge!\n" \
                          "[*] - If not, you take damage and if you take repeated strikes or hits, you die.\n" \
                          "[*] - If your HP reaches 0, it's GAME OVER...\n" \
-                         "[*] - The attack indicator is as shown below... When this pops up, dodge."                       
-                          '.\|/.' \
-                        " (\   /) "\
-                        " - -O- -" \
-                        " (/   \)" \
-                        " ,'/||'." \
+                         "[*] - The attack indicator is as shown below... When this pops up, dodge.\n\n" \
+                        "  .\|/.\n" \
+                        " (\   /) \n"\
+                        " - -O- -\n" \
+                        " (/   \)\n" \
+                        " ,'/||'."
 
 prepared_his_attack = "prepared his attack"
 prepared_her_attack = "prepared her attack"
