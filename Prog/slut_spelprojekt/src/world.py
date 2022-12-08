@@ -42,20 +42,19 @@ def flush():
 def check_opponent(opponent):
     headers.styled_centered_print()
 
-def attack_countdown():
+def attack_countdown(opponent):
+    time.sleep(headers.random.randint(3, 5))
+    start = time.perf_counter()
+    print("TIME")
     while True:
-        time.sleep(headers.random.randint(0, 1))
-        start = time.perf_counter()
-        print("TIME")
         if headers.keyb.is_pressed("spacebar"):
-            print("Pressed")
+            print("*Dodge*")
             finish = time.perf_counter()
-
             elapsed_time = finish - start
-            if elapsed_time > headers.random.randint(0.5, 1):
-                print("FAILED")
+            if elapsed_time > headers.random.uniform(0.3, (headers.reverse_difficulty_number()/10)):
+                return False
             else:
-                print("SUCCESSFUL DODGE ACTION")
+                return True
             headers.enter_to_continue()
 
 
@@ -146,7 +145,6 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
                     exit_num = 2
                 headers.enter_to_continue()
                 if exit_num == 2:
-                    print("teeeesttt")
                     break
             
             # ENEMY ATTACK
@@ -154,7 +152,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate = None):
                 defend_instructions()
 
             headers.styled_coloured_print_centered(f"{who_you_fighting.name} {headers.lang.prepared_his_attack}...")
-            
+            att = attack_countdown(who_you_fighting)
 
         else:
             pass
@@ -173,11 +171,8 @@ def dummy_room():
     rm.get_monsters()
     rm.start()
 
-    # headers.grantXP((headers.random.randint(1, 5)*int(headers.check_json_value_settings("realm_difficulty"))))
-    attack_countdown()
-
-
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
+    '''
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", user_talk_selections=[headers.lang.usr_knight_line_sel_01_line, headers.lang.usr_knight_line_sel_02_line], talk_selections=headers.lang.knight_talk_selection, status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy02, headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
     usr_said_name = "testName"
     headers.clear()
@@ -185,7 +180,7 @@ def dummy_room():
     headers.get_lines(sym.knight_standing, True)
     start_battle(who_you_fighting=dummy_knight,portrate=sym.knight_standing, battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
 
-
+    '''
 
     headers.styled_coloured_print_centered(headers.lang.woke_up)
     time.sleep(1)
@@ -249,7 +244,7 @@ def dummy_room():
             pass
 
     headers.get_lines(sym.knight_standing, True)
-    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy, headers.lang.knight_reply_fight_end])
+    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight", user_talk_selections=[headers.lang.usr_knight_line_sel_01_line, headers.lang.usr_knight_line_sel_02_line], talk_selections=headers.lang.knight_talk_selection, status=None, char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line, responses=[headers.lang.knight_reply_happy02, headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
     dummy_knight.say(headers.lang.knight_say_01)
     usr_said_name = headers.styles_input("\nYour name? >> ", centered=True)
     dummy_knight.set_voicelines(

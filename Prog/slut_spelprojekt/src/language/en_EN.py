@@ -1,6 +1,6 @@
 import time
 from time import sleep
-
+import random
 
 '''
 In user selection cases the "^" symbol represents the correct one to exit battle and win...
@@ -148,3 +148,9 @@ defend_instructions = "\n-- How to defend --\n" \
 prepared_his_attack = "prepared his attack"
 prepared_her_attack = "prepared her attack"
 prepared_its_attack = "prepared its attack"
+
+def npc_groan():
+    groans = ["Arghhh", "Ahhhh", "Ouuughh"]
+    return groans[random.randint(0, len(groans))]
+
+swung_his_sword = "swung his sword.."

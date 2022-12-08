@@ -143,6 +143,31 @@ def get_lines(text_obj, output: bool, instant = False):
             styled_centered_print(line.center(shutil.get_terminal_size().columns))
             # print(line)
 
+def reverse_difficulty_number():
+    num = int(check_json_value_settings("realm_difficulty"))
+    if num == 1:
+        return 10
+    elif num == 2:
+        return 9
+    elif num == 3:
+        return 8
+    elif num == 4:
+        return 7
+    elif num == 5:
+        return 6
+    elif num == 6:
+        return 5
+    elif num == 7:
+        return 4
+    elif num == 8:
+        return 3
+    elif num == 9:
+        return 2
+    elif num == 10:
+        return 1
+    else:
+        return False
+
 def summon_item(name, desc, consumed = False):
     if consumed is not False:
         item = misc.item(name=name, description=desc, consumed=consumed)
