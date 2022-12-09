@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Martian Mono', monospace;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    transition: 0.5s;
+}
+
+body{
+    background-image: url("/public/img/wallhaven-r7vm1j.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100%;
+    min-width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.middle-container{
+    margin: auto;
+    background-color: rgb(27, 27, 27);
+    border: solid 2px rgb(212, 0, 255);
+    border-radius: 40px;
+    text-align: center;
+    margin-top: 100px;
+    box-shadow: 0px 0px 50px purple;
+    padding: 50px 200px;
+    width: 400px;
+}
+
+.about-me-cont{
+    margin: auto;
+    background-color: rgb(27, 27, 27);
+    border: solid 2px rgb(212, 0, 255);
+    border-radius: 40px;
+    text-align: center;
+    margin-top: 100px;
+    box-shadow: 0px 0px 50px purple;
+    padding: 50px 200px;
+    width: 400px;
+}
+
+.about-me-cont img{
+    height: 500px;
+    width: 600px;
+}
+
+.middle-container #name{
+    color: rgb(111, 79, 255);
+    font-size: 30px;
+    padding: 10px 0px;
+    font-style: italic;
+}
+
+.middle-container img{
+    height: 150px;
+    width: 150px;
+    border: solid 5px rgb(123, 41, 255);
+    box-shadow: 0px 0px 20px purple;
+    border-radius: 10000px;
+    object-fit: cover;
+}
+
+.links li{
+    margin: 50px 0px;
+    padding: 10px 0px;
+    background-color: rgb(29, 29, 29);
+    list-style: none;
+    border: solid 2px white;
+    border-radius: 20px;
+    font-size: 30px;
+}
+
+.links a{
+    color: white;
+    text-decoration: none;
+}
+
+.links a:hover{
+    color: rgb(123, 41, 255);
+    text-shadow: 1px 1px 2px purple, 0 0 1em blue, 0 0 0.2em blue;
+}
+
