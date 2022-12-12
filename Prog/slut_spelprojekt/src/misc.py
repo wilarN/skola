@@ -108,4 +108,4 @@ class npc:
 
     def damage(self, damage):
         headers.styled_coloured_print_centered(text=f"{self.name} {headers.lang.took} --> {damage} {headers.lang.damage}", colour="red")
-        self.health += damage
+        self.health -= damage

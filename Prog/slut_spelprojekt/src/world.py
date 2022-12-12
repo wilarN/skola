@@ -36,8 +36,8 @@ def introduction():
     dummy_room()
 
 
-def calculate_damage():
-    total_damage = (headers.reverse_difficulty_number()/10)*(random.randint(1, 5))
+def calculate_damage(ground_damage: int = 1):
+    total_damage = round((headers.reverse_difficulty_number() / 10) * (random.randint(3, 7)) * ground_damage)
     return total_damage
 
 
@@ -51,14 +51,18 @@ def attack_countdown(opponent):
     start = time.perf_counter()
     headers.styled_coloured_print_centered(text=sym.attack_indicator, colour="red", instant=True)
     while True:
-        if headers.keyb.is_pressed("spacebar"):
-            print("*Dodge*")
+        if headers.keyb.is_pressed("d"):
+            headers.styled_coloured_print_centered(text="*Dodge*", colour="blue", instant=False)
             finish = time.perf_counter()
             elapsed_time = finish - start
             if elapsed_time > headers.random.uniform(0.3, (headers.reverse_difficulty_number() / 10)):
-                return False
+                headers.styled_coloured_print_centered(text=f"{headers.lang.you_successfully} {headers.lang.dodged}.", colour="orange")
             else:
-                return True
+                headers.styled_coloured_print_centered(text=f"{headers.lang.you_failed_to} {headers.lang.dodge}.", colour="red")
+                dmg = calculate_damage()
+                headers.styled_coloured_print_centered(text=f"{headers.lang.you_took} {headers.lang.dodge}.",
+                                                       colour="orange")
+                headers.player.health -= dmg
 
 
 def defend_instructions():
@@ -68,28 +72,39 @@ def defend_instructions():
 
 
 def attack_npc(who_to_attack, portrate):
-
-    #while True:
     headers.clear()
     headers.get_lines(text_obj=portrate, output=True, instant=True)
     if headers.check_json_value_settings("weapon_type") == "Default":
         # DEFAULT SLASH
-        headers.styled_coloured_print_centered(headers.lang.empty_list_placeholder("Unarmed Strike", "Slash", "Bonk"), "red")
+        headers.styled_coloured_print_centered(
+            headers.lang.empty_list_placeholder("Unarmed Strike", "Slash", "Bonk"), "red")
         usr_sel = headers.styles_input("\n>> ", centered=True)
         if usr_sel == "1":
             # Unarmed Strike
-            dmg = calculate_damage()
-            headers.styled_coloured_print_centered(text=f"{headers.get_user_data(1)} {headers.lang.used} Unarmed Strike.", colour="orange")
+            dmg = calculate_damage(ground_damage=4)
+            headers.styled_coloured_print_centered(
+                text=f"{headers.get_user_data(1)} {headers.lang.used} Unarmed Strike.", colour="orange")
             time.sleep(1)
             who_to_attack.damage(dmg)
-            pass
+            print(who_to_attack.health)
+            time.sleep(2)
 
-    who_to_attack.say(headers.lang.we_will_meet_again)
-    who_to_attack.set_voicelines([headers.lang.i_wont_forget_your_face])
-    who_to_attack.say_lines()
+            if int(headers.check_json_value_settings("player_experience")) < 1:
+                defend_instructions()
+            headers.clear()
+            headers.get_lines(portrate, True, True)
+            time.sleep(1)
+            headers.clear()
+            headers.get_lines(text_obj=portrate, output=True, instant=True)
+
+            headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+            att = attack_countdown(who_to_attack)
+
+    # Enemy attack back.
+
     '''
     magic_wand = headers.summon_item("magic_wand", "Magic wand used for testing purposes")
-    orb_of_fire = headers.summon_item("blue_fire_orb", "Item thats used for testing purposes")
+    orb_of_fire = headers.summon_item("blue_fire_orb", "Item that's used for testing purposes")
     headers.backpackAddItem(magic_wand, 1)
     headers.backpackAddItem(orb_of_fire, 1)
     '''
@@ -138,7 +153,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
             temp_num = 1
             exit_num = 0
             for sel in who_you_fighting.talk_selections:
-                headers.styled_coloured_print_centered(text=(f"[{temp_num}] {sel}"))
+                headers.styled_coloured_print_centered(text=f"[{temp_num}] {sel}")
                 temp_num += 1
             usr_answ = headers.styles_input("\n>> ", centered=True)
             if usr_answ == "1":

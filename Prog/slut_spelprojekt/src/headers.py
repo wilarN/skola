@@ -18,6 +18,8 @@ character_list = []
 realm_list = []
 rooms = []
 
+global player
+
 # To more easily get file directories of certain files and their contents later on.
 game_file_dir = "./files"
 base_log_dir = f"{game_file_dir}/logs"
@@ -384,6 +386,7 @@ def slow_print(text, delay):
 
 
 def styled_coloured_print_centered(text, colour=None, instant=False):
+    col = colour
     if instant:
         time_delay = 0
     else:
@@ -397,10 +400,11 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
         ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=time_delay)
     elif colour is "red":
         col = ps.Colors.red
-        ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=time_delay)
     elif colour is "orange":
         col = ps.Colors.red
-        ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.orange, interval=time_delay)
+    elif colour is "blue":
+        col = ps.Colors.blue
+    ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=time_delay)
     print("", flush=True)
 
 
@@ -462,6 +466,8 @@ def create_character(empty: bool):
 
 
 def begin_adventure(realm, first_time: bool):
+    global player
+    player = get_player()
     if first_time:
         styled_coloured_print_centered("\n\n\n" + lang.begin_welcome_first_time)
         time.sleep(2)

@@ -107,3 +107,31 @@ attack_indicator = "\n" \
                    "| - -O- - |\n" \
                    "  (/   \)\n" \
                    "  ,'/||'.\n"
+
+
+woman01 = ",%/7\\\\`\n"\
+         "(/// .\\\\)\n" \
+        "(((( -  )))\n" \
+        "((|)_*_/(((\n" \
+        "))(/) (\((|)\n" \
+       "((((\___/))(\\\n" \
+      "/ ,-)     (-. \\\n" \
+     "( ( ( _   _ ) ) )\n" \
+      "\ \ )^ ^ ^( / /\n" \
+       ") y       y (\n" \
+       "\(         )/\n" \
+         "\_______/\n" \
+          "\ /   /\n" \
+          "y   /\n" \
+          "(   '\n" \
+         "\  \\\n" \
+        "    \  y-._\n" \
+       "     |\,´ X-´\n" \
+          "_,T-)  /\n" \
+         "(__,-%_/\n"
+'''
+    headers.get_lines(sym.woman01, True, False)
+    headers.styled_coloured_print_centered("Soof.")
+    headers.enter_to_continue()
+
+'''

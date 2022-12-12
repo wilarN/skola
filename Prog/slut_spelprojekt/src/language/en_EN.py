@@ -55,7 +55,6 @@ press_enter_to_continue = "Press `enter` to continue..."
 are_you_ready_to_start = "Now that you've gotten the introduction, Are you ready to start your adventure?"
 Press_enter_to_truly_start_adventure = "Press enter to truly start your adventure once and for all..."
 
-
 you_encountered_a = "You encountered a "
 
 you_find_yourself_staring_at_a_big_door = "You find yourself staring at a big door"
@@ -63,11 +62,10 @@ you_find_yourself_staring_at_a_big_door = "You find yourself staring at a big do
 what_do_you_do = "What do you do?"
 
 door_selections = "[1] - Knock on the door.\n" \
-    "[2] - Try to open.\n"
+                  "[2] - Try to open.\n"
 
 you_knock_on_the_door = "You decided to knock on the door..."
 nothing_is_happening = "After waiting for a moment you realise no one is coming..."
-
 
 you_try_opening_door = "You decided to try to open the door..."
 
@@ -118,20 +116,20 @@ no = "no"
 you_eventually_tried_opening = "You eventually tried opening the door out of boredom..."
 
 battle_menu_selection = "[1] - Check.\n" \
-                         "[2] - Attack.\n" \
-                         "[3] - Talk.\n"
+                        "[2] - Attack.\n" \
+                        "[3] - Talk.\n"
 
 
-def empty_list_placeholder(first, second, third, heading = None):
+def empty_list_placeholder(first, second, third, heading=None):
     if heading is None:
         empty_list_placeholder = f"[1] - {first}\n" \
-                                f"[2] - {second}\n" \
-                                f"[3] - {third}\n"
+                                 f"[2] - {second}\n" \
+                                 f"[3] - {third}\n"
     else:
         empty_list_placeholder = f" -- {heading} -- " \
-                                f"[1] - {first}\n" \
-                                f"[2] - {second}\n" \
-                                f"[3] - {third}\n"
+                                 f"[1] - {first}\n" \
+                                 f"[2] - {second}\n" \
+                                 f"[3] - {third}\n"
 
     return empty_list_placeholder
 
@@ -140,31 +138,31 @@ name = "Name"
 type = "Type"
 level = "Level"
 
-
 Item_rewarded = "You got rewarded"
 Experience_earned = "You earned"
 Experience = "experience"
 
-
 defend_instructions = "\n-- How to defend --\n" \
-                         "[*] - When the indicator comes up on the screen, Press 'D'(stands for dodge) on your keyboard as fast as you can.\n" \
-                         "[*] - If you are fast enough, you may be able to dodge!\n" \
-                         "[*] - If not, you take damage and if you take repeated strikes or hits, you die.\n" \
-                         "[*] - If your HP reaches 0, it's GAME OVER...\n" \
-                         "[*] - The attack indicator is as shown below... When this pops up, dodge.\n\n" \
-                        "  .\|/.\n" \
-                        " (\   /) \n"\
-                        " - -O- -\n" \
-                        " (/   \)\n" \
-                        " ,'/||'."
+                      "[*] - When the indicator comes up on the screen, Press 'D'(stands for dodge) on your keyboard as fast as you can.\n" \
+                      "[*] - If you are fast enough, you may be able to dodge!\n" \
+                      "[*] - If not, you take damage and if you take repeated strikes or hits, you die.\n" \
+                      "[*] - If your HP reaches 0, it's GAME OVER...\n" \
+                      "[*] - The attack indicator is as shown below... When this pops up, dodge.\n\n" \
+                      "  .\|/.\n" \
+                      " (\   /) \n" \
+                      " - -O- -\n" \
+                      " (/   \)\n" \
+                      " ,'/||'."
 
 prepared_his_attack = "prepared his attack"
 prepared_her_attack = "prepared her attack"
 prepared_its_attack = "prepared its attack"
 
+
 def npc_groan():
     groans = ["Arghhh", "Ahhhh", "Ouuughh"]
-    return groans[random.randint(0, len(groans)-1)]
+    return groans[random.randint(0, len(groans) - 1)]
+
 
 swung_his_sword = "swung his sword.."
 
@@ -174,3 +172,10 @@ forr = "for"
 used = "used"
 
 took = "took"
+
+you_successfully = "you successfully"
+you_failed_to = "you failed to"
+dodge = "dodge"
+dodged = "dodged"
+
+you_took = "you took"
