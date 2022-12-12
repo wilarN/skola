@@ -51,21 +51,21 @@ def attack_countdown(opponent):
     start = time.perf_counter()
     headers.styled_coloured_print_centered(text=sym.attack_indicator, colour="red", instant=True)
     while True:
-        if headers.keyb.is_pressed("d"):
+        if headers.keyb.is_pressed("spacebar"):
             headers.styled_coloured_print_centered(text="\n*Dodge*\n", colour="blue", instant=True)
             finish = time.perf_counter()
             elapsed_time = finish - start
-            if elapsed_time > headers.random.uniform(0.3, (headers.reverse_difficulty_number() / 10)):
+            if elapsed_time < headers.random.uniform(0.3, (headers.reverse_difficulty_number() / 10)):
                 headers.styled_coloured_print_centered(text=f"{headers.lang.you_successfully} {headers.lang.dodged}.", colour="orange")
                 time.sleep(1)
                 break
             else:
                 headers.styled_coloured_print_centered(text=f"{headers.lang.you_failed_to} {headers.lang.dodge}.", colour="red")
                 dmg = calculate_damage()
-                headers.styled_coloured_print_centered(text=f"{headers.lang.you_took} {headers.lang.dodge}.",
+                headers.styled_coloured_print_centered(text=f"{headers.lang.you_took} {dmg} {headers.lang.damage}.",
                                                        colour="orange")
                 headers.player.health -= dmg
-                time.sleep(1)
+                time.sleep(2)
                 break
 
 
@@ -83,7 +83,7 @@ def attack_npc(who_to_attack, portrate):
         headers.styled_coloured_print_centered(
             headers.lang.empty_list_placeholder("Unarmed Strike", "Slash", "Bonk"), "red")
         usr_sel = headers.styles_input("\n>> ", centered=True)
-        if usr_sel == "1":
+        if usr_sel.__contains__("1"):
             # Unarmed Strike
             dmg = calculate_damage(ground_damage=4)
             headers.styled_coloured_print_centered(
@@ -103,7 +103,54 @@ def attack_npc(who_to_attack, portrate):
 
             headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
             attack_countdown(who_to_attack)
+            headers.clear()
+            headers.get_lines(portrate, True, True)
+        elif usr_sel.__contains__("2"):
+            # Slash
+            dmg = calculate_damage(ground_damage=6)
+            headers.styled_coloured_print_centered(
+                text=f"{headers.get_user_data(1)} {headers.lang.used} Slash.", colour="orange")
+            time.sleep(1)
+            who_to_attack.damage(dmg)
+            print(who_to_attack.health)
+            time.sleep(2)
 
+            if int(headers.check_json_value_settings("player_experience")) < 1:
+                defend_instructions()
+            headers.clear()
+            headers.get_lines(portrate, True, True)
+            time.sleep(1)
+            headers.clear()
+            headers.get_lines(text_obj=portrate, output=True, instant=True)
+
+            headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+            attack_countdown(who_to_attack)
+            headers.clear()
+            headers.get_lines(portrate, True, True)
+
+        elif usr_sel.__contains__("3"):
+            # Slash
+            dmg = calculate_damage(ground_damage=4)
+            headers.styled_coloured_print_centered(
+                text=f"{headers.get_user_data(1)} {headers.lang.used} {headers.lang.oddly_bonked}.", colour="orange")
+            time.sleep(3)
+            headers.enter_to_continue()
+            who_to_attack.damage(dmg)
+            print(who_to_attack.health)
+            time.sleep(2)
+
+            if int(headers.check_json_value_settings("player_experience")) < 1:
+                defend_instructions()
+            headers.clear()
+            headers.get_lines(portrate, True, True)
+            time.sleep(1)
+            headers.clear()
+            headers.get_lines(text_obj=portrate, output=True, instant=True)
+
+            headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+            attack_countdown(who_to_attack)
+            headers.clear()
+            headers.get_lines(portrate, True, True)
     # Enemy attack back.
 
     '''
@@ -131,7 +178,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
         print("", flush=True)
         headers.styled_coloured_print_centered(text=headers.lang.battle_menu_selection)
         usr_answ = headers.styles_input("\n>> ", centered=True)
-        if usr_answ == "1":
+        if usr_answ.__contains__("1"):
             # Check opponent
             temp_num = 1
             for line in who_you_fighting.get_all_stats():
@@ -146,10 +193,10 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 print("", flush=True)
                 temp_num += 1
 
-        elif usr_answ == "2":
+        elif usr_answ.__contains__("2"):
             # Attack
             attack_npc(who_to_attack=who_you_fighting, portrate=portrate)
-        elif usr_answ == "3":
+        elif usr_answ.__contains__("3"):
             # Talks
             headers.clear()
             headers.get_lines(portrate, True, True)
@@ -160,7 +207,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 headers.styled_coloured_print_centered(text=f"[{temp_num}] {sel}")
                 temp_num += 1
             usr_answ = headers.styles_input("\n>> ", centered=True)
-            if usr_answ == "1":
+            if usr_answ.__contains__("1"):
                 flush()
                 line = who_you_fighting.user_talk_selections[0]
                 headers.styled_coloured_print_centered(line)
@@ -174,7 +221,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 headers.enter_to_continue()
                 if exit_num == 1:
                     break
-            elif usr_answ == "2":
+            elif usr_answ.__contains__("2"):
                 flush()
                 line = who_you_fighting.user_talk_selections[1]
                 headers.styled_coloured_print_centered(line)
@@ -197,8 +244,9 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
             time.sleep(1)
 
             headers.styled_coloured_print_centered(f"{who_you_fighting.name} {headers.lang.prepared_his_attack}...")
-            att = attack_countdown(who_you_fighting)
-
+            attack_countdown(who_you_fighting)
+            headers.clear()
+            headers.get_lines(portrate, True, True)
         else:
             pass
 
@@ -245,7 +293,7 @@ def dummy_room():
     while True:
         headers.styled_coloured_print_centered(headers.lang.door_selections)
         usr_sel = headers.styles_input("\n>> ", centered=True)
-        if usr_sel.lower() == "1":
+        if usr_sel.__contains__("1"):
             headers.clear()
             headers.get_lines(sym.door_closed, True)
             headers.styled_coloured_print_centered(headers.lang.you_knock_on_the_door)
@@ -259,7 +307,7 @@ def dummy_room():
             headers.styled_coloured_print_centered(headers.lang.and_out_came)
 
             break
-        elif usr_sel.lower() == "2":
+        elif usr_sel.__contains__("2"):
             headers.clear()
             headers.styled_coloured_print_centered(headers.lang.you_tried_opening_door),
             headers.get_lines(sym.door_closed, True)
