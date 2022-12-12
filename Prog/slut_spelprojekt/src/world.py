@@ -52,17 +52,21 @@ def attack_countdown(opponent):
     headers.styled_coloured_print_centered(text=sym.attack_indicator, colour="red", instant=True)
     while True:
         if headers.keyb.is_pressed("d"):
-            headers.styled_coloured_print_centered(text="*Dodge*", colour="blue", instant=False)
+            headers.styled_coloured_print_centered(text="\n*Dodge*\n", colour="blue", instant=True)
             finish = time.perf_counter()
             elapsed_time = finish - start
             if elapsed_time > headers.random.uniform(0.3, (headers.reverse_difficulty_number() / 10)):
                 headers.styled_coloured_print_centered(text=f"{headers.lang.you_successfully} {headers.lang.dodged}.", colour="orange")
+                time.sleep(1)
+                break
             else:
                 headers.styled_coloured_print_centered(text=f"{headers.lang.you_failed_to} {headers.lang.dodge}.", colour="red")
                 dmg = calculate_damage()
                 headers.styled_coloured_print_centered(text=f"{headers.lang.you_took} {headers.lang.dodge}.",
                                                        colour="orange")
                 headers.player.health -= dmg
+                time.sleep(1)
+                break
 
 
 def defend_instructions():
@@ -98,7 +102,7 @@ def attack_npc(who_to_attack, portrate):
             headers.get_lines(text_obj=portrate, output=True, instant=True)
 
             headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
-            att = attack_countdown(who_to_attack)
+            attack_countdown(who_to_attack)
 
     # Enemy attack back.
 

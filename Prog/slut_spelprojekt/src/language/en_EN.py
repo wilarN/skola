@@ -173,9 +173,9 @@ used = "used"
 
 took = "took"
 
-you_successfully = "you successfully"
-you_failed_to = "you failed to"
+you_successfully = "You successfully"
+you_failed_to = "You failed to"
 dodge = "dodge"
 dodged = "dodged"
 
-you_took = "you took"
+you_took = "You took"

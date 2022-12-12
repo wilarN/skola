@@ -386,7 +386,10 @@ def slow_print(text, delay):
 
 
 def styled_coloured_print_centered(text, colour=None, instant=False):
-    col = colour
+    if colour is not None:
+        col = colour
+    else:
+        col = None
     if instant:
         time_delay = 0
     else:
@@ -398,13 +401,14 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
     '''
     if colour is None:
         ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=time_delay)
-    elif colour is "red":
-        col = ps.Colors.red
-    elif colour is "orange":
-        col = ps.Colors.red
-    elif colour is "blue":
-        col = ps.Colors.blue
-    ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=time_delay)
+    else:
+        if colour is "red":
+            col = ps.Colors.red
+        elif colour is "orange":
+            col = ps.Colors.orange
+        elif colour is "blue":
+            col = ps.Colors.cyan
+        ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=time_delay)
     print("", flush=True)
 
 
