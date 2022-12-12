@@ -3,7 +3,8 @@ import random
 import time
 from datetime import datetime
 import json
-import pystyle as ps
+# import pystyle as ps
+import src.external_modified.pystyle_mod as ps
 import shutil
 import keyboard as keyb
 
@@ -44,6 +45,7 @@ settings = {
     "player_status": "NULL",
     "player_alive": "NULL",
     "backpack": "NULL",
+    "weapon_type": "Slash",
     "played_before": False
 }
 
@@ -300,6 +302,8 @@ def update_player_save(selected_player):
     # Alive // True _ False
     update_json_settings("player_alive", selected_player.alive)
 
+    update_json_settings("weapon_type", selected_player.weapon_type)
+
 
 def update_realm_save(selected_realm):
     update_json_settings("currently_selected_realm", selected_realm.realm_name)
@@ -362,6 +366,7 @@ def load_player_save(player_obj):
     player_obj.alive = data["player_alive"]
     player_obj.experience = data["player_experience"]
     player_obj.current_room_index = data["current_room_index"]
+    player_obj.weapon_type = data["weapon_type"]
     return player_obj
 
 
@@ -379,23 +384,23 @@ def slow_print(text, delay):
 
 
 def styled_coloured_print_centered(text, colour=None, instant=False):
+    if instant:
+        time_delay = 0
+    else:
+        time_delay = 0.01
     '''
     Default colour "None" --> cyan_to_green
     red --> red
     Default instant --> False
     '''
-    if not instant:
-        if colour is None:
-            ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
-        elif colour is "red":
-            col = ps.Colors.red
-            ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=0.01)
-    else:
-        if colour is None:
-            ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=0.01)
-        elif colour is "red":
-            col = ps.Colors.red
-            ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=0)
+    if colour is None:
+        ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=time_delay)
+    elif colour is "red":
+        col = ps.Colors.red
+        ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=time_delay)
+    elif colour is "orange":
+        col = ps.Colors.red
+        ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.orange, interval=time_delay)
     print("", flush=True)
 
 
@@ -446,13 +451,13 @@ def create_character(empty: bool):
         temp_char_name = styles_input(f"\n{lang.hero_name}", True)
         cur_character = misc.player(name=remove_spaces_from_string(temp_char_name), health=100, level=1, mana=100,
                                     status="None", alive=True,
-                                    experience=0, current_room_index=0, backpack=None)
+                                    experience=0, current_room_index=0, backpack=None, weapon_type="Default")
         time.sleep(0.5)
         styled_coloured_print_centered(f"{temp_char_name}... {lang.very_magestic}... {lang.shall_be_remembered_quote}")
         time.sleep(4)
     else:
         cur_character = misc.player(name="", health=100, level=1, mana=100, status="None", alive=True,
-                                    experience=0, current_room_index=0, backpack=None)
+                                    experience=0, current_room_index=0, backpack=None, weapon_type="Default")
     return cur_character
 
 

@@ -167,3 +167,10 @@ def npc_groan():
     return groans[random.randint(0, len(groans)-1)]
 
 swung_his_sword = "swung his sword.."
+
+attacked = "attacked"
+damage = "damage"
+forr = "for"
+used = "used"
+
+took = "took"

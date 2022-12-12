@@ -1,11 +1,11 @@
 # Python general modules
-import time
 import os
 
-
 import pygame
+# Game specific modules
+import src.headers as headers
 
-pygame.init()
+
 pygame.mixer.init()
 # pygame.mixer.music.load("src/sfx/Undertale_Premonition.mp3")
 pygame.mixer.music.load("src/sfx/Undertale_Another_Medium.mp3")
@@ -19,10 +19,6 @@ pygame.mixer.music.play()
 def play_sound_effect(effect):
     pygame.mixer.Sound(effect)
 
-
-# Game specific modules
-import src.headers as headers
-import src.symbols as sym
 
 """
 ##########
@@ -41,6 +37,17 @@ FIX ATTACK COUNTDOWN IN WORLD.PY
 5. add gold
 6. MUSICCCCCCCCCCCCCCCCCCCCCC // PARTLY COMPLETED, MUSIC SELECTION STILL REMAINS
 7. Try except for external files to make sure it doesn't crash on first run- Just to be safe.
+
+
+ATTACK TYPES:
+SLASH --> Default, Hand, Sword etc.
+
+CAST --> Magic, Wand, Book.
+
+
+SHOPKEEPER:
+soof --> f.i.l --> Ask O, Deni, Higher prices.
+
 """
 
 global realm

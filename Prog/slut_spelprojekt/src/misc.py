@@ -4,9 +4,8 @@ import src.symbols as sym
 import src.headers as headers
 
 
-
 class player:
-    def __init__(self, name, health, mana, level, experience, status, alive, current_room_index, backpack):
+    def __init__(self, name, health, mana, level, experience, status, alive, current_room_index, backpack, weapon_type):
         self.name = name
         self.current_room_index = current_room_index
         self.health = health
@@ -16,6 +15,7 @@ class player:
         self.status = status
         self.alive = alive
         self.backpack = backpack
+        self.weapon_type = weapon_type
 
     def get_all_stats(self):
         all_stats = [self.name, self.health, self.mana, self.level, self.experience, self.status, self.alive,
@@ -57,7 +57,8 @@ class npc:
 
     # There are two types of ´responses´: Happy reply == Means you said the right thing, // Anger reply == Means you did not pick the right line.
     # Chosen by index
-    def __init__(self, name, level, type, status, alive, user_talk_selections = None, talk_selections = None, attack_line = None, responses = None, char_sym=None, loot= None):
+    def __init__(self, name, level, type, status, alive, user_talk_selections=None, talk_selections=None,
+                 attack_line=None, responses=None, char_sym=None, loot=None, health=100):
         self.name = name
         self.level = level
         self.type = type
@@ -69,11 +70,11 @@ class npc:
         self.talk_selections = talk_selections
         self.user_talk_selections = user_talk_selections
         self.loot = loot
+        self.health = health
 
     def get_all_stats(self):
         all_stats = [self.name, self.type, self.level]
         return all_stats
-    
 
     def set_voicelines(self, lines):
         self.voicelines.clear()
@@ -89,7 +90,8 @@ class npc:
         '''
         name of npc is already stated
         '''
-        ps.Write.Print(text=ps.Center.XCenter(f"*{self.name} {self.attack_line}*"), color=ps.Colors.orange, interval=0.01)
+        ps.Write.Print(text=ps.Center.XCenter(f"*{self.name} {self.attack_line}*"), color=ps.Colors.orange,
+                       interval=0.01)
         print("", flush=True)
 
     def say(self, msg):
@@ -103,3 +105,7 @@ class npc:
             print("\n", flush=True)
             time.sleep(0.5)
         time.sleep(2)
+
+    def damage(self, damage):
+        headers.styled_coloured_print_centered(text=f"{self.name} {headers.lang.took} --> {damage} {headers.lang.damage}", colour="red")
+        self.health += damage

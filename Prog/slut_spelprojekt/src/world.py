@@ -36,6 +36,11 @@ def introduction():
     dummy_room()
 
 
+def calculate_damage():
+    total_damage = (headers.reverse_difficulty_number()/10)*(random.randint(1, 5))
+    return total_damage
+
+
 def flush():
     print("", flush=True)
 
@@ -64,14 +69,20 @@ def defend_instructions():
 
 def attack_npc(who_to_attack, portrate):
 
-    while True:
-        headers.clear()
-        headers.get_lines(text_obj=portrate, output=True, instant=True)
-        headers.styled_coloured_print_centered(headers.lang.empty_list_placeholder("Badoink", "Smonk", "Bonk"), "red")
+    #while True:
+    headers.clear()
+    headers.get_lines(text_obj=portrate, output=True, instant=True)
+    if headers.check_json_value_settings("weapon_type") == "Default":
+        # DEFAULT SLASH
+        headers.styled_coloured_print_centered(headers.lang.empty_list_placeholder("Unarmed Strike", "Slash", "Bonk"), "red")
         usr_sel = headers.styles_input("\n>> ", centered=True)
         if usr_sel == "1":
-
-
+            # Unarmed Strike
+            dmg = calculate_damage()
+            headers.styled_coloured_print_centered(text=f"{headers.get_user_data(1)} {headers.lang.used} Unarmed Strike.", colour="orange")
+            time.sleep(1)
+            who_to_attack.damage(dmg)
+            pass
 
     who_to_attack.say(headers.lang.we_will_meet_again)
     who_to_attack.set_voicelines([headers.lang.i_wont_forget_your_face])
