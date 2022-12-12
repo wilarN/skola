@@ -132,9 +132,8 @@ def attack_npc(who_to_attack, portrate):
             # Slash
             dmg = calculate_damage(ground_damage=4)
             headers.styled_coloured_print_centered(
-                text=f"{headers.get_user_data(1)} {headers.lang.used} {headers.lang.oddly_bonked}.", colour="orange")
-            time.sleep(3)
-            headers.enter_to_continue()
+                text=f"{headers.get_user_data(1)} {headers.lang.oddly_bonked}.", colour="orange")
+            time.sleep(5)
             who_to_attack.damage(dmg)
             print(who_to_attack.health)
             time.sleep(2)

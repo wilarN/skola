@@ -180,4 +180,4 @@ dodged = "dodged"
 
 you_took = "You took"
 
-oddly_bonked = "oddly bonked the ememy??? No one really knows what this means but it seems to be working!."
+oddly_bonked = "oddly bonked the ememy??? No one really knows what this means, but it seems to be working!."
