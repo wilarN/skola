@@ -107,5 +107,14 @@ class npc:
         time.sleep(2)
 
     def damage(self, damage):
-        headers.styled_coloured_print_centered(text=f"{self.name} {headers.lang.took} --> {damage} {headers.lang.damage}", colour="red")
+        if self.health <= 0:
+            self.die()
+        headers.styled_coloured_print_centered(
+            text=f"{self.name} {headers.lang.took} --> {damage} {headers.lang.damage}", colour="red")
         self.health -= damage
+
+    def die(self):
+        headers.styled_coloured_print_centered(text=f"{headers.lang.you_defeated} {self.name}!")
+        if len(self.loot) > 0:
+            for item in self.loot:
+                headers.backpackAddItem(item, 1)

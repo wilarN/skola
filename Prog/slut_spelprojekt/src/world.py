@@ -38,6 +38,8 @@ def introduction():
 
 def calculate_damage(ground_damage: int = 1):
     total_damage = round((headers.reverse_difficulty_number() / 10) * (random.randint(3, 7)) * ground_damage)
+    # Instant kill for testing purposes (temporary)
+    total_damage = 100
     return total_damage
 
 
@@ -150,8 +152,10 @@ def attack_npc(who_to_attack, portrate):
             attack_countdown(who_to_attack)
             headers.clear()
             headers.get_lines(portrate, True, True)
-    # Enemy attack back.
 
+    if who_to_attack.health <= 0:
+        who_to_attack.die()
+    # Enemy attack back.
     '''
     magic_wand = headers.summon_item("magic_wand", "Magic wand used for testing purposes")
     orb_of_fire = headers.summon_item("blue_fire_orb", "Item that's used for testing purposes")
@@ -248,7 +252,8 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
             headers.get_lines(portrate, True, True)
         else:
             pass
-
+        if who_you_fighting.health <= 0:
+            who_you_fighting.die()
     # POINTS GRANT ITEMS ETC::: AFTER BATTLE IS FINISHED
 
     # Grant loot-->
