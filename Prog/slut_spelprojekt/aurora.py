@@ -38,6 +38,7 @@ FIX ATTACK COUNTDOWN IN WORLD.PY
 6. MUSICCCCCCCCCCCCCCCCCCCCCC // PARTLY COMPLETED, MUSIC SELECTION STILL REMAINS
 7. Try except for external files to make sure it doesn't crash on first run- Just to be safe.
 
+8. Fix die system for npcs.
 
 ATTACK TYPES:
 SLASH --> Default, Hand, Sword etc.
