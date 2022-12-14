@@ -10,6 +10,7 @@
     -ms-user-select:none;
     user-select:none;
     transition: 0.5s;
+    scrollbar-color: #520059 #272622;
 }
 
 body, html {
@@ -113,4 +114,24 @@ code {
 .unlist_about img{
     height: 500px;
     width: 400px;
+}
+
+.about-me-cont p:not(#name){
+    padding: 20px;
+    text-align: left;
+    font-size: large;
+}
+
+.about-me-cont a{
+    padding: 20px;
+    font-size: large;
+}
+
+#marked{
+    color: rgb(123, 41, 255);
+    text-shadow: 1px 1px 2px purple, 0 0 1em blue, 0 0 0.2em blue;
+}
+
+#home-btn{
+    font-size: 40px;
 }
