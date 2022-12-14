@@ -11,14 +11,14 @@
     user-select:none;
     transition: 0.5s;
     scrollbar-color: #520059 #272622;
-}
+}   
 
 body, html {
     height: 100%;
 }
 
 body{
-    background-image: url("/public/img/wallhaven-r7vm1j.png");
+    background-color: #1f1f1f;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100%;
@@ -51,9 +51,10 @@ body{
     width: 600px;
 }
 
+
 .about-me-cont-courses{
     margin: auto;
-    background-color: rgb(27, 27, 27);
+    background-color: rgb(19, 19, 19);
     border: solid 2px rgb(212, 0, 255);
     border-radius: 40px;
     text-align: center;
@@ -180,5 +181,9 @@ code {
 }
 
 .courses-1{
-
+    padding: 20px;
+    margin-bottom: 40px;
+    background-color: #272622;
+    border: 2px solid rgb(54, 54, 54);
+    border-radius: 40px;
 }
