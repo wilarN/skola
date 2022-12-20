@@ -153,6 +153,8 @@ def attack_npc(who_to_attack, portrate):
             headers.clear()
             headers.get_lines(portrate, True, True)
 
+        if who_to_attack.health <= 0:
+            who_to_attack.die()
     if who_to_attack.health <= 0:
         who_to_attack.die()
     # Enemy attack back.
@@ -238,7 +240,8 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 headers.enter_to_continue()
                 if exit_num == 2:
                     break
-
+            if who_you_fighting.health <= 0:
+                who_you_fighting.die()
             # ENEMY ATTACK
             if int(headers.check_json_value_settings("player_experience")) < 1:
                 defend_instructions()
@@ -269,6 +272,7 @@ def dummy_room():
     rm.start()
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
+    '''
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight",
                                     user_talk_selections=[headers.lang.usr_knight_line_sel_01_line,
                                                           headers.lang.usr_knight_line_sel_02_line],
@@ -282,7 +286,7 @@ def dummy_room():
     headers.get_lines(sym.knight_standing, True)
     start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
                  battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
-
+    '''
     headers.styled_coloured_print_centered(headers.lang.woke_up)
     time.sleep(1)
     headers.styled_coloured_print_centered(headers.lang.not_knowing + "\n\n\n")
