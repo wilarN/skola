@@ -188,3 +188,22 @@ code {
     border: 2px solid rgb(54, 54, 54);
     border-radius: 40px;
 }
+
+.table-subjects {
+    border: 2px solid rgb(54, 54, 54);
+}
+
+.formcontact input{
+    padding: 20px 80px;
+    border: 2px solid white;
+    border-radius: 20px;
+    color: white;
+}
+
+.formcontact textarea{
+    text-align: center;
+    padding-top: 30px;
+    border: 2px solid white;
+    border-radius: 20px;
+    color: white;
+}
