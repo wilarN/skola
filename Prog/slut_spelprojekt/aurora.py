@@ -34,6 +34,10 @@ CAST --> Magic, Wand, Book.
 SHOPKEEPER:
 soof --> f.i.l --> Ask O, Deni, Higher prices.
 
+
+
+AFTER YOU KILL THE ATTACKED NPC, YOU GET THE MENU INSTEAD OF MOVING ON IN THE STORY (TOO TIRED TO FIX NOW ITS 4AM... THIS FRIENDLY NOTE FOR MYSELF)
+
 """
 
 global realm

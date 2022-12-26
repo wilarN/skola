@@ -58,11 +58,13 @@ def attack_countdown(opponent):
             finish = time.perf_counter()
             elapsed_time = finish - start
             if elapsed_time < headers.random.uniform(0.3, (headers.reverse_difficulty_number() / 10)):
-                headers.styled_coloured_print_centered(text=f"{headers.lang.you_successfully} {headers.lang.dodged}.", colour="orange")
+                headers.styled_coloured_print_centered(text=f"{headers.lang.you_successfully} {headers.lang.dodged}.",
+                                                       colour="orange")
                 time.sleep(1)
                 break
             else:
-                headers.styled_coloured_print_centered(text=f"{headers.lang.you_failed_to} {headers.lang.dodge}.", colour="red")
+                headers.styled_coloured_print_centered(text=f"{headers.lang.you_failed_to} {headers.lang.dodge}.",
+                                                       colour="red")
                 dmg = calculate_damage()
                 headers.styled_coloured_print_centered(text=f"{headers.lang.you_took} {dmg} {headers.lang.damage}.",
                                                        colour="orange")
@@ -99,20 +101,21 @@ def attack_npc(who_to_attack, portrate):
                 if not who_to_attack.is_alive():
                     who_to_attack.die()
                     break
+                else:
+                    if int(headers.check_json_value_settings("player_experience")) < 1:
+                        defend_instructions()
+                    headers.clear()
+                    headers.get_lines(portrate, True, True)
+                    time.sleep(1)
+                    headers.clear()
+                    headers.get_lines(text_obj=portrate, output=True, instant=True)
 
-                if int(headers.check_json_value_settings("player_experience")) < 1:
-                    defend_instructions()
-                headers.clear()
-                headers.get_lines(portrate, True, True)
-                time.sleep(1)
-                headers.clear()
-                headers.get_lines(text_obj=portrate, output=True, instant=True)
-
-                headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
-                attack_countdown(who_to_attack)
-                headers.clear()
-                headers.get_lines(portrate, True, True)
-                break
+                    headers.styled_coloured_print_centered(
+                        f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+                    attack_countdown(who_to_attack)
+                    headers.clear()
+                    headers.get_lines(portrate, True, True)
+                    break
 
             elif usr_sel.__contains__("2"):
                 # Slash
@@ -127,20 +130,21 @@ def attack_npc(who_to_attack, portrate):
                 if not who_to_attack.is_alive():
                     who_to_attack.die()
                     break
+                else:
+                    if int(headers.check_json_value_settings("player_experience")) < 1:
+                        defend_instructions()
+                    headers.clear()
+                    headers.get_lines(portrate, True, True)
+                    time.sleep(1)
+                    headers.clear()
+                    headers.get_lines(text_obj=portrate, output=True, instant=True)
 
-                if int(headers.check_json_value_settings("player_experience")) < 1:
-                    defend_instructions()
-                headers.clear()
-                headers.get_lines(portrate, True, True)
-                time.sleep(1)
-                headers.clear()
-                headers.get_lines(text_obj=portrate, output=True, instant=True)
-
-                headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
-                attack_countdown(who_to_attack)
-                headers.clear()
-                headers.get_lines(portrate, True, True)
-                break
+                    headers.styled_coloured_print_centered(
+                        f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+                    attack_countdown(who_to_attack)
+                    headers.clear()
+                    headers.get_lines(portrate, True, True)
+                    break
 
             elif usr_sel.__contains__("3"):
                 # Bonk
@@ -155,20 +159,21 @@ def attack_npc(who_to_attack, portrate):
                 if not who_to_attack.is_alive():
                     who_to_attack.die()
                     break
+                else:
+                    if int(headers.check_json_value_settings("player_experience")) < 1:
+                        defend_instructions()
+                    headers.clear()
+                    headers.get_lines(portrate, True, True)
+                    time.sleep(1)
+                    headers.clear()
+                    headers.get_lines(text_obj=portrate, output=True, instant=True)
 
-                if int(headers.check_json_value_settings("player_experience")) < 1:
-                    defend_instructions()
-                headers.clear()
-                headers.get_lines(portrate, True, True)
-                time.sleep(1)
-                headers.clear()
-                headers.get_lines(text_obj=portrate, output=True, instant=True)
-
-                headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
-                attack_countdown(who_to_attack)
-                headers.clear()
-                headers.get_lines(portrate, True, True)
-                break
+                    headers.styled_coloured_print_centered(
+                        f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+                    attack_countdown(who_to_attack)
+                    headers.clear()
+                    headers.get_lines(portrate, True, True)
+                    break
 
     # Enemy attack back.
     '''
@@ -270,10 +275,11 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
     # POINTS GRANT ITEMS ETC::: AFTER BATTLE IS FINISHED
 
     # Grant loot-->
-    for loot in who_you_fighting.loot:
+    '''for loot in who_you_fighting.loot:
         headers.backpackAddItem(loot, 1)
         time.sleep(0.1)
     headers.grantXP((headers.random.randint(1, 5) * int(headers.check_json_value_settings("realm_difficulty"))))
+    '''
 
 
 def dummy_room():
