@@ -13,6 +13,7 @@ from os import name as _name, system as _system, get_terminal_size as _terminal_
 from sys import stdout as _stdout
 from time import sleep as _sleep
 from threading import Thread as _thread
+import src.sound_manager as SM
 
 
 if _name == 'nt':
@@ -730,6 +731,8 @@ class Write:
             _sleep(interval)
             if line.strip():
                 n += 1
+                # Custom Added Written sound effect... By William
+                SM.talk_SFX()
 
 
 class Center:

@@ -82,81 +82,94 @@ def attack_npc(who_to_attack, portrate):
     headers.get_lines(text_obj=portrate, output=True, instant=True)
     if headers.check_json_value_settings("weapon_type") == "Default":
         # DEFAULT SLASH
-        headers.styled_coloured_print_centered(
-            headers.lang.empty_list_placeholder("Unarmed Strike", "Slash", "Bonk"), "red")
-        usr_sel = headers.styles_input("\n>> ", centered=True)
-        if usr_sel.__contains__("1"):
-            # Unarmed Strike
-            dmg = calculate_damage(ground_damage=4)
+        while True:
             headers.styled_coloured_print_centered(
-                text=f"{headers.get_user_data(1)} {headers.lang.used} Unarmed Strike.", colour="orange")
-            time.sleep(1)
-            who_to_attack.damage(dmg)
-            print(who_to_attack.health)
-            time.sleep(2)
+                headers.lang.empty_list_placeholder("Unarmed Strike", "Slash", "Bonk"), "red")
+            usr_sel = headers.styles_input("\n>> ", centered=True)
+            if usr_sel.__contains__("1"):
+                # Unarmed Strike
+                dmg = calculate_damage(ground_damage=4)
+                headers.styled_coloured_print_centered(
+                    text=f"{headers.get_user_data(1)} {headers.lang.used} Unarmed Strike.", colour="orange")
+                time.sleep(1)
+                who_to_attack.damage(dmg)
+                print(who_to_attack.health)
+                time.sleep(2)
 
-            if int(headers.check_json_value_settings("player_experience")) < 1:
-                defend_instructions()
-            headers.clear()
-            headers.get_lines(portrate, True, True)
-            time.sleep(1)
-            headers.clear()
-            headers.get_lines(text_obj=portrate, output=True, instant=True)
+                if not who_to_attack.is_alive():
+                    who_to_attack.die()
+                    break
 
-            headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
-            attack_countdown(who_to_attack)
-            headers.clear()
-            headers.get_lines(portrate, True, True)
-        elif usr_sel.__contains__("2"):
-            # Slash
-            dmg = calculate_damage(ground_damage=6)
-            headers.styled_coloured_print_centered(
-                text=f"{headers.get_user_data(1)} {headers.lang.used} Slash.", colour="orange")
-            time.sleep(1)
-            who_to_attack.damage(dmg)
-            print(who_to_attack.health)
-            time.sleep(2)
+                if int(headers.check_json_value_settings("player_experience")) < 1:
+                    defend_instructions()
+                headers.clear()
+                headers.get_lines(portrate, True, True)
+                time.sleep(1)
+                headers.clear()
+                headers.get_lines(text_obj=portrate, output=True, instant=True)
 
-            if int(headers.check_json_value_settings("player_experience")) < 1:
-                defend_instructions()
-            headers.clear()
-            headers.get_lines(portrate, True, True)
-            time.sleep(1)
-            headers.clear()
-            headers.get_lines(text_obj=portrate, output=True, instant=True)
+                headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+                attack_countdown(who_to_attack)
+                headers.clear()
+                headers.get_lines(portrate, True, True)
+                break
 
-            headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
-            attack_countdown(who_to_attack)
-            headers.clear()
-            headers.get_lines(portrate, True, True)
+            elif usr_sel.__contains__("2"):
+                # Slash
+                dmg = calculate_damage(ground_damage=6)
+                headers.styled_coloured_print_centered(
+                    text=f"{headers.get_user_data(1)} {headers.lang.used} Slash.", colour="orange")
+                time.sleep(1)
+                who_to_attack.damage(dmg)
+                print(who_to_attack.health)
+                time.sleep(2)
 
-        elif usr_sel.__contains__("3"):
-            # Slash
-            dmg = calculate_damage(ground_damage=4)
-            headers.styled_coloured_print_centered(
-                text=f"{headers.get_user_data(1)} {headers.lang.oddly_bonked}.", colour="orange")
-            time.sleep(5)
-            who_to_attack.damage(dmg)
-            print(who_to_attack.health)
-            time.sleep(2)
+                if not who_to_attack.is_alive():
+                    who_to_attack.die()
+                    break
 
-            if int(headers.check_json_value_settings("player_experience")) < 1:
-                defend_instructions()
-            headers.clear()
-            headers.get_lines(portrate, True, True)
-            time.sleep(1)
-            headers.clear()
-            headers.get_lines(text_obj=portrate, output=True, instant=True)
+                if int(headers.check_json_value_settings("player_experience")) < 1:
+                    defend_instructions()
+                headers.clear()
+                headers.get_lines(portrate, True, True)
+                time.sleep(1)
+                headers.clear()
+                headers.get_lines(text_obj=portrate, output=True, instant=True)
 
-            headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
-            attack_countdown(who_to_attack)
-            headers.clear()
-            headers.get_lines(portrate, True, True)
+                headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+                attack_countdown(who_to_attack)
+                headers.clear()
+                headers.get_lines(portrate, True, True)
+                break
 
-        if who_to_attack.health <= 0:
-            who_to_attack.die()
-    if who_to_attack.health <= 0:
-        who_to_attack.die()
+            elif usr_sel.__contains__("3"):
+                # Bonk
+                dmg = calculate_damage(ground_damage=4)
+                headers.styled_coloured_print_centered(
+                    text=f"{headers.get_user_data(1)} {headers.lang.oddly_bonked}.", colour="orange")
+                time.sleep(5)
+                who_to_attack.damage(dmg)
+                print(who_to_attack.health)
+                time.sleep(2)
+
+                if not who_to_attack.is_alive():
+                    who_to_attack.die()
+                    break
+
+                if int(headers.check_json_value_settings("player_experience")) < 1:
+                    defend_instructions()
+                headers.clear()
+                headers.get_lines(portrate, True, True)
+                time.sleep(1)
+                headers.clear()
+                headers.get_lines(text_obj=portrate, output=True, instant=True)
+
+                headers.styled_coloured_print_centered(f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
+                attack_countdown(who_to_attack)
+                headers.clear()
+                headers.get_lines(portrate, True, True)
+                break
+
     # Enemy attack back.
     '''
     magic_wand = headers.summon_item("magic_wand", "Magic wand used for testing purposes")
@@ -240,8 +253,6 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 headers.enter_to_continue()
                 if exit_num == 2:
                     break
-            if who_you_fighting.health <= 0:
-                who_you_fighting.die()
             # ENEMY ATTACK
             if int(headers.check_json_value_settings("player_experience")) < 1:
                 defend_instructions()
@@ -255,8 +266,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
             headers.get_lines(portrate, True, True)
         else:
             pass
-        if who_you_fighting.health <= 0:
-            who_you_fighting.die()
+
     # POINTS GRANT ITEMS ETC::: AFTER BATTLE IS FINISHED
 
     # Grant loot-->
@@ -272,7 +282,7 @@ def dummy_room():
     rm.start()
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
-    '''
+
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight",
                                     user_talk_selections=[headers.lang.usr_knight_line_sel_01_line,
                                                           headers.lang.usr_knight_line_sel_02_line],
@@ -286,13 +296,14 @@ def dummy_room():
     headers.get_lines(sym.knight_standing, True)
     start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
                  battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
-    '''
+
+
     headers.styled_coloured_print_centered(headers.lang.woke_up)
-    time.sleep(1)
-    headers.styled_coloured_print_centered(headers.lang.not_knowing + "\n\n\n")
+    headers.styled_coloured_print_centered(headers.lang.not_knowing)
     headers.enter_to_continue()
     headers.clear()
-    headers.styled_coloured_print_centered("\n\n\n" + headers.lang.you_find_yourself_staring_at_a_big_door)
+    print("\n\n\n")
+    headers.styled_coloured_print_centered(headers.lang.you_find_yourself_staring_at_a_big_door)
     print()
     time.sleep(1)
     # rm.print(headers.lang.what_do_you_do)
@@ -310,6 +321,7 @@ def dummy_room():
             headers.styled_coloured_print_centered(headers.lang.nothing_is_happening)
             headers.enter_to_continue()
             headers.clear()
+            headers.space_down_three_new_lines()
             headers.styled_coloured_print_centered(headers.lang.the_door_opened)
             headers.get_lines(sym.door_open, True)
             headers.styled_coloured_print_centered(headers.lang.and_out_came)
@@ -317,10 +329,12 @@ def dummy_room():
             break
         elif usr_sel.__contains__("2"):
             headers.clear()
+            headers.space_down_three_new_lines()
             headers.styled_coloured_print_centered(headers.lang.you_tried_opening_door),
             headers.get_lines(sym.door_closed, True)
             time.sleep(1)
             while True:
+                headers.space_down_three_new_lines()
                 headers.styled_coloured_print_centered(headers.lang.after_trying)
                 print("", flush=True)
                 usr_sel = headers.styles_input(headers.lang.try_harder, centered=True)

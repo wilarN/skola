@@ -1,23 +1,8 @@
 # Python general modules
 import os
 
-import pygame
 # Game specific modules
 import src.headers as headers
-
-
-pygame.mixer.init()
-# pygame.mixer.music.load("src/sfx/Undertale_Premonition.mp3")
-pygame.mixer.music.load("src/sfx/Undertale_Another_Medium.mp3")
-pygame.mixer.music.queue("src/sfx/Undertale_Another_Medium.mp3")
-# pygame.mixer.music.set_volume(0.5)
-pygame.mixer.music.set_volume(0.1)
-pygame.mixer.music.play()
-
-
-# Might not be able to use this yet, but as a reference for later.
-def play_sound_effect(effect):
-    pygame.mixer.Sound(effect)
 
 
 """
@@ -53,6 +38,8 @@ soof --> f.i.l --> Ask O, Deni, Higher prices.
 
 global realm
 global player
+
+headers.SM.initialise()
 
 
 def change_windowSize():

@@ -12,6 +12,8 @@ import src.world as world
 import src.misc as misc
 import src.items as items
 
+import src.sound_manager as SM
+
 # Get current date and time for logging purposes and debugging.
 now = datetime.now()
 character_list = []
@@ -242,6 +244,11 @@ def write_to_file(text_to_write, path_to_file, typeOfWrite):
         write_file.close()
 
 
+def play_SFX(sfx: str = None):
+    if sfx is None:
+        pass
+
+
 def update_json_settings(key, new_value):
     settings_file = open(global_settings_path, "r")
     json_obj = json.load(settings_file)
@@ -469,11 +476,22 @@ def create_character(empty: bool):
     return cur_character
 
 
+def space_down_three_new_lines(single: True):
+    """
+    Had to make this function since the pystyle writing method had a bug with new line spacing...
+    """
+    if not single:
+        print("\n\n\n")
+    else:
+        print("\n")
+
+
 def begin_adventure(realm, first_time: bool):
     global player
     player = get_player()
     if first_time:
-        styled_coloured_print_centered("\n\n\n" + lang.begin_welcome_first_time)
+        space_down_three_new_lines()
+        styled_coloured_print_centered(lang.begin_welcome_first_time)
         time.sleep(2)
         world.introduction()
     else:

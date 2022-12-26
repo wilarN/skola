@@ -69,7 +69,7 @@ nothing_is_happening = "After waiting for a moment you realise no one is coming.
 
 you_try_opening_door = "You decided to try to open the door..."
 
-the_door_opened = "\n\n\nSuddenly the door opened!!"
+the_door_opened = "Suddenly the door opened!!"
 
 and_out_came = "And before you could react, a knight stood upon you!"
 
@@ -99,9 +99,9 @@ def talk_menu(npc_name):
         return knight_talk_selection
 
 
-you_tried_opening_door = "\n\n\nYou decided it would be a good idea to open the door..."
+you_tried_opening_door = "You decided it would be a good idea to open the door..."
 
-after_trying = "\n\n\nAfter an amazing attempt on opening the door, you realise that if you just tried a little bit harder, \n it might just open.."
+after_trying = "After an amazing attempt on opening the door, you realise that if you just tried a little bit harder, \n it might just open.."
 
 try_harder = "Try a little harder? [yes / no] "
 you_tried_harder = "You tried a little bit harder to open the door"

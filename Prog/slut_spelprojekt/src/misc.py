@@ -113,6 +113,12 @@ class npc:
             text=f"{self.name} {headers.lang.took} --> {damage} {headers.lang.damage}", colour="red")
         self.health -= damage
 
+    def is_alive(self):
+        if self.health <= 0:
+            return False
+        else:
+            return True
+
     def die(self):
         headers.styled_coloured_print_centered(text=f"{headers.lang.you_defeated} {self.name}!")
         if len(self.loot) > 0:
