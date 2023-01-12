@@ -58,7 +58,7 @@ class npc:
     # There are two types of ´responses´: Happy reply == Means you said the right thing, // Anger reply == Means you did not pick the right line.
     # Chosen by index
     def __init__(self, name, level, type, status, alive, user_talk_selections=None, talk_selections=None,
-                 attack_line=None, responses=None, char_sym=None, loot=None, health=100):
+                 attack_line=None, responses=None, char_sym=None, loot=None, health=50):
         self.name = name
         self.level = level
         self.type = type
@@ -124,3 +124,9 @@ class npc:
         if len(self.loot) > 0:
             for item in self.loot:
                 headers.backpackAddItem(item, 1)
+                headers.grantXP(headers.random.randint(5, 40))
+        self.alive = False
+
+    def passBy(self):
+        headers.grantXP(headers.random.randint(5, 40))
+        self.alive = False

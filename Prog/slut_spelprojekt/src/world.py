@@ -255,22 +255,24 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 time.sleep(1)
                 if "^" in who_you_fighting.responses[1]:
                     exit_num = 2
+                    who_you_fighting.passBy()
                 headers.enter_to_continue()
-                if exit_num == 2:
-                    break
             # ENEMY ATTACK
-            if int(headers.check_json_value_settings("player_experience")) < 1:
-                defend_instructions()
-            headers.clear()
-            headers.get_lines(portrate, True, True)
-            time.sleep(1)
+            if who_you_fighting.alive:
+                if int(headers.check_json_value_settings("player_experience")) < 1:
+                    defend_instructions()
+                headers.clear()
+                headers.get_lines(portrate, True, True)
+                time.sleep(1)
 
-            headers.styled_coloured_print_centered(f"{who_you_fighting.name} {headers.lang.prepared_his_attack}...")
-            attack_countdown(who_you_fighting)
-            headers.clear()
-            headers.get_lines(portrate, True, True)
+                headers.styled_coloured_print_centered(f"{who_you_fighting.name} {headers.lang.prepared_his_attack}...")
+                attack_countdown(who_you_fighting)
+                headers.clear()
+                headers.get_lines(portrate, True, True)
         else:
             pass
+        # Exit battle system.
+        break
 
     # POINTS GRANT ITEMS ETC::: AFTER BATTLE IS FINISHED
 
@@ -289,19 +291,20 @@ def dummy_room():
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
 
-    dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight",
-                                    user_talk_selections=[headers.lang.usr_knight_line_sel_01_line,
-                                                          headers.lang.usr_knight_line_sel_02_line],
-                                    talk_selections=headers.lang.knight_talk_selection, status=None,
-                                    char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line,
-                                    responses=[headers.lang.knight_reply_happy02,
-                                               headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
-    usr_said_name = "testName"
-    headers.clear()
-
-    headers.get_lines(sym.knight_standing, True)
-    start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
-                 battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
+    # dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight",
+    #                                 user_talk_selections=[headers.lang.usr_knight_line_sel_01_line,
+    #                                                       headers.lang.usr_knight_line_sel_02_line],
+    #                                 talk_selections=headers.lang.knight_talk_selection, status=None,
+    #                                 char_sym=sym.knight_standing, attack_line=headers.lang.knight_attack_line,
+    #                                 responses=[headers.lang.knight_reply_happy02,
+    #                                            headers.lang.knight_reply_fight_end01], loot=[headers.items.magic_orb])
+    # usr_said_name = "testName"
+    # headers.clear()
+    #
+    # headers.get_lines(sym.knight_standing, True)
+    # start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
+    #              battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
+    #
 
 
     headers.styled_coloured_print_centered(headers.lang.woke_up)
@@ -439,6 +442,46 @@ class room:
 
     def print(self, msg):
         headers.styled_coloured_print(msg)
+
+
+def room01():
+    rm = room(type=1)
+    rm.get_monsters()
+    rm.start()
+    # Temp testing lines to skip to the good part and not have to go through the whole story and convo
+
+    slime = headers.misc.npc(alive=True, name="Quibble", level=2, type="slime",
+                                    user_talk_selections=["You asked the slime about slime..?",
+                                                          "You tried using a spoon to collect some of the slime residue..."],
+                                    talk_selections=["Slime???", "Spoon."], status=None,
+                                    char_sym=sym.slime_01, attack_line="squished itself against the floor making a quiet splash sound!",
+                                    responses=["just kept on making splash noises in pure happiness!",
+                                               "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
+    headers.clear()
+
+    headers.get_lines(sym.slime_01, True)
+    start_battle(who_you_fighting=slime, portrate=sym.slime_01,
+                 battle_voice_lines=["*Squibble squibble*", "*More squibble squibble but louder*"])
+
+
+
+
+    headers.styled_coloured_print_centered("")
+    headers.styled_coloured_print_centered(headers.lang.not_knowing)
+    headers.enter_to_continue()
+    headers.clear()
+    print("\n\n\n")
+    headers.styled_coloured_print_centered(headers.lang.you_find_yourself_staring_at_a_big_door)
+    print()
+    time.sleep(1)
+    # rm.print(headers.lang.what_do_you_do)
+
+
+
+
+
+
+
 
 
 class realm:

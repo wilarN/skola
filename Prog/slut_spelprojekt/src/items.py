@@ -6,8 +6,12 @@ class item:
 
 class magic_orb(item):
     def __init__(self, colour, name, description):
+        super().__init__(name, description)
         self.colour = colour
         self.name = name
         self.description = description
 
 magic_orb = magic_orb(name="Magic Orb", description="Magic orb that can glow in multiple different colours such as yellow, red and blue.. Is also controlled by voice commands.", colour="Blue")
+
+unknown_residue = item(name="Unknown residue", description="Origin unknown.")
+# dream_shard =
