@@ -60,6 +60,9 @@ language = headers.check_json_value_settings("lang")
 while language == "NULL":
     usr_language = input("Swedish or english? - [s/S - e/E]")
 
+    print("[WARNING] - MUST RUN AS SUDO ON LINUX TO FUNCTION, SOME LIBRARIES REQUIRE SUDO PRIVILEGES SUCH AS KEYBOARD DETECTION.")
+    headers.enter_to_continue()
+
     if usr_language.lower() == "e":
         headers.update_json_settings("lang", "en_EN")
         import src.language.en_EN as lang
@@ -88,6 +91,7 @@ def main():
     # If not, create a character and realm to play in.
     headers.clear()
     if headers.check_json_value_settings("player_name") == "NULL":
+        headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(lang.player_begin_adventure)
 
         # Create Character and save playerdata to settings.json.
@@ -95,6 +99,7 @@ def main():
         headers.update_player_save(player)
         headers.clear()
     if headers.check_json_value_settings("currently_selected_realm") == "NULL":
+        headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(lang.realm_begin_adventure)
         realm = headers.create_realm(False)
         headers.update_realm_save(realm)

@@ -1,0 +1,19 @@
+{
+    "_comment": "Settings JSON file, Don't Mess with the values if you don't know what you're doing thanks :D",
+    "lang": "NULL",
+    "currently_selected_realm": "NULL",
+    "realm_difficulty": "NULL",
+    "game_volume": "1",
+    "Has_Begun": false,
+    "player_name": "NULL",
+    "current_room_index": "NULL",
+    "player_health": "NULL",
+    "player_mana": "NULL",
+    "player_level": "NULL",
+    "player_experience": "NULL",
+    "player_status": "NULL",
+    "player_alive": "NULL",
+    "backpack": "NULL",
+    "weapon_type": "Slash",
+    "played_before": false
+}

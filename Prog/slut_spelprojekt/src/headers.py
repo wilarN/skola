@@ -496,6 +496,6 @@ def begin_adventure(realm, first_time: bool):
         world.introduction()
     else:
         slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
-        # world.dummy_room()
+        world.dummy_room()
         print("[DEBUG] - TUTORIAL DONE")
         world.room01()

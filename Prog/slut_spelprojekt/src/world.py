@@ -244,6 +244,8 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 headers.enter_to_continue()
                 if exit_num == 1:
                     break
+                if not who_you_fighting.alive:
+                    break
             elif usr_answ.__contains__("2"):
                 flush()
                 line = who_you_fighting.user_talk_selections[1]
@@ -269,10 +271,13 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 attack_countdown(who_you_fighting)
                 headers.clear()
                 headers.get_lines(portrate, True, True)
+            elif not who_you_fighting.alive:
+                break
         else:
             pass
         # Exit battle system.
-        break
+        if not who_you_fighting.alive:
+            break
 
     # POINTS GRANT ITEMS ETC::: AFTER BATTLE IS FINISHED
 
@@ -304,7 +309,7 @@ def dummy_room():
     # headers.get_lines(sym.knight_standing, True)
     # start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
     #              battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
-    #
+
 
 
     headers.styled_coloured_print_centered(headers.lang.woke_up)
@@ -445,9 +450,6 @@ class room:
 
 
 def room01():
-    rm = room(type=1)
-    rm.get_monsters()
-    rm.start()
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
 
     slime = headers.misc.npc(alive=True, name="Quibble", level=2, type="slime",
@@ -455,7 +457,7 @@ def room01():
                                                           "You tried using a spoon to collect some of the slime residue..."],
                                     talk_selections=["Slime???", "Spoon."], status=None,
                                     char_sym=sym.slime_01, attack_line="squished itself against the floor making a quiet splash sound!",
-                                    responses=["just kept on making splash noises in pure happiness!",
+                                    responses=["just kept on making splash noises out of pure happiness!",
                                                "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
     headers.clear()
 
