@@ -73,6 +73,29 @@ def attack_countdown(opponent):
                 break
 
 
+def what_do_you_want_to_do(corridor_things):
+    what_choices = ["Look around", "Check inventory"]
+
+    while True:
+        tempNUM = 1
+        for item in what_choices:
+            headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
+            tempNUM+=1
+
+        headers.space_down_three_new_lines()
+        headers.styled_coloured_print_centered(text="What do you want to do?", colour="orange")
+        what_to_do_user_anw = headers.styles_input("\n>> ", centered=True)
+
+        if what_to_do_user_anw.__contains__("1"):
+            corridor_things.what_do_you_see()
+        elif what_to_do_user_anw.__contains__("2"):
+            headers.check_inventory()
+            time.sleep(1)
+            headers.space_down_three_new_lines()
+        else:
+            pass
+
+
 def defend_instructions():
     headers.styled_coloured_print_centered(headers.lang.defend_instructions)
     time.sleep(2)
@@ -397,6 +420,25 @@ def dummy_room():
                  battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
 
 
+class corridor:
+    def __init__(self, things_in_corridor: list = [], enter_text: str = "Entered."):
+        self.enter_text = enter_text
+        self.things_in_corridor = things_in_corridor
+    def enter(self):
+        headers.clear()
+        headers.space_down_three_new_lines()
+        headers.styled_coloured_print_centered(text=self.enter_text)
+        time.sleep(2)
+        headers.space_down_three_new_lines()
+
+    def what_do_you_see(self):
+        tempNUM = 1
+        for item in self.things_in_corridor:
+            headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
+            tempNUM += 1
+        headers.enter_to_continue()
+
+
 class door:
     def __init__(self, opened):
         self.opened = opened
@@ -450,6 +492,11 @@ class room:
 
 
 def room01():
+    cor = corridor(enter_text="You entered a cold and wet corridor.", things_in_corridor=["Strange door.", "Weird puddle of sticky residue?"])
+
+    cor.enter()
+    what_do_you_want_to_do(cor)
+
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
 
     slime = headers.misc.npc(alive=True, name="Quibble", level=2, type="slime",

@@ -147,7 +147,7 @@ def get_lines(text_obj, output: bool, instant=False):
                 time.sleep(0)
             else:
                 time.sleep(0.08)
-            styled_centered_print(line.center(shutil.get_terminal_size().columns))
+            styled_coloured_print_centered(line.center(shutil.get_terminal_size().columns))
             # print(line)
 
 
@@ -404,6 +404,9 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
     '''
     Default colour "None" --> cyan_to_green
     red --> red
+    blue --> cyan
+    orange --> orange
+    pink --> pink
     Default instant --> False
     '''
     if colour is None:
@@ -415,12 +418,39 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
             col = ps.Colors.orange
         elif colour is "blue":
             col = ps.Colors.cyan
+        elif colour is "pink":
+            col = ps.Colors.pink
         ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=time_delay)
     print("", flush=True)
 
 
-def styled_centered_print(text):
-    print(text.center(shutil.get_terminal_size().columns))
+def styled_coloured_print(text, colour=None, instant=False):
+    if colour is not None:
+        col = colour
+    else:
+        col = None
+    if instant:
+        time_delay = 0
+    else:
+        time_delay = 0.01
+    '''
+    Default colour "None" --> cyan_to_green
+    red --> red
+    blue --> cyan
+    orange --> orange
+    Default instant --> False
+    '''
+    if colour is None:
+        ps.Write.Print(text=text, color=ps.Colors.cyan_to_green, interval=time_delay)
+    else:
+        if colour is "red":
+            col = ps.Colors.red
+        elif colour is "orange":
+            col = ps.Colors.orange
+        elif colour is "blue":
+            col = ps.Colors.cyan
+        ps.Write.Print(text=text, color=col, interval=time_delay)
+    print("", flush=True)
 
 
 def styled_coloured_print_boxed_lines(text):
@@ -476,7 +506,13 @@ def create_character(empty: bool):
     return cur_character
 
 
-def space_down_three_new_lines(single = True):
+def get_format_inventory():
+    val = check_json_value_settings("backpack")
+    result = val.split(";")
+    return result
+
+
+def space_down_three_new_lines(single=True):
     """
     Had to make this function since the pystyle writing method had a bug with new line spacing...
     """
@@ -484,6 +520,22 @@ def space_down_three_new_lines(single = True):
         print("\n\n\n")
     else:
         print("\n")
+
+
+def check_inventory():
+    global player
+    clear()
+    get_lines(world.sym.door_closed, True)
+
+    get_lines(world.sym.sack, True)
+
+    tempNUM = 1
+    styled_coloured_print_centered(text=f"- [ {player.name}'s INVENTORY] -", colour="pink")
+    for item in get_format_inventory():
+        styled_coloured_print_centered(f"[{tempNUM}] - {item}")
+        tempNUM += 1
+
+    styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="pink", instant=True)
 
 
 def begin_adventure(realm, first_time: bool):
@@ -496,6 +548,6 @@ def begin_adventure(realm, first_time: bool):
         world.introduction()
     else:
         slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
-        world.dummy_room()
+        # world.dummy_room() -- Temp disabled, Enable all the world.<room>'s when release. (Little comment reminder for myself).
         print("[DEBUG] - TUTORIAL DONE")
         world.room01()
