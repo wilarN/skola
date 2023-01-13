@@ -82,7 +82,7 @@ def what_do_you_want_to_do(corridor_things):
             headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
             tempNUM+=1
 
-        # headers.space_down_three_new_lines()
+        headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(text="What do you want to do?", colour="orange")
         what_to_do_user_anw = headers.styles_input("\n>> ", centered=True)
 
@@ -92,8 +92,9 @@ def what_do_you_want_to_do(corridor_things):
         elif what_to_do_user_anw.__contains__("2"):
             headers.check_inventory()
             time.sleep(1)
-            # headers.space_down_three_new_lines()
-            break
+            headers.clear()
+            headers.styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="pink", instant=True)
+            headers.space_down_three_new_lines()
         else:
             pass
 
@@ -128,7 +129,7 @@ def defend_instructions():
 
 def attack_npc(who_to_attack, portrate):
     headers.clear()
-    headers.get_lines(text_obj=portrate, output=True, instant=True)
+    headers.get_lines(text_obj=portrate, output=True, instant=True, colour="redpurple")
     if headers.check_json_value_settings("weapon_type") == "Default":
         # DEFAULT SLASH
         while True:
@@ -235,7 +236,7 @@ def attack_npc(who_to_attack, portrate):
 def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
     if portrate is not None:
         headers.clear()
-        headers.get_lines(portrate, True, True)
+        headers.get_lines(text_obj=portrate, output=True, instant=True, colour="redpurple")
     who_you_fighting.attack_vline()
     time.sleep(1)
     print("\n")
@@ -445,13 +446,13 @@ def dummy_room():
 
 
 class corridor:
-    def __init__(self, things_in_corridor: list = [], things_functions = None, enter_text: str = "Entered."):
+    def __init__(self, things_in_corridor: list = None, things_functions = None, enter_text: str = "Entered."):
         self.enter_text = enter_text
         self.things_in_corridor = things_in_corridor
         self.things_functions = things_functions
     def enter(self):
         headers.clear()
-        # headers.space_down_three_new_lines()
+        headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(text=self.enter_text)
         time.sleep(2)
         # headers.space_down_three_new_lines()
@@ -459,9 +460,9 @@ class corridor:
     def what_do_you_see(self):
         while True:
             headers.clear()
-            # headers.space_down_three_new_lines()
+            headers.space_down_three_new_lines()
             headers.styled_coloured_print_centered(text="You notice a few things in your surrounding: ", colour="orange", instant=True)
-            # headers.space_down_three_new_lines()
+            headers.space_down_three_new_lines()
             tempNUM = 1
             for item in self.things_in_corridor:
                 headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
@@ -474,8 +475,6 @@ class corridor:
             elif usr_sel.__contains__("2"):
                 self.things_functions[1]()
                 break
-
-        headers.enter_to_continue()
 
 
 def strange_door():
@@ -496,6 +495,7 @@ def sticky_slime():
         headers.styled_coloured_print_centered("You decided to gently touch the puddle.")
         time.sleep(2)
         headers.enter_to_continue()
+        headers.clear()
         headers.styled_coloured_print_centered("Suddenly the puddle started to rise!")
         time.sleep(3)
 
@@ -505,8 +505,9 @@ def sticky_slime():
         headers.styled_coloured_print_centered("You decided to stand in the puddle.")
         time.sleep(2)
         headers.enter_to_continue()
+        headers.clear()
         headers.styled_coloured_print_centered("And suddenly the puddle started to rise!")
-        time.sleep(1)
+        time.sleep(3)
 
 class door:
     def __init__(self, opened):
@@ -577,7 +578,7 @@ def room01():
                                                "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
     headers.clear()
 
-    headers.get_lines(sym.slime_01, True)
+    headers.get_lines(text_obj=sym.slime_01, output=True, instant=True, colour="pink")
     start_battle(who_you_fighting=slime, portrate=sym.slime_01,
                  battle_voice_lines=["*Squibble squibble*", "*More squibble squibble but louder*"])
 

@@ -132,7 +132,7 @@ def read_from_json_to_obj(json_path: str):
     return obj
 
 
-def get_lines(text_obj, output: bool, instant=False):
+def get_lines(text_obj, colour=None, output: bool = True, instant: bool = False):
     logo_lines = []
     if type(text_obj) == list:
         for line in text_obj[random.randint(0, len(text_obj) - 1)].split("\n"):
@@ -143,11 +143,11 @@ def get_lines(text_obj, output: bool, instant=False):
 
     if output:
         for line in logo_lines:
-            # if instant:
-            #     time.sleep(0)
-            # else:
-            #     time.sleep(0.08)
-            styled_coloured_print(line.center(shutil.get_terminal_size().columns), instant=instant)
+            if colour is not None:
+                styled_coloured_print(line.center(shutil.get_terminal_size().columns), instant=instant,
+                                      colour=colour)
+            else:
+                styled_coloured_print(line.center(shutil.get_terminal_size().columns), instant=instant)
             # print(line)
 
 
@@ -407,6 +407,7 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
     blue --> cyan
     orange --> orange
     pink --> pink
+    purpleblue --> purple to blue gradient
     Default instant --> False
     '''
     if colour is None:
@@ -420,6 +421,8 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
             col = ps.Colors.cyan
         elif colour is "pink":
             col = ps.Colors.pink
+        elif colour is "purpleblue":
+            col = ps.Colors.purple_to_blue
         ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=time_delay)
     print("", flush=True)
 
@@ -438,6 +441,8 @@ def styled_coloured_print(text, colour=None, instant=False):
     red --> red
     blue --> cyan
     orange --> orange
+    pink --> pink
+    purpleblue --> purple to blue gradient
     Default instant --> False
     '''
     if colour is None:
@@ -445,10 +450,16 @@ def styled_coloured_print(text, colour=None, instant=False):
     else:
         if colour is "red":
             col = ps.Colors.red
+        elif colour is "redpurple":
+            col = ps.Colors.red_to_purple
         elif colour is "orange":
             col = ps.Colors.orange
         elif colour is "blue":
             col = ps.Colors.cyan
+        elif colour is "pink":
+            col = ps.Colors.pink
+        elif colour is "purpleblue":
+            col = ps.Colors.purple_to_blue
         ps.Write.Print(text=text, color=col, interval=time_delay)
     print("", flush=True)
 
@@ -525,15 +536,18 @@ def space_down_three_new_lines(single=True):
 def check_inventory():
     global player
     clear()
-    get_lines(text_obj=world.sym.sack, output=True, instant=True)
+    space_down_three_new_lines()
+    get_lines(text_obj=world.sym.sack, output=True, instant=True, colour="purpleblue")
 
     tempNUM = 1
+    styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue", instant=True)
     styled_coloured_print_centered(text=f"- [ {player.name}'s INVENTORY] -", colour="pink")
     for item in get_format_inventory():
         styled_coloured_print_centered(f"[{tempNUM}] - {item}")
         tempNUM += 1
 
-    styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="pink", instant=True)
+    styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue", instant=True)
+    enter_to_continue()
 
 
 def begin_adventure(realm, first_time: bool):
