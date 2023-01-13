@@ -88,12 +88,36 @@ def what_do_you_want_to_do(corridor_things):
 
         if what_to_do_user_anw.__contains__("1"):
             corridor_things.what_do_you_see()
+            break
         elif what_to_do_user_anw.__contains__("2"):
             headers.check_inventory()
             time.sleep(1)
             headers.space_down_three_new_lines()
+            break
         else:
             pass
+
+def what_do_you_want_to_do_universal(selections):
+    while True:
+        tempNUM = 1
+        for item in selections:
+            headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
+            tempNUM+=1
+
+        headers.space_down_three_new_lines()
+        headers.styled_coloured_print_centered(text="What do you want to do?", colour="orange")
+        what_to_do_user_anw = headers.styles_input("\n>> ", centered=True)
+
+        if what_to_do_user_anw.__contains__("1"):
+            return 1
+            break
+        elif what_to_do_user_anw.__contains__("2"):
+            return 2
+            break
+        else:
+            pass
+
+
 
 
 def defend_instructions():
@@ -421,9 +445,10 @@ def dummy_room():
 
 
 class corridor:
-    def __init__(self, things_in_corridor: list = [], enter_text: str = "Entered."):
+    def __init__(self, things_in_corridor: list = [], things_functions = None, enter_text: str = "Entered."):
         self.enter_text = enter_text
         self.things_in_corridor = things_in_corridor
+        self.things_functions = things_functions
     def enter(self):
         headers.clear()
         headers.space_down_three_new_lines()
@@ -432,12 +457,56 @@ class corridor:
         headers.space_down_three_new_lines()
 
     def what_do_you_see(self):
-        tempNUM = 1
-        for item in self.things_in_corridor:
-            headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
-            tempNUM += 1
+        while True:
+            headers.clear()
+            headers.space_down_three_new_lines()
+            headers.styled_coloured_print_centered(text="You notice a few things in your surrounding: ", colour="orange", instant=True)
+            headers.space_down_three_new_lines()
+            tempNUM = 1
+            for item in self.things_in_corridor:
+                headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
+                tempNUM += 1
+
+            usr_sel = headers.styles_input("\n>> ", centered=True)
+            if usr_sel.__contains__("1"):
+                self.things_functions[0]()
+                break
+            elif usr_sel.__contains__("2"):
+                self.things_functions[1]()
+                break
+
         headers.enter_to_continue()
 
+
+def strange_door():
+    pass
+
+def sticky_slime():
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered("You walk to the oddly shaped puddle.")
+    time.sleep(2)
+    headers.styled_coloured_print_centered("The puddle looks like something you would find in the trash can and that's been laying there for at least a few hundred years.")
+    headers.space_down_three_new_lines()
+    time.sleep(2)
+    result = what_do_you_want_to_do_universal(["Touch the puddle.", "Stand in the puddle."])
+    if result == 1:
+        headers.clear()
+        headers.space_down_three_new_lines()
+        headers.styled_coloured_print_centered("You decided to gently touch the puddle.")
+        time.sleep(2)
+        headers.enter_to_continue()
+        headers.styled_coloured_print_centered("Suddenly the puddle started to rise!")
+        time.sleep(3)
+
+    elif result == 2:
+        headers.clear()
+        headers.space_down_three_new_lines()
+        headers.styled_coloured_print_centered("You decided to stand in the puddle.")
+        time.sleep(2)
+        headers.enter_to_continue()
+        headers.styled_coloured_print_centered("And suddenly the puddle started to rise!")
+        time.sleep(1)
 
 class door:
     def __init__(self, opened):
@@ -492,7 +561,7 @@ class room:
 
 
 def room01():
-    cor = corridor(enter_text="You entered a cold and wet corridor.", things_in_corridor=["Strange door.", "Weird puddle of sticky residue?"])
+    cor = corridor(enter_text="You entered a cold and wet corridor.", things_in_corridor=["Strange door.", "Weird puddle of sticky residue?"], things_functions=[strange_door, sticky_slime])
 
     cor.enter()
     what_do_you_want_to_do(cor)
