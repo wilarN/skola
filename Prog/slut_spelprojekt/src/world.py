@@ -82,7 +82,7 @@ def what_do_you_want_to_do(corridor_things):
             headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
             tempNUM+=1
 
-        headers.space_down_three_new_lines()
+        # headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(text="What do you want to do?", colour="orange")
         what_to_do_user_anw = headers.styles_input("\n>> ", centered=True)
 
@@ -92,7 +92,7 @@ def what_do_you_want_to_do(corridor_things):
         elif what_to_do_user_anw.__contains__("2"):
             headers.check_inventory()
             time.sleep(1)
-            headers.space_down_three_new_lines()
+            # headers.space_down_three_new_lines()
             break
         else:
             pass
@@ -451,17 +451,17 @@ class corridor:
         self.things_functions = things_functions
     def enter(self):
         headers.clear()
-        headers.space_down_three_new_lines()
+        # headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(text=self.enter_text)
         time.sleep(2)
-        headers.space_down_three_new_lines()
+        # headers.space_down_three_new_lines()
 
     def what_do_you_see(self):
         while True:
             headers.clear()
-            headers.space_down_three_new_lines()
+            # headers.space_down_three_new_lines()
             headers.styled_coloured_print_centered(text="You notice a few things in your surrounding: ", colour="orange", instant=True)
-            headers.space_down_three_new_lines()
+            # headers.space_down_three_new_lines()
             tempNUM = 1
             for item in self.things_in_corridor:
                 headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)

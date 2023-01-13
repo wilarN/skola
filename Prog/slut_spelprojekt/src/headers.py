@@ -143,11 +143,11 @@ def get_lines(text_obj, output: bool, instant=False):
 
     if output:
         for line in logo_lines:
-            if instant:
-                time.sleep(0)
-            else:
-                time.sleep(0.08)
-            styled_coloured_print(line.center(shutil.get_terminal_size().columns))
+            # if instant:
+            #     time.sleep(0)
+            # else:
+            #     time.sleep(0.08)
+            styled_coloured_print(line.center(shutil.get_terminal_size().columns), instant=instant)
             # print(line)
 
 
@@ -525,7 +525,7 @@ def space_down_three_new_lines(single=True):
 def check_inventory():
     global player
     clear()
-    # get_lines(world.sym.sack, True) -- Diddnt get it to work with flow, it kinda lags and I dont know why.
+    get_lines(text_obj=world.sym.sack, output=True, instant=True)
 
     tempNUM = 1
     styled_coloured_print_centered(text=f"- [ {player.name}'s INVENTORY] -", colour="pink")
