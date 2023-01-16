@@ -478,7 +478,16 @@ class corridor:
 
 
 def strange_door():
-    pass
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="Upon walking up to the strange looking door, you start hearing a water-like noise coming from behind.")
+    headers.space_down_three_new_lines()
+    headers.enter_to_continue()
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="And before you could react you stood face to face with a medium sized slime!")
+    headers.enter_to_continue()
+
 
 def sticky_slime():
     headers.clear()
@@ -585,7 +594,6 @@ def room01():
 
 
 
-    headers.styled_coloured_print_centered("")
     headers.styled_coloured_print_centered(headers.lang.not_knowing)
     headers.enter_to_continue()
     headers.clear()
