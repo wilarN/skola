@@ -476,7 +476,7 @@ class corridor:
                 break
 
 def inspect(object_to_inspect):
-    pass
+    headers.
 
 
 def strange_door():
@@ -607,18 +607,24 @@ def room01():
     headers.styled_coloured_print_centered(text="You decide to walk to the chest.", colour="orange")
     time.sleep(1)
     headers.enter_to_continue()
-    headers.clear()
-    headers.space_down_three_new_lines()
-    firstChest.chest_enter()
-    question = what_do_you_want_to_do_universal(["Open the chest", "Inspect"])
-    headers.clear()
-    if question == 1:
-        # Open chest
-        firstChest.open()
-
-    else:
-        # Inspect
-        inspect(firstChest)
+    while True:
+        headers.clear()
+        headers.space_down_three_new_lines()
+        firstChest.chest_enter()
+        question = what_do_you_want_to_do_universal(["Open the chest", "Inspect"])
+        if question == 1:
+            # Open chest
+            headers.clear()
+            if len(firstChest.items) > 0:
+                firstChest.open()
+            else:
+                headers.space_down_three_new_lines()
+                headers.styled_coloured_print_centered(text="You tried opening the already opened chest? And you managed to do it!", colour="orange")
+                headers.space_down_three_new_lines()
+                headers.enter_to_continue()
+        else:
+            # Inspect
+            inspect(firstChest)
 
 
 class realm:

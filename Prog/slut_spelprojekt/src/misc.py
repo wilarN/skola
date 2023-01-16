@@ -133,10 +133,11 @@ class npc:
 
 
 class chest:
-    def __init__(self, items):
+    def __init__(self, items, description: str = "This item does not have a description."):
         self.slots = 5
         self.items = items
         self.has_been_opened = False
+        self.description = description
 
     def open(self):
         if len(self.items) > 0:
@@ -183,3 +184,6 @@ class chest:
         headers.clear()
         headers.space_down_three_new_lines()
         headers.get_lines(text_obj=headers.world.sym.chest01, colour="purpleblue")
+
+    def desc(self):
+        headers.styled_coloured_print_centered(text=self.description, colour="blue")
