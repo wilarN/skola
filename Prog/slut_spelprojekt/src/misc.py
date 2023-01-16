@@ -139,4 +139,47 @@ class chest:
         self.has_been_opened = False
 
     def open(self):
-        print("Chest was opened.")
+        if len(self.items) > 0:
+            while len(self.items) > 0:
+                headers.clear()
+                headers.space_down_three_new_lines()
+                headers.get_lines(text_obj=headers.world.sym.chest01, colour="purpleblue")
+                tempNUM = 1
+                headers.styled_coloured_print_centered(text=f"- [ Old wooden chest ] -", colour="pink")
+                headers.styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue",
+                                                       instant=True)
+                headers.space_down_three_new_lines()
+                for item in self.items:
+                    headers.styled_coloured_print_centered(f"[{tempNUM}] - {item.name}")
+                    tempNUM += 1
+
+                headers.styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue",
+                                                       instant=True)
+                while True:
+                    headers.space_down_three_new_lines()
+                    headers.styled_coloured_print_centered(text="Take item?(Write index of item):", colour="red")
+                    what_to_do_user_anw = headers.styles_input("\n>> ", centered=True)
+                    if what_to_do_user_anw.__contains__("1"):
+                        headers.backpackAddItem(self.items[0], 1, True)
+                        self.items.pop(0)
+                        time.sleep(2)
+                        headers.clear()
+                        break
+                    elif what_to_do_user_anw.__contains__("2"):
+                        try:
+                            headers.backpackAddItem(self.items[1], 1, True)
+                            self.items.pop(1)
+                        except:
+                            break
+                        time.sleep(2)
+                        headers.clear()
+                        break
+                    else:
+                        pass
+        else:
+            headers.styled_coloured_print_centered(text="This chest is empty.", colour="red")
+
+    def chest_enter(self):
+        headers.clear()
+        headers.space_down_three_new_lines()
+        headers.get_lines(text_obj=headers.world.sym.chest01, colour="purpleblue")

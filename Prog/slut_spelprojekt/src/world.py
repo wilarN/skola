@@ -112,10 +112,8 @@ def what_do_you_want_to_do_universal(selections):
 
         if what_to_do_user_anw.__contains__("1"):
             return 1
-            break
         elif what_to_do_user_anw.__contains__("2"):
             return 2
-            break
         else:
             pass
 
@@ -477,6 +475,9 @@ class corridor:
                 self.things_functions[1]()
                 break
 
+def inspect(object_to_inspect):
+    pass
+
 
 def strange_door():
     headers.clear()
@@ -572,30 +573,52 @@ class room:
 
 
 def room01():
-    cor = corridor(enter_text="You entered a cold and wet corridor.", things_in_corridor=["Strange door.", "Weird puddle of sticky residue?"], things_functions=[strange_door, sticky_slime])
+    # cor = corridor(enter_text="You entered a cold and wet corridor.", things_in_corridor=["Strange door.", "Weird puddle of sticky residue?"], things_functions=[strange_door, sticky_slime])
+    #
+    # cor.enter()
+    # what_do_you_want_to_do(cor)
+    #
+    # # Temp testing lines to skip to the good part and not have to go through the whole story and convo
+    #
+    # slime = headers.misc.npc(alive=True, name="Quibble", level=2, type="slime",
+    #                                 user_talk_selections=["You asked the slime about slime..?",
+    #                                                       "You tried using a spoon to collect some of the slime residue..."],
+    #                                 talk_selections=["Slime???", "Spoon."], status=None,
+    #                                 char_sym=sym.slime_01, attack_line="squished itself against the floor making a quiet splash sound!",
+    #                                 responses=["just kept on making splash noises out of pure happiness!",
+    #                                            "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
+    # headers.clear()
+    #
+    # headers.get_lines(text_obj=sym.slime_01, output=True, instant=True, colour="pink")
+    # start_battle(who_you_fighting=slime, portrate=sym.slime_01,
+    #              battle_voice_lines=["*Squibble squibble*", "*More squibble squibble but louder*"])
 
-    cor.enter()
-    what_do_you_want_to_do(cor)
 
-    # Temp testing lines to skip to the good part and not have to go through the whole story and convo
 
-    slime = headers.misc.npc(alive=True, name="Quibble", level=2, type="slime",
-                                    user_talk_selections=["You asked the slime about slime..?",
-                                                          "You tried using a spoon to collect some of the slime residue..."],
-                                    talk_selections=["Slime???", "Spoon."], status=None,
-                                    char_sym=sym.slime_01, attack_line="squished itself against the floor making a quiet splash sound!",
-                                    responses=["just kept on making splash noises out of pure happiness!",
-                                               "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
-    headers.clear()
-
-    headers.get_lines(text_obj=sym.slime_01, output=True, instant=True, colour="pink")
-    start_battle(who_you_fighting=slime, portrate=sym.slime_01,
-                 battle_voice_lines=["*Squibble squibble*", "*More squibble squibble but louder*"])
 
     # Locate First Chest
-    firstChest = headers.misc.chest([])
+    firstChest = headers.misc.chest([headers.items.dream_shard, headers.items.old_rag])
 
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="In the end of the corridor you notice there's a chest or coffin of some sort.", colour="orange")
+    time.sleep(1)
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="You decide to walk to the chest.", colour="orange")
+    time.sleep(1)
+    headers.enter_to_continue()
+    headers.clear()
+    headers.space_down_three_new_lines()
+    firstChest.chest_enter()
+    question = what_do_you_want_to_do_universal(["Open the chest", "Inspect"])
+    headers.clear()
+    if question == 1:
+        # Open chest
+        firstChest.open()
 
+    else:
+        # Inspect
+        inspect(firstChest)
 
 
 class realm:

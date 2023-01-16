@@ -132,7 +132,7 @@ def read_from_json_to_obj(json_path: str):
     return obj
 
 
-def get_lines(text_obj, colour=None, output: bool = True, instant: bool = False):
+def get_lines(text_obj, colour=None, output: bool = True, instant: bool = True):
     logo_lines = []
     if type(text_obj) == list:
         for line in text_obj[random.randint(0, len(text_obj) - 1)].split("\n"):
@@ -206,10 +206,15 @@ def grantXP(amount):
 
 
 # Backpack control
-def backpackAddItem(item, amount):
+def backpackAddItem(item, amount, chest:bool = False):
     world.flush()
-    ps.Write.Print(text=ps.Center.XCenter(f"{lang.Item_rewarded} {amount} {item.name}!"), color=ps.Colors.cyan,
-                   interval=0.01)
+    if not chest:
+        ps.Write.Print(text=ps.Center.XCenter(f"{lang.Item_rewarded} {amount} {item.name}!"), color=ps.Colors.cyan,
+                       interval=0.01)
+    else:
+        ps.Write.Print(text=ps.Center.XCenter(f"You got {amount} {item.name}!"), color=ps.Colors.red_to_yellow,
+                       interval=0.01)
+
     prev_items = check_json_value_settings("backpack")
     if prev_items.__contains__("NULL"):
         update_json_settings("backpack", remove_spaces_from_string(item.name))
@@ -415,15 +420,15 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
     if colour is None:
         ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=time_delay)
     else:
-        if colour is "red":
+        if colour == "red":
             col = ps.Colors.red
-        elif colour is "orange":
+        elif colour == "orange":
             col = ps.Colors.orange
-        elif colour is "blue":
+        elif colour == "blue":
             col = ps.Colors.cyan
-        elif colour is "pink":
+        elif colour == "pink":
             col = ps.Colors.pink
-        elif colour is "purpleblue":
+        elif colour == "purpleblue":
             col = ps.Colors.purple_to_blue
         ps.Write.Print(text=ps.Center.XCenter(text), color=col, interval=time_delay)
     print("", flush=True)
@@ -450,17 +455,17 @@ def styled_coloured_print(text, colour=None, instant=False):
     if colour is None:
         ps.Write.Print(text=text, color=ps.Colors.cyan_to_green, interval=time_delay)
     else:
-        if colour is "red":
+        if colour == "red":
             col = ps.Colors.red
-        elif colour is "redpurple":
+        elif colour == "redpurple":
             col = ps.Colors.red_to_purple
-        elif colour is "orange":
+        elif colour == "orange":
             col = ps.Colors.orange
-        elif colour is "blue":
+        elif colour == "blue":
             col = ps.Colors.cyan
-        elif colour is "pink":
+        elif colour == "pink":
             col = ps.Colors.pink
-        elif colour is "purpleblue":
+        elif colour == "purpleblue":
             col = ps.Colors.purple_to_blue
         ps.Write.Print(text=text, color=col, interval=time_delay)
     print("", flush=True)
