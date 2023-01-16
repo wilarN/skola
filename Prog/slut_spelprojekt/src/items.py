@@ -14,4 +14,5 @@ class magic_orb(item):
 magic_orb = magic_orb(name="Magic Orb", description="Magic orb that can glow in multiple different colours such as yellow, red and blue.. Is also controlled by voice commands.", colour="Blue")
 
 unknown_residue = item(name="Unknown residue", description="Origin unknown.")
+diamond_sword = item(name="Diamond Sword", description="A certified classic.")
 # dream_shard =

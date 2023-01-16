@@ -58,7 +58,7 @@ class npc:
     # There are two types of ´responses´: Happy reply == Means you said the right thing, // Anger reply == Means you did not pick the right line.
     # Chosen by index
     def __init__(self, name, level, type, status, alive, user_talk_selections=None, talk_selections=None,
-                 attack_line=None, responses=None, char_sym=None, loot=None, health=50):
+                 attack_line=None, responses=None, char_sym=None, loot=None, health=30):
         self.name = name
         self.level = level
         self.type = type
@@ -130,3 +130,13 @@ class npc:
     def passBy(self):
         headers.grantXP(headers.random.randint(5, 40))
         self.alive = False
+
+
+class chest:
+    def __init__(self, items):
+        self.slots = 5
+        self.items = items
+        self.has_been_opened = False
+
+    def open(self):
+        print("Chest was opened.")

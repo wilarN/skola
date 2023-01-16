@@ -98,6 +98,7 @@ def what_do_you_want_to_do(corridor_things):
         else:
             pass
 
+
 def what_do_you_want_to_do_universal(selections):
     while True:
         tempNUM = 1
@@ -153,7 +154,7 @@ def attack_npc(who_to_attack, portrate):
                     if int(headers.check_json_value_settings("player_experience")) < 1:
                         defend_instructions()
                     headers.clear()
-                    headers.get_lines(portrate, True, True)
+                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
                     time.sleep(1)
                     headers.clear()
                     headers.get_lines(text_obj=portrate, output=True, instant=True)
@@ -162,7 +163,7 @@ def attack_npc(who_to_attack, portrate):
                         f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
                     attack_countdown(who_to_attack)
                     headers.clear()
-                    headers.get_lines(portrate, True, True)
+                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
                     break
 
             elif usr_sel.__contains__("2"):
@@ -182,7 +183,7 @@ def attack_npc(who_to_attack, portrate):
                     if int(headers.check_json_value_settings("player_experience")) < 1:
                         defend_instructions()
                     headers.clear()
-                    headers.get_lines(portrate, True, True)
+                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
                     time.sleep(1)
                     headers.clear()
                     headers.get_lines(text_obj=portrate, output=True, instant=True)
@@ -191,7 +192,7 @@ def attack_npc(who_to_attack, portrate):
                         f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
                     attack_countdown(who_to_attack)
                     headers.clear()
-                    headers.get_lines(portrate, True, True)
+                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
                     break
 
             elif usr_sel.__contains__("3"):
@@ -211,7 +212,7 @@ def attack_npc(who_to_attack, portrate):
                     if int(headers.check_json_value_settings("player_experience")) < 1:
                         defend_instructions()
                     headers.clear()
-                    headers.get_lines(portrate, True, True)
+                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
                     time.sleep(1)
                     headers.clear()
                     headers.get_lines(text_obj=portrate, output=True, instant=True)
@@ -220,7 +221,7 @@ def attack_npc(who_to_attack, portrate):
                         f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
                     attack_countdown(who_to_attack)
                     headers.clear()
-                    headers.get_lines(portrate, True, True)
+                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
                     break
 
     # Enemy attack back.
@@ -270,7 +271,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
         elif usr_answ.__contains__("3"):
             # Talks
             headers.clear()
-            headers.get_lines(portrate, True, True)
+            headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
             print("", flush=True)
             temp_num = 1
             exit_num = 0
@@ -312,13 +313,13 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 if int(headers.check_json_value_settings("player_experience")) < 1:
                     defend_instructions()
                 headers.clear()
-                headers.get_lines(portrate, True, True)
+                headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
                 time.sleep(1)
 
                 headers.styled_coloured_print_centered(f"{who_you_fighting.name} {headers.lang.prepared_his_attack}...")
                 attack_countdown(who_you_fighting)
                 headers.clear()
-                headers.get_lines(portrate, True, True)
+                headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
             elif not who_you_fighting.alive:
                 break
         else:
@@ -591,22 +592,8 @@ def room01():
     start_battle(who_you_fighting=slime, portrate=sym.slime_01,
                  battle_voice_lines=["*Squibble squibble*", "*More squibble squibble but louder*"])
 
-
-
-
-    headers.styled_coloured_print_centered(headers.lang.not_knowing)
-    headers.enter_to_continue()
-    headers.clear()
-    print("\n\n\n")
-    headers.styled_coloured_print_centered(headers.lang.you_find_yourself_staring_at_a_big_door)
-    print()
-    time.sleep(1)
-    # rm.print(headers.lang.what_do_you_do)
-
-
-
-
-
+    # Locate First Chest
+    firstChest = headers.misc.chest([])
 
 
 
