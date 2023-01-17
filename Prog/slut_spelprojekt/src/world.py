@@ -80,7 +80,7 @@ def what_do_you_want_to_do(corridor_things):
         tempNUM = 1
         for item in what_choices:
             headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
-            tempNUM+=1
+            tempNUM += 1
 
         headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(text="What do you want to do?", colour="orange")
@@ -104,7 +104,7 @@ def what_do_you_want_to_do_universal(selections):
         tempNUM = 1
         for item in selections:
             headers.styled_coloured_print_centered(text=f"[{str(tempNUM)}] {item}", colour="blue", instant=False)
-            tempNUM+=1
+            tempNUM += 1
 
         headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(text="What do you want to do?", colour="orange")
@@ -123,8 +123,6 @@ def what_do_you_want_to_do_universal(selections):
 
         else:
             pass
-
-
 
 
 def defend_instructions():
@@ -159,7 +157,7 @@ def attack_npc(who_to_attack, portrate):
                     if int(headers.check_json_value_settings("player_experience")) < 1:
                         defend_instructions()
                     headers.clear()
-                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+                    headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
                     time.sleep(1)
                     headers.clear()
                     headers.get_lines(text_obj=portrate, output=True, instant=True)
@@ -168,7 +166,7 @@ def attack_npc(who_to_attack, portrate):
                         f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
                     attack_countdown(who_to_attack)
                     headers.clear()
-                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+                    headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
                     break
 
             elif usr_sel.__contains__("2"):
@@ -188,7 +186,7 @@ def attack_npc(who_to_attack, portrate):
                     if int(headers.check_json_value_settings("player_experience")) < 1:
                         defend_instructions()
                     headers.clear()
-                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+                    headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
                     time.sleep(1)
                     headers.clear()
                     headers.get_lines(text_obj=portrate, output=True, instant=True)
@@ -197,7 +195,7 @@ def attack_npc(who_to_attack, portrate):
                         f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
                     attack_countdown(who_to_attack)
                     headers.clear()
-                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+                    headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
                     break
 
             elif usr_sel.__contains__("3"):
@@ -217,7 +215,7 @@ def attack_npc(who_to_attack, portrate):
                     if int(headers.check_json_value_settings("player_experience")) < 1:
                         defend_instructions()
                     headers.clear()
-                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+                    headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
                     time.sleep(1)
                     headers.clear()
                     headers.get_lines(text_obj=portrate, output=True, instant=True)
@@ -226,7 +224,7 @@ def attack_npc(who_to_attack, portrate):
                         f"{who_to_attack.name} {headers.lang.prepared_his_attack}...")
                     attack_countdown(who_to_attack)
                     headers.clear()
-                    headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+                    headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
                     break
 
     # Enemy attack back.
@@ -276,7 +274,7 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
         elif usr_answ.__contains__("3"):
             # Talks
             headers.clear()
-            headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+            headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
             print("", flush=True)
             temp_num = 1
             exit_num = 0
@@ -318,13 +316,13 @@ def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
                 if int(headers.check_json_value_settings("player_experience")) < 1:
                     defend_instructions()
                 headers.clear()
-                headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+                headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
                 time.sleep(1)
 
                 headers.styled_coloured_print_centered(f"{who_you_fighting.name} {headers.lang.prepared_his_attack}...")
                 attack_countdown(who_you_fighting)
                 headers.clear()
-                headers.get_lines(text_obj=portrate, output=True, instant=True,colour="purpleblue")
+                headers.get_lines(text_obj=portrate, output=True, instant=True, colour="purpleblue")
             elif not who_you_fighting.alive:
                 break
         else:
@@ -363,8 +361,6 @@ def dummy_room():
     # headers.get_lines(sym.knight_standing, True)
     # start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
     #              battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
-
-
 
     headers.styled_coloured_print_centered(headers.lang.woke_up)
     headers.styled_coloured_print_centered(headers.lang.not_knowing)
@@ -452,10 +448,11 @@ def dummy_room():
 
 
 class corridor:
-    def __init__(self, things_in_corridor: list = None, things_functions = None, enter_text: str = "Entered."):
+    def __init__(self, things_in_corridor: list = None, things_functions=None, enter_text: str = "Entered."):
         self.enter_text = enter_text
         self.things_in_corridor = things_in_corridor
         self.things_functions = things_functions
+
     def enter(self):
         headers.clear()
         headers.space_down_three_new_lines()
@@ -467,7 +464,8 @@ class corridor:
         while True:
             headers.clear()
             headers.space_down_three_new_lines()
-            headers.styled_coloured_print_centered(text="You notice a few things in your surrounding: ", colour="orange", instant=True)
+            headers.styled_coloured_print_centered(text="You notice a few things in your surrounding: ",
+                                                   colour="orange", instant=True)
             headers.space_down_three_new_lines()
             tempNUM = 1
             for item in self.things_in_corridor:
@@ -482,6 +480,7 @@ class corridor:
                 self.things_functions[1]()
                 break
 
+
 def inspect(object_to_inspect):
     headers.styled_coloured_print_centered(text=object_to_inspect.description, colour="blue")
     headers.space_down_three_new_lines()
@@ -491,12 +490,14 @@ def inspect(object_to_inspect):
 def strange_door():
     headers.clear()
     headers.space_down_three_new_lines()
-    headers.styled_coloured_print_centered(text="Upon walking up to the strange looking door, you start hearing a water-like noise coming from behind.")
+    headers.styled_coloured_print_centered(
+        text="Upon walking up to the strange looking door, you start hearing a water-like noise coming from behind.")
     headers.space_down_three_new_lines()
     headers.enter_to_continue()
     headers.clear()
     headers.space_down_three_new_lines()
-    headers.styled_coloured_print_centered(text="And before you could react you stood face to face with a medium sized slime!")
+    headers.styled_coloured_print_centered(
+        text="And before you could react you stood face to face with a medium sized slime!")
     headers.enter_to_continue()
 
 
@@ -505,7 +506,8 @@ def sticky_slime():
     headers.space_down_three_new_lines()
     headers.styled_coloured_print_centered("You walk to the oddly shaped puddle.")
     time.sleep(2)
-    headers.styled_coloured_print_centered("The puddle looks like something you would find in the trash can and that's been laying there for at least a few hundred years.")
+    headers.styled_coloured_print_centered(
+        "The puddle looks like something you would find in the trash can and that's been laying there for at least a few hundred years.")
     headers.space_down_three_new_lines()
     time.sleep(2)
     result = what_do_you_want_to_do_universal(["Touch the puddle.", "Stand in the puddle."])
@@ -528,6 +530,7 @@ def sticky_slime():
         headers.clear()
         headers.styled_coloured_print_centered("And suddenly the puddle started to rise!")
         time.sleep(3)
+
 
 class door:
     def __init__(self, opened):
@@ -602,46 +605,96 @@ def room01():
     # start_battle(who_you_fighting=slime, portrate=sym.slime_01,
     #              battle_voice_lines=["*Squibble squibble*", "*More squibble squibble but louder*"])
 
-
-
-
-    # Locate First Chest
-    firstChest = headers.misc.chest([headers.items.dream_shard, headers.items.old_rag])
+    # # Locate First Chest
+    # firstChest = headers.misc.chest([headers.items.dream_shard, headers.items.old_rag])
+    #
+    # headers.clear()
+    # headers.space_down_three_new_lines()
+    # headers.styled_coloured_print_centered(text="In the end of the corridor you notice there's a chest or coffin of some sort.", colour="orange")
+    # time.sleep(1)
+    # headers.space_down_three_new_lines()
+    # headers.styled_coloured_print_centered(text="You decide to walk to the chest.", colour="orange")
+    # time.sleep(1)
+    # headers.enter_to_continue()
+    # while True:
+    #     headers.clear()
+    #     headers.space_down_three_new_lines()
+    #     firstChest.chest_enter()
+    #     question = what_do_you_want_to_do_universal(["Open the chest", "Inspect", "- Continue -"])
+    #     if question == 1:
+    #         # Open chest
+    #         headers.clear()
+    #         if len(firstChest.items) > 0:
+    #             firstChest.open()
+    #         else:
+    #             headers.space_down_three_new_lines()
+    #             headers.styled_coloured_print_centered(text="You tried opening the already opened chest? And you managed to do it!", colour="orange")
+    #             headers.space_down_three_new_lines()
+    #             headers.enter_to_continue()
+    #     elif question == 2:
+    #         # Inspect
+    #         inspect(firstChest)
+    #     elif question == 3:
+    #         break
 
     headers.clear()
     headers.space_down_three_new_lines()
-    headers.styled_coloured_print_centered(text="In the end of the corridor you notice there's a chest or coffin of some sort.", colour="orange")
-    time.sleep(1)
-    headers.space_down_three_new_lines()
-    headers.styled_coloured_print_centered(text="You decide to walk to the chest.", colour="orange")
-    time.sleep(1)
+    headers.styled_coloured_print_centered(text="You move further down the corridor...")
+    time.sleep(2)
+    headers.space_down_three_new_lines(True)
+    headers.styled_coloured_print_centered(text="You end up at a sign and two doors.")
     headers.enter_to_continue()
-    while True:
-        headers.clear()
-        headers.space_down_three_new_lines()
-        firstChest.chest_enter()
-        question = what_do_you_want_to_do_universal(["Open the chest", "Inspect", "- Continue -"])
-        if question == 1:
-            # Open chest
-            headers.clear()
-            if len(firstChest.items) > 0:
-                firstChest.open()
-            else:
-                headers.space_down_three_new_lines()
-                headers.styled_coloured_print_centered(text="You tried opening the already opened chest? And you managed to do it!", colour="orange")
-                headers.space_down_three_new_lines()
-                headers.enter_to_continue()
-        elif question == 2:
-            # Inspect
-            inspect(firstChest)
-        elif question == 3:
-            break
-
     headers.clear()
     headers.space_down_three_new_lines()
-    headers.styled_coloured_print_centered(text="You move further down the corridor ")
+    headers.get_lines(text_obj=sym.two_doors, colour="purpleblue")
+    headers.get_lines(text_obj=sym.sign_01, colour="orange")
+    time.sleep(2)
+    headers.styled_coloured_print_centered(text="On the sign you can read: ")
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="GO IN ONE DOOR, AND THE OTHER ONE SHALL DISAPPEAR.", colour="red")
+    headers.space_down_three_new_lines()
+    while True:
+        question = what_do_you_want_to_do_universal(["Door to the left", "Door to the right"])
+        if question == 1:
+            # Left door
+            room_01_left_selection()
+            break
+        elif question == 1:
+            # Right door
+            room_01_right_selection()
+            break
+        else:
+            headers.clear()
+            headers.space_down_three_new_lines()
+            headers.get_lines(text_obj=sym.two_doors, colour="purpleblue")
+            headers.get_lines(text_obj=sym.sign_01, colour="orange")
+            pass
 
-    question = what_do_you_want_to_do_universal([""])
+
+def room_01_left_selection():
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="*You enter the door on the left*", colour="purpleblue")
+    headers.styled_coloured_print_centered(text="- [PATH CHOSEN] -", colour="red")
+    time.sleep(2)
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="Right when you entered the room,")
+    time.sleep(1)
+    headers.styled_coloured_print_centered(text="you were met with a strong green light instantly blinding you.")
+    pass
+
+
+def room_01_right_selection():
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="*You enter the door on the left*", colour="purpleblue")
+    headers.styled_coloured_print_centered(text="- [PATH CHOSEN] -", colour="red")
+    time.sleep(2)
+    headers.clear()
+    headers.space_down_three_new_lines()
+
+    pass
 
 
 class realm:
