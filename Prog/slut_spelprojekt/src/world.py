@@ -237,7 +237,7 @@ def attack_npc(who_to_attack, portrate):
     # print(headers.backpackGetAllItems())
 
 
-def start_battle(who_you_fighting, battle_voice_lines, portrate=None):
+def start_battle(who_you_fighting, battle_voice_lines = None, portrate=None):
     if portrate is not None:
         headers.clear()
         headers.get_lines(text_obj=portrate, output=True, instant=True, colour="redpurple")
@@ -371,14 +371,13 @@ def dummy_room():
     print()
     time.sleep(1)
     # rm.print(headers.lang.what_do_you_do)
-
-    headers.get_lines(sym.door_closed, True)
+    headers.get_lines(text_obj=sym.door_closed, output=True, instant=True)
     while True:
         headers.styled_coloured_print_centered(headers.lang.door_selections)
         usr_sel = headers.styles_input("\n>> ", centered=True)
         if usr_sel.__contains__("1"):
             headers.clear()
-            headers.get_lines(sym.door_closed, True)
+            headers.get_lines(text_obj=sym.door_closed, output=True, instant=True)
             headers.styled_coloured_print_centered(headers.lang.you_knock_on_the_door)
             print("", flush=True)
             time.sleep(1)
@@ -387,7 +386,7 @@ def dummy_room():
             headers.clear()
             headers.space_down_three_new_lines()
             headers.styled_coloured_print_centered(headers.lang.the_door_opened)
-            headers.get_lines(sym.door_open, True)
+            headers.get_lines(text_obj=sym.door_open, output=True, instant=True)
             headers.styled_coloured_print_centered(headers.lang.and_out_came)
 
             break
@@ -395,7 +394,7 @@ def dummy_room():
             headers.clear()
             headers.space_down_three_new_lines()
             headers.styled_coloured_print_centered(headers.lang.you_tried_opening_door),
-            headers.get_lines(sym.door_closed, True)
+            headers.get_lines(text_obj=sym.door_closed, output=True, instant=True)
             time.sleep(1)
             while True:
                 headers.space_down_three_new_lines()
@@ -419,14 +418,14 @@ def dummy_room():
                     headers.enter_to_continue()
                 headers.clear()
                 headers.styled_coloured_print_centered(headers.lang.then_it_opened)
-                headers.get_lines(sym.door_open, True)
+                headers.get_lines(text_obj=sym.door_open, output=True, instant=True)
                 headers.styled_coloured_print_centered(headers.lang.and_out_came)
                 break
             break
         else:
             pass
 
-    headers.get_lines(sym.knight_standing, True)
+    headers.get_lines(text_obj=sym.knight_standing, output=True, instant=True)
     dummy_knight = headers.misc.npc(alive=True, name="Carlos", level=1, type="knight",
                                     user_talk_selections=[headers.lang.usr_knight_line_sel_01_line,
                                                           headers.lang.usr_knight_line_sel_02_line],
@@ -442,7 +441,7 @@ def dummy_room():
     headers.enter_to_continue()
     headers.clear()
 
-    headers.get_lines(sym.knight_standing, True)
+    headers.get_lines(text_obj=sym.knight_standing, output=True, instant=True)
     start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
                  battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
 
@@ -585,57 +584,61 @@ class room:
 
 
 def room01():
-    # cor = corridor(enter_text="You entered a cold and wet corridor.", things_in_corridor=["Strange door.", "Weird puddle of sticky residue?"], things_functions=[strange_door, sticky_slime])
-    #
-    # cor.enter()
-    # what_do_you_want_to_do(cor)
-    #
-    # # Temp testing lines to skip to the good part and not have to go through the whole story and convo
-    #
-    # slime = headers.misc.npc(alive=True, name="Quibble", level=2, type="slime",
-    #                                 user_talk_selections=["You asked the slime about slime..?",
-    #                                                       "You tried using a spoon to collect some of the slime residue..."],
-    #                                 talk_selections=["Slime???", "Spoon."], status=None,
-    #                                 char_sym=sym.slime_01, attack_line="squished itself against the floor making a quiet splash sound!",
-    #                                 responses=["just kept on making splash noises out of pure happiness!",
-    #                                            "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
-    # headers.clear()
-    #
-    # headers.get_lines(text_obj=sym.slime_01, output=True, instant=True, colour="pink")
-    # start_battle(who_you_fighting=slime, portrate=sym.slime_01,
-    #              battle_voice_lines=["*Squibble squibble*", "*More squibble squibble but louder*"])
+    cor = corridor(enter_text="You entered a cold and wet corridor.", things_in_corridor=["Strange door.", "Weird puddle of sticky residue?"], things_functions=[strange_door, sticky_slime])
 
-    # # Locate First Chest
-    # firstChest = headers.misc.chest([headers.items.dream_shard, headers.items.old_rag])
-    #
-    # headers.clear()
-    # headers.space_down_three_new_lines()
-    # headers.styled_coloured_print_centered(text="In the end of the corridor you notice there's a chest or coffin of some sort.", colour="orange")
-    # time.sleep(1)
-    # headers.space_down_three_new_lines()
-    # headers.styled_coloured_print_centered(text="You decide to walk to the chest.", colour="orange")
-    # time.sleep(1)
-    # headers.enter_to_continue()
-    # while True:
-    #     headers.clear()
-    #     headers.space_down_three_new_lines()
-    #     firstChest.chest_enter()
-    #     question = what_do_you_want_to_do_universal(["Open the chest", "Inspect", "- Continue -"])
-    #     if question == 1:
-    #         # Open chest
-    #         headers.clear()
-    #         if len(firstChest.items) > 0:
-    #             firstChest.open()
-    #         else:
-    #             headers.space_down_three_new_lines()
-    #             headers.styled_coloured_print_centered(text="You tried opening the already opened chest? And you managed to do it!", colour="orange")
-    #             headers.space_down_three_new_lines()
-    #             headers.enter_to_continue()
-    #     elif question == 2:
-    #         # Inspect
-    #         inspect(firstChest)
-    #     elif question == 3:
-    #         break
+    cor.enter()
+    what_do_you_want_to_do(cor)
+
+    # Temp testing lines to skip to the good part and not have to go through the whole story and convo
+
+    slime = headers.misc.npc(alive=True, name="Quibble", level=2, type="slime",
+                                    user_talk_selections=["You asked the slime about slime..?",
+                                                          "You tried using a spoon to collect some of the slime residue..."],
+                                    talk_selections=["Slime???", "Spoon."], status=None,
+                                    char_sym=sym.slime_01, attack_line="squished itself against the floor making a quiet splash sound!",
+                                    responses=["just kept on making splash noises out of pure happiness!",
+                                               "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
+    headers.clear()
+
+    headers.get_lines(text_obj=sym.slime_01, output=True, instant=True, colour="pink")
+    start_battle(who_you_fighting=slime, portrate=sym.slime_01,
+                 battle_voice_lines=["*Squibble squibble*", "*More squibble squibble but louder*"])
+
+    # Locate First Chest
+    firstChest = headers.misc.chest([headers.items.dream_shard, headers.items.old_rag], "A true old wooden chest.. Has certinly seen better days.")
+
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="In the end of the corridor you notice there's a chest or coffin of some sort.", colour="orange")
+    time.sleep(1)
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="You decide to walk to the chest.", colour="orange")
+    time.sleep(1)
+    headers.enter_to_continue()
+    while True:
+        headers.clear()
+        headers.space_down_three_new_lines()
+        firstChest.chest_enter()
+        question = what_do_you_want_to_do_universal(["Open the chest", "Inspect", "- Continue -"])
+        if question == 1:
+            # Open chest
+            headers.clear()
+            if len(firstChest.items) > 0:
+                firstChest.open()
+            else:
+                headers.space_down_three_new_lines()
+                headers.styled_coloured_print_centered(text="You tried opening the already opened chest? And you managed to do it!", colour="orange")
+                headers.space_down_three_new_lines()
+                headers.enter_to_continue()
+        elif question == 2:
+            # Inspect
+            inspect(firstChest)
+        elif question == 3:
+            break
+
+
+
+
 
     headers.clear()
     headers.space_down_three_new_lines()
@@ -685,11 +688,15 @@ def room_01_left_selection():
     headers.get_lines(text_obj=sym.wall_of_souls, colour="greenwhite")
     headers.enter_to_continue()
     wall_of_souls = headers.misc.npc(alive=True, name="Wall Of Souls", level=2, type="Soul Eater",
-                                    talk_selections=["Interests", "Blind back"], status=None, user_talk_selections=["You tried asking the wall about it's interests, It did not seem amused.",
-                                                          "You used a small handheld mirror to blind "],
-                                    char_sym=sym.slime_01, attack_line="squished itself against the floor making a quiet splash sound!",
-                                    responses=["just kept on making splash noises out of pure happiness!",
-                                               "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
+                                     talk_selections=["Interests", "Blind back"], status=None, user_talk_selections=[
+            "You tried asking the wall about it's interests.",
+            "You used a small handheld mirror to reflect back the light!"],
+                                     char_sym=sym.slime_01,
+                                     attack_line="shines through you!",
+                                     responses=["heard what you said, But still didn't seem amused!",
+                                                "does not have eyes, which you soon enough realised..."], loot=[headers.items.green_lantern_of_eternal_souls])
+    start_battle(who_you_fighting=wall_of_souls, portrate=sym.wall_of_souls,
+                 battle_voice_lines=["*A strange light filled the room*", "*Green light shall shine through you*"])
 
 
 def room_01_right_selection():
@@ -700,7 +707,6 @@ def room_01_right_selection():
     time.sleep(2)
     headers.clear()
     headers.space_down_three_new_lines()
-
 
 
 class realm:

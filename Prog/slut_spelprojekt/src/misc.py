@@ -126,6 +126,8 @@ class npc:
                 headers.backpackAddItem(item, 1)
                 headers.grantXP(headers.random.randint(5, 40))
         self.alive = False
+        headers.space_down_three_new_lines()
+        headers.enter_to_continue()
 
     def passBy(self):
         headers.grantXP(headers.random.randint(5, 40))

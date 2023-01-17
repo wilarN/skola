@@ -31,7 +31,7 @@ difficulty = "Difficulty - (1-4 EASY // 4-7 MEDIUM // 7-10 HARD): "
 hero_name = "Please select a name for your hero: "
 
 woke_up = "You woke up..."
-not_knowing = "Not knowing what, and where you are..."
+not_knowing = "Not knowing where you were..."
 
 create_realm_text = "Now, let's move on to creating the realm."
 
