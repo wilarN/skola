@@ -450,6 +450,8 @@ def styled_coloured_print(text, colour=None, instant=False):
     orange --> orange
     pink --> pink
     purpleblue --> purple to blue gradient
+    green --> green
+    greenwhite --> greenwhite
     Default instant --> False
     '''
     if colour is None:
@@ -465,6 +467,10 @@ def styled_coloured_print(text, colour=None, instant=False):
             col = ps.Colors.cyan
         elif colour == "pink":
             col = ps.Colors.pink
+        elif colour == "green":
+            col = ps.Colors.green
+        elif colour == "greenwhite":
+            col = ps.Colors.green_to_white
         elif colour == "purpleblue":
             col = ps.Colors.purple_to_blue
         ps.Write.Print(text=text, color=col, interval=time_delay)

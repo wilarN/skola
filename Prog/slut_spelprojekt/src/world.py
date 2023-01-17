@@ -682,7 +682,14 @@ def room_01_left_selection():
     headers.styled_coloured_print_centered(text="Right when you entered the room,")
     time.sleep(1)
     headers.styled_coloured_print_centered(text="you were met with a strong green light instantly blinding you.")
-    pass
+    headers.get_lines(text_obj=sym.wall_of_souls, colour="greenwhite")
+    headers.enter_to_continue()
+    wall_of_souls = headers.misc.npc(alive=True, name="Wall Of Souls", level=2, type="Soul Eater",
+                                    talk_selections=["Interests", "Blind back"], status=None, user_talk_selections=["You tried asking the wall about it's interests, It did not seem amused.",
+                                                          "You used a small handheld mirror to blind "],
+                                    char_sym=sym.slime_01, attack_line="squished itself against the floor making a quiet splash sound!",
+                                    responses=["just kept on making splash noises out of pure happiness!",
+                                               "made sure you got the perfect amount of unknown residue just to keep you curious."], loot=[headers.items.unknown_residue])
 
 
 def room_01_right_selection():
@@ -694,7 +701,6 @@ def room_01_right_selection():
     headers.clear()
     headers.space_down_three_new_lines()
 
-    pass
 
 
 class realm:
