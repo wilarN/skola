@@ -114,6 +114,13 @@ def what_do_you_want_to_do_universal(selections):
             return 1
         elif what_to_do_user_anw.__contains__("2"):
             return 2
+
+        if len(selections) > 2:
+            if what_to_do_user_anw.__contains__("3"):
+                return 3
+            else:
+                pass
+
         else:
             pass
 
@@ -476,7 +483,9 @@ class corridor:
                 break
 
 def inspect(object_to_inspect):
-    headers.
+    headers.styled_coloured_print_centered(text=object_to_inspect.description, colour="blue")
+    headers.space_down_three_new_lines()
+    headers.enter_to_continue()
 
 
 def strange_door():
@@ -611,7 +620,7 @@ def room01():
         headers.clear()
         headers.space_down_three_new_lines()
         firstChest.chest_enter()
-        question = what_do_you_want_to_do_universal(["Open the chest", "Inspect"])
+        question = what_do_you_want_to_do_universal(["Open the chest", "Inspect", "- Continue -"])
         if question == 1:
             # Open chest
             headers.clear()
@@ -622,9 +631,17 @@ def room01():
                 headers.styled_coloured_print_centered(text="You tried opening the already opened chest? And you managed to do it!", colour="orange")
                 headers.space_down_three_new_lines()
                 headers.enter_to_continue()
-        else:
+        elif question == 2:
             # Inspect
             inspect(firstChest)
+        elif question == 3:
+            break
+
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="You move further down the corridor ")
+
+    question = what_do_you_want_to_do_universal([""])
 
 
 class realm:
