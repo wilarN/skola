@@ -418,7 +418,7 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
     Default instant --> False
     '''
     if colour is None:
-        ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan_to_green, interval=time_delay)
+        ps.Write.Print(text=ps.Center.XCenter(text), color=ps.Colors.cyan, interval=time_delay)
     else:
         if colour == "red":
             col = ps.Colors.red
@@ -574,6 +574,6 @@ def begin_adventure(realm, first_time: bool):
     else:
         slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
         # -- Temp disabled, Enable all the world. < room > 's when release. (Little comment reminder for myself).
-        world.dummy_room()
+        # world.dummy_room()
         print("[DEBUG] - TUTORIAL DONE")
         world.room01()
