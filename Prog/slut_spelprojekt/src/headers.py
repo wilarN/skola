@@ -554,9 +554,9 @@ def check_inventory():
 
     tempNUM = 1
     styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue", instant=True)
-    styled_coloured_print_centered(text=f"- [ {player.name}'s INVENTORY] -", colour="pink")
+    styled_coloured_print_centered(text=f"- [ {player.name}'s INVENTORY] -\n", colour="pink")
     for item in get_format_inventory():
-        styled_coloured_print_centered(f"[{tempNUM}] - {item}")
+        styled_coloured_print_centered(f"[{tempNUM}] - {item}", instant=True)
         tempNUM += 1
 
     styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue", instant=True)
