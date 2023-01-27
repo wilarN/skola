@@ -711,19 +711,20 @@ def room_01_right_selection():
     time.sleep(2)
     headers.clear()
     headers.space_down_three_new_lines()
-    headers.styled_coloured_print_centered(text="Right when you entered the room,")
+    headers.styled_coloured_print_centered(text="Right when you entered the room,", colour="blue")
     time.sleep(1)
     headers.get_lines(text_obj=sym.sign_01, colour="orange")
     time.sleep(1)
-    headers.styled_coloured_print_centered(text="you were met with another sign, reading:")
+    headers.styled_coloured_print_centered(text="you were met with another sign, reading:", colour="blue")
     headers.space_down_three_new_lines()
     headers.styled_coloured_print_centered(
-        text='"RIGHT IS NOT ALWAYS RIGHT, BUT LEFT ALMOST ALWAYS CERTAINLY IS NOT THE RIGHT ONE.", colour="orange"')
+        text='"RIGHT IS NOT ALWAYS RIGHT, BUT LEFT ALMOST ALWAYS CERTAINLY IS NOT THE RIGHT ONE."', colour="red")
     time.sleep(2)
-    headers.styled_coloured_print_centered(text="You think about it for a second.")
+    headers.styled_coloured_print_centered(text="You think about it for a second.", colour="blue")
     headers.space_down_three_new_lines(single=True)
-    headers.styled_coloured_print_centered(text="Reading it over and over, but it still don't make any sense.")
+    headers.styled_coloured_print_centered(text="Reading it over and over, but it still don't make any sense.", colour="blue")
     while True:
+        headers.space_down_three_new_lines()
         sel = what_do_you_want_to_do_universal(["Move on", "Read again"])
         if sel == 1:
             # Move on.
