@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    scrollbar-color: #ffbb00 #19d8df;
+    transition-duration: .4s;
+}
+
+body{
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
+
+.main-div{
+    background-color: rgb(48, 48, 48);
+    border: 5px solid black;
+    border-radius: 40px;
+    padding: 20px;
+    text-align: center;
+    color: purple;
+    font-size: 100px;
+}
+#result{
+    color: orange;
+}
+
+button{
+    padding: 20px;
+    background-color: #19d8df;
+}
+
+button:hover{
+    background-color: #ffbb00;
+}
+
+#att{
+    color: crimson;
+}
