@@ -84,7 +84,7 @@ class npc:
                 self.voicelines.append(line)
 
     def portrait(self):
-        pass
+        headers.get_lines(text_obj=self.char_sym, output=True, instant=True)
 
     def attack_vline(self):
         '''
