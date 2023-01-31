@@ -58,10 +58,12 @@ def intro_menu():
     headers.get_lines(text_obj=headers.world.sym.op3x_text, instant=True, output=True, colour="purpleblue")
     # headers.styled_coloured_print_centered(text=f"- AURORA - {game_version}")
     headers.world.flush()
-    headers.styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+-")
-    headers.styled_coloured_print_centered(text=f"- AURORA - {game_version}")
-    headers.styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+-")
-    time.sleep(1)
+    headers.styled_coloured_print_centered(text=f"-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n"
+                                                f"+       ©AURORA - {game_version}     -\n"
+                                                f"-           2023-01-31         +\n"
+                                                f"+                              -\n"
+                                                f"-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n", instant=True)
+    time.sleep(2)
     headers.styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-\n"
                                                 "+                                                    + \n"
                                                 "-           A Terminal indie RPG made by             - \n"
@@ -102,7 +104,7 @@ def intro_menu():
     headers.space_down_three_new_lines()
     headers.styled_coloured_print_centered(text=f'{headers.get_random_quote()}', instant=False, colour="pink")
     time.sleep(2)
-    headers.space_down_three_new_lines(True)
+    print()
     headers.styled_coloured_print_centered(text="-- Sun Tzu, The Art of War.", instant=True, colour="yellow")
 
     headers.enter_to_continue()
@@ -115,10 +117,10 @@ language = headers.check_json_value_settings("lang")
 # User selects translation of game.
 while language == "NULL":
 
-    usr_language = input("Swedish or english? - [s/S - e/E]")
-
+    # usr_language = input("Swedish or english? - [s/S - e/E]")
+    usr_language = "e"
     print(
-        "[WARNING] - MUST RUN AS SUDO ON LINUX TO FUNCTION, SOME LIBRARIES REQUIRE SUDO PRIVILEGES SUCH AS KEYBOARD DETECTION.")
+        "\n\n[OBS!!!] - MUST RUN AS SUDO ON LINUX TO FUNCTION, SOME LIBRARIES REQUIRE SUDO PRIVILEGES SUCH AS KEYBOARD DETECTION ON LINUX SYSTEMS.")
     headers.enter_to_continue()
 
     if usr_language.lower() == "e":
@@ -150,6 +152,8 @@ def main():
     headers.clear()
     if headers.check_json_value_settings("player_name") == "NULL":
         headers.space_down_three_new_lines()
+        headers.styled_line(colour="purpleblue")
+        headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(lang.player_begin_adventure)
 
         # Create Character and save playerdata to settings.json.
@@ -177,5 +181,6 @@ def main():
 
 
 if __name__ == '__main__':
-    intro_menu()
+    if headers.check_json_value_settings("player_experience") == "NULL":
+        intro_menu()
     main()

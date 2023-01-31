@@ -385,8 +385,7 @@ sun_tzu_quotes = ["The wise warrior avoids the battle.",
 
 
 def get_random_quote():
-    sel_quote = random.randint(0, len(sun_tzu_quotes) - 1)
-    return sun_tzu_quotes[sel_quote]
+    return sun_tzu_quotes[random.randint(0, len(sun_tzu_quotes) - 1)]
 
 
 def get_realm_data(realm_data_selection: int):
@@ -526,6 +525,30 @@ def styled_coloured_print(text, colour=None, instant=False):
     print("", flush=True)
 
 
+def styled_thinking_dots(continuous_times: int = 1, colour: str = None, delay: float = 1):
+    """
+    :param continuous_times: How many times it should repeat the process.
+    :param colour: What colour.
+    :param delay: In seconds.
+    :return return: No return value.
+    """
+    for i in range(0, continuous_times):
+        print("", flush=True)
+        if colour is None:
+            styled_coloured_print_centered(text="...")
+        else:
+            styled_coloured_print_centered(text="...", colour=colour)
+        time.sleep(delay)
+    print("", flush=True)
+
+
+def styled_line(colour: str = None):
+    if colour is None:
+        styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-")
+    else:
+        styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-", colour=colour)
+
+
 def styled_coloured_print_boxed_centered(text):
     ps.Write.Print(color=ps.Colors.cyan_to_green,
                    text=ps.Box.Box(ps.Center.XCenter(text), up_left="+", left_line="-", right_line="-", up_right="+",
@@ -566,10 +589,42 @@ def check_against_blacklisted_words(word: str):
             return False
 
 
+def check_against_set(word: str, set):
+    for i in set:
+        if word == i:
+            return True
+        else:
+            pass
+    else:
+        return False
+
+
+diff_settings = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
+
+
 def create_realm(empty: bool):
     if not empty:
-        temp_realm_name = styles_input(f"\n{lang.realm_name}", True)
-        temp_diff = styles_input(f"\n{lang.difficulty}", True)
+        while True:
+            temp_realm_name = styles_input(f"\n{lang.realm_name}", True)
+            temp_realm_name = temp_realm_name.lower().strip(" ")
+            if temp_realm_name == "" or len(temp_realm_name.strip(" ")) < 3:
+                styled_coloured_print_centered(
+                    text="Realm name has to be longer than two characters... Please try again...")
+                pass
+            else:
+                break
+        while True:
+            temp_diff = styles_input(f"\n{lang.difficulty}", True)
+            temp_diff = temp_diff.lower().strip(" ")
+            if temp_diff == "":
+                styled_coloured_print_centered(
+                    text="This field cannot be left empty.... Please enter a valid difficulty...")
+                pass
+            elif check_against_set(word=temp_diff, set=diff_settings):
+                break
+            else:
+                pass
+
         cur_realm = world.realm(realm_name=remove_spaces_from_string(temp_realm_name), realm_difficulty=temp_diff)
 
     else:
@@ -596,7 +651,12 @@ def create_character(empty: bool):
                                     status="None", alive=True,
                                     experience=0, current_room_index=0, backpack=None, weapon_type="Default")
         time.sleep(0.5)
-        styled_coloured_print_centered(f"{temp_char_name}... {lang.very_magestic}... {lang.shall_be_remembered_quote}")
+        space_down_three_new_lines(True)
+        styled_coloured_print_centered(f"{temp_char_name.capitalize()}...", colour="greenwhite")
+        time.sleep(2)
+        styled_thinking_dots(colour="greenwhite", continuous_times=1, delay=0.5)
+        styled_coloured_print_centered(f"What a truly wonderful name...", colour="greenwhite")
+
         time.sleep(4)
     else:
         cur_character = misc.player(name="", health=100, level=1, mana=100, status="None", alive=True,
@@ -608,6 +668,17 @@ def get_format_inventory():
     val = check_json_value_settings("backpack")
     result = val.split(";")
     return result
+
+
+def load_most_recent_room_by_index():
+    last_saved_room_index = check_json_value_settings("current_room_index")
+    if last_saved_room_index == "NULL":
+        return world.loaded_rooms_indexed["1"]
+    else:
+        try:
+            return world.loaded_rooms_indexed[last_saved_room_index]
+        except:
+            return world.loaded_rooms_indexed["1"]
 
 
 def space_down_three_new_lines(single=True, five: bool = False):
@@ -647,11 +718,11 @@ def begin_adventure(realm, first_time: bool):
         space_down_three_new_lines()
         styled_coloured_print_centered(lang.begin_welcome_first_time)
         time.sleep(2)
-        world.introduction()
-    else:
-        slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
-        # -- Temp disabled, Enable all the world. < room > 's when release. (Little comment reminder for myself).
-        # world.dummy_room()
-        print("[DEBUG] - TUTORIAL DONE")
-        backpackAddItem(items.diamond_sword, 1)
-        world.room01()
+
+    load_most_recent_room_by_index().__call__()
+    slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
+    # -- Temp disabled, Enable all the world. < room > 's when release. (Little comment reminder for myself).
+    # world.dummy_room()
+    print("[DEBUG] - TUTORIAL DONE")
+    backpackAddItem(items.diamond_sword, 1)
+    # world.room01()

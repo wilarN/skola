@@ -29,7 +29,9 @@ def introduction():
     headers.styled_coloured_print_centered(headers.lang.rules_and_introduction)
     headers.enter_to_continue()
     headers.clear()
-    headers.styled_coloured_print_centered("\n\n\n" + headers.lang.are_you_ready_to_start)
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(headers.lang.are_you_ready_to_start)
+    headers.space_down_three_new_lines()
     headers.styles_input(headers.lang.Press_enter_to_truly_start_adventure, True)
     headers.update_json_settings("Has_Begun", True)
     headers.clear()
@@ -39,7 +41,7 @@ def introduction():
 def calculate_damage(ground_damage: int = 1):
     total_damage = round((headers.reverse_difficulty_number() / 10) * (random.randint(3, 7)) * ground_damage)
     # Instant kill for testing purposes (temporary)
-    # total_damage = 100
+    total_damage = 100
     return total_damage
 
 
@@ -134,7 +136,7 @@ def what_do_you_want_to_do_universal(selections):
 
 
 def defend_instructions():
-    headers.styled_coloured_print_centered(headers.lang.defend_instructions)
+    headers.styled_coloured_print_centered(text=headers.lang.defend_instructions, instant=True)
     time.sleep(2)
     headers.enter_to_continue()
 
@@ -350,6 +352,8 @@ def start_battle(who_you_fighting, battle_voice_lines=None, portrate=None):
 
 
 def dummy_room():
+    headers.update_json_settings("current_room_index", "1")
+
     rm = room(type=1)
     rm.get_monsters()
     rm.start()
@@ -592,6 +596,8 @@ class room:
 
 
 def room01():
+    headers.update_json_settings("current_room_index", "2")
+
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
 
     cor = corridor(enter_text="You entered a cold and wet corridor.",
@@ -759,13 +765,18 @@ def room_01_right_selection():
                 colour="greenyellow")
             time.sleep(1)
             headers.enter_to_continue()
-            headers.styled_coloured_print_centered(text="But upon leaving the sign, you hear something crackling behind you.", colour="greenyellow")
+            headers.styled_coloured_print_centered(
+                text="But upon leaving the sign, you hear something crackling behind you.", colour="greenyellow")
             time.sleep(1)
-            headers.styled_coloured_print_centered(text="When you turned around to see what was there, you stood eye to eye with a sign monster.", colour="greenyellow")
+            headers.styled_coloured_print_centered(
+                text="When you turned around to see what was there, you stood eye to eye with a sign monster.",
+                colour="greenyellow")
             headers.enter_to_continue()
             headers.clear()
             headers.space_down_three_new_lines()
-            headers.styled_coloured_print_centered(text="You've read from books that these creatures are so called mimics. Who usually take the form of chests or even signs.", colour="greenyellow")
+            headers.styled_coloured_print_centered(
+                text="You've read from books that these creatures are so called mimics. Who usually take the form of chests or even signs.",
+                colour="greenyellow")
             headers.enter_to_continue()
             break
         elif sel == 2:
@@ -839,6 +850,11 @@ def room_01_right_selection():
                      "Its time."])
 
 
+# OBS, IMPORTANT ROOM ORDER BY INDEX!!
+loaded_rooms_indexed = {
+    "1": dummy_room,
+    "2": room01
+}
 
 
 class realm:

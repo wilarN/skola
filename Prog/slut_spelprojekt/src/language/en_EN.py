@@ -39,7 +39,8 @@ begin_welcome = "Welcome"
 
 welcome_back = "Welcome back"
 welcome_back_2 = "to"
-begin_welcome_first_time = f"Welcome to AURORA, Player. Now that you're ready for your adventure. Let's first start off with a few rules and goals."
+
+begin_welcome_first_time = f"Welcome to AURORA. Now that you're ready for your adventure. Let's first start off with a few rules and goals."
 
 rules_and_introduction = "\n-- Goals of AURORA --\n" \
                          "[1] - Gather items from fighting monsters.\n" \
@@ -89,8 +90,8 @@ knight_talk_selection = ["Compliment.", "Act."]
 usr_knight_line_sel_02_line = "Even though you find yourself inside, you somehow are able to scrape out a snowball from the wall and you throw it at the knight."
 usr_knight_line_sel_01_line = "You told the knight you really liked his armour."
 knight_reply_happy02 = "giggled behind the mask and even though you couldn't see him, an imaginary ghost told you he was probably smiling."
-knight_reply_fight_end01 = "got so suprised by your snowball scraping skills that he didn't want to fight you anymore...^"
-
+knight_reply_fight_end01 = "was extremely surprised by your snowball scraping skills. He tried doing the same thing, but failed miserably..."
+# ^ CHAR TO END BATTLE IN A FRIENDLY MANNER
 
 #################################
 
