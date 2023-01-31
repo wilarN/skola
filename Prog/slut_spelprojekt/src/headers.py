@@ -376,6 +376,19 @@ def get_user_data(player_data_selection: int):
         return check_json_value_settings("player_level")
 
 
+sun_tzu_quotes = ["The wise warrior avoids the battle.",
+                  "Build your opponent a golden bridge to retreat across.",
+                  "In the midst of chaos, there is also opportunity.",
+                  "To know your Enemy, you must become your Enemy.",
+                  "Even the finest sword plunged into salt water will eventually rust."
+                  "The greatest victory is that which requires no battle."]
+
+
+def get_random_quote():
+    sel_quote = random.randint(0, len(sun_tzu_quotes) - 1)
+    return sun_tzu_quotes[sel_quote]
+
+
 def get_realm_data(realm_data_selection: int):
     """"
     1: name
@@ -438,6 +451,7 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
     blue --> cyan
     orange --> orange
     pink --> pink
+    yellow --> yellow
     bluegreen --> bluegreen
     purpleblue --> purple to blue gradient
     greenyellow --> greenyellow
@@ -454,8 +468,12 @@ def styled_coloured_print_centered(text, colour=None, instant=False):
             col = ps.Colors.cyan
         elif colour == "pink":
             col = ps.Colors.pink
+        elif colour == "greenwhite":
+            col = ps.Colors.green_to_white
         elif colour == "purpleblue":
             col = ps.Colors.purple_to_blue
+        elif colour == "yellow":
+            col = ps.Colors.yellow
         elif colour == "bluegreen":
             col = ps.Colors.blue_to_green
         elif colour == "greenyellow":
@@ -508,8 +526,11 @@ def styled_coloured_print(text, colour=None, instant=False):
     print("", flush=True)
 
 
-def styled_coloured_print_boxed_lines(text):
-    print(ps.Center.XCenter(ps.Box.Lines(ps.Colorate.Horizontal(ps.Colors.yellow_to_red, text))))
+def styled_coloured_print_boxed_centered(text):
+    ps.Write.Print(color=ps.Colors.cyan_to_green,
+                   text=ps.Box.Box(ps.Center.XCenter(text), up_left="+", left_line="-", right_line="-", up_right="+",
+                                   down_right="+",
+                                   down_line="-", down_left="+", up_line="-"), interval=0.01)
 
 
 def styled_coloured_print_boxed(text):
@@ -533,7 +554,8 @@ def print_with_index(list_to_print: list):
     for char in range(len(list_to_print)):
         print(char, list_to_print[char])
 
-def check_against_blacklisted_words(word:str):
+
+def check_against_blacklisted_words(word: str):
     for name in name_blacklist:
         if word in name.lower():
             print("AAAAAAAAA")
@@ -542,6 +564,7 @@ def check_against_blacklisted_words(word:str):
             return True
         else:
             return False
+
 
 def create_realm(empty: bool):
     if not empty:
@@ -587,14 +610,17 @@ def get_format_inventory():
     return result
 
 
-def space_down_three_new_lines(single=True):
+def space_down_three_new_lines(single=True, five: bool = False):
     """
     Had to make this function since the pystyle writing method had a bug with new line spacing...
     """
-    if not single:
-        print("\n\n\n")
-    else:
+    if single:
         print("\n")
+
+    elif five:
+        print("\n\n\n\n\n")
+    else:
+        print("\n\n\n")
 
 
 def check_inventory():

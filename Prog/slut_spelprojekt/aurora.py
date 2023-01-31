@@ -2,8 +2,11 @@
 import os
 
 # Game specific modules
+import time
+
 import src.headers as headers
 
+game_version = "Demo 1.0"
 
 """
 ##########
@@ -51,6 +54,57 @@ def change_windowSize():
     os.system(cmd)
 
 
+def intro_menu():
+    headers.get_lines(text_obj=headers.world.sym.op3x_text, instant=True, output=True, colour="purpleblue")
+    # headers.styled_coloured_print_centered(text=f"- AURORA - {game_version}")
+    headers.world.flush()
+    headers.styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+-")
+    headers.styled_coloured_print_centered(text=f"- AURORA - {game_version}")
+    headers.styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+-")
+    time.sleep(1)
+    headers.styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-\n"
+                                                "+                                                    + \n"
+                                                "-       A Terminal indie RPG made by William.J       - \n"
+                                                "+                                                    + \n"
+                                                "-           This version is far from finished!       - \n"
+                                                "+           But I hope you enjoy anyways.            + \n"
+                                                "-                                                    - \n"
+                                                "+                                                    + \n"
+                                                "-    Updates will be available on the github page.   - \n"
+                                                "+                                                    + \n"
+                                                "-                                                    - \n"
+                                                "+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+ \n"
+                                                "-                                                    - \n"
+                                                "+  Credits:                                          + \n"
+                                                "-                                                    - \n"
+                                                "+     - Music: Toby Fox (UNDERTALE© & DELTARUNE©)    + \n"
+                                                "-                                                    - \n"
+                                                "+     - Stolen Code: Credits in comments in code     + \n"
+                                                "-       above the code snippet in question.          - \n"
+                                                "+       (See source code for reference)              + \n"
+                                                "-                                                    - \n"
+                                                "+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+ \n"
+                                                "-                                                    - \n"
+                                                "+      OBS!!!                                        + \n"
+                                                "-      Game progress is saved throughout playing     - \n"
+                                                "+      the game automatically.                       + \n"
+                                                "-      You might end up losing progress if the       - \n"
+                                                "+      terminal window is forcefully closed or if    + \n"
+                                                "-      the settings.json file gets corrupted.        - \n"
+                                                "+      (So don't mess with the settings.json)(!)     + \n"
+                                                "-                                                    - \n"
+                                                "+          @wilarN | @william.jsson@hotmail.com      +\n"
+                                                "-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-\n"
+                                                "", instant=True, colour="greenwhite")
+
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text=f'{headers.get_random_quote()}', instant=False, colour="pink")
+    time.sleep(2)
+    headers.space_down_three_new_lines(True)
+    headers.styled_coloured_print_centered(text="-- Sun Tzu, The Art of War.", instant=True, colour="yellow")
+
+    headers.enter_to_continue()
+
 change_windowSize()
 
 headers.___init()
@@ -58,9 +112,11 @@ headers.___init()
 language = headers.check_json_value_settings("lang")
 # User selects translation of game.
 while language == "NULL":
+
     usr_language = input("Swedish or english? - [s/S - e/E]")
 
-    print("[WARNING] - MUST RUN AS SUDO ON LINUX TO FUNCTION, SOME LIBRARIES REQUIRE SUDO PRIVILEGES SUCH AS KEYBOARD DETECTION.")
+    print(
+        "[WARNING] - MUST RUN AS SUDO ON LINUX TO FUNCTION, SOME LIBRARIES REQUIRE SUDO PRIVILEGES SUCH AS KEYBOARD DETECTION.")
     headers.enter_to_continue()
 
     if usr_language.lower() == "e":
@@ -119,4 +175,5 @@ def main():
 
 
 if __name__ == '__main__':
+    intro_menu()
     main()
