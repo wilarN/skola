@@ -214,12 +214,13 @@ def backpackAddItem(item, amount, chest:bool = False):
     else:
         ps.Write.Print(text=ps.Center.XCenter(f"You got {amount} {item.name}!"), color=ps.Colors.red_to_yellow,
                        interval=0.01)
-
+    # ':' Is used for description separation,
+    # ';' Is used for item separation.
     prev_items = check_json_value_settings("backpack")
     if prev_items.__contains__("NULL"):
-        update_json_settings("backpack", remove_spaces_from_string(item.name))
+        update_json_settings("backpack", (remove_spaces_from_string(item.name) + ":" + remove_spaces_from_string(item.description)))
     else:
-        update_json_settings("backpack", prev_items + ";" + remove_spaces_from_string(item.name))
+        update_json_settings("backpack", prev_items + ";" + remove_spaces_from_string(item.name) + ":" + remove_spaces_from_string(item.description))
 
 
 def backpackRemoveItem():
@@ -583,4 +584,5 @@ def begin_adventure(realm, first_time: bool):
         # -- Temp disabled, Enable all the world. < room > 's when release. (Little comment reminder for myself).
         # world.dummy_room()
         print("[DEBUG] - TUTORIAL DONE")
+        backpackAddItem(items.diamond_sword, 1)
         world.room01()
