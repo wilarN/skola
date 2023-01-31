@@ -81,7 +81,7 @@ def intro_menu():
                                                 "-                                                    - \n"
                                                 "+     - Music: Toby Fox (UNDERTALE™ & DELTARUNE™)    + \n"
                                                 "-                                                    - \n"
-                                                "+     - Stolen Code: Credits in comments in code     + \n"
+                                                "+     - Code Samples: Credits in comments in code    + \n"
                                                 "-       above the code snippet in question.          - \n"
                                                 "+       (See source code for reference)              + \n"
                                                 "-                                                    - \n"
