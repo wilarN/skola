@@ -53,6 +53,28 @@ settings = {
     "played_before": False
 }
 
+# To make it a bit more safe and clean, keep people out that want to use inappropriate names.
+# List taken from reddit top most used swearwords, profanity and slurs. (America)
+name_blacklist = ["Fuck"
+                  "Fucking"
+                  "Nigga"
+                  "Nigger"
+                  "Bitch"
+                  "Dick"
+                  "Slut"
+                  "Shag"
+                  "Slag"
+                  "Cock"
+                  "Cunt"
+                  "Crap"
+                  "Ass"
+                  "Pussy"
+                  "Tit"
+                  "Twat"
+                  "Minge"
+                  "Motherfucker"
+                  "Wanker"]
+
 
 def ___init():
     # To automate creating files and directories for the project. Lists for dynamic adding and removing stuff for later.
@@ -206,7 +228,7 @@ def grantXP(amount):
 
 
 # Backpack control
-def backpackAddItem(item, amount, chest:bool = False):
+def backpackAddItem(item, amount, chest: bool = False):
     world.flush()
     if not chest:
         ps.Write.Print(text=ps.Center.XCenter(f"{lang.Item_rewarded} {amount} {item.name}!"), color=ps.Colors.cyan,
@@ -218,9 +240,12 @@ def backpackAddItem(item, amount, chest:bool = False):
     # ';' Is used for item separation.
     prev_items = check_json_value_settings("backpack")
     if prev_items.__contains__("NULL"):
-        update_json_settings("backpack", (remove_spaces_from_string(item.name) + ":" + remove_spaces_from_string(item.description)))
+        update_json_settings("backpack",
+                             (remove_spaces_from_string(item.name) + ":" + remove_spaces_from_string(item.description)))
     else:
-        update_json_settings("backpack", prev_items + ";" + remove_spaces_from_string(item.name) + ":" + remove_spaces_from_string(item.description))
+        update_json_settings("backpack",
+                             prev_items + ";" + remove_spaces_from_string(item.name) + ":" + remove_spaces_from_string(
+                                 item.description))
 
 
 def backpackRemoveItem():
@@ -332,8 +357,6 @@ def get_free_room_index():
         return len(rooms)
     else:
         return False
-
-
 
 
 def get_user_data(player_data_selection: int):
@@ -510,6 +533,15 @@ def print_with_index(list_to_print: list):
     for char in range(len(list_to_print)):
         print(char, list_to_print[char])
 
+def check_against_blacklisted_words(word:str):
+    for name in name_blacklist:
+        if word in name.lower():
+            print("AAAAAAAAA")
+            styled_coloured_print_centered(
+                text="Please make sure your name is appropriate.. Try again.")
+            return True
+        else:
+            return False
 
 def create_realm(empty: bool):
     if not empty:
@@ -525,7 +557,18 @@ def create_realm(empty: bool):
 
 def create_character(empty: bool):
     if not empty:
-        temp_char_name = styles_input(f"\n{lang.hero_name}", True)
+        while True:
+            temp_char_name = styles_input(f"\n{lang.hero_name}", True)
+            temp_char_name = temp_char_name.lower().strip(" ")
+            if temp_char_name == "" or len(temp_char_name.strip(" ")) < 4:
+                styled_coloured_print_centered(
+                    text="Name has to be longer than three characters... Please try again...")
+                pass
+            elif check_against_blacklisted_words(temp_char_name.lower().strip(" ")):
+                pass
+            else:
+                break
+
         cur_character = misc.player(name=remove_spaces_from_string(temp_char_name), health=100, level=1, mana=100,
                                     status="None", alive=True,
                                     experience=0, current_room_index=0, backpack=None, weapon_type="Default")
