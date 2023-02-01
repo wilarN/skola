@@ -380,8 +380,10 @@ sun_tzu_quotes = ["The wise warrior avoids the battle.",
                   "Build your opponent a golden bridge to retreat across.",
                   "In the midst of chaos, there is also opportunity.",
                   "To know your Enemy, you must become your Enemy.",
-                  "Even the finest sword plunged into salt water will eventually rust."
-                  "The greatest victory is that which requires no battle."]
+                  "Even the finest sword plunged into salt water will eventually rust.",
+                  "The greatest victory is that which requires no battle.",
+                  "Appear weak when strong and strong when weak.",
+                  ""]
 
 
 def get_random_quote():
@@ -719,7 +721,14 @@ def begin_adventure(realm, first_time: bool):
         styled_coloured_print_centered(lang.begin_welcome_first_time)
         time.sleep(2)
 
-    load_most_recent_room_by_index().__call__()
+    while True:
+        latest = load_most_recent_room_by_index()
+        if latest == sorted(dict.keys(world.loaded_rooms_indexed))[-1]:
+            break
+        else:
+            latest.__call__()
+        break
+
     slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
     # -- Temp disabled, Enable all the world. < room > 's when release. (Little comment reminder for myself).
     # world.dummy_room()
