@@ -112,6 +112,10 @@ def ___init():
 def remove_spaces_from_string(string_txt: str):
     return string_txt.replace(" ", "_")
 
+def remove_underscores_and_restore_spaces(string_txt: str):
+    return string_txt.replace("_", " ")
+
+
 
 def enter_to_continue():
     world.flush()
@@ -666,16 +670,34 @@ def create_character(empty: bool):
     return cur_character
 
 
+def listToString(s):
+    """
+    Credits geeksforgeeks
+    """
+    # initialize an empty string
+    str1 = ""
+
+    # traverse in the string
+    for ele in s:
+        str1 += ele
+
+    # return string
+    return str1
+
+
 def get_format_inventory():
     val = check_json_value_settings("backpack")
     result = val.split(";")
-    return result
+    total_items = []
+    for item in result:
+        total_items.append(listToString(item).split(":"))
+    return total_items
 
 
 def load_most_recent_room_by_index():
     last_saved_room_index = check_json_value_settings("current_room_index")
     if last_saved_room_index == "NULL":
-        return world.loaded_rooms_indexed["1"]
+        return "NULL"
     else:
         try:
             return world.loaded_rooms_indexed[last_saved_room_index]
@@ -698,36 +720,67 @@ def space_down_three_new_lines(single=True, five: bool = False):
 
 def check_inventory():
     global player
-    clear()
-    space_down_three_new_lines()
-    get_lines(text_obj=world.sym.sack, output=True, instant=True, colour="purpleblue")
-
-    tempNUM = 1
-    styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue", instant=True)
-    styled_coloured_print_centered(text=f"- [ {player.name}'s INVENTORY] -\n", colour="pink")
-    for item in get_format_inventory():
-        styled_coloured_print_centered(f"[{tempNUM}] - {item}", instant=True)
-        tempNUM += 1
-
-    styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue", instant=True)
-    enter_to_continue()
-
-
-def begin_adventure(realm, first_time: bool):
-    global player
-    player = get_player()
-    if first_time:
-        space_down_three_new_lines()
-        styled_coloured_print_centered(lang.begin_welcome_first_time)
-        time.sleep(2)
-
     while True:
-        latest = load_most_recent_room_by_index()
-        if latest == sorted(dict.keys(world.loaded_rooms_indexed))[-1]:
+        clear()
+        space_down_three_new_lines()
+        get_lines(text_obj=world.sym.sack, output=True, instant=True, colour="purpleblue")
+
+        tempNUM = 1
+        all_items_list = []
+        all_items_list.clear()
+        styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue", instant=True)
+        styled_coloured_print_centered(text=f"- [ {player.name}'s INVENTORY] -\n", colour="pink")
+        items_and_indexed_number_in_list = []
+        for item in get_format_inventory():
+            styled_coloured_print_centered(f"[{tempNUM}] - {item[0]}", instant=True)
+            items_and_indexed_number_in_list.append([tempNUM, item[1]])
+            all_items_list.append(item)
+            tempNUM += 1
+
+        styled_coloured_print_centered(text="\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-", colour="purpleblue", instant=True)
+        space_down_three_new_lines()
+
+        styled_coloured_print_centered(text="(Just press `enter` to continue without selecting a specific item...)",
+                                       instant=True)
+        usr_sel = styles_input(text=">>", centered=True)
+        if usr_sel == "":
             break
         else:
-            latest.__call__()
-        break
+            space_down_three_new_lines()
+            for item in items_and_indexed_number_in_list:
+                # print(type(str(item[0])))
+                if usr_sel == str(item[0]):
+                    # Item exists in list
+                    styled_coloured_print_centered(text=remove_underscores_and_restore_spaces(item[1]), colour="purpleblue")
+                    space_down_three_new_lines()
+                    enter_to_continue()
+                    clear()
+                    break
+                else:
+                    pass
+
+
+def begin_adventure():
+    global player
+    player = get_player()
+    # if first_time:
+    #     space_down_three_new_lines()
+    #     styled_coloured_print_centered(lang.begin_welcome_first_time)
+    #     time.sleep(2)
+    #
+
+    while True:
+
+        check_inventory()
+
+        latest = load_most_recent_room_by_index()
+        if latest == "NULL":
+            world.introduction()
+
+        # If last room:
+        if latest == sorted(dict.keys(world.loaded_rooms_indexed))[-1]:
+            break
+        latest.__call__()
 
     slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
     # -- Temp disabled, Enable all the world. < room > 's when release. (Little comment reminder for myself).

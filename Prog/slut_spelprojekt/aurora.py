@@ -171,13 +171,8 @@ def main():
         player = headers.get_player()
         realm = headers.get_realm()
         del player
-    if not headers.check_json_value_settings("Has_Begun"):
-        # Has created realm world, but not yet started the adventure.
-        headers.begin_adventure(realm=realm, first_time=True)
-        del realm
-    else:
-        headers.begin_adventure(realm=realm, first_time=False)
-        del realm
+
+    headers.begin_adventure()
 
 
 if __name__ == '__main__':

@@ -352,7 +352,7 @@ def start_battle(who_you_fighting, battle_voice_lines=None, portrate=None):
 
 
 def dummy_room():
-    headers.update_json_settings("current_room_index", "2")
+    headers.update_json_settings("current_room_index", "1")
 
     rm = room(type=1)
     rm.get_monsters()
@@ -456,7 +456,8 @@ def dummy_room():
     headers.get_lines(text_obj=sym.knight_standing, output=True, instant=True)
     start_battle(who_you_fighting=dummy_knight, portrate=sym.knight_standing,
                  battle_voice_lines=[headers.lang.now_that_were_here, headers.lang.true_ident])
-    headers.update_json_settings("current_room_index", "3")
+    headers.update_json_settings("current_room_index", "2")
+
 
 class corridor:
     def __init__(self, things_in_corridor: list = None, things_functions=None, enter_text: str = "Entered."):
@@ -469,7 +470,7 @@ class corridor:
         headers.space_down_three_new_lines()
         headers.styled_coloured_print_centered(text=self.enter_text)
         time.sleep(2)
-        # headers.space_down_three_new_lines()
+        headers.space_down_three_new_lines()
 
     def what_do_you_see(self):
         while True:
@@ -596,7 +597,7 @@ class room:
 
 
 def room01():
-    headers.update_json_settings("current_room_index", "3")
+    headers.update_json_settings("current_room_index", "2")
 
     # Temp testing lines to skip to the good part and not have to go through the whole story and convo
 
@@ -852,9 +853,13 @@ def room_01_right_selection():
 
 # OBS, IMPORTANT ROOM ORDER BY INDEX!!
 loaded_rooms_indexed = {
-    "1": introduction,
-    "2": dummy_room,
-    "3": room01
+    "1": dummy_room,
+    "2": room01,
+    "3": "garbage_function",
+    "4": "garbage_function",
+    "5": "garbage_function",
+    "6": "garbage_function",
+    "7": "garbage_function",
 }
 
 
