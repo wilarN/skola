@@ -760,9 +760,30 @@ def check_inventory():
                     pass
 
 
+def damage_player(damage_amount: int):
+    cur_value = check_json_value_settings("player_health")
+    if cur_value == 0:
+        pass
+    else:
+        new_value = int(cur_value)-damage_amount
+        update_json_settings("player_health", int(new_value))
+
+
 def begin_adventure():
     global player
     player = get_player()
+    if check_json_value_settings("player_health") <= 0:
+        # Previous death
+        update_json_settings("player_health", 100)
+        styled_coloured_print_centered(text="\nBecause you died. Half of your hard earned experience points will be removed...", colour="yellow")
+        prev = check_json_value_settings("player_experience")
+        update_json_settings("player_experience", int((prev/2)))
+        enter_to_continue()
+        space_down_three_new_lines()
+        styled_coloured_print_centered(text="\nYou will now be thrown back a bit before where you left off...", colour="yellow")
+        time.sleep(1)
+        enter_to_continue()
+
     # if first_time:
     #     space_down_three_new_lines()
     #     styled_coloured_print_centered(lang.begin_welcome_first_time)
@@ -771,7 +792,7 @@ def begin_adventure():
 
     while True:
 
-        check_inventory()
+        # check_inventory()
 
         latest = load_most_recent_room_by_index()
         if latest == "NULL":

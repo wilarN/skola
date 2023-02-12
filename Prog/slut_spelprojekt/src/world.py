@@ -41,7 +41,7 @@ def introduction():
 def calculate_damage(ground_damage: int = 1):
     total_damage = round((headers.reverse_difficulty_number() / 10) * (random.randint(3, 7)) * ground_damage)
     # Instant kill for testing purposes (temporary)
-    total_damage = 100
+    # total_damage = 100
     return total_damage
 
 
@@ -70,7 +70,12 @@ def attack_countdown(opponent):
                 dmg = calculate_damage()
                 headers.styled_coloured_print_centered(text=f"{headers.lang.you_took} {dmg} {headers.lang.damage}.",
                                                        colour="orange")
-                headers.player.health -= dmg
+                time.sleep(1)
+                # headers.player.health -= dmg
+                headers.damage_player(int(dmg))
+                # headers.player.die()
+                if headers.check_json_value_settings("player_health") <= 0:
+                    headers.player.die()
                 time.sleep(2)
                 break
 
@@ -157,7 +162,7 @@ def attack_npc(who_to_attack, portrate):
                     text=f"{headers.get_user_data(1)} {headers.lang.used} Unarmed Strike.", colour="orange")
                 time.sleep(1)
                 who_to_attack.damage(dmg)
-                print(who_to_attack.health)
+                # print(who_to_attack.health)
                 time.sleep(2)
 
                 if not who_to_attack.is_alive():
@@ -186,7 +191,7 @@ def attack_npc(who_to_attack, portrate):
                     text=f"{headers.get_user_data(1)} {headers.lang.used} Slash.", colour="orange")
                 time.sleep(1)
                 who_to_attack.damage(dmg)
-                print(who_to_attack.health)
+                # print(who_to_attack.health)
                 time.sleep(2)
 
                 if not who_to_attack.is_alive():
@@ -215,7 +220,7 @@ def attack_npc(who_to_attack, portrate):
                     text=f"{headers.get_user_data(1)} {headers.lang.oddly_bonked}.", colour="orange")
                 time.sleep(5)
                 who_to_attack.damage(dmg)
-                print(who_to_attack.health)
+                # print(who_to_attack.health)
                 time.sleep(2)
 
                 if not who_to_attack.is_alive():
@@ -590,7 +595,8 @@ class room:
             self.mobs.append(monster(health=1 * diff, alive=True, level=player_lvl))
 
     def start(self):
-        print(f"Init room: {self.room_index}")
+        # print(f"Init room: {self.room_index}")
+        pass
 
     def print(self, msg):
         headers.styled_coloured_print(msg)

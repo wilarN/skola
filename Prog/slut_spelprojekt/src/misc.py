@@ -23,8 +23,16 @@ class player:
         return all_stats
 
     def die(self):
-        if self.health <= 0:
-            self.alive = False
+        headers.clear()
+        headers.update_json_settings("player_health", 0)
+        headers.space_down_three_new_lines()
+        headers.styled_coloured_print_centered("You have died.", colour="red", instant=False)
+        headers.space_down_three_new_lines()
+        headers.styled_coloured_print_centered(
+            "The game will now close, If you think you have what it takes to continue, please start it again.",
+            colour="red", instant=False)
+        time.sleep(5)
+        exit(0)
 
     def heal(self, amount):
         self.health += amount
