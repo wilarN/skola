@@ -10,3 +10,6 @@
 - CD or open the cmd/terminal/powershell in the location of the aurora.py file (The base dir).
 - Run the "py aurora.py/python aurora.py/python3 aurora.py" depending on your installed python version. 
 - Have fun!
+
+### OBS!
+- If you're planning on running the game on any unix based systems, it may require sudo permissions depending on how you've installed pip modules.
