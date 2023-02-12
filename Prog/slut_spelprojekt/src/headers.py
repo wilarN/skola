@@ -119,7 +119,7 @@ def remove_underscores_and_restore_spaces(string_txt: str):
 
 def enter_to_continue():
     world.flush()
-    styles_input((f"\n\n\n{lang.press_enter_to_continue}"), centered=True)
+    styles_input((f"\n\n\n[ {lang.press_enter_to_continue} ]"), centered=True)
 
 
 def clear():
@@ -700,9 +700,11 @@ def load_most_recent_room_by_index():
         return "NULL"
     else:
         try:
-            return world.loaded_rooms_indexed[last_saved_room_index]
-        except:
-            return world.loaded_rooms_indexed["1"]
+            return last_saved_room_index
+        except Exception as e:
+            print(e)
+            time.sleep(1)
+            return "1"
 
 
 def space_down_three_new_lines(single=True, five: bool = False):
@@ -790,22 +792,29 @@ def begin_adventure():
     #     time.sleep(2)
     #
 
+
     while True:
 
         # check_inventory()
 
         latest = load_most_recent_room_by_index()
+        # "2"
         if latest == "NULL":
             world.introduction()
 
         # If last room:
-        if latest == sorted(dict.keys(world.loaded_rooms_indexed))[-1]:
-            break
-        latest.__call__()
+        key_list = list(world.loaded_rooms_indexed.keys())
 
-    slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
-    # -- Temp disabled, Enable all the world. < room > 's when release. (Little comment reminder for myself).
-    # world.dummy_room()
-    print("[DEBUG] - TUTORIAL DONE")
-    backpackAddItem(items.diamond_sword, 1)
-    # world.room01()
+        if latest == key_list[-1]:
+            world.loaded_rooms_indexed[key_list[-1]]()
+        else:
+            thing = world.loaded_rooms_indexed[latest]
+            thing.__call__()
+
+    # slow_print(f"{lang.welcome_back} {get_user_data(1)} {lang.welcome_back_2} {get_realm_data(1)}", 0.04)
+    # # -- Temp disabled, Enable all the world. < room > 's when release. (Little comment reminder for myself).
+    # # world.dummy_room()
+    # print("[DEBUG] - TUTORIAL DONE")
+    # backpackAddItem(items.diamond_sword, 1)
+    # # world.room01()
+    world.the_end_room()

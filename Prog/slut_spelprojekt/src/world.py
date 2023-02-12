@@ -687,11 +687,11 @@ def room01():
         question = what_do_you_want_to_do_universal(["Door to the left", "Door to the right"])
         if question == 1:
             # Left door
-            room_01_left_selection()
+            room_01_left_selection(previous_selection=question)
             break
         elif question == 2:
             # Right door
-            room_01_right_selection()
+            room_01_right_selection(previous_selection=question)
             break
         else:
             headers.clear()
@@ -701,11 +701,12 @@ def room01():
             pass
 
 
-def room_01_left_selection():
+def room_01_left_selection(previous_selection, after: bool = False):
     headers.clear()
     headers.space_down_three_new_lines()
-    headers.styled_coloured_print_centered(text="*You enter the door on the left*", colour="purpleblue")
-    headers.styled_coloured_print_centered(text="- [PATH CHOSEN] -", colour="red")
+    if not after:
+        headers.styled_coloured_print_centered(text="*You enter the door on the left*", colour="purpleblue")
+        headers.styled_coloured_print_centered(text="- [PATH CHOSEN] -", colour="red")
     time.sleep(2)
     headers.clear()
     headers.space_down_three_new_lines()
@@ -726,13 +727,17 @@ def room_01_left_selection():
     start_battle(who_you_fighting=wall_of_souls, portrate=sym.wall_of_souls,
                  battle_voice_lines=["*A strange light filled the room*", "*Green light shall shine through you*"])
 
+    if previous_selection == 1:
+        room_01_right_selection(previous_selection=previous_selection, after=True)
+    headers.update_json_settings("current_room_index", "3")
 
-def room_01_right_selection():
+
+def room_01_right_selection(previous_selection, after: bool = False):
     headers.clear()
     headers.space_down_three_new_lines()
-
-    headers.styled_coloured_print_centered(text="*You enter the door on the right*", colour="purpleblue")
-    headers.styled_coloured_print_centered(text="- [PATH CHOSEN] -", colour="red")
+    if not after:
+        headers.styled_coloured_print_centered(text="*You enter the door on the right*", colour="purpleblue")
+        headers.styled_coloured_print_centered(text="- [PATH CHOSEN] -", colour="red")
     time.sleep(2)
     headers.clear()
     headers.space_down_three_new_lines()
@@ -814,7 +819,7 @@ def room_01_right_selection():
                     headers.enter_to_continue()
                     break
                 elif sel == 2:
-                    # Dont touch the fur.
+                    # Don't touch the fur.
                     headers.styled_coloured_print_centered(
                         "You decided the sign has already simply wasted your valuable time enough and it is time to move on.")
                     time.sleep(1)
@@ -855,17 +860,55 @@ def room_01_right_selection():
                  battle_voice_lines=[
                      "The sign mimic braced itself by carving out a little knife from itself.",
                      "Its time."])
+    if previous_selection == 2:
+        room_01_left_selection(previous_selection=previous_selection, after=True)
+
+    headers.update_json_settings("current_room_index", "3")
+
+
+def the_end_room():
+    # Final room.
+    headers.clear()
+    headers.styled_coloured_print_centered(text="-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-\n"
+                                                "+                                                    + \n"
+                                                "-           Thanks for playing AURORA DEMO.          - \n"
+                                                "+                  William Johnsson.                 + \n"
+                                                "-                                                    - \n"
+                                                "+                                                    + \n"
+                                                "+                                                    + \n"
+                                                "-    This version was far from finished!             - \n"
+                                                "+    But I hope you enjoyed the short demo version.  + \n"
+                                                "-                                                    - \n"
+                                                "+                                                    + \n"
+                                                "-    If you feel like starting over, just delete     - \n"
+                                                "-    the settings.json file and re-run the aurora.py - \n"
+                                                "-                                                    - \n"
+                                                "+                                                    + \n"
+                                                "+           [   THANKS FOR PLAYING! <3   ]           + \n"
+                                                "-                                                    - \n"
+                                                "+                                                    + \n"
+                                                "+    More updates will be posted on my github!       + \n"
+                                                "-                                                    - \n"
+                                                "+         @wilarN | @william.jsson@hotmail.com       + \n"
+                                                "-              Discord: william_#6737                - \n" 
+                                                "-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+-+-\n"
+                                                "", instant=True, colour="greenwhite")
+    headers.space_down_three_new_lines()
+    headers.enter_to_continue()
+    headers.clear()
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text=sym.planet, instant=True, colour="purpleblue")
+    headers.space_down_three_new_lines()
+    headers.styled_coloured_print_centered(text="- A game made by William. J", colour="yellow", instant=False)
+    time.sleep(2)
+    exit(0)
 
 
 # OBS, IMPORTANT ROOM ORDER BY INDEX!!
 loaded_rooms_indexed = {
     "1": dummy_room,
     "2": room01,
-    "3": "garbage_function",
-    "4": "garbage_function",
-    "5": "garbage_function",
-    "6": "garbage_function",
-    "7": "garbage_function",
+    "3": the_end_room
 }
 
 
