@@ -13,3 +13,8 @@
 
 ### OBS!
 - If you're planning on running the game on any unix based systems, it may require sudo permissions depending on how you've installed pip modules.
+
+<br>
+<br>
+
+##### - A game by William. J
