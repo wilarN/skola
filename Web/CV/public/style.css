@@ -184,6 +184,42 @@ code {
     border: 2px solid white;
     border-radius: 100px;
 }
+.image-div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 100px;
+    padding: 20px;
+    background-color: rgb(22, 22, 22);
+}
+
+.image-back{
+    text-align: center;
+    display: block;
+    background-color: rgb(22, 22, 22);
+    border: 2px solid rgb(54, 54, 54);
+    border-radius: 40px;
+    color: white;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0px 0px 50px purple;
+}
+.image-back:hover{
+    background-color: rgb(22, 22, 22);
+    color: rgb(123, 41, 255);
+    text-shadow: 1px 1px 2px purple, 0 0 1em blue, 0 0 0.2em blue;
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 100px;
+}
+
+.image-div img{
+    width: 30%;
+    border: 2px solid white;
+    border-radius: 15px;
+}
 
 .courses-1{
     padding: 20px;
@@ -280,6 +316,9 @@ max-width: 50%;
     }
     .courses-1{
         text-overflow: clip;
+    }
+    .image-div{
+        margin: 0px;
     }
 }
 
