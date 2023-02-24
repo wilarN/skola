@@ -66,12 +66,13 @@ body{
 .about-me-cont-courses p:not(#name){
     padding: 20px;
     text-align: left;
-    font-size: large;
+    font-size: 2vh;
+    word-wrap: break-word;
 }
 
 .about-me-cont-courses a:not(#home-btn){
     padding: 20px;
-    font-size: large;
+    font-size: 2vh;
     text-decoration: none;
     color: rgb(216, 216, 216);
 }
@@ -112,7 +113,7 @@ body{
     list-style: none;
     border: solid 2px white;
     border-radius: 20px;
-    font-size: 20px;
+    font-size: 2vh;
 }
 
 
@@ -168,7 +169,7 @@ code {
 }
 
 #home-btn{
-    font-size: 20px;
+    font-size: 2vh;
     color: #af00be;
     padding: 5px 20px;
     text-decoration: none;
@@ -195,11 +196,11 @@ code {
 #back_home{
     color: cyan;
     text-shadow: 1px 1px 2px rgb(255, 80, 255), 0 0 1em rgb(92, 92, 255), 0 0 0.2em rgb(132, 132, 255);
-    font-size: 20px;
+    font-size: 2vh;
 }
 
 #back_home:hover{
-    font-size: 30px;
+    font-size: 3vh;
     color: purple;
     text-shadow: 1px 1px 2px purple, 0 0 1em blue, 0 0 0.2em blue;
 }
@@ -229,14 +230,56 @@ flex: 1;
 max-width: 50%;
 }
 
-@media (max-width: 767px) {
-.site-background {
-    background-size: contain;
-}
+@media screen and (max-width: 1200px) {
+    .middle-container {
+        width: 200px;
+        padding: 100px;
+    }
+
+    .about-me-cont{
+        padding: 50px 0px;
+    }
+    .about-me-cont-courses{
+        padding: 50px 0px;
+    }
+    .courses-1{
+        margin: 10px 20px;
+    }
+
+    p{
+        overflow-wrap: normal;
+    }
+    span{
+        overflow-wrap: normal;
+    }
+
 }
 
-@media (max-width: 767px) {
-.middle-container {
-    font-size: larger;
+@media screen and (max-width: 1000px) {
+    .middle-container {
+        width: fit-content;
+        height: fit-content;
+        padding: 100px;
+        margin: 0px;
+    }
+
+    .about-me-cont{
+        padding: 50px 0px;
+        width: fit-content;
+        height: fit-content;
+        padding: 100px;
+        margin: 0px;
+        margin-bottom: 30px;
+    }
+    .about-me-cont-courses{
+        padding: 50px 0px;
+        width: fit-content;
+        height: fit-content;
+        padding: 100px;
+        margin: 0px;
+    }
+    .courses-1{
+        text-overflow: clip;
+    }
 }
-}
+
