@@ -8,3 +8,4 @@ Prog/slut_spelprojekt/help.py
 Prog/slut_spelprojekt/src/sfx/scatman.wav
 Web/CV/public/img/will.jpg
 Web/CV/.vscode
+*.ipynb
