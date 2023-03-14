@@ -1,0 +1,123 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+ul li{
+    list-style: none;
+}
+
+.name{
+    display: inline-block;
+}
+
+.main-topbar{
+    display: inline-flex;
+    background: orange;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.main-topbar a{
+    border: 1px solid black;
+}
+
+.main-topbar li{
+    display: inline;
+}
+.main-topbar a:first-child, a:last-child{
+    background: orange;
+    padding: 30px;
+}
+
+.main-topbar a:last-child{
+    margin-left: auto;
+    background: rgb(0, 183, 255);
+}
+
+
+.main-topbar a:not(.main-topbar a:first-child, a:last-child){
+    background: rgb(0, 183, 255);
+    padding: 30px;
+}
+
+.parent-div{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.main-div{
+    display: inline;
+    background: rgb(255, 208, 0);
+    width: 70vw;
+}
+
+.main-div-right{
+    display: inline;
+    width: 30vw;
+    height: 100vh;
+    background: #c8d49c;
+}
+
+.main-header p{
+    padding: 20px;
+    margin: 20px;
+    border: solid 2px black;
+    width: 10vw;
+    background: lightblue;
+}
+
+.side-content p{
+    margin: 30px 20px;
+    padding: 100px 0px;
+    height: 1vh;
+    border: solid 2px black;
+    text-align: center;
+    background: lightblue;
+}
+
+.sub-div{
+    padding: 20px;
+    margin: 0px 20px;
+    border: solid 2px black;
+    width: 57vw;
+    height: 10vh;
+    text-align: center;
+    background: lightblue;
+}
+
+.below-subdiv p{
+    padding: 120px 0px;
+}
+
+.below-subdiv{
+    display: inline-block;
+    padding: 20px;
+    margin: 20px 20px;
+    border: solid 2px black;
+    width: 25vw;
+    height: 30vh;
+    text-align: center;
+    background: lightblue;
+}
+
+footer p{
+    padding: 20px 0px;
+}
+
+footer{
+    background-color: purple;
+    text-align: center;
+}
