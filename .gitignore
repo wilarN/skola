@@ -9,3 +9,10 @@ Prog/slut_spelprojekt/src/sfx/scatman.wav
 Web/CV/public/img/will.jpg
 Web/CV/.vscode
 *.ipynb
+TILTIL/Full Calculator Winforms/.vs/winforms-calculator/v17/.suo
+*.lock
+*.vsidx
+TILTIL/Full Calculator Winforms/.vs
+TILTIL/Full Calculator Winforms/winforms-calculator/bin/Release/*
+TILTIL/Full Calculator Winforms/winforms-calculator/bin/Debug/*
+TILTIL/Full Calculator Winforms/winforms-calculator/obj/*
