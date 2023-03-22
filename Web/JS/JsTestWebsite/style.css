@@ -3,6 +3,11 @@
     margin: 0;
     scrollbar-color: #ffbb00 #19d8df;
     transition-duration: .4s;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 body{
@@ -12,6 +17,15 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;    
+}
+
+.main-div a{
+    color: white;
+    text-decoration: none;
+}
+
+.main-div a:hover{
+    color: red;
 }
 
 .main-div{
@@ -70,4 +84,9 @@ button:hover{
 
 #att{
     color: crimson;
+}
+
+.masta-div{
+    background: black;
+    color: white;
 }
