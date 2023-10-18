@@ -9,6 +9,29 @@ html{
     background: linear-gradient(90deg, #C33764 0%, #1D2671 100%);
 }
 
+.top-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 30px;
+}
+
+.top-header h1{
+    font-family: "Rubik 80s Fade", sans-serif;
+    font-size: 100px;
+    color: rgb(208, 255, 0);
+    text-shadow: 2px 2px 2px rgb(255, 0, 0);
+}
+
+.top-header:hover{
+    font-size: 40px;
+    transform: scale(1.05);
+    transition: 0.3s;
+    animation: woop 1s ease-in-out;
+}
+
 .main-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -24,6 +47,11 @@ html{
 }
 
 .image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
     font-size: 0px;
 }
 
