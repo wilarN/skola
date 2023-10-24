@@ -1,0 +1,110 @@
+
+:root{
+    --main-col: rgba(0, 225, 255, 0.75);
+    --main-col-second: rgba(199, 0, 0, 0.75);
+
+    --var-second: rgba(0, 176, 199, 0.75);
+    --var-third: rgba(0, 255, 242, 0.75);
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url("https://imgs.search.brave.com/EvSkoJxMiD6BX3-UV6SjBi28DFW8aOb_jnna4EuwN9c/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzU1LzBj/LzY4LzU1MGM2ODk1/MWQxZDUzMTlkZDIz/ZDBiMDBjMjE0MmVi/LmpwZw");
+}
+
+button{
+    margin-top: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: rgb(179, 255, 0);
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    border-bottom: 3px solid rgb(255, 255, 255);
+    border-left: 3px solid rgb(255, 255, 255);
+    animation: smooth_color 3s infinite alternate;
+    color: white;
+    margin: 0px 300px;
+    box-shadow: -3px 3px 10px 4px var(--main-col);
+}
+
+.main-wrapper{
+    background-color: rgb(43, 43, 43);
+    border-right: 2px solid var(--main-col);
+    border-left: 2px solid var(--main-col);
+    box-shadow: 0px 0px 10px 10px var(--main-col);
+}
+
+.div-upper{
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-lower{
+    margin-top: 10vh;
+    height: 40vh;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: royalblue;
+    animation: infinite_bopping 1.5s infinite ease-in-out;
+    transition-duration: 2s;
+    box-shadow: 0px 0px 10px 10px var(--main-col);
+}
+
+.box:hover{
+    transform: rotate(360deg);
+}
+
+
+@keyframes infinite_bopping {
+    0% {
+        width: 100px;
+        height: 100px;
+        background-color: var(--main-col);
+        transform: rotate(720deg);
+        border-radius: 0px;
+        box-shadow: 0px 0px 0px 10px var(--main-col);
+    }
+    25%{
+    }
+    50% {
+        width: 400px;
+        height: 400px;
+        border-radius: 100px;
+        background-color: var(--main-col-second);
+        box-shadow: 0px 0px 10px 10px var(--main-col-second);
+    }
+    75% {
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        background-color: var(--main-col);
+        transform: rotate(0deg);
+        border-radius: 0px;
+        box-shadow: 0px 0px 0px 10px var(--main-col);
+    }
+}
+
+
+@keyframes smooth_color{
+    from {
+        background-color: var(--var-second);
+    }
+    to{
+        background-color: var(--var-third);
+    }
+}
