@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/*
+SASS Funktioner Övningar
+
+ - Vad är en Sass-funktion och vad är dess syfte?
+Som i alla programmeringsspråk så är funktioner till för att man inte ska behöva repertera sig när man skriver kod. Funktioner kan kallas och retunera en value i scss.
+
+ - Beskriv syntaxen för att definiera en Sass-funktion och ge ett exempel på hur den kan användas.
+@function name($parameter) {
+    @return $parameter;
+}
+
+ - Förklara skillnaden mellan inbyggda Sass-funktioner och anpassade Sass-funktioner. Ge exempel på vardera.
+Anpassade Sass funktioner kan själv defineras och inbyggda finns redan i scss.
+
+ - Vad är en mixin i Sass och hur skiljer den sig från en funktion? Ge exempel på när du skulle använda en mixin istället för en funktion.
+Mixin är en funktion som inte retunerar något värde. Den används för att skriva om kod som är lika och kan användas för att definera values som kan återanvändas på flera ställen i koden.
+
+ - Skapa en Sass-funktion som tar emot två parametrar, width och height, och returnerar ett resultat som används för att sätta en bakgrundsbild med dessa dimensioner.
+*/
+html {
+  background-size: 100px, 100px;
+}
+
+body {
+  background-color: #287979;
+}
+body .main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90svh;
+  width: 90svw;
+}
+body p {
+  color: #91d5a2;
+  font-size: 30px;
+}/*# sourceMappingURL=main.css.map */
