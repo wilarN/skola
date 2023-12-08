@@ -58,6 +58,7 @@ $all_animals = fetch_all_from_animals();
             echo "<th>Owner:</th>";
             echo "<th>Animal Age:</th>";
             echo "<th>Animal Description:</th>";
+            echo "<th>Weight:</th>";
             echo "<th>Price:</th>";
             echo "<th>Picture:</th>";
             echo "</tr>";
@@ -68,6 +69,11 @@ $all_animals = fetch_all_from_animals();
                 echo "<td>" . $animal['owner'] . "</td>";
                 echo "<td>" . $animal['age'] . " Years</td>";
                 echo "<td>" . $animal['description'] . "</td>";
+                if($animal['weight'] != null){
+                    echo "<td>" . $animal['weight'] . "kg</td>";
+                }else{
+                    echo "<td>Unknown</td>";
+                }
                 echo "<td>" . $animal['price'] . "€</td>";
                 echo "<td>";
                 echo "<img src='{$animal['img_lnk']}' alt='image' draggable='false'>";
