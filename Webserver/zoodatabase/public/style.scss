@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Mina&display=swap');
+
+$background_color: #202020;
+$text_main_color: #ffffff;
+
+*{
+    font-family: 'Mina', sans-serif;
+    color: white;
+}
+
+html{
+    background-color: #272727;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px;
+    height: 100vh;
+    width: 90vw;
+
+    h1{
+        color: $text_main_color;
+    }
+       
+    .main-div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    tr{
+        td{
+            padding: 10px;
+            text-align: center;}
+    }
+    tr:nth-child(odd){
+        background-color: rgb(24, 24, 24);
+        color: white;
+    }
+
+    table{
+        border-collapse: collapse;
+        border: 3px solid rgb(255, 255, 255);
+        width: 100%;
+    }
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        border: 2px solid rgb(74, 0, 158);
+    }
+}
