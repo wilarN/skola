@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+39&display=swap');
+$main_background_color: #1b1b1b;
+$main_text_color: #fff;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background: #c31432;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+html{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    width: 100%;
+}
+
+.main-login-div{
+    #epic-mod{
+        color: greenyellow;
+    }
+
+    .main-logo-text{
+        font-size: 50px;
+        color: $main_text_color;
+        text-decoration: none;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        font-family: 'Libre Barcode 39', cursive;
+    }
+
+    a{
+        color: white;
+    }
+
+    p{
+        color: white;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70vw;
+        height: 500px;
+        padding: 20px;
+        background-color: #2e2e2e75;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        margin-top: 50px;
+
+        input{
+            width: 30%;
+            min-width: 250px;
+            height: 30px;
+            border: none;
+            border-radius: 2px;
+            padding: 0 10px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            background-color: #fff;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+    }
+
+}
+
+.main-dashboard-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    height: 70vh;
+    padding: 20px;
+    background-color: #08080875;
+    border-radius: 5px;
+
+    h1{
+        color: $main_text_color;
+        font-size: 50px;
+        margin-bottom: 20px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    p{
+        color: $main_text_color;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    #name{
+        color: turquoise;
+        font-size: 35px;
+        margin-bottom: 20px;
+    }
+
+    a{
+        color: purple;
+        font-size: 20px;
+        margin-top: 50px;
+    }
+
+    img{
+        width: 200px;
+    }
+}
