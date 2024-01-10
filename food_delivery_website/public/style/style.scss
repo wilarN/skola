@@ -1,4 +1,4 @@
-
+// Main variables for defined colors
 $secondary-logo-color: #ff0000;
 $main-color: #161616;
 $secondary-main-color: #1f1f1f;
@@ -6,24 +6,68 @@ $main-text-color: #fff;
 $secondary-text-color: #b3b3b3;
 $main-hover-color: #696969;
 
-*{
+
+
+
+// Margin and padding 0 as default. Also set default font-family
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    // Disable selection of text
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
 }
 
-a, h1{
+// Smooth scroll
+html {
+    scroll-behavior: smooth;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: $secondary-main-color;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $secondary-logo-color;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $secondary-logo-color;
+
+}
+
+
+// Default
+a,
+h1 {
     color: $main-text-color;
+    transition-duration: 0.5s;
 }
 
-a:hover{
+a:hover {
     color: $main-hover-color;
 }
 
-.main-header-div{
+img {
+    border: 2px solid $main-color;
+    border-radius: 10px;
+}
+
+.main-header-div {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     padding: 0 2rem;
@@ -31,56 +75,60 @@ a:hover{
     background-color: $main-color;
     border-bottom: 2px solid $secondary-logo-color;
 
-    .left-top{
-        
-        a{
+    .left-top {
+
+        a {
             margin: 0px 20px;
             font-size: 1.5rem;
         }
     }
 
-    .right-top{
+    .right-top {
 
-        .search-wrapper{
+        .search-wrapper {
 
-            img{
+            img {
                 width: 30px;
                 height: 30px;
                 margin-right: 20px;
             }
 
-            form{
-                input{
+            form {
+                input {
                     padding: 0.5rem;
                     border-radius: 5px;
                     border: none;
                     outline: none;
-                
+
                 }
             }
         }
     }
 
-    .logo-main-section{
+    .logo-main-section {
         color: $main-text-color;
     }
 
-    .colored-span-section-logo{
+    .colored-span-section-logo {
         color: $secondary-logo-color;
     }
 
-    .search-wrapper{
+    .search-wrapper {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
 }
 
-.main-container{
+// Main container for index page
+.main-container {
     display: flex;
     flex-direction: row;
     align-items: center;
 
-    .main-content-left{
+    // Main container on index page left side.
+    .main-content-left {
         width: 50vw;
         height: 90vh;
         background: $main-color;
@@ -88,18 +136,26 @@ a:hover{
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        text-align: center;
 
-        h2{
+        h2 {
+            // Color won't be changed sicne it's unimportant for now. Stays hardcoded.
             color: yellow;
+            font-size: 2rem;
         }
-        h1{
+
+        h1 {
             margin-top: 50px;
-            span{
+            font-size: 3rem;
+
+            // Span inside h1 tag to create secondary color of the logo.
+            span {
                 color: $secondary-logo-color;
             }
         }
 
-        .info-card-wrapper{
+        .info-card-wrapper {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
@@ -107,32 +163,261 @@ a:hover{
             width: 100%;
             height: 100%;
 
-            .main-info-card-left{
+            .main-info-wrapper {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
+            }
+
+            .main-info-card-left {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 text-align: center;
-                margin-left: 30px;
-                img{
+
+                img {
+                    height: 150px;
+                    margin: 30px 0px;
+                }
+
+                width: 45%;
+                height: 100%;
+                text-wrap: wrap;
+
+                p {
+                    color: white;
+                    // Change distance between characters
+                    letter-spacing: 1px;
+                    line-height: 1.5;
+                }
+            }
+
+            .main-info-card-right {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+
+                img {
                     height: 200px;
                     margin: 30px 0px;
                 }
 
-                div{
-                    width: 45%;
-                    height: 100%;
-                    text-wrap: wrap;
-                    p{
-                        color: white;
-                        // Change distance between characters
-                        letter-spacing: 1px;
-                        line-height: 1.5;
-                    }
+                width: 45%;
+                height: 100%;
+                text-wrap: wrap;
+
+                p {
+                    color: white;
+                    // Change distance between characters
+                    letter-spacing: 1px;
+                    line-height: 1.5;
+                }
+
+            }
+
+            .info-card-wrapper2 {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                width: 100%;
+                height: 100%;
+            }
+
+        }
+    }
+
+
+    // Right side of the main container on index page
+    .main-content-right {
+        width: 50vw;
+        height: 90vh;
+        background: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers-all.com%2Fuploads%2Fposts%2F2017-04%2F28_sushi.jpg&f=1&nofb=1&ipt=47abf137c3434cda6985178a4076c57cb66aecb3dba89e53f1aa9c57987981aa&ipo=images");
+        filter: blur(0px);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+.about-text {
+    color: white;
+    font-size: 1.2rem;
+    // Change distance between characters
+    letter-spacing: 1px;
+    line-height: 2;
+    margin: 20px 20px;
+    width: 40vw;
+}
+
+footer {
+    border-top: 2px solid $secondary-logo-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: $secondary-main-color;
+
+    .footer-right a {
+        color: yellow;
+    }
+}
+
+// Media for under 1000px
+@media (max-width: 1000px) {
+    .main-header-div {
+        flex-direction: column;
+        height: 20vh;
+
+        .left-top {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .right-top {
+            margin-bottom: 20px;
+        }
+    }
+
+    .main-container {
+        flex-direction: column;
+
+        .main-content-left {
+            width: 100vw;
+            border-right: none;
+            border-bottom: 2px solid $secondary-logo-color;
+        }
+
+        .main-content-right {
+            width: 100vw;
+        }
+    }
+}
+
+// Media 650px
+@media (max-width: 650px) {
+
+    // Main info wrapper to column
+    .main-info-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-container {
+        .main-content-left {
+            .info-card-wrapper {
+                .main-info-wrapper {
+                    flex-direction: column;
                 }
             }
         }
     }
 
-    .main-content-right{
-        width: 50vw;
-        height: 90vh;
-        background: $secondary-main-color;
+    .main-container {
+        .main-content-left {
+            height: 100%;
+        }
     }
+
+    .main-container .main-content-left h1 {
+        font-size: 2rem;
+    }
+
+    .main-container .main-content-left .info-card-wrapper .main-info-card-left {
+        width: 90%;
+    }
+
+    .main-container .main-content-left .info-card-wrapper .main-info-card-right {
+        width: 90%;
+    }
+
+    .main-content-right {
+        display: none;
+    }
+
+    .main-header-div .right-top {}
+
+    .main-header-div .left-top a {
+        font-size: 1rem;
+    }
+}
+
+// Use grid for menu items
+.items-div{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(186px,0.1fr));
+    width: 100%;
+    height: 100%;
+
+    .menu-item{
+        background: rgb(20, 20, 20);;
+        border: 2px solid rgb(20, 20, 20);
+        border-radius: 20px;
+        padding: 10px;
+        margin: 5px;
+        a{
+            color: white;
+            img{
+                width: 150px;
+                border: none;
+            }
+        }
+        transition-duration: 0.3s;
+    }
+
+    .menu-item:hover{
+        transform: scale(1.1);
+        background: rgb(31, 31, 31);
+        border: 1px solid red;
+    }
+}
+#menu-section{
+    width: 70vw;
+}
+
+.menu-container{
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.cart-items-total{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-align: center;
+    width: 20vw;
+    background: rgb(27, 27, 27);
+    max-height: 80vh;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid red;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+h3{
+    color: white;
+}
+
+#shoppingcarttext{
+    font-size: 1.5rem;
+}
+
+.menu-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+}
+
+#cart-container{
+    color: white;
 }
