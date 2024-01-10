@@ -1,0 +1,138 @@
+
+$secondary-logo-color: #ff0000;
+$main-color: #161616;
+$secondary-main-color: #1f1f1f;
+$main-text-color: #fff;
+$secondary-text-color: #b3b3b3;
+$main-hover-color: #696969;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a, h1{
+    color: $main-text-color;
+}
+
+a:hover{
+    color: $main-hover-color;
+}
+
+.main-header-div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 2rem;
+    height: 10vh;
+    background-color: $main-color;
+    border-bottom: 2px solid $secondary-logo-color;
+
+    .left-top{
+        
+        a{
+            margin: 0px 20px;
+            font-size: 1.5rem;
+        }
+    }
+
+    .right-top{
+
+        .search-wrapper{
+
+            img{
+                width: 30px;
+                height: 30px;
+                margin-right: 20px;
+            }
+
+            form{
+                input{
+                    padding: 0.5rem;
+                    border-radius: 5px;
+                    border: none;
+                    outline: none;
+                
+                }
+            }
+        }
+    }
+
+    .logo-main-section{
+        color: $main-text-color;
+    }
+
+    .colored-span-section-logo{
+        color: $secondary-logo-color;
+    }
+
+    .search-wrapper{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .main-content-left{
+        width: 50vw;
+        height: 90vh;
+        background: $main-color;
+        border-right: 2px solid $secondary-logo-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2{
+            color: yellow;
+        }
+        h1{
+            margin-top: 50px;
+            span{
+                color: $secondary-logo-color;
+            }
+        }
+
+        .info-card-wrapper{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            .main-info-card-left{
+                text-align: center;
+                margin-left: 30px;
+                img{
+                    height: 200px;
+                    margin: 30px 0px;
+                }
+
+                div{
+                    width: 45%;
+                    height: 100%;
+                    text-wrap: wrap;
+                    p{
+                        color: white;
+                        // Change distance between characters
+                        letter-spacing: 1px;
+                        line-height: 1.5;
+                    }
+                }
+            }
+        }
+    }
+
+    .main-content-right{
+        width: 50vw;
+        height: 90vh;
+        background: $secondary-main-color;
+    }
+}

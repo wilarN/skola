@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+a, h1 {
+  color: #fff;
+}
+
+a:hover {
+  color: #696969;
+}
+
+.main-header-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 2rem;
+  height: 10vh;
+  background-color: #161616;
+  border-bottom: 2px solid #ff0000;
+}
+.main-header-div .left-top a {
+  margin: 0px 20px;
+  font-size: 1.5rem;
+}
+.main-header-div .right-top .search-wrapper img {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
+.main-header-div .right-top .search-wrapper form input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.main-header-div .logo-main-section {
+  color: #fff;
+}
+.main-header-div .colored-span-section-logo {
+  color: #ff0000;
+}
+.main-header-div .search-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.main-container .main-content-left {
+  width: 50vw;
+  height: 90vh;
+  background: #161616;
+  border-right: 2px solid #ff0000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-container .main-content-left h2 {
+  color: yellow;
+}
+.main-container .main-content-left h1 {
+  margin-top: 50px;
+}
+.main-container .main-content-left h1 span {
+  color: #ff0000;
+}
+.main-container .main-content-left .info-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.main-container .main-content-left .info-card-wrapper .main-info-card-left {
+  text-align: center;
+  margin-left: 30px;
+}
+.main-container .main-content-left .info-card-wrapper .main-info-card-left img {
+  height: 200px;
+  margin: 30px 0px;
+}
+.main-container .main-content-left .info-card-wrapper .main-info-card-left div {
+  width: 45%;
+  height: 100%;
+  text-wrap: wrap;
+}
+.main-container .main-content-left .info-card-wrapper .main-info-card-left div p {
+  color: white;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+.main-container .main-content-right {
+  width: 50vw;
+  height: 90vh;
+  background: #1f1f1f;
+}/*# sourceMappingURL=style.css.map */
