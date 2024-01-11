@@ -139,6 +139,32 @@ img {
         justify-content: center;
         text-align: center;
 
+
+        .order-checkout-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 20%;
+            margin-bottom: 40px;
+            background: darken($secondary-main-color, 2%);
+            border: 2px solid white;
+            border-radius: 4px;
+
+            a{
+                width: 100%;
+                height: 100%;
+                padding: 10px 0px;
+                transition-duration: 0.5s;
+            }
+
+            a:hover{
+                background: darken($secondary-main-color, 5%);
+                color: red;
+            }
+        }
+
         h2 {
             // Color won't be changed sicne it's unimportant for now. Stays hardcoded.
             color: yellow;
@@ -347,39 +373,44 @@ footer {
 }
 
 // Use grid for menu items
-.items-div{
+.items-div {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(186px,0.1fr));
+    grid-template-columns: repeat(auto-fill, minmax(186px, 0.1fr));
     width: 100%;
     height: 100%;
 
-    .menu-item{
-        background: rgb(20, 20, 20);;
+    .menu-item {
+        background: rgb(20, 20, 20);
+        ;
         border: 2px solid rgb(20, 20, 20);
         border-radius: 20px;
         padding: 10px;
         margin: 5px;
-        a{
+
+        a {
             color: white;
-            img{
+
+            img {
                 width: 150px;
                 border: none;
             }
         }
+
         transition-duration: 0.3s;
     }
 
-    .menu-item:hover{
+    .menu-item:hover {
         transform: scale(1.1);
         background: rgb(31, 31, 31);
         border: 1px solid red;
     }
 }
-#menu-section{
+
+#menu-section {
     width: 70vw;
 }
 
-.menu-container{
+.menu-container {
     width: 90vw;
     display: flex;
     flex-direction: column;
@@ -387,7 +418,7 @@ footer {
     justify-content: space-evenly;
 }
 
-.cart-items-total{
+.cart-items-total {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -403,21 +434,43 @@ footer {
     overflow-y: scroll;
 }
 
-h3{
+h3 {
     color: white;
 }
 
-#shoppingcarttext{
+#shoppingcarttext {
     font-size: 1.5rem;
 }
 
-.menu-wrapper{
+.menu-wrapper {
     display: flex;
     flex-direction: row;
     align-items: start;
     justify-content: center;
 }
 
-#cart-container{
+#cart-container {
     color: white;
+}
+
+.order-checkout-container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+    background: darken($secondary-main-color, 2%);
+    border: 2px solid white;
+    border-radius: 4px;
+    a{
+        font-size: 0.9rem;
+        padding: 10px 8px;
+        transition-duration: 0.5s;
+    }
+
+    a:hover{
+        color: red;
+    }
 }

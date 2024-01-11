@@ -29,6 +29,9 @@ const menuItems = [
 let my_order = [];
 
 let priceToPay = document.getElementById("pricetopay").innerHTML = "0";
+let orderCheckOutContainer = document.getElementsByClassName("order-checkout-container")[0];
+orderCheckOutContainer.style.display = "none";
+
 
 if(my_order.length === 0){
     document.getElementsByClassName("cart-items-total")[0].style.display = "none";
@@ -45,6 +48,7 @@ function addCartItem(itemID){
 function renderCart(){
     if(my_order.length >0){
         document.getElementsByClassName("cart-items-total")[0].style.display = "flex";
+        orderCheckOutContainer.style.display = "flex";
     }
 
     let price = 0;
@@ -53,6 +57,7 @@ function renderCart(){
     });
 
     document.getElementById("pricetopay").innerHTML = price;
+    
     renderCartInDOM();
 }
 
@@ -77,6 +82,8 @@ function renderCartInDOM() {
     
 }
 
+
+// Removes item from cart
 function removeCartItem(itemID){
     const item = menuItems.find(item => item.id === itemID);
     if(item){
@@ -84,7 +91,6 @@ function removeCartItem(itemID){
         renderCart();
     }
 }
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -99,8 +105,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Adds all items in cart to get param for the checkout page
+function addAllToGetParam(){
+    let getParam = "?";
+    my_order.forEach(item => {
+        getParam += item.id + "&";
+    });
+    getParam = getParam.slice(0, -1);
+    return getParam;
+}
 
+// Adds all items in cart to get param for the checkout page -
+// when checkout href is interacted with.
+document.addEventListener("DOMContentLoaded", () => {
+    const toCheckout = document.querySelectorAll("#to-checkout");
+    toCheckout.forEach(link => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            let get_param_fixed = addAllToGetParam();
+            window.location.href = "../public/checkout.html" + get_param_fixed;
+        });
+    });
+});
 
+// Prints cart to console
 function print_cart_to_console(){
     console.log(my_order);
 }
