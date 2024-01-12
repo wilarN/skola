@@ -369,4 +369,27 @@ h3 {
 }
 .order-checkout-container2 a:hover {
   color: red;
+}
+
+#checkout-section h1 {
+  text-align: center;
+}
+
+.my-cart-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid red;
+  background: #1f1f1f;
+  padding: 100px 200px;
+  margin-bottom: 50px;
+}
+.my-cart-wrapper .order-container {
+  color: white;
+}
+.my-cart-wrapper .order-container ul li {
+  color: white;
 }/*# sourceMappingURL=style.css.map */

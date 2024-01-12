@@ -474,3 +474,34 @@ h3 {
         color: red;
     }
 }
+
+#checkout-section{
+    h1{
+        text-align: center;
+    }
+}
+
+.my-cart-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    border-radius: 10px;
+    border: 2px solid red;
+
+    background: darken($color: $secondary-main-color, $amount: 0);
+    padding: 100px 200px;
+    margin-bottom: 50px;
+
+    .order-container{
+        color: white;
+
+        ul{
+            li{
+                color: white;
+            }
+        }
+    }
+}
