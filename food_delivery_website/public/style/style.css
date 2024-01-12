@@ -381,15 +381,41 @@ h3 {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin: 0px 10px;
   border-radius: 10px;
   border: 2px solid red;
   background: #1f1f1f;
-  padding: 100px 200px;
   margin-bottom: 50px;
 }
-.my-cart-wrapper .order-container {
+.my-cart-wrapper #order-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
   color: white;
 }
-.my-cart-wrapper .order-container ul li {
+.my-cart-wrapper #order-container ul li {
   color: white;
+}
+
+.order-item {
+  color: white;
+  background: #161616;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid red;
+  margin: 10px;
+}
+.order-item .order-name {
+  color: white;
+}
+
+.spacer {
+  margin: 20px 0px;
+}
+
+.order-img {
+  width: 70%;
+  max-width: 300px;
+  min-width: 100px;
 }/*# sourceMappingURL=style.css.map */

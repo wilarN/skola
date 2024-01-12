@@ -21,16 +21,30 @@ function getOrderFromGetParams(){
 function displayOrder(){
     const my_order = getOrderFromGetParams();
     const orderContainer = document.querySelector("#order-container");
-
-    if(my_order.length > 0){
-        const ul = document.createElement('ul');
-        my_order.forEach(item => {
-            const li = document.createElement('li');
-            const div = document.createElement('div');
-        });
-    } else {
-        orderContainer.textContent = 'Your order is empty.';
-    }
+    const totalContainer = document.querySelector("#total-container");
+    let total = 0;
+    my_order.forEach(item => {
+        const orderItem = document.createElement("div");
+        orderItem.classList.add("order-item");
+        const orderImg = document.createElement("img");
+        orderImg.classList.add("order-img");
+        orderImg.src = item.img;
+        orderItem.appendChild(orderImg);
+        const orderName = document.createElement("p");
+        orderName.classList.add("order-name");
+        orderName.innerText = item.name;
+        const orderPrice = document.createElement("p");
+        orderPrice.classList.add("order-price");
+        orderPrice.innerText = item.price + " kr";
+        orderItem.appendChild(orderName);
+        orderItem.appendChild(orderPrice);
+        orderContainer.appendChild(orderItem);
+        total += item.price;
+        // Create spacer between order items to space them out
+        const spacer = document.createElement("div");
+        spacer.classList.add("spacer");
+        orderContainer.appendChild(spacer);
+    });
 }
 
 displayOrder();
