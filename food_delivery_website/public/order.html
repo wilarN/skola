@@ -316,6 +316,8 @@
                             <div id='cart-container'></div>
                         </div><br><br>
                         <h3>To Pay: <span id='pricetopay'></span> kr</h3>
+                        <!-- clear cart -->
+                        <button id='clear-cart'>Clear Cart</button>
                         <div class='order-checkout-container2'>
                             <a href="checkout.html" id='to-checkout'>To Checkout</a>
                         </div>
@@ -328,6 +330,13 @@
         </div>
     </div>
     <script type='module' src="order.js"></script>
+    <script>
+        // clear cart button
+        document.getElementById('clear-cart').addEventListener('click', () => {
+            localStorage.clear();
+            location.reload();
+        })
+    </script>
 </body>
 <footer>
     <div class="footer-wrapper">

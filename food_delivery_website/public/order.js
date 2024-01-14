@@ -47,6 +47,13 @@ function renderCartInDOM() {
             const li = document.createElement('li');
             li.textContent = `${item.name} - ${item.price} kr`;
             ul.appendChild(li);
+            // X for removing item from cart
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'X';
+            removeButton.addEventListener('click', () => {
+                removeCartItem(item.id);
+            });
+            li.appendChild(removeButton);
         });
         cartContainer.appendChild(ul);
     } else {

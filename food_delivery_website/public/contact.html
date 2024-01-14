@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/style/style.css">
+    <title>Sushi4U</title>
+</head>
+
+<body>
+    <div class="main-header-div">
+        <div class="left-top">
+            <a href='index.html' class='logo-main-section'>Sushi<span class='colored-span-section-logo'>4U</span></a>
+            <a href='about.html#about-section'>About Us</a>
+            <a href='order.html'>Order Now</a>
+            <a href='contact.html'>Contact Us</a>
+        </div>
+        <div class="right-top">
+            <div class='search-wrapper'>
+                <img src="https://cdn-icons-png.flaticon.com/128/8915/8915520.png" alt="search" draggable='false'>
+                <div class='search-field'>
+                    <!-- Search field -->
+                    <form action="">
+                        <input type="text" name="search" id="search" placeholder="Search">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='main-container'>
+        <div class='main-content-left'
+            style='text-align: left; justify-content: unset; height: auto; width: 100%; border: none;'>
+            <section id='about-section'>
+                <h1>Contact</h1>
+                <h2>お問い合わせフォーム</h2><br>
+
+                <div class="contact-container">
+                    <form method='get'>
+
+                        <label for="name">Name</label>
+                        <input type="text" name='name' placeholder='John Doe'>
+                        <label for="phone">Phone</label>
+                        <input type="tel" name='phone' placeholder='123-456-7890'>
+                        <label for="email">Email</label>
+                        <input type="email" name='email' placeholder='name@domain.com'><br>
+
+                        <span>Member?</span>
+                        <div class='radio-membership-wrapper'>
+                            <div>
+                                <label for="yes">Yes</label>
+                                <input type="radio" name="membership" id="" value='YES'>
+                            </div>
+                            <div>
+                                <label for="no">No</label>
+                                <input type="radio" name="membership" id="" value='NO'>
+                            </div>
+                        </div>
+
+                        <label for="message">Message</label>
+                        <textarea name="message" minlength='10' maxlength='1000' cols="50" rows="6" placeholder='Message... [Max 1000 Characters]'></textarea>
+                        <br>
+                        <!-- clear form -->
+                        <input type="reset" value='Reset'>
+                        <br>
+                        <input type="submit" value='Submit'>
+                        <br>
+                        <span id='error-message'></span>
+                        <br>
+                    </form>
+                </div><br>
+        </div>
+        </section>
+    </div>
+    </div>
+
+    <script>
+        let error_message = document.getElementById('error-message').innerHTML;
+        // Get param from URL error
+        let urlParams = new URLSearchParams(window.location.search);
+        let error = urlParams.get('error');
+        if (error) {
+            error_message = error;
+        } else {
+            error_message = '';
+        }
+
+        // Handle contact form submission or for now just imitate a successful submission
+        function submitForm(e) {
+            e.preventDefault();
+            let name = document.querySelector('input[name="name"]').value;
+            let phone = document.querySelector('input[name="phone"]').value;
+            let email = document.querySelector('input[name="email"]').value;
+            let membership = document.querySelector('input[name="membership"]:checked').value;
+            let message = document.querySelector('textarea[name="message"]').value;
+
+            // Check if all fields are filled
+            if (name && phone && email && membership && message) {
+                if (name.length <= 1 || phone.length <= 1 || email.length <= 1 || message.length <= 1) {
+                    window.location.href = '/public/contact.html?error=Please fill out all fields.';
+                } else {
+                    // Send data to server
+                    let data = {
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        membership: membership,
+                        message: message
+                    }
+                    fetch('/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }).then(res => {
+                        if (res.status == 200) {
+                            // For now since there is no actual backend, just imitate a successful submission womp womp
+                            console.log('success');
+                            window.location.href = '/contact';
+                        } else {
+                            window.location.href = '/contact?error=Something went wrong. Please try again later.';
+                        }
+                    })
+                }
+            } else {
+                window.location.href = '/contact?error=Please fill out all fields.';
+            }
+        }
+    </script>
+</body>
+<footer>
+    <div class="footer-wrapper">
+        <div class="footer-left">
+            <a href='index.html' class='logo-main-section'>Sushi<span style='color: red;'>4U</span></a>
+            <p>© 2024 Sushi4U. All Rights Reserved.</p>
+            <!--
+                Contact
+            -->
+            <div class="contact-wrapper">
+                <div class="contact-left">
+                    <p>Phone: 123-456-7890</p>
+                    <p>Email: contact@sushiforyou.com</p>
+
+                </div>
+                <div class="footer-right">
+                    <a href='about.html'>About Us</a>
+                    <a href='order.html'>Order Now</a>
+                    <a href='contact.html'>Contact Us</a>
+                </div>
+            </div>
+</footer>
+
+</html>
