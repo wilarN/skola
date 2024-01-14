@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         link.addEventListener("click", (event) => {
             event.preventDefault();
             let get_param_fixed = addAllToGetParam();
-            window.location.href = "/checkout.html" + get_param_fixed;
+            window.location.href = "./checkout.html" + get_param_fixed;
         });
     });
 });
