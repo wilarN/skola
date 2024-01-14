@@ -1,9 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Raleway", sans-serif;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -304,7 +305,7 @@ footer .footer-right a {
   border: none;
 }
 .items-div .menu-item:hover {
-  transform: scale(1.1);
+  animation: hover_sushi 0.5s ease-in;
   background: rgb(31, 31, 31);
   border: 1px solid red;
 }
@@ -564,5 +565,19 @@ h3 {
   }
   .main-header-div .left-top a {
     font-size: 1rem;
+  }
+}
+@keyframes hover_sushi {
+  0% {
+    transform: scale(1);
+    rotate: 0deg;
+  }
+  50% {
+    transform: scale(1.1);
+    rotate: 10deg;
+  }
+  100% {
+    transform: scale(1);
+    rotate: 0deg;
   }
 }/*# sourceMappingURL=style.css.map */

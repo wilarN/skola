@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
+// https://fonts.google.com/specimen/Raleway
+
+
 // Main variables for defined colors
 $secondary-logo-color: #ff0000;
 $main-color: #161616;
@@ -41,7 +45,8 @@ $main-hover-color: #696969;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Raleway', sans-serif;
+
     // Disable selection of text
     @include disable-selection;
 }
@@ -397,7 +402,7 @@ footer {
     }
 
     .menu-item:hover {
-        transform: scale(1.1);
+        animation: hover_sushi 0.5s ease-in ;
         background: rgb(31, 31, 31);
         border: 1px solid red;
     }
@@ -702,3 +707,22 @@ h3 {
     }
 }
 
+
+@keyframes hover_sushi {
+    // En lite rolig animation för att få lite liv i sidan När man hovrar över en sushi.
+    // Används på .menu-item:hover!
+    0% {
+        transform: scale(1);
+        rotate: 0deg;
+    }
+
+    50% {
+        transform: scale(1.1);
+        rotate: 10deg;
+    }
+
+    100% {
+        transform: scale(1);
+        rotate: 0deg;
+    }
+}
