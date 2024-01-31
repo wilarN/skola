@@ -1,0 +1,7 @@
+C:\DEV\github_stuff\skola\Prog2\Vecka5\V5\V5\obj\Debug\V5.csproj.AssemblyReference.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka5\V5\V5\obj\Debug\V5.csproj.CoreCompileInputs.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka5\V5\V5\bin\Debug\V5.exe.config
+C:\DEV\github_stuff\skola\Prog2\Vecka5\V5\V5\bin\Debug\V5.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka5\V5\V5\bin\Debug\V5.pdb
+C:\DEV\github_stuff\skola\Prog2\Vecka5\V5\V5\obj\Debug\V5.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka5\V5\V5\obj\Debug\V5.pdb
