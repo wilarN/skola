@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Carousel</title>
+</head>
+
+<body class='bg-dark'>
+    <div class="container">
+        <div class="carousel slide" id='caro1' data-bs-ride='carousel'>
+            <div class='carousel-indicators'>
+                <button type="button" data-bs-target="#caro1" data-bs-slide-to="0" class='active' aria-current='true'
+                    aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#caro1" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#caro1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="https://w.wallhaven.cc/full/kx/wallhaven-kxj3l1.jpg" alt="bild1"
+                        class='w-50 d-block mx-auto'>
+                    <div class="carousel-caption">
+                        <h5>Lorem, ipsum dolor.</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="https://wallpapers.com/images/hd/hd-country-life-at-night-vvxmbqzkr4uumuni.jpg"
+                        alt="bild2" class='w-50 d-block mx-auto'>
+                    <div class="carousel-caption">
+                        <h5>Lorem, ipsum dolor.</h5>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos?</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="https://www.pockettactics.com/wp-content/sites/pockettactics/2021/02/among-us-wallpaper-4-550x309.jpg"
+                        alt="bild3" class='w-50 d-block mx-auto'>
+                    <div class="carousel-caption">
+                        <h5>Lorem ipsum dolor sit amet consectetur.</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#caro1" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#caro1" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
