@@ -1,0 +1,7 @@
+C:\DEV\github_stuff\skola\Prog2\Yatzy\Yatzy\Yatzy\bin\Debug\Yatzy.exe.config
+C:\DEV\github_stuff\skola\Prog2\Yatzy\Yatzy\Yatzy\bin\Debug\Yatzy.exe
+C:\DEV\github_stuff\skola\Prog2\Yatzy\Yatzy\Yatzy\bin\Debug\Yatzy.pdb
+C:\DEV\github_stuff\skola\Prog2\Yatzy\Yatzy\Yatzy\obj\Debug\Yatzy.csproj.AssemblyReference.cache
+C:\DEV\github_stuff\skola\Prog2\Yatzy\Yatzy\Yatzy\obj\Debug\Yatzy.csproj.CoreCompileInputs.cache
+C:\DEV\github_stuff\skola\Prog2\Yatzy\Yatzy\Yatzy\obj\Debug\Yatzy.exe
+C:\DEV\github_stuff\skola\Prog2\Yatzy\Yatzy\Yatzy\obj\Debug\Yatzy.pdb
