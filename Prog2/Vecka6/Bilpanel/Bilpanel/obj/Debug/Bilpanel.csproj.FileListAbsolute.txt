@@ -1,0 +1,7 @@
+C:\DEV\github_stuff\skola\Prog2\Vecka6\Bilpanel\Bilpanel\bin\Debug\Bilpanel.exe.config
+C:\DEV\github_stuff\skola\Prog2\Vecka6\Bilpanel\Bilpanel\bin\Debug\Bilpanel.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka6\Bilpanel\Bilpanel\bin\Debug\Bilpanel.pdb
+C:\DEV\github_stuff\skola\Prog2\Vecka6\Bilpanel\Bilpanel\obj\Debug\Bilpanel.csproj.AssemblyReference.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka6\Bilpanel\Bilpanel\obj\Debug\Bilpanel.csproj.CoreCompileInputs.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka6\Bilpanel\Bilpanel\obj\Debug\Bilpanel.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka6\Bilpanel\Bilpanel\obj\Debug\Bilpanel.pdb

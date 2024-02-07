@@ -1,0 +1,7 @@
+C:\DEV\github_stuff\skola\Prog2\Vecka6\KlasserDtngSak\KlasserDtngSak\bin\Debug\KlasserDtngSak.exe.config
+C:\DEV\github_stuff\skola\Prog2\Vecka6\KlasserDtngSak\KlasserDtngSak\bin\Debug\KlasserDtngSak.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka6\KlasserDtngSak\KlasserDtngSak\bin\Debug\KlasserDtngSak.pdb
+C:\DEV\github_stuff\skola\Prog2\Vecka6\KlasserDtngSak\KlasserDtngSak\obj\Debug\KlasserDtngSak.csproj.AssemblyReference.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka6\KlasserDtngSak\KlasserDtngSak\obj\Debug\KlasserDtngSak.csproj.CoreCompileInputs.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka6\KlasserDtngSak\KlasserDtngSak\obj\Debug\KlasserDtngSak.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka6\KlasserDtngSak\KlasserDtngSak\obj\Debug\KlasserDtngSak.pdb
