@@ -47,7 +47,7 @@ inquirer.prompt([
         // SVG format
         let qr_svg = qr.image(Answers['url'], { type: "svg" });
         // Sparar ner svg-filen på disk
-        let tmpFileName = `${randomChars(5)}.svg`;
+        let tmpFileName = `${randomChars(5)}`;
         qr_svg.pipe(fs.createWriteStream(`${tmpFileName}.svg`));
         console.log("QR code saved as svg as: " + tmpFileName + ".svg");
     })
