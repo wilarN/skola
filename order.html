@@ -5,45 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <script src="https://kit.fontawesome.com/00473e9675.js" crossorigin="anonymous"></script>
     <title>Sushi4U - Order</title>
 </head>
 
-<body>
-    <div class="main-header-div">
-        <div class="left-top">
-            <a href='index.html' class='logo-main-section'>Sushi<span class='colored-span-section-logo'>4U</span></a>
-            <a href='about.html#about-section'>About Us</a>
-            <a href='order.html'>Order Now</a>
-            <a href='contact.html'>Contact Us</a>
-        </div>
-        <div class="right-top">
-            <div class='search-wrapper'>
-                <img src="https://cdn-icons-png.flaticon.com/128/8915/8915520.png" alt="search" draggable='false'>
-                <div class='search-field'>
-                    <!-- Search field -->
-                    <form action="">
-                        <input type="text" name="search" id="search" placeholder="Search">
-                    </form>
+<body class='bg-dark'>
+    <div class="container-fluid main-header-div">
+        <div class="row word-wrap header-links-lg-size">
+            <div class="col-md-6 left-top">
+                <a href='index.html' class='logo-main-section m-5'>Sushi<span
+                        class='colored-span-section-logo'>4U</span></a>
+                <a href='about.html#about-section' class='m-4'>About Us</a>
+                <a href='order.html' class='m-4'>Order Now</a>
+                <a href='contact.html' class='m-4'>Contact Us</a>
+            </div>
+            <div class="col-md-6 right-top">
+                <div class='search-wrapper'>
+                    <img src="https://cdn-icons-png.flaticon.com/128/8915/8915520.png" alt="search" draggable='false'>
+                    <div class='search-field'>
+                        <!-- Search field -->
+                        <form action="" class="d-flex">
+                            <input type="text" name="search" id="search" class="form-control" placeholder="Search">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class='main-container'>
-        <div class='main-content-left'
+
+    <div class='container bg-dark p-5'>
+        <div class='container col-12 bg-dark'
             style='text-align: left; justify-content: unset; height: auto; width: 100%; border: none;'>
-            <section id='menu-section'>
-                <h1>Menu</h1>
-                <h2>メニュー</h2><br><br>
-                <div class='menu-wrapper'>
-                    <div class="menu-container">
+            <section class='container text-danger text-center'>
+                <div class='text-start'>
+                    <h1>Menu</h1>
+                    <h2 class='text-warning'>メニュー</h2><br><br>
+                </div>
+                <div class='container'>
+                    <div class="g-col-12">
                         <h1>General</h1>
-                        <h2>一般的な</h2><br><br>
-                        <div class="items-div">
+                        <h2 class='text-warning'>一般的な</h2><br><br>
+                        <div class="items-div row justify-content-center">
                             <!-- Div containing all menu items -->
                             <!-- 1. SASHIMI MIKADO -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="1">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F4.bp.blogspot.com%2F-ai-AEMSQMuc%2FVS_z0wJQmPI%2FAAAAAAAAA54%2FqEXc9gYPMAE%2Fs1600%2Ftudodeliverysabado1.png&f=1&nofb=1&ipt=c7b032519289cfae1611f33d8df461c535cc11874a50de59fb4e2823c1e29119&ipo=images"
                                         alt="Sashimi Mikado" draggable='false'>
@@ -55,7 +63,7 @@
                             </div>
 
                             <!-- 2. SASHIMI SHAKE -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="2">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffukurosushi.de%2Fwp-content%2Fuploads%2F2022%2F03%2F100-100.-Shake-Sashimi.png&f=1&nofb=1&ipt=9e00962235c300b6ff989b1b65c86ac6a898f294fb8b91ebb4019d7cc073688a&ipo=images"
                                         alt="Sashimi Shake" draggable='false'>
@@ -67,7 +75,7 @@
                             </div>
 
                             <!-- 3. TEMPURA MORIAWASE -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="3">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3.amazonaws.com%2Fimages.ecwid.com%2Fimages%2F26771415%2F1738940463.jpg&f=1&nofb=1&ipt=415dd96a4e7aa9e95949be8f12060a56a6bb7af994ff68d6d8ac76a25bc89c5e&ipo=images"
                                         alt="Tempura Moriwase" draggable='false'>
@@ -79,7 +87,7 @@
                             </div>
 
                             <!-- 4. SYO ZIN AGE -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="4">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpluspng.com%2Fimg-png%2Fstir-fry-png-orientalstirfry-540.png&f=1&nofb=1&ipt=7263cd963b7d53cdfceb27a2b5e854c788617fabdf0fc389c268e0207a30c662&ipo=images"
                                         alt="Syo Zin Age" draggable='false'>
@@ -91,7 +99,7 @@
                             </div>
 
                             <!-- 5. AGEDASHI-TOFU -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="5">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fkoisushi.garden%2Fwp-content%2Fuploads%2F2019%2F04%2Fagedashi-tofu.png&f=1&nofb=1&ipt=d36d7e33f401b8720f73a8ec66f8e624600a518222f9fd261bf58d4e72330904&ipo=images"
                                         alt="Agedashi-Tofu" draggable='false'>
@@ -103,7 +111,7 @@
                             </div>
 
                             <!-- 6. ISE-EBI -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="6">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.kikkoman.com%2Fen%2Fculture%2Ffoodforum%2Ftasty-travel%2Fimg%2F34-3_im01.png&f=1&nofb=1&ipt=098a0b04ad528855b6ff3aeb2857c7a7b606df91111b9d6a0856f2b940aa4617&ipo=images"
                                         alt="Ise-Ebi" draggable='false'>
@@ -115,7 +123,7 @@
                             </div>
 
                             <!-- 7. HOTATEGAI FURAI -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="7">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.thuisbezorgd.nl%2Fimages%2Frestaurants%2Fnl%2FNOP1QQ7%2Fproducts%2Febi-furai.png&f=1&nofb=1&ipt=a750e837c8b67d7b4bab9bd7df13cd1da4319219092a56990b1533b276882405&ipo=images"
                                         alt="Hotategai Furai" draggable='false'>
@@ -129,7 +137,7 @@
                             </div>
 
                             <!-- 8. TAISHO-EBI -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="8">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20220130%2Foriginal%2Fpngtree-delicious-roasted-prawns-transparent-elements-png-image_7241575.png&f=1&nofb=1&ipt=ebf20e9ff6095d4573b7be9cb8062201f6706797fe0423ef3a6ff2c779f3af93&ipo=images"
                                         alt="Taisho-Ebi" draggable='false'>
@@ -143,7 +151,7 @@
                             </div>
 
                             <!-- 9. YAKITORI -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="9">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngarts.com%2Ffiles%2F1%2FYakitori-PNG-Image.png&f=1&nofb=1&ipt=7ea7d6365cbbd48e165e2859a3c53307535a656e7b99e1190a9568075cf206ad&ipo=images"
                                         alt="Yakitori" draggable='false'>
@@ -155,7 +163,7 @@
                             </div>
 
                             <!-- 10. HARUMAKI -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" data-item-id="10">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmizumi.nl%2Fwp-content%2Fuploads%2F59-harumaki.png&f=1&nofb=1&ipt=309d0a3e96296a4e33b74cc2a829a8358633563f15c40901b26c6568bf2ead70&ipo=images"
                                         alt="Harumaki" draggable='false'>
@@ -173,12 +181,12 @@
                         <!-- DIVIDER(FOR READABILITY) -->
 
 
-                        <h1>Sushi</h1>
-                        <h2>寿司</h2><br><br>
+                        <h1 class='mt-5'>Sushi</h1>
+                        <h2 class='text-warning'>寿司</h2><br><br>
 
-                        <div class="items-div">
+                        <div class="items-div row justify-content-center">
                             <!-- 8 sorterade bitar -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="8_sorted_pieces" data-item-id="11">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngmart.com%2Ffiles%2F3%2FSushi-PNG-HD.png&f=1&nofb=1&ipt=983bce29a70aa246af2a41e79a5b1669d00f05453ca7b38167938aab63db11a7&ipo=images"
                                         alt="8 sorterade bitar" draggable='false'>
@@ -190,7 +198,7 @@
                             </div>
 
                             <!-- 10 sorterade bitar -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="10_sorted_pieces" data-item-id="12">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpngimg.com%2Fuploads%2Fsushi%2Fsushi_PNG9252.png&f=1&nofb=1&ipt=57540e485df2b73ec4703a69e47c188002e52657707f9cf3e371dc340d7a61dc&ipo=images"
                                         alt="10 sorterade bitar" draggable='false'>
@@ -202,7 +210,7 @@
                             </div>
 
                             <!-- extra valfri bit -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="extra_piece" data-item-id="13">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffreepngimg.com%2Fthumb%2Fsushi%2F3-2-sushi-picture.png&f=1&nofb=1&ipt=ff0fd6b8420023b39b6df1205344d25184f954b03c5312c9092f0c105dd3f401&ipo=images"
                                         alt="extra valfri bit" draggable='false'>
@@ -214,7 +222,7 @@
                             </div>
 
                             <!-- Tempura Maki -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="tempura_maki" data-item-id="14">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.tildacdn.com%2Ftild6162-3361-4638-a662-613038333030%2FTempura.png&f=1&nofb=1&ipt=714130afc453bf5697232f0d066e5d668d524a42134dbf8ce154c6502556d8f3&ipo=images"
                                         alt="Tempura Maki" draggable='false'>
@@ -226,7 +234,7 @@
                             </div>
 
                             <!-- Fusion Makirulle -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="fusion_maki_roll" data-item-id="15">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngall.com%2Fwp-content%2Fuploads%2F2016%2F04%2FSushi-PNG.png&f=1&nofb=1&ipt=a7c3a44d4c0d84ea330c85c46ee51b801a1a445fc880904ec68d7cdd66ff0e1e&ipo=images"
                                         alt="Fusion Makirulle" draggable='false'>
@@ -238,7 +246,7 @@
                             </div>
 
                             <!-- Dragon Makirulle -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="dragon_maki_roll" data-item-id="16">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.hugosdeliveries.com%2Fwp-content%2Fuploads%2F2020%2F02%2F0113_New-dragon-maki.png&f=1&nofb=1&ipt=d541a01bbafd540cca52e2232e12a5c397155b94ded42bacfa622b1136defe86&ipo=images"
                                         alt="Dragon Makirulle" draggable='false'>
@@ -250,7 +258,7 @@
                             </div>
 
                             <!-- Rainbow Makirulle -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="rainbow_maki_roll" data-item-id="17">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.sushishop.eu%2Fproduct-6415-zoom%2FRainbow-Roll.png&f=1&nofb=1&ipt=d32f16ff8e72f84c52c1b67c2d8ebccf610b5cc2a7c31490ce54467871ffffa6&ipo=images"
                                         alt="Rainbow Makirulle" draggable='false'>
@@ -262,7 +270,7 @@
                             </div>
 
                             <!-- Shio Yaki Makirulle -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="shio_yaki_maki_roll" data-item-id="18">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpluspng.com%2Fimg-png%2Fsushi-roll-png-maki-sushi-300.png&f=1&nofb=1&ipt=1049ca8f2277bb76dd38e963920c1c6d53a7664aafc03dfbc661eee7faf16b56&ipo=images"
                                         alt="Shio Yaki Makirulle" draggable='false'>
@@ -274,7 +282,7 @@
                             </div>
 
                             <!-- Yakiniku Makirulle -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="yakiniku_maki_roll" data-item-id="19">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F026%2F773%2F162%2Fnon_2x%2Fyakiniku-with-ai-generated-free-png.png&f=1&nofb=1&ipt=f8e05c9df165417a5d1b96a16d8d4f60d3cadd02255c691566a17442b7686648&ipo=images"
                                         alt="Yakiniku Makirulle" draggable='false'>
@@ -286,7 +294,7 @@
                             </div>
 
                             <!-- California Makirulle -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="california_maki_roll" data-item-id="20">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Foffenburg.on-sushi.de%2Fwp-content%2Fuploads%2Fsites%2F12%2F2022%2F05%2FCalifornia-Roll.png&f=1&nofb=1&ipt=ed39ad22bf7cca06e47cb5970a7a6c246af4bc9e027a54cb258cd032bc01578c&ipo=images"
                                         alt="California Makirulle" draggable='false'>
@@ -298,7 +306,7 @@
                             </div>
 
                             <!-- Purjolök Makirulle -->
-                            <div class="menu-item">
+                            <div class="menu-item col-md-2">
                                 <a href="#" class="menu-link" data-item="purjolok_maki_roll" data-item-id="21">
                                     <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimages_k%2Fsushi-transparent%2Fsushi-transparent-5.png&f=1&nofb=1&ipt=6ca91e1bf2b223c75c83a96ffb190df2790dbf882870aed8d11df58a144ac326&ipo=images"
                                         alt="Purjolök Makirulle" draggable='false'>
@@ -312,37 +320,17 @@
                             </div>
                         </div><br><br>
                     </div>
-                    <div class='cart-items-total'>
-                        <h2 id='shoppingcarttext'>Shopping cart</h2>
-                        <div>
-                            <div id='cart-container'></div>
-                        </div><br><br>
-                        <h3>To Pay: <span id='pricetopay'></span> kr</h3>
-                        <!-- clear cart -->
-                        <button id='clear-cart'>Clear Cart</button>
-                        <div class='order-checkout-container2'>
-                            <a href="checkout.html" id='to-checkout'>To Checkout</a>
-                        </div>
-                    </div>
                 </div>
             </section>
-            <div class='order-checkout-container'>
-                <a href="checkout.html" id='to-checkout'>To Checkout</a>
-            </div>
         </div>
     </div>
-    <script type='module' src="order.js"></script>
-    <script>
-        // clear cart button
-        document.getElementById('clear-cart').addEventListener('click', () => {
-            localStorage.clear();
-            location.reload();
-        })
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 <footer>
     <div class="footer-wrapper">
-        <div class="footer-left">
+        <div class="">
             <a href='index.html' class='logo-main-section'>Sushi<span style='color: red;'>4U</span></a>
             <p>© 2024 Sushi4U. All Rights Reserved.</p>
             <!--
@@ -350,14 +338,14 @@
             -->
             <div class="contact-wrapper">
                 <div class="contact-left">
-                    <p>Phone: 123-456-7890</p>
-                    <p>Email: contact@sushiforyou.com</p>
+                    <p>Phone: <span class='text-primary'> 123-456-7890</span></p>
+                    <p>Email: <span class='text-primary'>contact@sushiforyou.com</span></p>
 
                 </div>
-                <div class="footer-right">
-                    <a href='about.html'>About Us</a>
-                    <a href='order.html'>Order Now</a>
-                    <a href='contact.html'>Contact Us</a>
+                <div class="">
+                    <a href='about.html' class='text-warning'>About Us</a>
+                    <a href='order.html' class='text-primary'>Order Now</a>
+                    <a href='contact.html' class='text-danger'>Contact Us</a>
                 </div>
             </div>
 </footer>

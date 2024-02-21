@@ -82,6 +82,7 @@ a,
 h1 {
     color: $main-text-color;
     transition-duration: 0.5s;
+    text-decoration: none;
 }
 
 a:hover {
@@ -94,24 +95,29 @@ img {
 }
 
 .main-header-div {
-    @include flex-default;
     padding: 0 2rem;
     height: 10vh;
     background-color: $main-color;
     border-bottom: 2px solid $secondary-logo-color;
 
-    .left-top {
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
 
+    .left-top {
         a {
-            margin: 0px 20px;
             font-size: 1.5rem;
+            color: $main-text-color;
+            text-decoration: none;
+
         }
     }
 
     .right-top {
-
         .search-wrapper {
-
             img {
                 width: 30px;
                 height: 30px;
@@ -124,24 +130,21 @@ img {
                     border-radius: 5px;
                     border: none;
                     outline: none;
-
                 }
             }
         }
     }
 
-    .logo-main-section {
-        color: $main-text-color;
-    }
-
+    .logo-main-section,
     .colored-span-section-logo {
-        color: $secondary-logo-color;
+        color: $main-text-color;
     }
 
     .search-wrapper {
         @include flex-alternative();
     }
 }
+
 
 // Main container for index page
 .main-container {
@@ -376,13 +379,12 @@ footer {
 // Use grid for menu items
 .items-div {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(186px, 0.1fr));
     width: 100%;
     height: 100%;
 
     .menu-item {
         background: rgb(20, 20, 20);
-        ;
+        min-width: 200px;
         border: 2px solid rgb(20, 20, 20);
         border-radius: 20px;
         padding: 10px;
@@ -390,6 +392,8 @@ footer {
 
         a {
             color: white;
+
+            text-decoration: none;
 
             img {
                 width: 150px;
@@ -703,6 +707,13 @@ h3 {
 
     .main-header-div .left-top a {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 800px) {
+    /*bootstrap burger hamburgir*/
+    .header-links-lg-size {
+        display: none;
     }
 }
 
