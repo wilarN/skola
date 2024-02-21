@@ -1,0 +1,10 @@
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\bin\Debug\vecka8.exe.config
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\bin\Debug\vecka8.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\bin\Debug\vecka8.pdb
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\obj\Debug\vecka8.csproj.AssemblyReference.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\obj\Debug\vecka8.Form1.resources
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\obj\Debug\vecka8.Properties.Resources.resources
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\obj\Debug\vecka8.csproj.GenerateResource.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\obj\Debug\vecka8.csproj.CoreCompileInputs.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\obj\Debug\vecka8.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka8\grafisktCS\vecka8\obj\Debug\vecka8.pdb

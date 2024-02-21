@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33529.622
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vecka8", "vecka8.csproj", "{89D572CF-E611-459A-BE0E-7EFB5C4D5226}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89D572CF-E611-459A-BE0E-7EFB5C4D5226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D572CF-E611-459A-BE0E-7EFB5C4D5226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D572CF-E611-459A-BE0E-7EFB5C4D5226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D572CF-E611-459A-BE0E-7EFB5C4D5226}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17B99F00-01C8-49B8-8A6C-154A71FB66CD}
+	EndGlobalSection
+EndGlobal
