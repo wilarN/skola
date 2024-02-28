@@ -1,0 +1,10 @@
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\bin\Debug\7.2.exe.config
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\bin\Debug\7.2.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\bin\Debug\7.2.pdb
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\obj\Debug\7.2.csproj.AssemblyReference.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\obj\Debug\_7._2.Form1.resources
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\obj\Debug\_7._2.Properties.Resources.resources
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\obj\Debug\7.2.csproj.GenerateResource.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\obj\Debug\7.2.csproj.CoreCompileInputs.cache
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\obj\Debug\7.2.exe
+C:\DEV\github_stuff\skola\Prog2\Vecka9\Grafiska_Gränssnitt\7.2\7.2\obj\Debug\7.2.pdb
