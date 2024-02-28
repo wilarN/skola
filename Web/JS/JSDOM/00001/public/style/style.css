@@ -1,0 +1,25 @@
+button {
+  cursor: pointer;
+}
+
+body {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  background-color: #191919;
+}
+
+footer {
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.5) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100px;
+  width: 100dvw;
+}/*# sourceMappingURL=style.css.map */
