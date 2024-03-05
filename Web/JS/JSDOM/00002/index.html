@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM Exempel</title>
+    <style>
+        .example {
+            color: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 id='welcome'>JavaScript DOM Exempel</h1>
+    <button onclick='this.textContent = "Nu har jag klickats på!";' id='myButton'>Före text</button>
+    <p id="exampleParagraph">Det här är ett exempel på ett stycke.</p>
+    <div class="example">Element 1</div>
+    <div class="example">Element 2</div>
+    <div class="example">Element 3</div>
+</body>
+<script>
+    onload = function () {
+        document.getElementById('exampleParagraph').style.color = 'red';
+        document.body.style.background = 'lightblue';
+        document.getElementById("welcome").innerHTML = "Välkommen till min sida!";
+    }
+
+    var allP = document.getElementsByTagName('p');
+    for (var i = 0; i < allP.length; i++) {
+        allP[i].onmouseover = function () {
+            this.style.fontSize = '20px';
+        }
+        allP[i].onmouseout = function () {
+            this.style.fontSize = '16px';
+        }
+    }
+
+    var allExampleElements = document.getElementsByClassName('example');
+    for (var i = 0; i < allExampleElements.length; i++) {
+        allExampleElements[i].onmouseover = function () {
+            this.style.background = 'green';
+        }
+        allExampleElements[i].onmouseout = function () {
+            this.style.background = 'lightblue';
+        }
+        allExampleElements[i].onclick = function () {
+            console.log(this.textContent);
+            this.textContent = 'Klickad på';
+        }
+    }
+
+</script>
+
+</html>
