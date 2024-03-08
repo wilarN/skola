@@ -7,12 +7,31 @@
     <link rel="stylesheet" href="style.css">
     <title>- Home -</title>
 </head>
+<script>
+    // Get error from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    if (error) {
+        if (error === 'wrong-credentials')
+            alert('Wrong credentials, please try again...');
+    }
+</script>
 
 <body>
     <main>
         <div class='main-div'>
             <img src="https://media.tenor.com/1_rDlopCuOAAAAAM/nerd-dog-nerd.gif" alt=""><br><br><br><br>
             <a href="womp">Womp Page</a>
+        </div>
+        <br><br><br>
+        <div>
+            <form action="/login" method='POST'>
+                <label for="usr">Username:</label>
+                <input type="text" name='usr' placeholder="Username..." autofocus>
+                <label for="usr">Password:</label>
+                <input type="password" name='pass' placeholder="Password...">
+                <input type="submit">
+            </form>
         </div>
     </main>
 </body>
