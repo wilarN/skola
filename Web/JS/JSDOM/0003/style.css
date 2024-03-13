@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    background-color: #212121;
+    text-align: center;
+}
+
+a{
+    color: greenyellow;
+    font-size: 2rem;
+    transition-duration: 0.4s;
+    text-decoration: none;
+}
+a:hover{
+    color: red;
+}

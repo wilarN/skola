@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282828;
+            color: yellowgreen;
+        }
+
+        .mainDiv{
+            background-color: #414141;
+            
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: yellowgreen;
+            border: 2px solid yellowgreen;
+            border-radius: 20px;
+        }
+
+        button{
+            margin: 10px;
+            background: #414141;
+            color: yellowgreen;
+            border: 2px solid yellowgreen;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+            transition-duration: 0.3s;
+        }
+
+        button:hover{
+            background: yellowgreen;
+            color: #414141;
+            scale: 1.08;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <button onclick="openExample()">Open Example</button>
+        <button onclick="closeWindow()">Close Example Page</button>
+        <button onclick='window.close()'>Close Current Window</button>
+    </div><br>
+    <script>
+        let WHeight = window.innerHeight;
+        let WWidth = window.innerWidth;
+        let wind = null;
+        console.log(`Window Size --> ${WHeight}px by ${WWidth}px`);
+        function openExample(){
+            wind = window.open("https://www.example.com", "_blank", 
+            `width=800, height=600, top=0, left=0`);
+            // Move to center
+            wind.moveTo((WWidth - 800) / 2, (WHeight - 600) / 2);
+        }
+
+        function closeWindow(){
+            if(wind != null && !wind.closed){
+                wind.close();
+            }else{
+                console.log("Window is already closed");
+            }
+        }
+
+        function changeWindowName(newName){
+            window.document.title = newName;
+        }
+
+        function reloadCurrentPage(){
+            window.location.reload();
+        }
+
+        function getCurrentURL(){
+            console.log(window.location.href);
+        }
+
+        getCurrentURL();
+
+        changeWindowName("Mitt Fönster");
+
+        var mainDiv = document.createElement("div");
+        var mainDivText = document.createTextNode("Welcome to my page!");
+        var closeButton = document.createElement("button");
+        var imageWelcome = document.createElement("img");
+        imageWelcome.src = "https://i.pinimg.com/originals/fc/1b/26/fc1b26472eba03c92f4f41e18bc4c21d.gif";
+        imageWelcome.style.width = "100px";
+        imageWelcome.style.height = "100px";
+        closeButton.innerHTML = "Hide welcome window";
+        closeButton.onclick = function(){
+            mainDiv.style.display = "none";
+        }
+
+        mainDiv.setAttribute("class", "mainDiv");
+        document.body.append(mainDiv);
+        
+        mainDiv.appendChild(mainDivText);
+        mainDiv.appendChild(imageWelcome);
+        mainDiv.appendChild(closeButton);
+
+
+    </script>
+</body>
+</html>
