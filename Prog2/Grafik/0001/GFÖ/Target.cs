@@ -27,7 +27,11 @@ namespace GFÖ
             e.Graphics.FillEllipse(selectedBrush,
                 (float)(x - radius), (float)(y - radius),
                 (float)(radius * 2), (float)(radius * 2));
+        }
 
+        public void updateSize(float newRadius)
+        {
+            this.radius = newRadius;
         }
     }
 }

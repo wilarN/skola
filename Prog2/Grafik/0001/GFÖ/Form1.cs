@@ -58,8 +58,6 @@ namespace GFÖ
             fillBrushYellow = new SolidBrush(Color.Yellow);
             fillBrushOrange = new SolidBrush(Color.Orange);
 
-            small01.radius = small01.radius * (float)widthModifier;
-
             medium01.renderWithOutline(fillBrushGY, fillBrushBlack, e, small03Divider);
             medium02.renderWithOutline(fillBrushOrange, fillBrushBlack, e, medium02Divider);
 
@@ -77,11 +75,28 @@ namespace GFÖ
             fillBrushOrange.Dispose();
         }
 
+        private void UpdateCircleSizes()
+        {
+            small01.updateSize(50 * (float)widthModifier);
+            small02Divider.updateSize(53 * (float)widthModifier);
+            medium01.updateSize(100 * (float)widthModifier);
+            small03Divider.updateSize(103 * (float)widthModifier);
+            smallSmall01.updateSize(10 * (float)widthModifier);
+            smallSmall01Divider.updateSize(13 * (float)widthModifier);
+            smallSmall01Yellow.updateSize(20 * (float)widthModifier);
+            smallSmall01YellowDivider.updateSize(23 * (float)widthModifier);
+            medium02.updateSize(75 * (float)widthModifier);
+            medium02Divider.updateSize(78 * (float)widthModifier);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if(double.TryParse(tbxRadius.Text, out double newValue))
             {
                 widthModifier = Math.Abs(newValue);
+
+                UpdateCircleSizes();
+
                 Invalidate();
             }
         }
