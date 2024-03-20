@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>This is index</h1>
+    <br>
+    <a href="test1.html">test1</a>
+    <p id='exampleParagraph'>MIN EXEMPEL PARAGRAF</p>
+    <br>
+    <a href="test2.html">test2</a>
+    <br>
+    <button onclick='window.history.forward()'>Forward</button>
+    <button onclick='window.history.back()'>Back</button>
+
+    <button id="btn">Click me</button>
+
+    <button id="changeColorButton">
+        Ändra färg på stycke
+    </button>
+
+    <script>
+        document.getElementById("btn").addEventListener("click", function () {
+            h1.innerHTML = "Hello World";
+        });
+
+        var h1 = document.createElement("h1");
+        document.body.appendChild(h1);
+
+
+        document.getElementById("changeColorButton").addEventListener("click", function () {
+            h1.style.color = "red";
+        });
+
+        onload = function () {
+            document.getElementById('exampleParagraph').style.color = 'red';
+        }
+
+    </script>
+</body>
+
+</html>

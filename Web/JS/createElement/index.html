@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <span id='oldSpan'>Gamla texten</span>
+    <div id='existingDiv'></div>
+
+    <script>
+        // Uppgift 1:
+        var myNewDiv = document.createElement("div");
+        myNewDiv.id = "myDiv";
+        myNewDiv.innerHTML = "Detta är min div!";
+        document.body.appendChild(myNewDiv);
+
+        // Uppgift 2:
+        var mySpan = document.getElementById("oldSpan");
+        mySpan.innerHTML = mySpan.innerHTML.replace("Gamla texten", "Detta är den nya texten");
+
+        // Uppgift 3:
+        var myNewP = document.createElement("p");
+        myNewP.innerHTML = "Detta är en ny paragraf!";
+        myNewP.id = "newPara";
+        document.body.insertBefore(myNewP, document.getElementById("existingDiv"));
+
+        // Uppgift 4:
+        var myNewUL = document.createElement("ul");
+        for(let i = 0; i < 3; i++){
+            var myNewLI = document.createElement("li");
+            myNewLI.innerHTML = "List item " + (i + 1);
+            myNewUL.appendChild(myNewLI);
+        }
+        document.body.appendChild(myNewUL);
+
+
+    </script>
+</body>
+</html>
