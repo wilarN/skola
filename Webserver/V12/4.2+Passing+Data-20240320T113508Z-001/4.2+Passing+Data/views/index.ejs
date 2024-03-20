@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name Letters</title>
+</head>
+
+<body>
+  <% if (locals.numberOfLetters) { %>
+    <h1>Det är <%= numberOfLetters %> bokstäver i ditt namn.</h1>
+    <% } else { %>
+      <h1>Skriv ditt namn</h1>
+      <% } %>
+
+        <!-- Write your code here -->
+        <form action="/submit" method="POST">
+          <input type="text" name="fName" required autofocus placeholder="First name">
+          <input type="text" name="lName" required placeholder="Last name">
+          <input type="submit" value="OK">
+        </form>
+</body>
+
+</html>
