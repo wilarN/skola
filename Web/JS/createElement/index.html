@@ -19,12 +19,12 @@
 
         // Uppgift 2:
         var mySpan = document.getElementById("oldSpan");
-        mySpan.innerHTML = mySpan.innerHTML.replace("Gamla texten", "Detta är den nya texten");
+        mySpan.innerHTML = mySpan.innerHTML.replace(mySpan.innerHTML, "Detta är den nya texten");
 
         // Uppgift 3:
         var myNewP = document.createElement("p");
-        myNewP.innerHTML = "Detta är en ny paragraf!";
         myNewP.id = "newPara";
+        myNewP.innerHTML = "Detta är en ny paragraf!";
         document.body.insertBefore(myNewP, document.getElementById("existingDiv"));
 
         // Uppgift 4:
