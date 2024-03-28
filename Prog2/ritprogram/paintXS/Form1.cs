@@ -21,14 +21,18 @@ namespace paintXS
         // Färg --> Default Svart
         private Color mainColor = Color.Black;
 
+        private bool useBackupColor = false;
+        private Color backupColor;
+
         // Current tool
         /*
          CASES:
         1. Normal pen
         2. Square
-        3. Eraser
+        3. Line
+        4. Eraser
          */
-        private int currentTool = 3;
+        private int currentTool = 1;
 
         // Add variables to store the starting point and ending point of the rectangle
         private Point startPoint;
@@ -37,9 +41,22 @@ namespace paintXS
         public FRMPaintProgram()
         {
             InitializeComponent();
-
-            // 
             InitializeDrawingSurface();
+        }
+
+        private bool backupColorFetcher()
+        {
+            // Checks if the backup color is in use.
+            if (useBackupColor)
+            {
+                mainColor = backupColor;
+                useBackupColor = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Metod för att skapa ett ritområde genom att rensa det till vit färg.
@@ -55,12 +72,11 @@ namespace paintXS
         {
             switch (currentTool)
             {
-                case 1: case 3:
+                case 1: case 4:
                     isCurrentlyDrawing = true;
-                    previousPoint = e.Location;         // Sparar positionen där muspekaren befann sig när ritningen påbörjades i previousPoint 
-                    lblDebugText.Text = "KLICKAR";
+                    previousPoint = e.Location; // Sparar positionen där muspekaren befann sig när ritningen påbörjades i previousPoint 
                     break;
-                case 2:
+                case 2: case 3:
                     previousPoint = e.Location;
                     startPoint = e.Location;
                     isCurrentlyDrawing = true;
@@ -74,9 +90,8 @@ namespace paintXS
         {
             switch (currentTool)
             {
-                case 1: case 3:
+                case 1: case 4:
                     isCurrentlyDrawing = false;
-                    lblDebugText.Text = "LYFTER";
                     break;
                 case 2:
                     using (Graphics g = Graphics.FromImage(drawingSurface))
@@ -91,6 +106,24 @@ namespace paintXS
                         Rectangle rect = new Rectangle(x, y, width, height);
 
                         g.DrawRectangle(pen, rect);
+
+                        pen.Dispose();
+                        isCurrentlyDrawing = false;
+
+                        startPoint = e.Location;
+                        endPoint = e.Location;
+                        pbxPaintArea.Invalidate();
+                        break;
+                    }
+                case 3:
+                    using (Graphics g = Graphics.FromImage(drawingSurface))
+                    {
+                        // Square box
+                        Pen pen = new Pen(mainColor, paintSize);
+                        pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+                        pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+
+                        g.DrawLine(pen, startPoint, e.Location);
 
                         pen.Dispose();
                         isCurrentlyDrawing = false;
@@ -115,7 +148,6 @@ namespace paintXS
             {
                 Pen pen = new Pen(mainColor, paintSize);
 
-
                 int width = Math.Abs(endPoint.X - startPoint.X);
                 int height = Math.Abs(endPoint.Y - startPoint.Y);
 
@@ -133,19 +165,18 @@ namespace paintXS
             {
                 using (Graphics g = Graphics.FromImage(drawingSurface))
                 {
-                    if(currentTool == 3) {
+                    if(currentTool == 4) {
                         mainColor = Color.White;
                     }
                     switch (currentTool)
                     {
-                        case 1: case 3:
+                        case 1: case 4:
                             // Normal pen
                             // Skapa en penna
                             Pen pen = new Pen(mainColor, paintSize);
                             pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                             pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
 
-                            // Rita en linje från föregående musposition till nuvarande musposition
                             g.DrawLine(pen, previousPoint, e.Location);
                             pen.Dispose();
 
@@ -194,6 +225,40 @@ namespace paintXS
                 g.Clear(Color.White);
                 pbxPaintArea.Invalidate();
             }
+        }
+
+        private void pbxToolPen_Click(object sender, EventArgs e)
+        {
+            backupColorFetcher();
+            currentTool = 1;
+        }
+
+        private void pbxToolSquare_Click(object sender, EventArgs e)
+        {
+            backupColorFetcher();
+            currentTool = 2;
+        }
+
+        private void pbxToolLine_Click(object sender, EventArgs e)
+        {
+            backupColorFetcher();
+            currentTool = 3;
+        }
+
+        private void pbxTrash_Click(object sender, EventArgs e)
+        {
+            using (Graphics g = Graphics.FromImage(drawingSurface))
+            {
+                g.Clear(Color.White);
+                pbxPaintArea.Invalidate();
+            }
+        }
+
+        private void pbxToolEraser_Click(object sender, EventArgs e)
+        {
+            useBackupColor = true;
+            backupColor = mainColor;
+            currentTool = 4;
         }
     }
 }
