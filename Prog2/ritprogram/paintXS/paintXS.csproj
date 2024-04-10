@@ -99,5 +99,14 @@
   <ItemGroup>
     <None Include="img\eraser.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="img\wood_rep01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\wood_rep02.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\save.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

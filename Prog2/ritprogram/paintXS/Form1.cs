@@ -6,37 +6,8 @@ namespace paintXS
 {
     public partial class FRMPaintProgram : Form
     {
-        // Om användaren aktivt ritar
-        private bool isCurrentlyDrawing = false;
-
-        // Håller koll på tidigare point som ritats på
-        private Point previousPoint;
-
-        // En bitmap för att spara ritdata
-        private Bitmap drawingSurface = new Bitmap(1197, 530);
-
-        // Storlek på brush --> Default size 3
-        private int paintSize = 3;
-
-        // Färg --> Default Svart
-        private Color mainColor = Color.Black;
-
-        private bool useBackupColor = false;
-        private Color backupColor;
-
-        // Current tool
-        /*
-         CASES:
-        1. Normal pen
-        2. Square
-        3. Line
-        4. Eraser
-         */
-        private int currentTool = 1;
-
-        // Add variables to store the starting point and ending point of the rectangle
-        private Point startPoint;
-        private Point endPoint;
+        // Create mainPen object
+        paintXSPen mainPen = new paintXSPen();
 
         public FRMPaintProgram()
         {
@@ -44,13 +15,14 @@ namespace paintXS
             InitializeDrawingSurface();
         }
 
+        // If backup color is needed, for example when using eraser, the backup color will be fetched.
         private bool backupColorFetcher()
         {
             // Checks if the backup color is in use.
-            if (useBackupColor)
+            if (mainPen.useBackupColor)
             {
-                mainColor = backupColor;
-                useBackupColor = false;
+                mainPen.mainColor = mainPen.backupColor;
+                mainPen.useBackupColor = false;
                 return true;
             }
             else
@@ -59,77 +31,79 @@ namespace paintXS
             }
         }
 
-        // Metod för att skapa ett ritområde genom att rensa det till vit färg.
+        // Method for creating a drawing surface by clearing out with white.
         private void InitializeDrawingSurface()
         {
-            using (Graphics g = Graphics.FromImage(drawingSurface))
+            using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
             {
                 g.Clear(Color.White);
             }
         }
 
+        // When MouseDown on paintarea:
         private void pbxPaintArea_MouseDown(object sender, MouseEventArgs e)
         {
-            switch (currentTool)
+            switch (mainPen.currentTool)
             {
                 case 1: case 4:
-                    isCurrentlyDrawing = true;
-                    previousPoint = e.Location; // Sparar positionen där muspekaren befann sig när ritningen påbörjades i previousPoint 
+                    mainPen.isCurrentlyDrawing = true;
+                    mainPen.previousPoint = e.Location; // Sparar positionen där muspekaren befann sig när ritningen påbörjades i previousPoint 
                     break;
                 case 2: case 3:
-                    previousPoint = e.Location;
-                    startPoint = e.Location;
-                    isCurrentlyDrawing = true;
+                    mainPen.previousPoint = e.Location;
+                    mainPen.startPoint = e.Location;
+                    mainPen.isCurrentlyDrawing = true;
                     break;
                 default:
                     break;
             }
         }
 
+        // When MouseUp on paintarea:
         private void pbxPaintArea_MouseUp(object sender, MouseEventArgs e)
         {
-            switch (currentTool)
+            switch (mainPen.currentTool)
             {
                 case 1: case 4:
-                    isCurrentlyDrawing = false;
+                    mainPen.isCurrentlyDrawing = false;
                     break;
                 case 2:
-                    using (Graphics g = Graphics.FromImage(drawingSurface))
+                    using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
                     {
                         // Square box
-                        Pen pen = new Pen(mainColor, paintSize);
+                        Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
 
-                        int width = Math.Abs(endPoint.X - startPoint.X);
-                        int height = Math.Abs(endPoint.Y - startPoint.Y);
-                        int x = Math.Min(startPoint.X, endPoint.X);
-                        int y = Math.Min(startPoint.Y, endPoint.Y);
+                        int width = Math.Abs(mainPen.endPoint.X - mainPen.startPoint.X);
+                        int height = Math.Abs(mainPen.endPoint.Y - mainPen.startPoint.Y);
+                        int x = Math.Min(mainPen.startPoint.X, mainPen.endPoint.X);
+                        int y = Math.Min(mainPen.startPoint.Y, mainPen.endPoint.Y);
                         Rectangle rect = new Rectangle(x, y, width, height);
 
                         g.DrawRectangle(pen, rect);
 
                         pen.Dispose();
-                        isCurrentlyDrawing = false;
+                        mainPen.isCurrentlyDrawing = false;
 
-                        startPoint = e.Location;
-                        endPoint = e.Location;
+                        mainPen.startPoint = e.Location;
+                        mainPen.endPoint = e.Location;
                         pbxPaintArea.Invalidate();
                         break;
                     }
                 case 3:
-                    using (Graphics g = Graphics.FromImage(drawingSurface))
+                    using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
                     {
                         // Square box
-                        Pen pen = new Pen(mainColor, paintSize);
+                        Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
                         pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                         pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
 
-                        g.DrawLine(pen, startPoint, e.Location);
+                        g.DrawLine(pen, mainPen.startPoint, e.Location);
 
                         pen.Dispose();
-                        isCurrentlyDrawing = false;
+                        mainPen.isCurrentlyDrawing = false;
 
-                        startPoint = e.Location;
-                        endPoint = e.Location;
+                        mainPen.startPoint = e.Location;
+                        mainPen.endPoint = e.Location;
                         pbxPaintArea.Invalidate();
                         break;
                     }
@@ -140,19 +114,19 @@ namespace paintXS
 
         private void pbxPaintArea_Paint(object sender, PaintEventArgs e)
         {
-            // Rita inom paintArea
-            e.Graphics.DrawImage(drawingSurface, Point.Empty);
+            // Paint within the paintArea:
+            e.Graphics.DrawImage(mainPen.drawingSurface, Point.Empty);
 
             // Draw rectangle if using the rectangle tool
-            if (currentTool == 2 && startPoint != null && endPoint != null)
+            if (mainPen.currentTool == 2 && mainPen.startPoint != null && mainPen.endPoint != null)
             {
-                Pen pen = new Pen(mainColor, paintSize);
+                Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
 
-                int width = Math.Abs(endPoint.X - startPoint.X);
-                int height = Math.Abs(endPoint.Y - startPoint.Y);
+                int width = Math.Abs(mainPen.endPoint.X - mainPen.startPoint.X);
+                int height = Math.Abs(mainPen.endPoint.Y - mainPen.startPoint.Y);
 
-                int x = Math.Min(startPoint.X, endPoint.X);
-                int y = Math.Min(startPoint.Y, endPoint.Y);
+                int x = Math.Min(mainPen.startPoint.X, mainPen.endPoint.X);
+                int y = Math.Min(mainPen.startPoint.Y, mainPen.endPoint.Y);
                 
                 Rectangle rect = new Rectangle(x, y, width, height);
                 e.Graphics.DrawRectangle(pen, rect);
@@ -161,46 +135,45 @@ namespace paintXS
 
         private void pbxPaintArea_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isCurrentlyDrawing)
+            if (mainPen.isCurrentlyDrawing)
             {
-                using (Graphics g = Graphics.FromImage(drawingSurface))
+                using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
                 {
-                    if(currentTool == 4) {
-                        mainColor = Color.White;
+                    if(mainPen.currentTool == 4) {
+                        mainPen.mainColor = Color.White;
                     }
-                    switch (currentTool)
+                    switch (mainPen.currentTool)
                     {
                         case 1: case 4:
                             // Normal pen
-                            // Skapa en penna
-                            Pen pen = new Pen(mainColor, paintSize);
+                            // Create a pen
+                            Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
                             pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                             pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
 
-                            g.DrawLine(pen, previousPoint, e.Location);
+                            g.DrawLine(pen, mainPen.previousPoint, e.Location);
                             pen.Dispose();
 
-                            previousPoint = e.Location;
+                            mainPen.previousPoint = e.Location;
 
-                            // Uppdatera PictureBox för att visa de ändringar som gjorts på ritområdet
+                            // Update the PictureBox to show the changes that have been made within the paint area.
                             pbxPaintArea.Invalidate();
                             break;
                         case 2:
-                            endPoint = e.Location;
+                            mainPen.endPoint = e.Location;
                             pbxPaintArea.Invalidate(); // Force the paint area to redraw
                             break;
                         default:
                             break;
                     }
-
                 }
-
             }
         }
 
+        // Pensize change from the slider.
         private void tbSize_Scroll(object sender, EventArgs e)
         {
-            paintSize = tbSize.Value;
+            mainPen.paintSize = tbSize.Value;
         }
 
         private void pbColourSelection_Click(object sender, EventArgs e)
@@ -214,14 +187,17 @@ namespace paintXS
             {
                 pbColourSelection.ForeColor = colorDialog.Color;
                 pbColourSelection.BackColor = colorDialog.Color;
-                mainColor = colorDialog.Color;
+                mainPen.mainColor = colorDialog.Color;
             }
         }
 
+        // Clear out and repaint with white over the paint area.
+        // "Trashbin" || "Clear out painting area"
         private void btnClear_Click(object sender, EventArgs e)
         {
-            using (Graphics g = Graphics.FromImage(drawingSurface))
+            using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
             {
+                // Actually perform the clearing.
                 g.Clear(Color.White);
                 pbxPaintArea.Invalidate();
             }
@@ -230,35 +206,66 @@ namespace paintXS
         private void pbxToolPen_Click(object sender, EventArgs e)
         {
             backupColorFetcher();
-            currentTool = 1;
+            mainPen.currentTool = 1;
         }
 
         private void pbxToolSquare_Click(object sender, EventArgs e)
         {
             backupColorFetcher();
-            currentTool = 2;
+            mainPen.currentTool = 2;
         }
 
         private void pbxToolLine_Click(object sender, EventArgs e)
         {
             backupColorFetcher();
-            currentTool = 3;
+            mainPen.currentTool = 3;
         }
 
         private void pbxTrash_Click(object sender, EventArgs e)
         {
-            using (Graphics g = Graphics.FromImage(drawingSurface))
+            using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
             {
                 g.Clear(Color.White);
                 pbxPaintArea.Invalidate();
             }
         }
 
+        // Eraser tool, selection.
         private void pbxToolEraser_Click(object sender, EventArgs e)
         {
-            useBackupColor = true;
-            backupColor = mainColor;
-            currentTool = 4;
+            mainPen.useBackupColor = true;
+            mainPen.backupColor = mainPen.mainColor;
+            // Set currentTool to the eraser.
+            mainPen.currentTool = 4;
+        }
+
+        private void pbxExportArea_Click(object sender, EventArgs e)
+        {
+            // Export paintarea as PNG.
+            mainPen.saveImageToDisk();
+        }
+
+        private void pbxExportArea_MouseEnter(object sender, EventArgs e)
+        {
+            pbxExportArea.Width += 10;
+            pbxExportArea.Height += 10;
+        }
+
+        private void pbxExportArea_MouseLeave(object sender, EventArgs e)
+        {
+            pbxExportArea.Width -= 10;
+            pbxExportArea.Height -= 10;
+        }
+        private void pbxTrash_MouseEnter(object sender, EventArgs e)
+        {
+            pbxTrash.Width += 10;
+            pbxTrash.Height += 10;
+        }
+
+        private void pbxTrash_MouseLeave(object sender, EventArgs e)
+        {
+            pbxTrash.Width -= 10;
+            pbxTrash.Height -= 10;
         }
     }
 }
