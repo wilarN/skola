@@ -108,5 +108,14 @@
   <ItemGroup>
     <None Include="img\save.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="img\circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\rectangle_filled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\star.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

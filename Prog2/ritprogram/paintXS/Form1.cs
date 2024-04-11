@@ -49,7 +49,7 @@ namespace paintXS
                     mainPen.isCurrentlyDrawing = true;
                     mainPen.previousPoint = e.Location; // Sparar positionen där muspekaren befann sig när ritningen påbörjades i previousPoint 
                     break;
-                case 2: case 3:
+                case 2: case 3: case 5: case 7:
                     mainPen.previousPoint = e.Location;
                     mainPen.startPoint = e.Location;
                     mainPen.isCurrentlyDrawing = true;
@@ -92,7 +92,7 @@ namespace paintXS
                 case 3:
                     using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
                     {
-                        // Square box
+                        // Line
                         Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
                         pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                         pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
@@ -106,6 +106,85 @@ namespace paintXS
                         mainPen.endPoint = e.Location;
                         pbxPaintArea.Invalidate();
                         break;
+                    }
+                case 5:
+                    using(Graphics g = Graphics.FromImage(mainPen.drawingSurface))
+                    {
+                        // Circle
+                        Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
+                        int width = Math.Abs(mainPen.endPoint.X - mainPen.startPoint.X);
+                        int height = Math.Abs(mainPen.endPoint.Y - mainPen.startPoint.Y);
+                        int x = Math.Min(mainPen.startPoint.X, mainPen.endPoint.X);
+                        int y = Math.Min(mainPen.startPoint.Y, mainPen.endPoint.Y);
+
+                        g.DrawEllipse(pen, x, y, width, height);
+                        mainPen.isCurrentlyDrawing = false;
+
+                        pen.Dispose();
+                        mainPen.startPoint = e.Location;
+                        mainPen.endPoint = e.Location;
+                        pbxPaintArea.Invalidate();
+                        break;
+                    }
+                case 6:
+                    using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
+                    {
+                        // Square box
+                        Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
+
+                        // Calculate the position of the star based on mouse drag
+                        int width = Math.Abs(mainPen.endPoint.X - mainPen.startPoint.X);
+                        int height = Math.Abs(mainPen.endPoint.Y - mainPen.startPoint.Y);
+                        int x = Math.Min(mainPen.startPoint.X, mainPen.endPoint.X);
+                        int y = Math.Min(mainPen.startPoint.Y, mainPen.endPoint.Y);
+
+                        // Create points that define the star.
+                        Point[] starPoints =
+                        {
+                            new Point(x + width / 2, y),
+                            new Point(x + width * 7 / 10, y + height * 3 / 10),
+                            new Point(x + width, y + height * 3 / 10),
+                            new Point(x + width * 3 / 5, y + height * 6 / 10),
+                            new Point(x + width * 8 / 10, y + height),
+                            new Point(x + width / 2, y + height * 7 / 10),
+                            new Point(x + width * 2 / 10, y + height),
+                            new Point(x + width * 2 / 5, y + height * 6 / 10),
+                            new Point(x, y + height * 3 / 10),
+                            new Point(x + width * 3 / 10, y + height * 3 / 10)
+                        };
+
+                        // Draw star to screen.
+                        g.DrawPolygon(pen, starPoints);
+                        pen.Dispose();
+                        mainPen.isCurrentlyDrawing = false;
+
+                        mainPen.startPoint = e.Location;
+                        mainPen.endPoint = e.Location;
+                        pbxPaintArea.Invalidate();
+                        break;
+                    }
+                case 7:
+                    using (Graphics g = Graphics.FromImage(mainPen.drawingSurface))
+                    {
+                        // Filled Rectangle
+                        Brush brush = new SolidBrush(mainPen.mainColor);
+
+                    int width = Math.Abs(mainPen.endPoint.X - mainPen.startPoint.X);
+                    int height = Math.Abs(mainPen.endPoint.Y - mainPen.startPoint.Y);
+                    int x = Math.Min(mainPen.startPoint.X, mainPen.endPoint.X);
+                    int y = Math.Min(mainPen.startPoint.Y, mainPen.endPoint.Y);
+                    Rectangle rect = new Rectangle(x, y, width, height);
+
+                    g.FillRectangle(brush, rect);
+
+                    brush.Dispose();
+                    mainPen.isCurrentlyDrawing = false;
+
+                    mainPen.startPoint = e.Location;
+                    mainPen.endPoint = e.Location;
+                    pbxPaintArea.Invalidate();
+                    break;
+
                     }
                 default:
                     break;
@@ -130,6 +209,32 @@ namespace paintXS
                 
                 Rectangle rect = new Rectangle(x, y, width, height);
                 e.Graphics.DrawRectangle(pen, rect);
+            }
+
+            // Draw circle if using the circle tool
+            if (mainPen.currentTool == 5 && mainPen.startPoint != null && mainPen.endPoint != null)
+            {
+                Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
+                int width = Math.Abs(mainPen.endPoint.X - mainPen.startPoint.X);
+                int height = Math.Abs(mainPen.endPoint.Y - mainPen.startPoint.Y);
+                int x = Math.Min(mainPen.startPoint.X, mainPen.endPoint.X);
+                int y = Math.Min(mainPen.startPoint.Y, mainPen.endPoint.Y);
+
+                e.Graphics.DrawEllipse(pen, x, y, width, height);
+            }
+            // Draw filled rect if using the fille drect tool
+            if (mainPen.currentTool == 7 && mainPen.startPoint != null && mainPen.endPoint != null)
+            {
+                Brush brush = new SolidBrush(mainPen.mainColor);
+
+                int width = Math.Abs(mainPen.endPoint.X - mainPen.startPoint.X);
+                int height = Math.Abs(mainPen.endPoint.Y - mainPen.startPoint.Y);
+
+                int x = Math.Min(mainPen.startPoint.X, mainPen.endPoint.X);
+                int y = Math.Min(mainPen.startPoint.Y, mainPen.endPoint.Y);
+
+                Rectangle rect = new Rectangle(x, y, width, height);
+                e.Graphics.FillRectangle(brush, rect);
             }
         }
 
@@ -159,7 +264,8 @@ namespace paintXS
                             // Update the PictureBox to show the changes that have been made within the paint area.
                             pbxPaintArea.Invalidate();
                             break;
-                        case 2:
+                        case 2:  case 3: case 5:
+                        case 7:
                             mainPen.endPoint = e.Location;
                             pbxPaintArea.Invalidate(); // Force the paint area to redraw
                             break;
@@ -219,6 +325,26 @@ namespace paintXS
         {
             backupColorFetcher();
             mainPen.currentTool = 3;
+        }
+
+        // Tool at index 4 is further below.
+
+        private void pbxToolCircle_Click(object sender, EventArgs e)
+        {
+            backupColorFetcher();
+            mainPen.currentTool = 5;
+        }
+
+        private void pbxToolStar_Click(object sender, EventArgs e)
+        {
+            backupColorFetcher();
+            mainPen.currentTool = 6;
+        }
+
+        private void pbxToolFilledRect_Click(object sender, EventArgs e)
+        {
+            backupColorFetcher();
+            mainPen.currentTool = 7;
         }
 
         private void pbxTrash_Click(object sender, EventArgs e)

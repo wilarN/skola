@@ -33,6 +33,9 @@ namespace paintXS
         2. Square
         3. Line
         4. Eraser
+        5. Circle
+        6. Star shape
+        7. Filled Square/Rectangle
          */
         public int currentTool = 1;
 
