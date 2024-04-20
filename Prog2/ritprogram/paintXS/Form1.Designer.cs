@@ -43,11 +43,11 @@ namespace paintXS
             this.pbxToolLine = new System.Windows.Forms.PictureBox();
             this.pbxToolEraser = new System.Windows.Forms.PictureBox();
             this.gbxRadio = new System.Windows.Forms.GroupBox();
-            this.pbxToolStar = new System.Windows.Forms.PictureBox();
             this.pbxToolFilledRect = new System.Windows.Forms.PictureBox();
             this.pbxToolCircle = new System.Windows.Forms.PictureBox();
             this.pbxExportArea = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pbxImport = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTrash)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColourSelection)).BeginInit();
@@ -58,19 +58,19 @@ namespace paintXS
             ((System.ComponentModel.ISupportInitialize)(this.pbxToolLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxToolEraser)).BeginInit();
             this.gbxRadio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxToolStar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxToolFilledRect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxToolCircle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxExportArea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImport)).BeginInit();
             this.SuspendLayout();
             // 
             // tbSize
             // 
             this.tbSize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tbSize.Location = new System.Drawing.Point(583, 47);
+            this.tbSize.Location = new System.Drawing.Point(488, 44);
             this.tbSize.Maximum = 100;
             this.tbSize.Name = "tbSize";
-            this.tbSize.Size = new System.Drawing.Size(130, 45);
+            this.tbSize.Size = new System.Drawing.Size(170, 45);
             this.tbSize.SmallChange = 30;
             this.tbSize.TabIndex = 10;
             this.tbSize.Scroll += new System.EventHandler(this.tbSize_Scroll);
@@ -95,9 +95,9 @@ namespace paintXS
             this.pbColourSelection.BackColor = System.Drawing.Color.Black;
             this.pbColourSelection.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbColourSelection.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbColourSelection.Location = new System.Drawing.Point(774, 23);
+            this.pbColourSelection.Location = new System.Drawing.Point(703, 42);
             this.pbColourSelection.Name = "pbColourSelection";
-            this.pbColourSelection.Size = new System.Drawing.Size(114, 100);
+            this.pbColourSelection.Size = new System.Drawing.Size(114, 50);
             this.pbColourSelection.TabIndex = 3;
             this.pbColourSelection.TabStop = false;
             this.pbColourSelection.Click += new System.EventHandler(this.pbColourSelection_Click);
@@ -164,7 +164,7 @@ namespace paintXS
             this.pbxToolEraser.BackgroundImage = global::paintXS.Properties.Resources.eraser;
             this.pbxToolEraser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbxToolEraser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbxToolEraser.Location = new System.Drawing.Point(448, 21);
+            this.pbxToolEraser.Location = new System.Drawing.Point(363, 19);
             this.pbxToolEraser.Name = "pbxToolEraser";
             this.pbxToolEraser.Size = new System.Drawing.Size(52, 50);
             this.pbxToolEraser.TabIndex = 3;
@@ -175,7 +175,6 @@ namespace paintXS
             // 
             this.gbxRadio.BackColor = System.Drawing.Color.Transparent;
             this.gbxRadio.BackgroundImage = global::paintXS.Properties.Resources.wood_rep02;
-            this.gbxRadio.Controls.Add(this.pbxToolStar);
             this.gbxRadio.Controls.Add(this.pbxToolFilledRect);
             this.gbxRadio.Controls.Add(this.pbxToolCircle);
             this.gbxRadio.Controls.Add(this.pbxToolEraser);
@@ -185,22 +184,10 @@ namespace paintXS
             this.gbxRadio.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.gbxRadio.Location = new System.Drawing.Point(24, 23);
             this.gbxRadio.Name = "gbxRadio";
-            this.gbxRadio.Size = new System.Drawing.Size(518, 89);
+            this.gbxRadio.Size = new System.Drawing.Size(424, 89);
             this.gbxRadio.TabIndex = 13;
             this.gbxRadio.TabStop = false;
             this.gbxRadio.Text = "Verktyg";
-            // 
-            // pbxToolStar
-            // 
-            this.pbxToolStar.BackgroundImage = global::paintXS.Properties.Resources.star;
-            this.pbxToolStar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbxToolStar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbxToolStar.Location = new System.Drawing.Point(349, 19);
-            this.pbxToolStar.Name = "pbxToolStar";
-            this.pbxToolStar.Size = new System.Drawing.Size(52, 50);
-            this.pbxToolStar.TabIndex = 6;
-            this.pbxToolStar.TabStop = false;
-            this.pbxToolStar.Click += new System.EventHandler(this.pbxToolStar_Click);
             // 
             // pbxToolFilledRect
             // 
@@ -232,14 +219,29 @@ namespace paintXS
             this.pbxExportArea.BackgroundImage = global::paintXS.Properties.Resources.save;
             this.pbxExportArea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pbxExportArea.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbxExportArea.Location = new System.Drawing.Point(958, 23);
+            this.pbxExportArea.Location = new System.Drawing.Point(978, 23);
             this.pbxExportArea.Name = "pbxExportArea";
-            this.pbxExportArea.Size = new System.Drawing.Size(95, 89);
+            this.pbxExportArea.Size = new System.Drawing.Size(87, 89);
             this.pbxExportArea.TabIndex = 15;
             this.pbxExportArea.TabStop = false;
             this.pbxExportArea.Click += new System.EventHandler(this.pbxExportArea_Click);
             this.pbxExportArea.MouseEnter += new System.EventHandler(this.pbxExportArea_MouseEnter);
             this.pbxExportArea.MouseLeave += new System.EventHandler(this.pbxExportArea_MouseLeave);
+            // 
+            // pbxImport
+            // 
+            this.pbxImport.BackColor = System.Drawing.Color.Transparent;
+            this.pbxImport.BackgroundImage = global::paintXS.Properties.Resources.import;
+            this.pbxImport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbxImport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxImport.Location = new System.Drawing.Point(849, 23);
+            this.pbxImport.Name = "pbxImport";
+            this.pbxImport.Size = new System.Drawing.Size(87, 89);
+            this.pbxImport.TabIndex = 16;
+            this.pbxImport.TabStop = false;
+            this.pbxImport.Click += new System.EventHandler(this.pbxImport_Click);
+            this.pbxImport.MouseEnter += new System.EventHandler(this.pbxImport_MouseEnter);
+            this.pbxImport.MouseLeave += new System.EventHandler(this.pbxImport_MouseLeave);
             // 
             // FRMPaintProgram
             // 
@@ -248,14 +250,19 @@ namespace paintXS
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::paintXS.Properties.Resources.wood_rep01;
             this.ClientSize = new System.Drawing.Size(1221, 671);
+            this.Controls.Add(this.pbxImport);
             this.Controls.Add(this.pbxExportArea);
             this.Controls.Add(this.pbxTrash);
             this.Controls.Add(this.gbxRadio);
             this.Controls.Add(this.pbColourSelection);
             this.Controls.Add(this.tbSize);
             this.Controls.Add(this.pbxPaintArea);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FRMPaintProgram";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "paintXS";
             ((System.ComponentModel.ISupportInitialize)(this.tbSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTrash)).EndInit();
@@ -267,10 +274,10 @@ namespace paintXS
             ((System.ComponentModel.ISupportInitialize)(this.pbxToolLine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxToolEraser)).EndInit();
             this.gbxRadio.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbxToolStar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxToolFilledRect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxToolCircle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxExportArea)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImport)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,7 +301,7 @@ namespace paintXS
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.PictureBox pbxToolCircle;
         private System.Windows.Forms.PictureBox pbxToolFilledRect;
-        private System.Windows.Forms.PictureBox pbxToolStar;
+        private System.Windows.Forms.PictureBox pbxImport;
     }
 }
 

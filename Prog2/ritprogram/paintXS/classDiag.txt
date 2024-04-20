@@ -1,0 +1,48 @@
++-----------------------------------------+
+|                paintXSPen               |
++-----------------------------------------+
+| + isCurrentlyDrawing: bool              |
+| + previousPoint: Point                  |
+| + drawingSurface: Bitmap                |
+| + paintSize: int                        |
+| + mainColor: Color                      |
+| + useBackupColor: bool                  |
+| + backupColor: Color                    |
+| + currentTool: int                      |
+| + startPoint: Point                     |
+| + endPoint: Point                       |
++-----------------------------------------+
+| + saveImageToDisk(): bool               |
+| + importImageFromDisk(PictureBox): bool |
++-----------------------------------------+
+
++-----------------------------------------+
+|              FRMPaintProgram            |
++-----------------------------------------+
+| - mainPen: paintXSPen                   |
++-----------------------------------------+
+| + FRMPaintProgram()                     |
+| - backupColorFetcher()                  |
+| - InitializeDrawingSurface()            |
+| - pbxPaintArea_MouseDown()              |
+| - pbxPaintArea_MouseUp()                |
+| - pbxPaintArea_MouseMove()              |
+| - tbSize_Scroll()                       |
+| - pbColourSelection_Click()             |
+| - btnClear_Click()                      |
+| - pbxToolPen_Click()                    |
+| - pbxToolSquare_Click()                 |
+| - pbxToolLine_Click()                   |
+| - pbxToolCircle_Click()                 |
+| - pbxToolStar_Click()                   |
+| - pbxToolFilledRect_Click()             |
+| - pbxToolEraser_Click()                 |
+| - pbxExportArea_Click()                 |
+| - pbxExportArea_MouseEnter()            |
+| - pbxExportArea_MouseLeave()            |
+| - pbxImport_Click()                     |
+| - pbxTrash_MouseEnter()                 |
+| - pbxTrash_MouseLeave()                 |
+| - pbxImport_MouseEnter()                |
+| - pbxImport_MouseLeave()                |
++-----------------------------------------+

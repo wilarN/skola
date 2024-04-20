@@ -236,6 +236,15 @@ namespace paintXS
                 Rectangle rect = new Rectangle(x, y, width, height);
                 e.Graphics.FillRectangle(brush, rect);
             }
+            if(mainPen.currentTool == 3 && mainPen.startPoint != null && mainPen.endPoint != null)
+            {
+                // Line
+                Pen pen = new Pen(mainPen.mainColor, mainPen.paintSize);
+                pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+                pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+
+                e.Graphics.DrawLine(pen, mainPen.startPoint, mainPen.endPoint);
+            }
         }
 
         private void pbxPaintArea_MouseMove(object sender, MouseEventArgs e)
@@ -382,6 +391,29 @@ namespace paintXS
             pbxExportArea.Width -= 10;
             pbxExportArea.Height -= 10;
         }
+
+        private void pbxImport_Click(object sender, EventArgs e)
+        {
+            if (mainPen.importImageFromDisk(pbxPaintArea))
+            {
+                MessageBox.Show(
+                "Successfully Imported Image!",
+                "Import Successfull",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+                );
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Error Importing Image",
+                    "Error On Import",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                    );
+            }
+        }
+
         private void pbxTrash_MouseEnter(object sender, EventArgs e)
         {
             pbxTrash.Width += 10;
@@ -393,5 +425,18 @@ namespace paintXS
             pbxTrash.Width -= 10;
             pbxTrash.Height -= 10;
         }
+
+        private void pbxImport_MouseEnter(object sender, EventArgs e)
+        {
+            pbxImport.Width += 10;
+            pbxImport.Height += 10;
+        }
+
+        private void pbxImport_MouseLeave(object sender, EventArgs e)
+        {
+            pbxImport.Width -= 10;
+            pbxImport.Height -= 10;
+        }
+
     }
 }

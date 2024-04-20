@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using System.IO;
 
 namespace paintXS
 {
@@ -47,12 +48,67 @@ namespace paintXS
         public bool saveImageToDisk()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "PNG files (*.png)|*.png";
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            saveFileDialog.Filter = "PNG files (*.png)|*.png|JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                drawingSurface.Save(saveFileDialog.FileName, ImageFormat.Png);
+                string fileName = saveFileDialog.FileName;
+                string extension = Path.GetExtension(fileName).ToLower();
+
+                ImageFormat imageFormat;
+
+                switch (extension)
+                {
+                    case ".png":
+                        imageFormat = ImageFormat.Png;
+                        break;
+                    case ".jpg":
+                    case ".jpeg":
+                        imageFormat = ImageFormat.Jpeg;
+                        break;
+                    case ".svg":
+                        // .NET doesnt support svg for export.
+                        MessageBox.Show("SVG saving is not supported.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    default:
+                        // Unsupported file format
+                        MessageBox.Show("Unsupported file format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                }
+
+                drawingSurface.Save(fileName, imageFormat);
             }
 
+            return true;
+        }
+
+        public bool importImageFromDisk(PictureBox pbxArea)
+        {
+            try
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                // Accept png, jpg, jpeg & svg
+                fileDialog.Filter = "Image files (*.png;*.jpg;*.jpeg;*.svg)|*.png;*.jpg;*.jpeg;*.svg";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Load the selected image
+                    Bitmap loadedImage = new Bitmap(fileDialog.FileName);
+
+                    // Scale the image to the size of the drawing area (PictureBox)
+                    Bitmap scaledImage = new Bitmap(pbxArea.Width, pbxArea.Height);
+                    using (Graphics g = Graphics.FromImage(scaledImage))
+                    {
+                        g.DrawImage(loadedImage, 0, 0, pbxArea.Width, pbxArea.Height);
+                    }
+
+                    // Assign the scaled image to drawingSurface and display it on the PictureBox
+                    drawingSurface = scaledImage;
+                    pbxArea.Image = drawingSurface;
+                }
+            }
+            catch
+            {
+                return false;
+            }
             return true;
         }
     }
