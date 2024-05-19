@@ -134,6 +134,7 @@ namespace tcpCommunication
             // Hide chatroom and message box
             tbxChatRoom.Visible = false;
             tbxMessageMain.Visible = false;
+            btnSend.Visible = false;
         }
 
         private async void btnLogout_Click(object sender, EventArgs e)
