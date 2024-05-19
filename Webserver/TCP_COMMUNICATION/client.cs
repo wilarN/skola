@@ -46,10 +46,13 @@ namespace tcpCommunication
                 tbxIP.Visible = false;
                 label1.Visible = false;
                 btnConn.Visible = false;
+                btnSend.Visible = false;
 
                 // Show the chatroom and message box
                 tbxChatRoom.Visible = true;
                 tbxMessageMain.Visible = true;
+                btnSend.Visible = true;
+
 
                 // Start listening for messages from server asynchronously
                 _ = Task.Run(() => ListenForMessages());
