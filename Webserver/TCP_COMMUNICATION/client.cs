@@ -144,5 +144,14 @@ namespace tcpCommunication
             MessageBox.Show("Logged out");
             this.Close();
         }
+
+        private void tbxMessageMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Send message when enter key is pressed
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSend.PerformClick();
+            }
+        }
     }
 }

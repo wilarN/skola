@@ -84,6 +84,7 @@ namespace tcpCommunication
             this.tbxMessageMain.Name = "tbxMessageMain";
             this.tbxMessageMain.Size = new System.Drawing.Size(295, 22);
             this.tbxMessageMain.TabIndex = 6;
+            this.tbxMessageMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxMessageMain_KeyDown);
             // 
             // lblWelcome
             // 

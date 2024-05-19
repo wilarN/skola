@@ -17,14 +17,6 @@ namespace tcpCommunication
 
         bool serverRunning = false;
 
-        string welcomeMessageAscii = @"
-  __  __          _   _                     ____   _               _   
- |  \/  |   ___  | | | |_   _ __    __ _   / ___| | |__     __ _  | |_ 
- | |\/| |  / _ \ | | | __| | '__|  / _` | | |     | '_ \   / _` | | __|
- | |  | | |  __/ | | | |_  | |    | (_| | | |___  | | | | | (_| | | |_ 
- |_|  |_|  \___| |_|  \__| |_|     \__,_|  \____| |_| |_|  \__,_|  \__|
-                                                                       ";
-
         public server()
         {
             InitializeComponent();
@@ -70,6 +62,11 @@ namespace tcpCommunication
                 btnStartServer.Text = "Stop TCP Server";
                 serverRunning = true;
 
+                // Show startup message in tbxInbox
+                tbxInbox.AppendText("Server started on port: " + PORT);
+                tbxInbox.AppendText(Environment.NewLine);
+
+                // Start listening for clients
                 while (true)
                 {
                     if(!serverRunning)
@@ -120,10 +117,8 @@ namespace tcpCommunication
                 byte[] welcomeMessage = Encoding.Unicode.GetBytes("\r\nWelcome to the chat server!");
                 await client.GetStream().WriteAsync(welcomeMessage, 0, welcomeMessage.Length);
 
-                // Send ASCII art
-                byte[] welcomeMessageAsciiBytes = Encoding.Unicode.GetBytes(welcomeMessageAscii);
-                await client.GetStream().WriteAsync(welcomeMessageAsciiBytes, 0, welcomeMessageAsciiBytes.Length);
 
+                // Start listening for messages from handled client
                 while (true)
                 {
 

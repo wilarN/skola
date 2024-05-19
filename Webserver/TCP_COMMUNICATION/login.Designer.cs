@@ -38,7 +38,7 @@ namespace tcpCommunication
             // 
             // tbxLoginUsrnm
             // 
-            this.tbxLoginUsrnm.Location = new System.Drawing.Point(280, 181);
+            this.tbxLoginUsrnm.Location = new System.Drawing.Point(280, 185);
             this.tbxLoginUsrnm.Name = "tbxLoginUsrnm";
             this.tbxLoginUsrnm.Size = new System.Drawing.Size(100, 20);
             this.tbxLoginUsrnm.TabIndex = 1;
@@ -46,22 +46,26 @@ namespace tcpCommunication
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lblUsername.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblUsername.Location = new System.Drawing.Point(216, 181);
+            this.lblUsername.BackColor = System.Drawing.Color.Transparent;
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblUsername.Location = new System.Drawing.Point(172, 181);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(58, 13);
+            this.lblUsername.Size = new System.Drawing.Size(102, 24);
             this.lblUsername.TabIndex = 4;
             this.lblUsername.Text = "Username:";
             // 
             // btnConnectFromLogin
             // 
+            this.btnConnectFromLogin.BackColor = System.Drawing.Color.Black;
+            this.btnConnectFromLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnectFromLogin.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnConnectFromLogin.Location = new System.Drawing.Point(241, 224);
             this.btnConnectFromLogin.Name = "btnConnectFromLogin";
             this.btnConnectFromLogin.Size = new System.Drawing.Size(156, 46);
             this.btnConnectFromLogin.TabIndex = 5;
             this.btnConnectFromLogin.Text = "Login";
-            this.btnConnectFromLogin.UseVisualStyleBackColor = true;
+            this.btnConnectFromLogin.UseVisualStyleBackColor = false;
             this.btnConnectFromLogin.Click += new System.EventHandler(this.btnConnectFromLogin_Click);
             // 
             // pictureBox1
