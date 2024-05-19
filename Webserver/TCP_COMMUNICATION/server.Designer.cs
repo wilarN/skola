@@ -38,7 +38,7 @@ namespace tcpCommunication
             // 
             // tbxInbox
             // 
-            this.tbxInbox.Location = new System.Drawing.Point(13, 163);
+            this.tbxInbox.Location = new System.Drawing.Point(54, 208);
             this.tbxInbox.Multiline = true;
             this.tbxInbox.Name = "tbxInbox";
             this.tbxInbox.Size = new System.Drawing.Size(512, 128);
@@ -47,15 +47,15 @@ namespace tcpCommunication
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 131);
+            this.label1.Location = new System.Drawing.Point(51, 192);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Inbox";
+            this.label1.Text = "Chatlog";
             // 
             // btnStartServer
             // 
-            this.btnStartServer.Location = new System.Drawing.Point(54, 24);
+            this.btnStartServer.Location = new System.Drawing.Point(29, 65);
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.Size = new System.Drawing.Size(168, 61);
             this.btnStartServer.TabIndex = 2;
@@ -65,26 +65,28 @@ namespace tcpCommunication
             // 
             // tbxUsers
             // 
-            this.tbxUsers.Location = new System.Drawing.Point(291, 46);
+            this.tbxUsers.Location = new System.Drawing.Point(277, 46);
             this.tbxUsers.Multiline = true;
             this.tbxUsers.Name = "tbxUsers";
-            this.tbxUsers.Size = new System.Drawing.Size(234, 80);
+            this.tbxUsers.Size = new System.Drawing.Size(289, 133);
             this.tbxUsers.TabIndex = 3;
             // 
             // lblUsers
             // 
             this.lblUsers.AutoSize = true;
-            this.lblUsers.Location = new System.Drawing.Point(310, 13);
+            this.lblUsers.Location = new System.Drawing.Point(274, 30);
             this.lblUsers.Name = "lblUsers";
-            this.lblUsers.Size = new System.Drawing.Size(69, 13);
+            this.lblUsers.Size = new System.Drawing.Size(77, 13);
             this.lblUsers.TabIndex = 4;
-            this.lblUsers.Text = "Connections:";
+            this.lblUsers.Text = "Current clients:";
             // 
             // server
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 307);
+            this.BackgroundImage = global::tcpCommunication.Properties.Resources._1083094_download_free_world_of_warcraft_backgrounds_3840x2160_1049736965;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(607, 348);
             this.Controls.Add(this.lblUsers);
             this.Controls.Add(this.tbxUsers);
             this.Controls.Add(this.btnStartServer);

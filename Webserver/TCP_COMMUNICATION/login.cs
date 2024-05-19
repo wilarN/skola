@@ -16,5 +16,21 @@ namespace tcpCommunication
         {
             InitializeComponent();
         }
+
+        private void btnConnectFromLogin_Click(object sender, EventArgs e)
+        {
+            string username = tbxLoginUsrnm.Text;
+
+            if (username != "")
+            {
+                client client = new client(username);
+                client.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Please enter a username");
+            }
+        }
     }
 }

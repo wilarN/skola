@@ -83,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -95,7 +96,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Resources\792451-world-of-warcraft-wallpapers-2880x1800-for-mac-37949456.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world_of_warcraft__wotlk_logo_cut_down_by_death_gfx-d5patlq-2819884366.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world_of_warcraft__wotlk_logo_cut_down_by_death_gfx-d5patlq-2819884366-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world_of_warcraft__wotlk_logo_cut_down_by_death_gfx-d5patlq-28198843661.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warcraft-3-reforged-4k-2y-2048x1152-1071188565.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1083094-download-free-world-of-warcraft-backgrounds-3840x2160-1049736965.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
