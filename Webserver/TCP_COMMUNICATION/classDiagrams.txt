@@ -1,0 +1,46 @@
+Klassdiagram för server.cs, login.cs och client.cs:
+
++-----------------------------------------------+
+|                    client                     |
+|-----------------------------------------------|
+| - static int PORT                             |
+| - TcpClient comClient                         |
+| - string username                             |
+|-----------------------------------------------|
+| + client(string username)                     |
+| + void btnConn_Click(object sender,           |
+|          EventArgs e)                         |
+| + void btnSend_Click(object sender,           |
+|          EventArgs e)                         |
+| + Task ListenForMessages()                    |
+| + void client_Load(object sender,             |
+|          EventArgs e)                         |
+| + void btnLogout_Click(object sender,         |
+|          EventArgs e)                         |
+| + void tbxMessageMain_KeyDown(object sender,  |
+|          KeyEventArgs e)                      |
++-----------------------------------------------+
+
++--------------------------------------------------------------+
+|                             login                            |
+|--------------------------------------------------------------|
+|                                                              |
+|--------------------------------------------------------------|
+| + login()                                                    |
+| + void btnConnectFromLogin_Click(object sender, EventArgs e) |
++--------------------------------------------------------------+
+
+
++---------------------------------------------------------+
+|                         server                          |
++---------------------------------------------------------+
+| - List<TcpClient> activeConnections                     |
+| - TcpListener LISTENER                                  |
+| - int PORT                                              |
+| - bool serverRunning                                    |
++---------------------------------------------------------+
+| + server()                                              |
+| + void btnStartServer_Click(object sender, EventArgs e) |
+| + Task HandleClient(TcpClient client)                   |
++---------------------------------------------------------+
+
